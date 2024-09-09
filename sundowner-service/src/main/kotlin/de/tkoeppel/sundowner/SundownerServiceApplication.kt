@@ -1,4 +1,4 @@
-package de.tkoeppel.sundowner.sundowner_service
+package de.tkoeppel.sundowner
 
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
