@@ -20,9 +20,9 @@
     # Search for the extensions you want on https://open-vsx.org/ and use "publisher.id"
     extensions = [
      # "Angular.ng-template"
-     "fwcd.kotlin"
+     #"fwcd.kotlin"
      # "esbenp.prettier-vscode"
-     "Pivotal.vscode-boot-dev-pack"
+     #"Pivotal.vscode-boot-dev-pack"
     ];
 
     # Enable previews
@@ -32,13 +32,13 @@
         #web = {
         #   # Example: run "npm run dev" with PORT set to IDX's defined port for previews,
         #   # and show it in IDX's web preview panel
-        #   command = ["cd" "./sundowner-webapp" "&&" "npm" "run" "dev" ];
-        #   manager = "web";
-        #   env = {
-        #     # Environment variables to set for your server
-        #     PORT = "$PORT";
-        #   };
-        # };
+           #   command = ["cd" "./sundowner-webapp" "&&" "npm" "run" "dev" ];
+           #   manager = "web";
+           #   env = {
+             #     # Environment variables to set for your server
+             #     PORT = "$PORT";
+           #   };
+         # };
       };
     };
 
@@ -51,7 +51,7 @@
       };
       # Runs when the workspace is (re)started
       onStart = {
-        gradle-build = "../sundowner-server/gradle clean build";
+        # gradle-build = "../sundowner-server/gradle clean build";
       };
     };
   };
