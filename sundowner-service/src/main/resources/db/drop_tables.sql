@@ -6,7 +6,7 @@ BEGIN
     FOR rec IN
         SELECT *
         FROM pg_Tables
-        WHERE tablename LIKE 'sundowner_dev%'
+        WHERE tablename LIKE 'sundowner_%s'
         ORDER BY tablename
     LOOP
         EXECUTE 'DROP TABLE IF EXISTS '|| rec.tablename ||' CASCADE';
