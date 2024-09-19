@@ -1,3 +1,4 @@
+-- Create Tables
 START TRANSACTION;
 
 -- Create the 'users' table
