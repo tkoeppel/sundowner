@@ -1,15 +1,14 @@
 package de.tkoeppel.sundowner
 
 import org.springframework.boot.autoconfigure.SpringBootApplication
-import org.springframework.boot.runApplication
 import org.springframework.boot.SpringApplication
 
 @SpringBootApplication
-class SundownerServiceApplication{
+class SundownerServiceApplicationKt{
 	companion object {
         @JvmStatic
 		fun main(args: Array<String>) {
-			SpringApplication.run(SundownerServiceApplication::class.java, *args)
+			SpringApplication.run(SundownerServiceApplicationKt::class.java, *args)
 		}
 	}
 }

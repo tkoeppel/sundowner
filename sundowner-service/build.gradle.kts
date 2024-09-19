@@ -35,6 +35,7 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter")
     implementation("org.jetbrains.kotlin:kotlin-reflect")
     implementation("org.springframework.boot:spring-boot-starter-data-jpa")
+    implementation("jakarta.persistence:jakarta.persistence-api")
     implementation("org.springframework.boot:spring-boot-starter-web")  
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
 
