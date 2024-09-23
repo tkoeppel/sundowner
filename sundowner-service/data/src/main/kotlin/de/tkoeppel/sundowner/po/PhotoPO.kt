@@ -4,12 +4,8 @@ import jakarta.persistence.*
 import java.time.ZonedDateTime
 
 @Entity
-@Table(name = "photos")
+@Table(name = "photos", schema = "sundowner_")
 data class PhotoPO (
-	@Id
-		@Column(name = "id")
-		@GeneratedValue(strategy = GenerationType.AUTO)
-		val id: Long,
 
 	@ManyToOne
 		@JoinColumn(name = "spot_id")
@@ -28,4 +24,4 @@ data class PhotoPO (
 
 	@Column(name = "url", nullable = false)
 		val url: String
-)
+) : BasePO()

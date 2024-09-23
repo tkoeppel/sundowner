@@ -6,11 +6,6 @@ import jakarta.persistence.*
 @Table(name = "spot_reviews")
 data class SpotReviewPO(
 
-	@Id
-	@Column(name = "id")
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	val id: Long,
-
 	@ManyToOne
 	@JoinColumn(name = "spot", nullable = false)
 	val spot: Spot,
@@ -24,4 +19,4 @@ data class SpotReviewPO(
 
 	@Column(name = "comment")
 	val comment: String?
-)
+) : BasePO()

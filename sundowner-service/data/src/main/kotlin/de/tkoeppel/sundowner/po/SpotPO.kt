@@ -9,10 +9,6 @@ import java.time.ZonedDateTime
 @Entity
 @Table(name = "spots")
 data class Spot(
-	@Id
-	@Column(name = "id")
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	val id: Long,
 
 	@Column(name = "type", nullable = false)
 	@Enumerated(EnumType.STRING)
@@ -37,4 +33,4 @@ data class Spot(
 	@Column(name = "transport", nullable = false)
 	@Enumerated(EnumType.STRING)
 	val transport: TransportType
-)
+) : BasePO()

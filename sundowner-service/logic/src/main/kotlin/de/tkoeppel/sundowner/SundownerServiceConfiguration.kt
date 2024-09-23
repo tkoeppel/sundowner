@@ -3,6 +3,6 @@ package de.tkoeppel.sundowner
 import org.springframework.boot.SpringBootConfiguration
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories
 
-@EnableJpaRepositories(basePackages = ["de.tkoeppel.sundowner.dao"])
+@EnableJpaRepositories
 @SpringBootConfiguration
-class SundownerServiceTestConfiguration {}
+class SundownerServiceConfiguration {}
