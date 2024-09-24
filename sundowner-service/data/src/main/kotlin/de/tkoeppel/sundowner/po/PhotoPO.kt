@@ -15,9 +15,8 @@ data class PhotoPO (
 		@JoinColumn(name = "review_id")
 		val review: SpotReviewPO? = null,
 
-	@ManyToOne
-		@JoinColumn(name = "uploaded_by", nullable = false)
-		val uploadedBy: UserPO,
+	@Column(name = "uploaded_by", nullable = false)
+		val uploadedBy: String,
 
 	@Column(name = "uploaded_date", nullable = false)
 		val uploadedDate: ZonedDateTime,

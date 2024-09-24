@@ -13,13 +13,9 @@ dependencies {
     implementation(project(":data"))
     implementation(project(":logic"))
     implementation("org.springframework.boot:spring-boot-starter-data-jpa")
-
-
     testImplementation("org.springframework.boot:spring-boot-starter-test")
-    implementation("org.postgresql:postgresql")
-    testImplementation("com.h2database:h2")
+
     testImplementation("org.springframework.boot:spring-boot-test-autoconfigure")
-    testImplementation("org.springframework.boot:spring-boot-starter-test")
     testImplementation(kotlin("test"))
 
 

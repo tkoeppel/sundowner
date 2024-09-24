@@ -23,9 +23,8 @@ data class Spot(
 	@Column(name = "description")
 	val description: String? = null,
 
-	@ManyToOne
-	@JoinColumn(name = "added_by", nullable = false)
-	val addedBy: UserPO,
+	@Column(name = "added_by", nullable = false)
+	val addedBy: String,
 
 	@Column(name = "added_date", nullable = false)
 	val addedDate: ZonedDateTime,

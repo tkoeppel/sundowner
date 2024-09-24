@@ -10,9 +10,8 @@ data class SpotReviewPO(
 	@JoinColumn(name = "spot", nullable = false)
 	val spot: Spot,
 
-	@ManyToOne
-	@JoinColumn(name = "review_user", nullable = false)
-	val reviewUser: UserPO,
+	@Column(name = "review_user", nullable = false)
+	val reviewUser: String,
 
 	@Column(name = "rating", nullable = false)
 	val rating: Int,
