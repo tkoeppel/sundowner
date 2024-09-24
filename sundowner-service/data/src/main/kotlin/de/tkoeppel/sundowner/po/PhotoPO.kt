@@ -9,7 +9,7 @@ data class PhotoPO (
 
 	@ManyToOne
 		@JoinColumn(name = "spot_id")
-		val spot: Spot? = null,
+		val spot: SpotPO? = null,
 
 	@ManyToOne
 		@JoinColumn(name = "review_id")

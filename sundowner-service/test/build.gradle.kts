@@ -12,19 +12,20 @@ repositories {
 dependencies {
     implementation(project(":data"))
     implementation(project(":logic"))
+
     implementation("org.springframework.boot:spring-boot-starter-data-jpa")
-    testImplementation("org.springframework.boot:spring-boot-starter-test")
+    implementation("org.springframework.boot:spring-boot-starter-test")
 
-    testImplementation("org.springframework.boot:spring-boot-test-autoconfigure")
     testImplementation(kotlin("test"))
-
 
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
 }
 
 tasks.test {
     useJUnitPlatform()
-    jvmArgs("-XX:+EnableDynamicAgentLoading")
+    group = "verification"
+    description = "Runs the integration tests."
+
 }
 
 kotlin {

@@ -8,7 +8,7 @@ import java.time.ZonedDateTime
 
 @Entity
 @Table(name = "spots")
-data class Spot(
+data class SpotPO(
 
 	@Column(name = "type", nullable = false)
 	@Enumerated(EnumType.STRING)

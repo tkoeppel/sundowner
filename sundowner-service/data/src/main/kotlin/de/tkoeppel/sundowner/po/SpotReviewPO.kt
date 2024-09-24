@@ -8,7 +8,7 @@ data class SpotReviewPO(
 
 	@ManyToOne
 	@JoinColumn(name = "spot", nullable = false)
-	val spot: Spot,
+	val spot: SpotPO,
 
 	@Column(name = "review_user", nullable = false)
 	val reviewUser: String,
