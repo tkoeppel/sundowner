@@ -1,4 +1,4 @@
-package de.tkoeppel.sundowner.dummy
+package de.tkoeppel.sundowner.module.dummy
 
 import de.tkoeppel.sundowner.SundownerServiceTestBase
 import de.tkoeppel.sundowner.basetype.SpotType
@@ -9,7 +9,7 @@ import org.junit.jupiter.api.Test
 import org.springframework.data.geo.Point
 import java.time.ZonedDateTime
 
-class ITDummyTest : SundownerServiceTestBase() {
+class DummyTest : SundownerServiceTestBase() {
 
 	@Test
 	fun  testDummy() {

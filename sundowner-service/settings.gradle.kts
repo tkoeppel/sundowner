@@ -13,5 +13,5 @@ plugins {
 // Project structure
 rootProject.name = "sundowner-service"
 include("logic")
-include("test")
+include("integrationtest")
 include("data")
