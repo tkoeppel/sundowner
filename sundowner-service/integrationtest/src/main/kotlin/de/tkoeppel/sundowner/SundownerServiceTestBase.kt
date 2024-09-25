@@ -8,7 +8,7 @@ import org.springframework.context.annotation.ComponentScan
 
 @ComponentScan(basePackages = ["de.tkoeppel.sundowner"])
 @AutoConfigureMockMvc
-@SpringBootTest(classes = [SundownerServiceApplication::class])
+@SpringBootTest
 class SundownerServiceTestBase {
 
 	@Autowired

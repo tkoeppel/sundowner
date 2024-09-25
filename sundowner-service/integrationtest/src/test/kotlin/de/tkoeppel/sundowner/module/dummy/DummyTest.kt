@@ -15,6 +15,7 @@ class DummyTest : SundownerServiceTestBase() {
 	fun  testDummy() {
 		val spot1 = SpotPO(SpotType.SUNSET, Point(3.3, 2.1),
 			"", "", "", ZonedDateTime.now(), TransportType.CAR )
+		// this.spotDAO.save(spot1)
 
 		assertThat(true).isTrue()
 	}

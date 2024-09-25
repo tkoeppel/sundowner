@@ -2,6 +2,7 @@
 \c sundowner_%s_db
 
 -- Install postgis beforehand
+SET ROLE sundowner_%s;
 CREATE EXTENSION postgis;
 
 -- Create Tables
@@ -17,7 +18,7 @@ CREATE TABLE IF NOT EXISTS spots (
   added_by TEXT NOT NULL,
   added_date TIMESTAMP WITH TIME ZONE NOT NULL,
   transport VARCHAR(255) NOT NULL CHECK (type IN ('by_foot', 'car', 'bike', 'public_transport'))
-);
+) OWNER sundowner_%s;
 -- spatial index on the 'location' column in 'spots'
 CREATE INDEX scenic_spots_location_idx ON spots USING GIST (location);
 
@@ -29,7 +30,7 @@ CREATE TABLE IF NOT EXISTS spot_reviews (
   review_user TEXT NOT NULL,
   rating INTEGER CHECK (rating BETWEEN 0 AND 5) NOT NULL,
   comment TEXT
-);
+) OWNER sundowner_%s;
 
 -- Create the 'photos' table
 CREATE TABLE IF NOT EXISTS photos (
@@ -38,7 +39,7 @@ CREATE TABLE IF NOT EXISTS photos (
   review_id BIGINT REFERENCES spot_reviews(id),
   uploaded_date TIMESTAMP WITH TIME ZONE NOT NULL,
   url TEXT NOT NULL
-);
+) OWNER sundowner_%s;
 
 END;
 

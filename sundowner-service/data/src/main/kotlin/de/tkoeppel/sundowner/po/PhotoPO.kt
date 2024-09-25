@@ -4,7 +4,7 @@ import jakarta.persistence.*
 import java.time.ZonedDateTime
 
 @Entity
-@Table(name = "photos", schema = "sundowner_")
+@Table(name = "photos")
 data class PhotoPO (
 
 	@ManyToOne
