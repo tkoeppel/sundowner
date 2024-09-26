@@ -3,7 +3,7 @@ package de.tkoeppel.sundowner.po
 import de.tkoeppel.sundowner.basetype.SpotType
 import de.tkoeppel.sundowner.basetype.TransportType
 import jakarta.persistence.*
-import org.springframework.data.geo.Point
+import org.locationtech.jts.geom.Point
 import java.time.ZonedDateTime
 
 @Entity

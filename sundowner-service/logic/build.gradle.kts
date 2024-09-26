@@ -18,6 +18,9 @@ springBoot {
 dependencies {
     implementation("org.springframework.boot:spring-boot-starter-web")
     implementation("org.springframework.boot:spring-boot-starter-data-jpa")
+    implementation("org.locationtech.jts:jts-core:1.20.0")
+    implementation("org.hibernate.orm:hibernate-spatial:6.5.2.Final")
+
 
     runtimeOnly("org.postgresql:postgresql")
 

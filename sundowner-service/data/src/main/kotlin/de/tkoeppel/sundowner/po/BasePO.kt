@@ -6,6 +6,6 @@ import jakarta.persistence.*
 abstract class BasePO {
 	@Id
 	@Column(name = "id")
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	val id: Long? = null
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	val id: Long = 0
 }
