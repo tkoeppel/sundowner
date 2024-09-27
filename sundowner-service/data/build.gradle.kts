@@ -13,8 +13,8 @@ dependencies {
     implementation("org.jetbrains.kotlin:kotlin-reflect")
     implementation("org.springframework.boot:spring-boot-starter-data-jpa")
     implementation("jakarta.persistence:jakarta.persistence-api")
-    implementation("org.locationtech.jts:jts-core:1.20.0")
-    implementation("org.hibernate.orm:hibernate-spatial:6.5.2.Final")
+    implementation("org.locationtech.jts:jts-core")
+    implementation("org.hibernate.orm:hibernate-spatial")
 
 
 
