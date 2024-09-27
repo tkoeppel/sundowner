@@ -15,10 +15,14 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories
 @EnableJpaRepositories(basePackages = ["de.tkoeppel.sundowner.dao"])
 @SpringBootApplication
 class SundownerServiceApplication{
+	/**
+	 * Geometry factory
+	 *
+	 * @return A [GeometryFactory] bean
+	 */
 	@Bean
 	fun geometryFactory(): GeometryFactory {
-		// You can customize the PrecisionModel if needed
-		val precisionModel: PrecisionModel = PrecisionModel(PrecisionModel.FLOATING)
+		val precisionModel = PrecisionModel(PrecisionModel.FLOATING)
 		return GeometryFactory(precisionModel)
 	}
 }
