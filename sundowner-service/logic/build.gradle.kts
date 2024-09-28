@@ -18,8 +18,11 @@ springBoot {
 dependencies {
     implementation("org.springframework.boot:spring-boot-starter-web")
     implementation("org.springframework.boot:spring-boot-starter-data-jpa")
+
+    // spatial data
     implementation("org.locationtech.jts:jts-core")
     implementation("org.hibernate.orm:hibernate-spatial")
+    implementation("org.n52.jackson:jackson-datatype-jts:1.2.10")
 
 
     runtimeOnly("org.postgresql:postgresql")
@@ -28,6 +31,10 @@ dependencies {
 
     // sundowner dependencies
     implementation(project(":data"))
+
+    // Open API
+    implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.5.0")
+    implementation("org.springdoc:springdoc-openapi-starter-webflux-ui:2.5.0")
 }
 
 tasks.test {

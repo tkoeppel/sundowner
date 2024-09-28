@@ -14,18 +14,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories
 @EntityScan(basePackages = ["de.tkoeppel.sundowner.po"])
 @EnableJpaRepositories(basePackages = ["de.tkoeppel.sundowner.dao"])
 @SpringBootApplication
-class SundownerServiceApplication{
-	/**
-	 * Geometry factory
-	 *
-	 * @return A [GeometryFactory] bean
-	 */
-	@Bean
-	fun geometryFactory(): GeometryFactory {
-		val precisionModel = PrecisionModel(PrecisionModel.FLOATING)
-		return GeometryFactory(precisionModel)
-	}
-}
+class SundownerServiceApplication
 
 fun main(args: Array<String>) {
 	runApplication<SundownerServiceApplication>(*args)

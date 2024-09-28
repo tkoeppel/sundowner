@@ -3,7 +3,8 @@
 
 -- Install postgis beforehand
 SET ROLE sundowner_%s;
-CREATE EXTENSION postgis;
+CREATE EXTENSION IF NOT EXISTS postgis;
+CREATE EXTENSION IF NOT EXISTS postgis_topology;
 
 -- Create Tables
 START TRANSACTION;
