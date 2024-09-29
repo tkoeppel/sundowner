@@ -1,8 +1,7 @@
 package de.tkoeppel.sundowner.module.spots
 
 import de.tkoeppel.sundowner.api.SpotsApi
-import de.tkoeppel.sundowner.to.MapViewTO
-import de.tkoeppel.sundowner.to.SpotTO
+import de.tkoeppel.sundowner.to.MapSpotTO
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.ResponseEntity
 
@@ -14,8 +13,10 @@ class SpotEndpoint : SpotsApi {
 	/**
 	 * @see de.tkoeppel.sundowner.api.SpotsApi
 	 */
-	override fun getPointsInView(max: Int, mapViewTO: MapViewTO): ResponseEntity<List<SpotTO>> {
-		val points = this.spotService.getPointsInView(max, mapViewTO)
+	override fun getPointsInView(
+		limit: Int, minX: Double, minY: Double, maxX: Double, maxY: Double
+	): ResponseEntity<List<MapSpotTO>> {
+		val points = this.spotService.getPointsInView(limit, minX, minY, maxX, maxY)
 		return ResponseEntity.ok(points)
 	}
 }

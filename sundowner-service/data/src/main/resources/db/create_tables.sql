@@ -16,6 +16,7 @@ CREATE TABLE IF NOT EXISTS spots (
   location geography(Point, 4326) NOT NULL,
   name TEXT NOT NULL,
   description TEXT,
+  average_rating DOUBLE PRECISION NOT NULL,
   added_by TEXT NOT NULL,
   added_date TIMESTAMP WITH TIME ZONE NOT NULL,
   transport VARCHAR(255) NOT NULL CHECK (type IN ('by_foot', 'car', 'bike', 'public_transport'))

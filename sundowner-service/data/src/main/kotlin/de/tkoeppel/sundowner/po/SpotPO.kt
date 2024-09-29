@@ -10,26 +10,19 @@ import java.time.ZonedDateTime
 @Table(name = "spots")
 data class SpotPO(
 
-	@Column(name = "type", nullable = false)
-	@Enumerated(EnumType.STRING)
-	val type: SpotType = SpotType.SUNSET,
+	@Column(name = "type", nullable = false) @Enumerated(EnumType.STRING) val type: SpotType = SpotType.SUNSET,
 
-	@Column(name = "location", columnDefinition = "geography(Point, 4326)", nullable = false)
-	val location: Point,
+	@Column(name = "location", columnDefinition = "geography(Point, 4326)", nullable = false) val location: Point,
 
-	@Column(name = "name", nullable = false)
-	val name: String,
+	@Column(name = "name", nullable = false) val name: String,
 
-	@Column(name = "description")
-	val description: String? = null,
+	@Column(name = "description") val description: String? = null,
 
-	@Column(name = "added_by", nullable = false)
-	val addedBy: String,
+	@Column(name = "average_rating") val averageRating: Double,
 
-	@Column(name = "added_date", nullable = false)
-	val addedDate: ZonedDateTime,
+	@Column(name = "added_by", nullable = false) val addedBy: String,
 
-	@Column(name = "transport", nullable = false)
-	@Enumerated(EnumType.STRING)
-	val transport: TransportType
+	@Column(name = "added_date", nullable = false) val addedDate: ZonedDateTime,
+
+	@Column(name = "transport", nullable = false) @Enumerated(EnumType.STRING) val transport: TransportType
 ) : BasePO()
