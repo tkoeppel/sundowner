@@ -19,7 +19,7 @@ CREATE TABLE IF NOT EXISTS spots (
   average_rating DOUBLE PRECISION NOT NULL,
   added_by TEXT NOT NULL,
   added_date TIMESTAMP WITH TIME ZONE NOT NULL,
-  transport VARCHAR(255) NOT NULL CHECK (type IN ('by_foot', 'car', 'bike', 'public_transport'))
+  transport VARCHAR(255)[] NOT NULL CHECK (transport <@ ARRAY['by_foot', 'car', 'bike', 'public_transport']::VARCHAR[])
 ) OWNER sundowner_%s;
 -- spatial index on the 'location' column in 'spots'
 CREATE INDEX scenic_spots_location_idx ON spots USING GIST (location);

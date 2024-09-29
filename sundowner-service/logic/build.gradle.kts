@@ -30,8 +30,6 @@ dependencies {
 
 	runtimeOnly("org.postgresql:postgresql")
 
-	testImplementation(kotlin("test"))
-
 	// sundowner dependencies
 	implementation(project(":data"))
 

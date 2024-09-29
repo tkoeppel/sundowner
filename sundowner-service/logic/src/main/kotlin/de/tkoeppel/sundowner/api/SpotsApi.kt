@@ -2,6 +2,7 @@ package de.tkoeppel.sundowner.api
 
 import de.tkoeppel.sundowner.to.MapSpotTO
 import io.swagger.v3.oas.annotations.Operation
+import io.swagger.v3.oas.annotations.Parameter
 import io.swagger.v3.oas.annotations.media.Content
 import io.swagger.v3.oas.annotations.media.Schema
 import io.swagger.v3.oas.annotations.responses.ApiResponse
@@ -16,7 +17,7 @@ import org.springframework.web.bind.annotation.RestController
 	name = "Spots", description = "API handling all sundowner spot requests."
 )
 @RestController
-@RequestMapping("/api/spots")
+@RequestMapping("/api/v1/spots")
 interface SpotsApi {
 
 	@Operation(
@@ -28,9 +29,11 @@ interface SpotsApi {
 					implementation = Array<MapSpotTO>::class
 				)
 			)]
-		), ApiResponse(responseCode = "400", description = "Bad Request - Invalid request parameters")]
+		), ApiResponse(responseCode = "400", description = "Bad Request - Invalid request parameters")],
+		operationId = "getPointsInView",
+		parameters = [Parameter("limit"), Parameter("minX"), Parameter("minY"), Parameter("maxX"), Parameter("maxY")]
 	)
-	@GetMapping("/")
+	@GetMapping("")
 	fun getPointsInView(
 		@RequestParam(required = true, defaultValue = "10") limit: Int,
 		@RequestParam(required = true) minX: Double,
