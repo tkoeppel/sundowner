@@ -30,7 +30,8 @@ class SundownerServiceTestBase {
 	@Autowired
 	protected lateinit var mapper: ObjectMapper
 
-	protected final val API_PATH = "/api"
+	protected final val API_VERSION = "v1"
+	protected final val API_PATH = "/api/" + API_VERSION
 
 	protected fun <T> convertToTO(result: MvcResult): T {
 		val objStr = result.response.contentAsString

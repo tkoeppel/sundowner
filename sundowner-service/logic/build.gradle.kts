@@ -9,18 +9,12 @@ repositories {
 	mavenCentral()
 }
 
-springBoot {
-	mainClass.set("de.tkoeppel.sundowner.SundownerServiceApplication")
-}
-
 
 
 dependencies {
 	implementation("org.springframework.boot:spring-boot-starter-web")
 	implementation("org.springframework.boot:spring-boot-starter-data-jpa")
-
 	implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
-
 
 	// spatial data
 	implementation("org.locationtech.jts:jts-core")
@@ -34,8 +28,7 @@ dependencies {
 	implementation(project(":data"))
 
 	// Open API
-	implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.5.0")
-	implementation("org.springdoc:springdoc-openapi-starter-webflux-ui:2.5.0")
+	implementation("org.springdoc:springdoc-openapi-starter-webmvc-api:2.6.0")
 }
 
 tasks.test {

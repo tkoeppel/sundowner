@@ -9,7 +9,7 @@ interface SpotDAO : JpaRepository<SpotPO, Long> {
 		nativeQuery = true, value = """
         SELECT *
         FROM spots
-        WHERE ST_Within(geom, ST_MakeEnvelope(:minX, :minY, :maxX, :maxY, 4326))
+        WHERE ST_Covers(ST_MakeEnvelope(:minX, :minY, :maxX, :maxY, 4326)::geography, location)
         ORDER BY average_rating DESC NULLS LAST 
         LIMIT :limit;
     """

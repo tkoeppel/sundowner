@@ -8,15 +8,15 @@ import io.swagger.v3.oas.annotations.media.Schema
 import io.swagger.v3.oas.annotations.responses.ApiResponse
 import io.swagger.v3.oas.annotations.tags.Tag
 import org.springframework.http.ResponseEntity
+import org.springframework.validation.annotation.Validated
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RequestParam
-import org.springframework.web.bind.annotation.RestController
 
 @Tag(
 	name = "Spots", description = "API handling all sundowner spot requests."
 )
-@RestController
+@Validated
 @RequestMapping("/api/v1/spots")
 interface SpotsApi {
 
@@ -33,7 +33,7 @@ interface SpotsApi {
 		operationId = "getPointsInView",
 		parameters = [Parameter("limit"), Parameter("minX"), Parameter("minY"), Parameter("maxX"), Parameter("maxY")]
 	)
-	@GetMapping("")
+	@GetMapping()
 	fun getPointsInView(
 		@RequestParam(required = true, defaultValue = "10") limit: Int,
 		@RequestParam(required = true) minX: Double,

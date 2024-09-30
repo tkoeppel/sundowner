@@ -1,7 +1,9 @@
 package de.tkoeppel.sundowner.module.photos
 
 import de.tkoeppel.sundowner.api.PhotosApi
+import org.springframework.web.bind.annotation.RestController
 
-class PhotoEndpoint : PhotosApi{
+@RestController
+class PhotoEndpoint : PhotosApi {
 	// TODO
 }
