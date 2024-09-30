@@ -20,8 +20,6 @@ dependencies {
 
 	// Open API
 	implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.5.0")
-	implementation("org.springdoc:springdoc-openapi-starter-webflux-ui:2.5.0")
-
 
 	// sundowner dependencies
 	testImplementation(kotlin("test"))
