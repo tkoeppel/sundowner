@@ -34,7 +34,12 @@ class SundownerServiceTestBase {
 	protected final val API_PATH = "/api/" + API_VERSION
 
 	protected fun <T> convertToTO(result: MvcResult): T {
-		val objStr = result.response.contentAsString
-		return this.mapper.readValue(objStr, object : TypeReference<T>() {})
+		val objStr = result.response.contentAsByteArray
+		return this.mapper.readValue<T>(objStr, object : TypeReference<T>() {})
+	}
+
+	protected fun <T> convertListToTO(result: MvcResult): List<T> {
+		val objStr = result.response.contentAsByteArray
+		return this.mapper.readValue<List<T>>(objStr, object : TypeReference<List<T>>() {})
 	}
 }

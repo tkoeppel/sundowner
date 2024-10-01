@@ -1,5 +1,6 @@
 package de.tkoeppel.sundowner.module.spots
 
+import de.tkoeppel.sundowner.assertion.SpotAssert
 import de.tkoeppel.sundowner.to.MapSpotTO
 import org.assertj.core.api.Assertions.assertThat
 import org.locationtech.jts.geom.Coordinate
@@ -10,6 +11,19 @@ import kotlin.test.Test
 
 class GetPointsInViewTest : SpotTestBase() {
 	@Test
+	fun `get point`() {
+		// pre
+		val point = create(name = "point", location = Coordinate(0.0, 0.0))
+
+		// act
+		val points = getPoints()
+
+		// post
+		assertThat(points.size).isEqualTo(1)
+		SpotAssert.assert(point, points[0])
+	}
+
+	@Test
 	fun `get empty points list`() {
 		// pre
 		create(name = "point 1", location = Coordinate(2.0, 2.0))
@@ -18,7 +32,7 @@ class GetPointsInViewTest : SpotTestBase() {
 		create(name = "point 4", location = Coordinate(-2.0, -2.0))
 
 		// act
-		val points = getPoints(10, -1.0, -1.0, 1.0, 1.0)
+		val points = getPoints()
 
 		// post
 		assertThat(points).isEmpty()
@@ -32,6 +46,6 @@ class GetPointsInViewTest : SpotTestBase() {
 				.param("minY", "$minY").param("maxX", "$maxX").param("maxY", "$maxY")
 		).andExpect(status().isOk).andReturn()
 
-		return this.convertToTO(result)
+		return this.convertToTO<List<MapSpotTO>>(result)
 	}
 }

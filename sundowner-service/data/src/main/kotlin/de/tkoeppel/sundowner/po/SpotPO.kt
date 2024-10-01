@@ -13,7 +13,7 @@ data class SpotPO(
 	@Column(name = "type", nullable = false) @Enumerated(EnumType.STRING) val type: SpotType = SpotType.SUNSET,
 
 	@Convert(converter = PointConverter::class) @Column(
-		name = "location", columnDefinition = "geography(Point, 4326)", nullable = false
+		name = "location", columnDefinition = "geometry(Point, 4326)", nullable = false
 	) val location: Coordinate,
 
 	@Column(name = "name", nullable = false) val name: String,

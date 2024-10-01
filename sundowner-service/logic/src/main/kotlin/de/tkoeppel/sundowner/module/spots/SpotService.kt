@@ -15,11 +15,11 @@ class SpotService {
 	fun getPointsInView(limit: Int, minX: Double, minY: Double, maxX: Double, maxY: Double): List<MapSpotTO> {
 		val pos = this.spotDAO.findPointsInBoundingBox(limit, minX, minY, maxX, maxY)
 		val mapper = SpotMapper()
-		val tos: List<MapSpotTO> = listOf<MapSpotTO>()
+		val tos: MutableList<MapSpotTO> = mutableListOf<MapSpotTO>()
 		for (po in pos) {
-			tos.plus(mapper.mapMapSpot(po))
+			tos.add(mapper.mapMapSpot(po))
 		}
 
-		return tos
+		return tos.toList()
 	}
 }
