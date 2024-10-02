@@ -1,0 +1,15 @@
+.gitignore
+.openapi-generator-ignore
+README.md
+api.module.ts
+api/api.ts
+api/spots.service.ts
+configuration.ts
+encoder.ts
+git_push.sh
+index.ts
+model/coordinateTO.ts
+model/mapSpotTO.ts
+model/models.ts
+param.ts
+variables.ts

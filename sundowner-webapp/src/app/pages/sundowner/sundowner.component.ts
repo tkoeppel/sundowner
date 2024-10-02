@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import * as L from 'leaflet'; 
 import { LatLngExpression } from 'leaflet';
+import { SpotsService } from '../../../../gensrc';
 
 @Component({
   selector: 'app-sundowner',
@@ -12,6 +13,10 @@ import { LatLngExpression } from 'leaflet';
 export class SundownerComponent {
   private readonly START_POS: LatLngExpression = [48.7979389287977, 9.800386608684917];
   private  map: L.Map | undefined;
+
+  constructor(private _spotsService: SpotsService){
+    // nothing to do
+  }
 
   ngOnInit(): void {
     // Optional: Fetch data for markers or other map features from your service
