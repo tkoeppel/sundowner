@@ -1,5 +1,6 @@
 package de.tkoeppel.sundowner.module.spots
 
+import com.fasterxml.jackson.core.type.TypeReference
 import de.tkoeppel.sundowner.assertion.SpotAssert
 import de.tkoeppel.sundowner.to.MapSpotTO
 import org.assertj.core.api.Assertions.assertThat
@@ -20,7 +21,7 @@ class GetPointsInViewTest : SpotTestBase() {
 
 		// post
 		assertThat(points.size).isEqualTo(1)
-		SpotAssert.assert(point, points[0])
+		SpotAssert.assert(points[0], point)
 	}
 
 	@Test
@@ -46,6 +47,6 @@ class GetPointsInViewTest : SpotTestBase() {
 				.param("minY", "$minY").param("maxX", "$maxX").param("maxY", "$maxY")
 		).andExpect(status().isOk).andReturn()
 
-		return this.convertToTO<List<MapSpotTO>>(result)
+		return this.convertToTO(result, object : TypeReference<List<MapSpotTO>>() {})
 	}
 }
