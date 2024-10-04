@@ -1,6 +1,5 @@
 package de.tkoeppel.sundowner.to
 
-import com.fasterxml.jackson.annotation.JsonProperty
 import io.swagger.v3.oas.annotations.media.Schema
 
 /**
@@ -14,16 +13,13 @@ import io.swagger.v3.oas.annotations.media.Schema
  */
 @Schema(description = "Transfer object of the spot immediately shown on the map with the necessary details.")
 data class MapSpotTO(
+	@Schema(description = "The ID of the element.") override val id: Long,
 
-	@JsonProperty("id") override val id: Long,
+	@Schema(description = "The location of the spot.") val location: CoordinateTO,
 
-	@JsonProperty("location") @Schema(description = "The location of the spot.") val location: CoordinateTO,
+	@Schema(description = "The name given to the spot.") val name: String,
 
-	@JsonProperty("name") @Schema(description = "The name given to the spot.") val name: String,
-
-	@JsonProperty("avgRating") @Schema(
-		description = "The overall rating of the spot.",
-		minimum = "0",
-		maximum = "10"
+	@Schema(
+		description = "The overall rating of the spot.", minimum = "0", maximum = "10"
 	) val avgRating: Double
 ) : BaseElementTO(id)

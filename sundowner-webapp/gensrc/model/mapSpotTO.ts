@@ -15,6 +15,9 @@ import { CoordinateTO } from './coordinateTO';
  * Transfer object of the spot immediately shown on the map with the necessary details.
  */
 export interface MapSpotTO { 
+    /**
+     * The ID of the element.
+     */
     id: number;
     location: CoordinateTO;
     /**

@@ -1,44 +1,40 @@
-import { Component } from '@angular/core';
-import * as L from 'leaflet'; 
-import { LatLngExpression } from 'leaflet';
-import { SpotsService } from '../../../../gensrc';
+import { Component, OnInit } from '@angular/core';
+import { SundownerMapComponent } from './sundowner-map/sundowner-map.component';
+import { MapSpotTO, SpotsService } from '../../../../gensrc';
+import { LatLngBounds, LatLngExpression } from 'leaflet';
+import { firstValueFrom } from 'rxjs';
 
 @Component({
   selector: 'app-sundowner',
   standalone: true,
-  imports: [],
+  imports: [SundownerMapComponent],
   templateUrl: './sundowner.component.html',
-  styleUrl: './sundowner.component.scss'
+  styleUrl: './sundowner.component.scss',
 })
 export class SundownerComponent {
-  private readonly START_POS: LatLngExpression = [48.7979389287977, 9.800386608684917];
-  private  map: L.Map | undefined;
+  private readonly MAX_POINTS = 10;
 
-  constructor(private _spotsService: SpotsService){
-    // nothing to do
-  }
+  public readonly START_POS: LatLngExpression = [
+    48.7979389287977, 9.800386608684917,
+  ];
 
-  ngOnInit(): void {
-    // Optional: Fetch data for markers or other map features from your service
-  }
+  public spots: MapSpotTO[] = [];
 
-  ngAfterViewInit(): void {
-    this.initMap();
-  }
+  constructor(private _spotsService: SpotsService) {}
 
-  private initMap(): void {
-    this.map = L.map('map', { 
-      center: this.START_POS, // Zeiselberg Schwäbisch Gmünd
-      zoom: 50
-    });
+  public async handleMapMove(bounds: LatLngBounds) {
+    // lat = y, lng = x
+    const min = bounds.getSouthWest();
+    const max = bounds.getNorthEast();
 
-    const tiles = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      maxZoom: 19,
-      attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'  
-    });
-
-    L.marker(this.START_POS).addTo(this.map);
-
-    tiles.addTo(this.map);
+    this.spots = await firstValueFrom(
+      this._spotsService.getPointsInView(
+        min.lng,
+        min.lat,
+        max.lng,
+        max.lat,
+        this.MAX_POINTS
+      )
+    );
   }
 }

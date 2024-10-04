@@ -17,7 +17,7 @@ export interface CoordinateTO {
     /**
      * The longitude of the coordinate.
      */
-    _long: number;
+    lng: number;
     /**
      * The latitude of the coordinate.
      */
