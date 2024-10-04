@@ -1,0 +1,9 @@
+{
+  "/api/**": {
+    "target": "http://localhost:8081",
+    "secure": false,
+    "changeOrigin": false,
+    "logLevel": "debug",
+    "pathRewrite": { "^/api/v1": "/sundowner-service/api/v1" }
+  }
+}
