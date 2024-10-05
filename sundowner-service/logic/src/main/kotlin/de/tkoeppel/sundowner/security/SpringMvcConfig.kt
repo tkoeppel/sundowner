@@ -1,4 +1,4 @@
-package de.tkoeppel.sundowner.configuration
+package de.tkoeppel.sundowner.security
 
 import org.springframework.boot.context.properties.ConfigurationProperties
 
@@ -6,7 +6,6 @@ import org.springframework.boot.context.properties.ConfigurationProperties
 data class SpringMvcConfig(
 	val mapping: String,
 	val allowedOrigins: String,
-	val allowedMethods: String,
 	val allowedHeaders: String,
 	val maxAge: Long,
 	val allowCredentials: Boolean
