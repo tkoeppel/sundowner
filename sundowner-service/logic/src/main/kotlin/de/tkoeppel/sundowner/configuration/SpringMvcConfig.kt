@@ -2,7 +2,7 @@ package de.tkoeppel.sundowner.configuration
 
 import org.springframework.boot.context.properties.ConfigurationProperties
 
-@ConfigurationProperties("spring.mvc.cors")
+@ConfigurationProperties(prefix = "spring.mvc.cors")
 data class SpringMvcConfig(
 	val mapping: String,
 	val allowedOrigins: String,
