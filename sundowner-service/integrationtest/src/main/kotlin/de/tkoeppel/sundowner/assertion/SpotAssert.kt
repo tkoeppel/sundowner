@@ -15,7 +15,7 @@ object SpotAssert {
 	}
 
 	fun assert(to: CoordinateTO, po: Coordinate) {
-		assertThat(to.long).isEqualTo(po.x)
+		assertThat(to.lng).isEqualTo(po.x)
 		assertThat(to.lat).isEqualTo(po.y)
 	}
 }
