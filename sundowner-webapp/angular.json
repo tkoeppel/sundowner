@@ -66,8 +66,7 @@
               "buildTarget": "sundowner-webapp:build:production"
             },
             "development": {
-              "buildTarget": "sundowner-webapp:build:development",
-              "proxyConfig": "src/proxy.conf.json"
+              "buildTarget": "sundowner-webapp:build:development"
             }
           },
           "defaultConfiguration": "development"
