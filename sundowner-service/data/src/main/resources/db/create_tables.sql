@@ -18,14 +18,14 @@ START TRANSACTION;
 -- Create the 'spots' table
 CREATE TABLE IF NOT EXISTS spots (
   id BIGINT PRIMARY KEY,
-  type VARCHAR(255) NOT NULL CHECK (type IN ('sunset')) DEFAULT 'sunset',
+  type VARCHAR(255) NOT NULL CHECK (type IN ('SUNSET')) DEFAULT 'SUNSET',
   location geometry(Point, 4326) NOT NULL,
   name TEXT NOT NULL,
   description TEXT,
   average_rating DOUBLE PRECISION NOT NULL,
   added_by TEXT NOT NULL,
   added_date TIMESTAMP WITH TIME ZONE NOT NULL,
-  transport VARCHAR(255)[] NOT NULL CHECK (transport <@ ARRAY['by_foot', 'car', 'bike', 'public_transport']::VARCHAR[])
+  transport VARCHAR(255)[] NOT NULL CHECK (transport <@ ARRAY['BY_FOOT', 'CAR', 'BIKE', 'PUBLIC_TRANSPORT']::VARCHAR[])
 );
 -- set owner
 ALTER TABLE spots OWNER TO sundowner_%s;
