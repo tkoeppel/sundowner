@@ -1,94 +1,46 @@
-import {
-  AfterViewInit,
-  Component,
-  EventEmitter,
-  Input,
-  OnChanges,
-  OnInit,
-  Output,
-  SimpleChanges,
-} from '@angular/core';
-import {
-  LatLngBounds,
-  LatLngExpression,
-  layerGroup,
-  map,
-  marker,
-  tileLayer,
-} from 'leaflet';
-import { MapSpotTO } from '../../../../../gensrc';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { LatLngExpression } from 'leaflet';
+import { CoordinateTO, MapSpotTO } from '../../../../../gensrc';
+import { MapService } from '../../../core/services/map.service';
+import { MapBounds } from './MapBounds';
+import { SpotMarkerComponent } from './spot-marker/spot-marker.component';
 @Component({
   selector: 'app-sundowner-map',
-  standalone: true,
-  imports: [],
   templateUrl: './sundowner-map.component.html',
   styleUrl: './sundowner-map.component.scss',
+  standalone: true,
 })
 export class SundownerMapComponent implements OnInit {
   @Output()
-  public onMapMove: EventEmitter<LatLngBounds> = new EventEmitter();
+  public onMapMove: EventEmitter<MapBounds> = new EventEmitter();
 
   @Input()
-  public currentPos: LatLngExpression = [0, 0];
+  public currentPos: CoordinateTO = { lat: 0, lng: 0 };
 
   private _spots: MapSpotTO[] = [];
 
   @Input()
   public set spots(mapSpots: MapSpotTO[]) {
     this._spots = mapSpots;
-    this.markSpots();
+    this._mapService.markSpots(mapSpots);
   }
 
-  private map: L.Map | undefined;
-
-  private tiles: L.TileLayer | undefined;
-
-  private markerLayer: L.LayerGroup | undefined;
-
-  constructor() {
+  constructor(private _mapService: MapService) {
     // nothing to do
   }
 
   ngOnInit(): void {
-    this.map = map('map', {
-      center: this.currentPos,
-      zoom: 16, // initial zoom
+    this._mapService.createMap('map', this.currentPos, (bounds) => {
+      // lat = y, lng = x
+      const min = bounds.getSouthWest();
+      const max = bounds.getNorthEast();
+
+      this.onMapMove.emit({
+        minX: min.lng,
+        maxX: max.lng,
+        minY: min.lat,
+        maxY: max.lat,
+      });
     });
-
-    this.tiles = tileLayer(
-      'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
-      {
-        maxZoom: 19,
-        attribution:
-          '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
-      }
-    );
-
-    this.markerLayer = layerGroup();
-
-    this.tiles.addTo(this.map);
-
-    this.onMapMove.emit(this.map.getBounds());
-
-    this.map.on('moveend', () => {
-      this.onMapMove.emit(this.map?.getBounds());
-    });
-  }
-
-  private markSpots() {
-    if (!this.map || !this.markerLayer) {
-      return;
-    }
-
-    // reset all markers
-    this.markerLayer.clearLayers();
-
-    // add markers to layers
-    for (let spot of this._spots) {
-      marker([spot.location.lat, spot.location.lng]).addTo(this.markerLayer);
-    }
-
-    // add to map
-    this.markerLayer.addTo(this.map);
   }
 }

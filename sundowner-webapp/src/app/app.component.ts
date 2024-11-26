@@ -1,13 +1,12 @@
 import { Component } from '@angular/core';
-import { Router, RouterOutlet } from '@angular/router';
-import { SundownerComponent } from './pages/sundowner/sundowner.component';
+import { Router, RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-root',
-  standalone: true,
-  imports: [RouterOutlet, SundownerComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
+  standalone: true,
+  imports: [RouterModule],
 })
 export class AppComponent {
   private readonly TIMEOUT = 1000;

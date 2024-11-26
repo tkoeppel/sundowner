@@ -1,0 +1,593 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="01f43c56-3111-4ec4-9664-d60d64d27ffb" name="Changes" comment="move spatial config">
+      <change beforePath="$PROJECT_DIR$/../sundowner-webapp/src/app/pages/sundowner/sundowner-map/sundowner-map.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../sundowner-webapp/src/app/pages/sundowner/sundowner-map/sundowner-map.component.ts" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="CodeInsightWorkspaceSettings">
+    <option name="optimizeImportsOnTheFly" value="true" />
+  </component>
+  <component name="ExternalProjectsData">
+    <projectState path="$PROJECT_DIR$">
+      <ProjectState />
+    </projectState>
+  </component>
+  <component name="ExternalProjectsManager">
+    <system id="GRADLE">
+      <state>
+        <task path="$PROJECT_DIR$">
+          <activation />
+        </task>
+        <projects_view>
+          <tree_state>
+            <expand>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="sundowner-service" type="f1a62948:ProjectNode" />
+              </path>
+            </expand>
+            <select />
+          </tree_state>
+        </projects_view>
+      </state>
+    </system>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Kotlin Data Class" />
+        <option value="Kotlin Enum" />
+        <option value="Class" />
+        <option value="Interface" />
+        <option value="Kotlin Script" />
+        <option value="Kotlin Interface" />
+        <option value="Kotlin Object" />
+        <option value="Kotlin Class" />
+      </list>
+    </option>
+  </component>
+  <component name="FormatOnSaveOptions">
+    <option name="myRunOnSave" value="true" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+    <option name="UPDATE_TYPE" value="REBASE" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;tkoeppel&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/tkoeppel/sundowner.git&quot;,
+    &quot;accountId&quot;: &quot;ebc7ca20-ff78-4983-ab21-d3e5bb33c5ef&quot;
+  }
+}</component>
+  <component name="OptimizeOnSaveOptions">
+    <option name="myRunOnSave" value="true" />
+  </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 5
+}</component>
+  <component name="ProjectId" id="2lqjyqnV6DJszmXuL2N5rMKPkwK" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "Downloaded.Files.Path.Enabled": "false",
+    "Gradle.Build sundowner-service.executor": "Run",
+    "Gradle.CoordinateTOTest.executor": "Run",
+    "Gradle.Download Sources.executor": "Run",
+    "Gradle.DummyTest.executor": "Run",
+    "Gradle.DummyTest.testDummy.executor": "Run",
+    "Gradle.GetPointsInViewTest.executor": "Run",
+    "Gradle.ITDummy.executor": "Run",
+    "Gradle.ITDummyTest.executor": "Run",
+    "Gradle.ITDummyTest.testDummy.executor": "Run",
+    "Gradle.IT_DummyTest.testDummy.executor": "Run",
+    "Gradle.Load Gradle Dependencies.executor": "Run",
+    "Gradle.MapSpotTOTest.executor": "Run",
+    "Gradle.SundownerServiceApplicationTests (1).executor": "Run",
+    "Gradle.SundownerServiceApplicationTests.contextLoads.executor": "Run",
+    "Gradle.SundownerServiceApplicationTests.executor": "Coverage",
+    "Gradle.Tests in 'de.tkoeppel.sundowner.to'.executor": "Run",
+    "Gradle.Tests in 'sundowner-service.integrationtest'.executor": "Run",
+    "Gradle.sundowner-service [integrationtest].executor": "Run",
+    "JUnit.All in sundowner-service.executor": "Debug",
+    "JUnit.de.tkoeppel.sundowner.to in sundowner-service.logic.main.executor": "Run",
+    "Kotlin.SundownerServiceApplication.executor": "Coverage",
+    "Kotlin.SundownerServiceApplicationKt (1).executor": "Run",
+    "Kotlin.SundownerServiceApplicationKt.executor": "Run",
+    "Kotlin.SundownerServiceApplicationKtKt.executor": "Run",
+    "Repository.Attach.Annotations": "false",
+    "Repository.Attach.JavaDocs": "false",
+    "Repository.Attach.Sources": "false",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "code.cleanup.on.save": "true",
+    "deletionFromPopupRequiresConfirmation": "false",
+    "git-widget-placeholder": "master",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "/home/tim/Workspace/sundowner/sundowner-service",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.5080645",
+    "rearrange.code.on.save": "true",
+    "run.code.analysis.last.selected.profile": "pProject Default",
+    "settings.editor.selected.configurable": "actions.on.save"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/integrationtest/src/main/resources" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/data/src/test/kotlin/de/tkoeppel/sundowner" />
+      <recent name="$PROJECT_DIR$/test/src/test/resources" />
+      <recent name="$PROJECT_DIR$/data/src/main/resources/db" />
+      <recent name="$PROJECT_DIR$/data/src/main/resources" />
+      <recent name="$PROJECT_DIR$/logic/src/main" />
+    </key>
+    <key name="CreateTestDialog.Recents.Supers">
+      <recent name="" />
+    </key>
+    <key name="MoveKotlinTopLevelDeclarationsDialog.RECENTS_KEY">
+      <recent name="de.tkoeppel.sundowner.to" />
+      <recent name="de.tkoeppel.sundowner" />
+    </key>
+    <key name="CreateTestDialog.RecentsKey">
+      <recent name="de.tkoeppel.sundowner.to" />
+    </key>
+    <key name="K2MoveDeclarationsDialog.RECENT_PACKAGE_KEY">
+      <recent name="de.tkoeppel.sundowner.module.spots" />
+      <recent name="de.tkoeppel.sundowner.security" />
+      <recent name="de.tkoeppel.sundowner.to" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Kotlin.SundownerServiceApplicationKt">
+    <configuration name="DummyTest.testDummy" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":integrationtest:test" />
+            <option value="--tests" />
+            <option value="&quot;de.tkoeppel.sundowner.module.dummy.DummyTest.testDummy&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>true</RunAsTest>
+      <method v="2" />
+    </configuration>
+    <configuration name="GetPointsInViewTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":integrationtest:test" />
+            <option value="--tests" />
+            <option value="&quot;de.tkoeppel.sundowner.module.spots.GetPointsInViewTest&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>true</RunAsTest>
+      <method v="2" />
+    </configuration>
+    <configuration name="MapSpotTOTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":data:test" />
+            <option value="--tests" />
+            <option value="&quot;de.tkoeppel.sundowner.to.MapSpotTOTest&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>true</RunAsTest>
+      <method v="2" />
+    </configuration>
+    <configuration name="Tests in 'sundowner-service.integrationtest'" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":integrationtest:test" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>true</RunAsTest>
+      <method v="2" />
+    </configuration>
+    <configuration name="SundownerServiceApplicationKt" type="JetRunConfigurationType" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="de.tkoeppel.sundowner.SundownerServiceApplicationKt" />
+      <module name="sundowner-service.logic.main" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <list>
+      <item itemvalue="Gradle.Tests in 'sundowner-service.integrationtest'" />
+      <item itemvalue="Gradle.GetPointsInViewTest" />
+      <item itemvalue="Gradle.MapSpotTOTest" />
+      <item itemvalue="Gradle.DummyTest.testDummy" />
+      <item itemvalue="Kotlin.SundownerServiceApplicationKt" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Kotlin.SundownerServiceApplicationKt" />
+        <item itemvalue="Gradle.Tests in 'sundowner-service.integrationtest'" />
+        <item itemvalue="Gradle.GetPointsInViewTest" />
+        <item itemvalue="Gradle.MapSpotTOTest" />
+        <item itemvalue="Gradle.DummyTest.testDummy" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="01f43c56-3111-4ec4-9664-d60d64d27ffb" name="Changes" comment="" />
+      <created>1725914760724</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1725914760724</updated>
+    </task>
+    <task id="LOCAL-00001" summary="Refactored build #5">
+      <option name="closed" value="true" />
+      <created>1725915750213</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1725915750213</updated>
+    </task>
+    <task id="LOCAL-00002" summary="creates persistence objects and adjust sql scripts #6">
+      <option name="closed" value="true" />
+      <created>1726775633779</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1726775633779</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Corrected the SQL scripts #8">
+      <option name="closed" value="true" />
+      <created>1726780471419</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1726780471419</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Corrected the SQL scripts again #8">
+      <option name="closed" value="true" />
+      <created>1726781224768</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1726781224768</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Project restructuring #9">
+      <option name="closed" value="true" />
+      <created>1726929320420</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1726929320421</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Configure and generate databases right #9">
+      <option name="closed" value="true" />
+      <created>1727129092226</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1727129092226</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Remove User from DB. Not part of this release. Restructured dbs to public schema #12">
+      <option name="closed" value="true" />
+      <created>1727202233195</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1727202233195</updated>
+    </task>
+    <task id="LOCAL-00008" summary="Restructured project to not hold configs">
+      <option name="closed" value="true" />
+      <created>1727214540271</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1727214540271</updated>
+    </task>
+    <task id="LOCAL-00009" summary="Restructured project. test module is called integraation test">
+      <option name="closed" value="true" />
+      <created>1727296921120</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1727296921120</updated>
+    </task>
+    <task id="LOCAL-00010" summary="Fix project setup. Make integrationtest pipeline possible">
+      <option name="closed" value="true" />
+      <created>1727301633394</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1727301633394</updated>
+    </task>
+    <task id="LOCAL-00011" summary="first step to solve postgis location db issues #12">
+      <option name="closed" value="true" />
+      <created>1727384843074</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1727384843075</updated>
+    </task>
+    <task id="LOCAL-00012" summary="postgis db problem solved. Postgresdialect which gets used automatically #12">
+      <option name="closed" value="true" />
+      <created>1727385424124</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1727385424124</updated>
+    </task>
+    <task id="LOCAL-00013" summary="Remove unused properties and specific dependency version">
+      <option name="closed" value="true" />
+      <created>1727456111938</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1727456111938</updated>
+    </task>
+    <task id="LOCAL-00014" summary="implemented DAOs #12">
+      <option name="closed" value="true" />
+      <created>1727456198596</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1727456198596</updated>
+    </task>
+    <task id="LOCAL-00015" summary="Basic API structure for spot retrieving #15 with OpenApi snnaotations #14">
+      <option name="closed" value="true" />
+      <created>1727541269438</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1727541269438</updated>
+    </task>
+    <task id="LOCAL-00016" summary="Added average rating to table and implemented get points API #15">
+      <option name="closed" value="true" />
+      <created>1727603345448</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1727603345448</updated>
+    </task>
+    <task id="LOCAL-00017" summary="Restructuring and first integrationtest #15 some openapi attempts #14">
+      <option name="closed" value="true" />
+      <created>1727641534561</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1727641534561</updated>
+    </task>
+    <task id="LOCAL-00018" summary="Make API work #14, integration test #15">
+      <option name="closed" value="true" />
+      <created>1727730124058</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1727730124058</updated>
+    </task>
+    <task id="LOCAL-00019" summary="Complete API #14">
+      <option name="closed" value="true" />
+      <created>1727732911764</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1727732911764</updated>
+    </task>
+    <task id="LOCAL-00020" summary="Added forgotten tests">
+      <option name="closed" value="true" />
+      <created>1727732988320</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1727732988320</updated>
+    </task>
+    <task id="LOCAL-00021" summary="Fixed Integrationtests and Create tables script #15">
+      <option name="closed" value="true" />
+      <created>1727822541935</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1727822541936</updated>
+    </task>
+    <task id="LOCAL-00022" summary="Fixed Integrationtests and object mapping  #15">
+      <option name="closed" value="true" />
+      <created>1727866345624</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1727866345624</updated>
+    </task>
+    <task id="LOCAL-00023" summary="Complete all integrationtests #15">
+      <option name="closed" value="true" />
+      <created>1727874386493</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1727874386493</updated>
+    </task>
+    <task id="LOCAL-00024" summary="service part of #16">
+      <option name="closed" value="true" />
+      <created>1728084296780</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1728084296780</updated>
+    </task>
+    <task id="LOCAL-00025" summary="Enabling CORS #18">
+      <option name="closed" value="true" />
+      <created>1728142759335</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1728142759335</updated>
+    </task>
+    <task id="LOCAL-00026" summary="Enabling CORS with spring security #18">
+      <option name="closed" value="true" />
+      <created>1728144305392</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1728144305392</updated>
+    </task>
+    <task id="LOCAL-00027" summary="Enabling CORS with spring security #18">
+      <option name="closed" value="true" />
+      <created>1728145592347</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1728145592347</updated>
+    </task>
+    <task id="LOCAL-00028" summary="correct create tables enums #16">
+      <option name="closed" value="true" />
+      <created>1728322533555</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1728322533555</updated>
+    </task>
+    <task id="LOCAL-00029" summary="move spatial config">
+      <option name="closed" value="true" />
+      <created>1728322572548</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1728322572548</updated>
+    </task>
+    <option name="localTasksCounter" value="30" />
+    <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Configure and generate databases right #9" />
+    <MESSAGE value="Remove User from DB. Not part of this release. Restructured dbs to public schema #12" />
+    <MESSAGE value="Restructured project to not hold configs" />
+    <MESSAGE value="Restructured project. test module is called integraation test" />
+    <MESSAGE value="Fix project setup. Make integrationtest pipeline possible" />
+    <MESSAGE value="first step to solve postgis location db issues #12" />
+    <MESSAGE value="postgis db problem solved #12" />
+    <MESSAGE value="postgis db problem solved. Postgresdialect which gets used automatically #12" />
+    <MESSAGE value="Remove unused properties and specific dependency version" />
+    <MESSAGE value="implemented DAOs #12" />
+    <MESSAGE value="Basic API structure for spot retrieving #15 with OpenApi snnaotations #14" />
+    <MESSAGE value="Added average rating to table and implemented get points API" />
+    <MESSAGE value="Added average rating to table and implemented get points API #15" />
+    <MESSAGE value="Restructuring and first integrationtest #15 some openapi attempts #14" />
+    <MESSAGE value="Make API work #14, integration test #15" />
+    <MESSAGE value="Complete API #14" />
+    <MESSAGE value="Added forgotten tests" />
+    <MESSAGE value="Fixed Integrationtests and Create tables script #15" />
+    <MESSAGE value="Fixed Integrationtests and object mapping  #15" />
+    <MESSAGE value="Complete all integrationtests #15" />
+    <MESSAGE value="service part of #16" />
+    <MESSAGE value="Enabling CORS #18" />
+    <MESSAGE value="Enabling CORS with spring security #18" />
+    <MESSAGE value="correct create tables enums #16" />
+    <MESSAGE value="move spatial config" />
+    <option name="LAST_COMMIT_MESSAGE" value="move spatial config" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="kotlin-line">
+          <url>file://$PROJECT_DIR$/integrationtest/src/test/kotlin/de/tkoeppel/sundowner/module/dummy/DummyTest.kt</url>
+          <line>26</line>
+          <option name="timeStamp" value="5" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="kotlin-line">
+          <url>file://$PROJECT_DIR$/integrationtest/src/test/kotlin/de/tkoeppel/sundowner/module/spots/GetPointsInViewTest.kt</url>
+          <line>153</line>
+          <option name="timeStamp" value="18" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+    <pin-to-top-manager>
+      <pinned-members>
+        <PinnedItemInfo parentTag="de.tkoeppel.sundowner.po.UserPO" memberName="id" />
+      </pinned-members>
+    </pin-to-top-manager>
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/sundowner_service$DummyTest.ic" NAME="DummyTest Coverage Results" MODIFIED="1727208416621" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />
+    <SUITE FILE_PATH="coverage/sundowner_service$SundownerServiceApplicationTests.ic" NAME="SundownerServiceApplicationTests Coverage Results" MODIFIED="1726849140442" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />
+  </component>
+</project>
