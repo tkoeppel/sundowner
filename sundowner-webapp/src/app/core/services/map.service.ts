@@ -9,6 +9,7 @@ import {
   map,
 } from 'leaflet';
 import { MapSpotTO } from '../../../../gensrc';
+import { SpotMarkerService } from './spot-marker.service';
 
 @Injectable({
   providedIn: 'root',
@@ -18,7 +19,7 @@ export class MapService {
   private tiles: L.TileLayer | undefined;
   private markerLayer: L.LayerGroup | undefined;
 
-  constructor() {
+  constructor(private _spotMarkerService: SpotMarkerService) {
     // nothing to do
   }
 
@@ -78,13 +79,8 @@ export class MapService {
 
   private createIcon(rating: number, name: string) {
     return new DivIcon({
-      className: 'marker-icon',
-      html: `
-        <div>
-          <p>${name}</p>
-          <p>${rating}</p>
-        </div>
-      `,
+      className: 'spot-marker',
+      html: this._spotMarkerService.getSpotMarkerHTML(rating, name),
     });
   }
 }
