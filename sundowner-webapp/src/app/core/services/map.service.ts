@@ -9,6 +9,8 @@ import {
   map,
 } from 'leaflet';
 import { MapSpotTO } from '../../../../gensrc';
+import { SpotMarkerComponent } from '../../pages/sundowner/sundowner-map/spot-marker/spot-marker.component';
+import { SpotPopupService } from './spot-popup.service';
 
 @Injectable({
   providedIn: 'root',
@@ -18,7 +20,7 @@ export class MapService {
   private tiles: L.TileLayer | undefined;
   private markerLayer: L.LayerGroup | undefined;
 
-  constructor() {
+  constructor(private _spotPopupService: SpotPopupService) {
     // nothing to do
   }
 
@@ -62,29 +64,23 @@ export class MapService {
       return;
     }
 
-    // reset all markers
-    this.markerLayer.clearLayers();
+    this.cleanUp();
 
     // add markers to layers
     for (let spot of spots) {
-      marker([spot.location.lat, spot.location.lng], {
-        icon: this.createIcon(spot.avgRating, spot.name),
-      }).addTo(this.markerLayer);
+      const spotMarker = this._spotPopupService.getSpotPopupHTML(spot.id);
+
+      marker([spot.location.lat, spot.location.lng])
+        .bindPopup(spotMarker)
+        .addTo(this.markerLayer);
     }
 
     // add to map
     this.markerLayer.addTo(this.map);
   }
 
-  private createIcon(rating: number, name: string) {
-    return new DivIcon({
-      className: 'marker-icon',
-      html: `
-        <div>
-          <p>${name}</p>
-          <p>${rating}</p>
-        </div>
-      `,
-    });
+  private cleanUp() {
+    this._spotPopupService.cleanup();
+    this.markerLayer!.clearLayers();
   }
 }
