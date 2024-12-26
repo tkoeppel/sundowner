@@ -1,3 +1,72 @@
-div {
-  background-color: brown;
+body {
+  height: 80vh;
+  display: grid;
+  place-items: center;
+}
+
+.spot-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.progress-container {
+  width: 32px;
+  height: 32px;
+  background-color: black;
+  border-radius: 50%;
+}
+
+.spot-rating {
+  position: absolute;
+  color: white;
+  top: 16px;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.circular-progress {
+  --size: 32px;
+  --half-size: calc(var(--size) / 2);
+  --stroke-width: 4px;
+  --radius: calc((var(--size) - var(--stroke-width)) / 2);
+  --circumference: calc(var(--radius) * pi * 2);
+  --dash: calc((var(--progress) * var(--circumference)) / 100);
+  animation: progress-animation 0.5s linear 0s 1 forwards;
+  position: relative;
+}
+
+.circular-progress circle {
+  cx: var(--half-size);
+  cy: var(--half-size);
+  r: var(--radius);
+  stroke-width: var(--stroke-width);
+  fill: none;
+  stroke-linecap: round;
+}
+
+.circular-progress circle.bg {
+  stroke: inherit;
+}
+
+.circular-progress circle.fg {
+  transform: rotate(-90deg);
+  transform-origin: var(--half-size) var(--half-size);
+  stroke-dasharray: var(--dash) calc(var(--circumference) - var(--dash));
+  transition: stroke-dasharray 0.3s linear 0s;
+}
+
+@property --progress {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@keyframes progress-animation {
+  from {
+    --progress: 0;
+  }
+  to {
+    --progress: 75;
+  }
 }
