@@ -69,7 +69,7 @@ export class MapService {
     // add markers to layers
     for (let spot of spots) {
       marker([spot.location.lat, spot.location.lng], {
-        icon: this.createIcon(spot.avgRating, spot.name),
+        icon: this.createIcon(spot),
       }).addTo(this.markerLayer);
     }
 
@@ -77,10 +77,10 @@ export class MapService {
     this.markerLayer.addTo(this.map);
   }
 
-  private createIcon(rating: number, name: string) {
+  private createIcon(spot: MapSpotTO) {
     return new DivIcon({
       className: 'spot-marker',
-      html: this._spotMarkerService.getSpotMarkerHTML(rating, name),
+      html: this._spotMarkerService.getSpotMarkerHTML(spot),
     });
   }
 }

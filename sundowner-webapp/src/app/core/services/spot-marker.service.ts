@@ -7,6 +7,7 @@ import {
   Injector,
 } from '@angular/core';
 import { SpotMarkerComponent } from '../../pages/sundowner/sundowner-map/spot-marker/spot-marker.component';
+import { MapSpotTO } from '../../../../gensrc';
 
 @Injectable({
   providedIn: 'root',
@@ -20,10 +21,7 @@ export class SpotMarkerService {
     // nothing to do
   }
 
-  private elements: HTMLElement[] = [];
-  private refs: ComponentRef<unknown>[] = [];
-
-  getSpotMarkerHTML(avgRating: number, name: string): HTMLElement {
+  getSpotMarkerHTML(spot: MapSpotTO): HTMLElement {
     const element = document.createElement('div');
     const component = createComponent(SpotMarkerComponent, {
       elementInjector: this.injector,
@@ -31,17 +29,8 @@ export class SpotMarkerService {
       hostElement: element,
     });
     this.applicationRef.attachView(component.hostView);
-    component.instance.avgRating = avgRating;
-    component.instance.name = name;
-
-    // collect for removing onDestroy
-    this.refs.push(component);
-    this.elements.push(element);
+    component.instance.avgRating = spot.avgRating;
+    component.instance.name = spot.name;
     return element;
-  }
-
-  cleanup(): void {
-    this.refs.splice(0).forEach((ref) => ref.destroy());
-    this.elements.splice(0).forEach((element) => element.remove());
   }
 }
