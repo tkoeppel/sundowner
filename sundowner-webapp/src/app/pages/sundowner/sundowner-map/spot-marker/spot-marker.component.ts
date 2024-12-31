@@ -1,4 +1,12 @@
-import { Component, Input } from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  ElementRef,
+  Input,
+  OnInit,
+  Renderer2,
+  ViewChild,
+} from '@angular/core';
 
 @Component({
   selector: 'app-spot-marker',
@@ -6,18 +14,19 @@ import { Component, Input } from '@angular/core';
   styleUrl: './spot-marker.component.scss',
   standalone: true,
 })
-export class SpotMarkerComponent {
+export class SpotMarkerComponent implements OnInit {
   @Input()
   public avgRating: number | undefined;
 
   @Input()
   public name: string | undefined;
 
-  public getTransform() {
+  public circumference = 2 * Math.PI * 14;
+  public finalDashoffset = 0;
+
+  ngOnInit() {
     if (this.avgRating) {
-      const percentage = (this.avgRating / 10) * 100;
-      return `rotate(${percentage * 3.6}deg)`;
+      this.finalDashoffset = this.circumference * (1 - this.avgRating / 10);
     }
-    return;
   }
 }
