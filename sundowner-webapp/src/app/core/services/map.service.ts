@@ -19,6 +19,8 @@ export class MapService {
   private tiles: L.TileLayer | undefined;
   private markerLayer: L.LayerGroup | undefined;
 
+  private currentSpots: Map<number, MapSpot> = new Map<number, MapSpot>();
+
   constructor(private _spotMarkerService: SpotMarkerService) {
     // nothing to do
   }
@@ -58,20 +60,24 @@ export class MapService {
     this.tiles.addTo(this.map!);
   }
 
-  public markSpots(spots: MapSpotTO[]) {
+  public markSpots(newSpots: MapSpotTO[]) {
     if (!this.map || !this.markerLayer) {
       return;
     }
 
-    // reset all markers
-    this.markerLayer.clearLayers();
+    // remove spots
+    const spotsToRemove = [...this.currentSpots.values()]
+      .filter(
+        (spot) => !newSpots.find((newSpot) => newSpot.id === spot.data.id)
+      )
+      .map((spot) => spot.data);
+    this.removeSpotMarkers(spotsToRemove);
 
-    // add markers to layers
-    for (let spot of spots) {
-      marker([spot.location.lat, spot.location.lng], {
-        icon: this.createIcon(spot),
-      }).addTo(this.markerLayer);
-    }
+    // add new spots
+    const spotsToAdd = newSpots.filter(
+      (newSpot) => !this.currentSpots.has(newSpot.id)
+    );
+    this.addSpotMarkers(spotsToAdd);
 
     // add to map
     this.markerLayer.addTo(this.map);
@@ -83,4 +89,38 @@ export class MapService {
       html: this._spotMarkerService.getSpotMarkerHTML(spot),
     });
   }
+
+  private removeSpotMarkers(spotsToRemove: MapSpotTO[]) {
+    for (const spot of spotsToRemove) {
+      const spotToRemove = this.currentSpots.get(spot.id);
+      if (spotToRemove) {
+        this.markerLayer?.removeLayer(spotToRemove.marker);
+        this.currentSpots.delete(spotToRemove.data.id);
+      }
+    }
+  }
+
+  private addSpotMarkers(spots: MapSpotTO[]) {
+    for (const spot of spots) {
+      const spotMarker = marker([spot.location.lat, spot.location.lng], {
+        icon: this.createIcon(spot),
+      });
+
+      const spotsToAdd = {
+        data: spot,
+        marker: spotMarker,
+      };
+
+      spotsToAdd.marker.addTo(this.markerLayer!);
+      this.currentSpots.set(spot.id, spotsToAdd);
+    }
+  }
+}
+
+/**  This is a simple interface to hold the data and the marker for a spot. */
+interface MapSpot {
+  /** The map spot data */
+  data: MapSpotTO;
+  /** The marker on the map */
+  marker: L.Marker;
 }

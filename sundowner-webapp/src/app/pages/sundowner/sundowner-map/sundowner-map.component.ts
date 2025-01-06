@@ -17,11 +17,8 @@ export class SundownerMapComponent implements OnInit {
   @Input()
   public currentPos: CoordinateTO = { lat: 0, lng: 0 };
 
-  private _spots: MapSpotTO[] = [];
-
   @Input()
   public set spots(mapSpots: MapSpotTO[]) {
-    this._spots = mapSpots;
     this._mapService.markSpots(mapSpots);
   }
 

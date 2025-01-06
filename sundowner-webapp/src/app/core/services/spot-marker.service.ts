@@ -1,6 +1,5 @@
 import {
   ApplicationRef,
-  ComponentRef,
   createComponent,
   EnvironmentInjector,
   Injectable,
@@ -21,7 +20,7 @@ export class SpotMarkerService {
     // nothing to do
   }
 
-  getSpotMarkerHTML(spot: MapSpotTO): HTMLElement {
+  public getSpotMarkerHTML(spot: MapSpotTO): HTMLElement {
     const element = document.createElement('div');
     const component = createComponent(SpotMarkerComponent, {
       elementInjector: this.injector,
