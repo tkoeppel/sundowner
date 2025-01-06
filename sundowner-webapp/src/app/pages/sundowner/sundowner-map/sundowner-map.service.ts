@@ -8,8 +8,8 @@ import {
   DivIcon,
   map,
 } from 'leaflet';
-import { MapSpotTO } from '../../../../gensrc';
-import { SpotMarkerService } from './spot-marker.service';
+import { MapSpotTO } from '../../../../../gensrc';
+import { SpotMarkerService } from './spot-marker/spot-marker.service';
 
 @Injectable({
   providedIn: 'root',
@@ -65,7 +65,7 @@ export class MapService {
       return;
     }
 
-    // remove spots
+    // remove unseen spots
     const spotsToRemove = [...this.currentSpots.values()]
       .filter(
         (spot) => !newSpots.find((newSpot) => newSpot.id === spot.data.id)
@@ -79,8 +79,7 @@ export class MapService {
     );
     this.addSpotMarkers(spotsToAdd);
 
-    // add to map
-    this.markerLayer.addTo(this.map);
+    this.markerLayer.addTo(this.map!);
   }
 
   private createIcon(spot: MapSpotTO) {

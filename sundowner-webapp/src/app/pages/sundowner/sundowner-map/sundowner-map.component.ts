@@ -1,9 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { LatLngExpression } from 'leaflet';
 import { CoordinateTO, MapSpotTO } from '../../../../../gensrc';
-import { MapService } from '../../../core/services/map.service';
+import { MapService } from './sundowner-map.service';
 import { MapBounds } from './MapBounds';
-import { SpotMarkerComponent } from './spot-marker/spot-marker.component';
 @Component({
   selector: 'app-sundowner-map',
   templateUrl: './sundowner-map.component.html',

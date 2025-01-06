@@ -34,19 +34,17 @@ export class SundownerComponent implements OnInit {
 
   async ngOnInit(): Promise<void> {
     // subscribe to bound changes
-    this.bounds$
-      .pipe(debounceTime(350)) //
-      .subscribe(async (bounds) => {
-        this.spots = await firstValueFrom(
-          this._spotsService.getPointsInView(
-            bounds.minX,
-            bounds.minY,
-            bounds.maxX,
-            bounds.maxY,
-            this.MAX_POINTS
-          )
-        );
-      });
+    this.bounds$.pipe(debounceTime(300)).subscribe(async (bounds) => {
+      this.spots = await firstValueFrom(
+        this._spotsService.getPointsInView(
+          bounds.minX,
+          bounds.minY,
+          bounds.maxX,
+          bounds.maxY,
+          this.MAX_POINTS
+        )
+      );
+    });
   }
 
   public async handleMapMove(bounds: MapBounds) {

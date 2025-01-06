@@ -19,17 +19,17 @@
   --circle-radius: 14px;
   --circle-center: calc(var(--circle-size) / 2);
 
-  .progress-container {
+  .spot-progress-container {
     position: relative;
     width: var(--circle-size);
     height: var(--circle-size);
 
-    .progress-circle {
+    .spot-progress-circle {
       width: 100%;
       height: 100%;
     }
 
-    .progress-background {
+    .spot-progress-background {
       cx: var(--circle-center);
       cy: var(--circle-center);
       r: var(--circle-radius);
@@ -37,7 +37,7 @@
       stroke-width: 4;
     }
 
-    .progress-foreground {
+    .spot-progress-foreground {
       cx: var(--circle-center);
       cy: var(--circle-center);
       r: var(--circle-radius);
@@ -52,7 +52,7 @@
     }
   }
 
-  .rating {
+  .spot-rating {
     position: absolute;
     inset: 0;
     display: grid;
@@ -60,7 +60,7 @@
     color: white;
   }
 
-  .name {
+  .spot-name {
     top: 0;
     text-align: center;
     display: block;

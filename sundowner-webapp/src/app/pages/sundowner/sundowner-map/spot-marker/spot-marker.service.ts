@@ -5,8 +5,8 @@ import {
   Injectable,
   Injector,
 } from '@angular/core';
-import { SpotMarkerComponent } from '../../pages/sundowner/sundowner-map/spot-marker/spot-marker.component';
-import { MapSpotTO } from '../../../../gensrc';
+import { SpotMarkerComponent } from './spot-marker.component';
+import { MapSpotTO } from '../../../../../../gensrc';
 
 @Injectable({
   providedIn: 'root',
