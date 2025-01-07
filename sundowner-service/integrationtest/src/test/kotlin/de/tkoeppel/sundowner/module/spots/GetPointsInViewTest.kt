@@ -5,6 +5,8 @@ import de.tkoeppel.sundowner.assertion.SpotAssert
 import de.tkoeppel.sundowner.po.SpotPO
 import de.tkoeppel.sundowner.to.MapSpotTO
 import org.assertj.core.api.Assertions.assertThat
+import org.junit.jupiter.params.ParameterizedTest
+import org.junit.jupiter.params.provider.ValueSource
 import org.locationtech.jts.geom.Coordinate
 import org.springframework.http.MediaType
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get
@@ -12,6 +14,15 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers.status
 import kotlin.test.Test
 
 class GetPointsInViewTest : SpotTestBase() {
+	companion object {
+		private const val DEFAULT_LIMIT = 10
+		private const val DEFAULT_MIN_X = -1.0
+		private const val DEFAULT_MIN_Y = -1.0
+		private const val DEFAULT_MAX_X = 1.0
+		private const val DEFAULT_MAX_Y = 1.0
+	}
+
+
 	@Test
 	fun `get single point`() {
 		// pre
@@ -128,6 +139,19 @@ class GetPointsInViewTest : SpotTestBase() {
 		assertThat(tos).isEmpty()
 	}
 
+	@ParameterizedTest
+	@ValueSource(strings = ["-1", "100000"])
+	fun `get points with invalid limit`(limit: String) {
+		// pre
+		create(name = "point", location = Coordinate(0.0, 0.0))
+
+		// act, post
+		val builder = get(GET_SPOTS_PATH).contentType(MediaType.APPLICATION_JSON).param("limit", limit)
+			.param("minX", "$DEFAULT_MIN_X").param("minY", "$DEFAULT_MIN_Y").param("maxX", "$DEFAULT_MAX_X")
+			.param("maxY", "$DEFAULT_MAX_Y")
+		doTestBadRequest(builder, "Limit must be between 0 and")
+	}
+
 	@Test
 	fun `get points with limit`() {
 		// pre
@@ -144,7 +168,11 @@ class GetPointsInViewTest : SpotTestBase() {
 	}
 
 	private fun getPoints(
-		limit: Int = 10, minX: Double = -1.0, minY: Double = -1.0, maxX: Double = 1.0, maxY: Double = 1.0
+		limit: Int = DEFAULT_LIMIT,
+		minX: Double = DEFAULT_MIN_X,
+		minY: Double = DEFAULT_MIN_Y,
+		maxX: Double = DEFAULT_MAX_X,
+		maxY: Double = DEFAULT_MAX_Y
 	): List<MapSpotTO> {
 		val result = this.mockMvc.perform(
 			get(GET_SPOTS_PATH).contentType(MediaType.APPLICATION_JSON).param("limit", "$limit").param("minX", "$minX")

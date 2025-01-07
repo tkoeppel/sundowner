@@ -1,4 +1,24 @@
-<svg width="250" height="250" viewBox="0 0 250 250" class="circular-progress">
-  <circle class="bg"></circle>
-  <circle class="fg"></circle>
-</svg>
+<div class="spot-container">
+  <div class="spot-progress-container">
+    <svg class="spot-progress-circle" viewBox="0 0 32 32">
+      <defs>
+        <linearGradient id="sunsetGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%" stop-color="#F2EB85" />
+          <stop offset="25%" stop-color="#F2594B" />
+          <stop offset="50%" stop-color="#F24162" />
+          <stop offset="75%" stop-color="#6C32A6" />
+          <stop offset="100%" stop-color="#5936D9" />
+        </linearGradient>
+      </defs>
+      <circle class="spot-progress-background" />
+      <circle
+        class="spot-progress-foreground"
+        stroke="url(#sunsetGradient)"
+        [style.--circumference]="this.circumference"
+        [style.--final-dashoffset]="this.finalDashoffset"
+      />
+    </svg>
+    <span class="spot-rating">{{ avgRating }}</span>
+  </div>
+  <span class="spot-name">{{ name }}</span>
+</div>

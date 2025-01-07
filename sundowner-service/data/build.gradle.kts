@@ -20,6 +20,7 @@ dependencies {
 	implementation("jakarta.persistence:jakarta.persistence-api")
 	implementation("org.locationtech.jts:jts-core")
 	implementation("org.hibernate.orm:hibernate-spatial")
+	implementation("org.postgresql:postgresql")
 
 	implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
 

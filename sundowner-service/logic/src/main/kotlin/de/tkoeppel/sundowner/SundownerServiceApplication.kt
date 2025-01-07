@@ -14,6 +14,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories
 @EnableJpaRepositories(basePackages = ["de.tkoeppel.sundowner.dao"])
 @SpringBootApplication
 class SundownerServiceApplication {
+
 	@Bean
 	fun customOpenAPI(): OpenAPI {
 		return OpenAPI().info(

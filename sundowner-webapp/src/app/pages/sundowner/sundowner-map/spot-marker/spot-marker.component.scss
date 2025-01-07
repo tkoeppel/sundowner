@@ -1,0 +1,78 @@
+.spot-container {
+  transition: opacity 0.25s ease-in-out;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  @keyframes marker-appear {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+
+  animation: marker-appear 0.5s ease-in-out;
+
+  --circle-size: 32px;
+  --circle-radius: 14px;
+  --circle-center: calc(var(--circle-size) / 2);
+
+  .spot-progress-container {
+    position: relative;
+    width: var(--circle-size);
+    height: var(--circle-size);
+
+    .spot-progress-circle {
+      width: 100%;
+      height: 100%;
+    }
+
+    .spot-progress-background {
+      cx: var(--circle-center);
+      cy: var(--circle-center);
+      r: var(--circle-radius);
+      stroke: black;
+      stroke-width: 4;
+    }
+
+    .spot-progress-foreground {
+      cx: var(--circle-center);
+      cy: var(--circle-center);
+      r: var(--circle-radius);
+      stroke-width: 4;
+      stroke-linecap: round;
+      transform: rotate(-90deg);
+      transform-origin: center;
+      stroke-dasharray: var(--circumference);
+      stroke-dashoffset: var(--circumference);
+      transition: stroke-dashoffset 0.3s linear 0s;
+      animation: progress-animation 0.5s linear 0s 1 forwards;
+    }
+  }
+
+  .spot-rating {
+    position: absolute;
+    inset: 0;
+    display: grid;
+    place-items: center;
+    color: white;
+  }
+
+  .spot-name {
+    top: 0;
+    text-align: center;
+    display: block;
+    width: 100px;
+  }
+
+  @keyframes progress-animation {
+    from {
+      stroke-dashoffset: var(--circumference);
+    }
+    to {
+      stroke-dashoffset: var(--final-dashoffset);
+    }
+  }
+}

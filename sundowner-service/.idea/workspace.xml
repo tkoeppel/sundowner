@@ -4,10 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="01f43c56-3111-4ec4-9664-d60d64d27ffb" name="Changes" comment="move spatial config">
+    <list default="true" id="01f43c56-3111-4ec4-9664-d60d64d27ffb" name="Changes" comment="Initial basis for error handling in service #29">
+      <change afterPath="$PROJECT_DIR$/logic/src/main/kotlin/de/tkoeppel/sundowner/exceptions/ErrorDetails.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/logic/src/main/kotlin/de/tkoeppel/sundowner/exceptions/GlobalExceptionHandler.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/logic/src/main/kotlin/de/tkoeppel/sundowner/exceptions/LimitExceededException.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../sundowner-webapp/src/app/core/services/map.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../sundowner-webapp/src/app/core/services/map.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../sundowner-webapp/src/app/pages/sundowner/sundowner-map/sundowner-map.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../sundowner-webapp/src/app/pages/sundowner/sundowner-map/sundowner-map.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/data/build.gradle.kts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -45,7 +47,6 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Kotlin Data Class" />
         <option value="Kotlin Enum" />
         <option value="Class" />
         <option value="Interface" />
@@ -53,6 +54,7 @@
         <option value="Kotlin Interface" />
         <option value="Kotlin Object" />
         <option value="Kotlin Class" />
+        <option value="Kotlin Data Class" />
       </list>
     </option>
   </component>
@@ -129,7 +131,7 @@
     &quot;deletionFromPopupRequiresConfirmation&quot;: &quot;false&quot;,
     &quot;git-widget-placeholder&quot;: &quot;master&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/home/tim/Workspace/sundowner/sundowner-service&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/tim/Workspace/pgp-crypt&quot;,
     &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
     &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
     &quot;project.structure.side.proportion&quot;: &quot;0.5080645&quot;,
@@ -277,9 +279,9 @@
     <recent_temporary>
       <list>
         <item itemvalue="Kotlin.SundownerServiceApplicationKt" />
+        <item itemvalue="Gradle.MapSpotTOTest" />
         <item itemvalue="Gradle.Tests in 'sundowner-service.integrationtest'" />
         <item itemvalue="Gradle.GetPointsInViewTest" />
-        <item itemvalue="Gradle.MapSpotTOTest" />
         <item itemvalue="Gradle.DummyTest.testDummy" />
       </list>
     </recent_temporary>
@@ -540,7 +542,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Configure and generate databases right #9" />
     <MESSAGE value="Remove User from DB. Not part of this release. Restructured dbs to public schema #12" />
     <MESSAGE value="Restructured project to not hold configs" />
     <MESSAGE value="Restructured project. test module is called integraation test" />
@@ -565,7 +566,8 @@
     <MESSAGE value="Enabling CORS with spring security #18" />
     <MESSAGE value="correct create tables enums #16" />
     <MESSAGE value="move spatial config" />
-    <option name="LAST_COMMIT_MESSAGE" value="move spatial config" />
+    <MESSAGE value="Initial basis for error handling in service #29" />
+    <option name="LAST_COMMIT_MESSAGE" value="Initial basis for error handling in service #29" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
