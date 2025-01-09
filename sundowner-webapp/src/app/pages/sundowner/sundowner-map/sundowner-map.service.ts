@@ -7,7 +7,7 @@ import {
   marker,
   DivIcon,
   map,
-  latLngBounds,
+  Marker,
 } from 'leaflet';
 import { CoordinateTO, MapSpotTO } from '../../../../../gensrc';
 import { SpotMarkerService } from './spot-marker/spot-marker.service';
@@ -92,36 +92,52 @@ export class MapService {
 
   private removeSpotMarkers(spotsToRemove: MapSpotTO[]) {
     for (const spot of spotsToRemove) {
-      const spotToRemove = this.currentSpots.get(spot.id);
-      if (spotToRemove) {
-        this.markerLayer?.removeLayer(spotToRemove.marker);
-        this.currentSpots.delete(spotToRemove.data.id);
-      }
+      this.removeSpotMarker(spot);
+    }
+  }
+
+  private removeSpotMarker(spot: MapSpotTO) {
+    const spotToRemove = this.currentSpots.get(spot.id);
+    if (spotToRemove) {
+      this.markerLayer?.removeLayer(spotToRemove.marker);
+      this.currentSpots.delete(spotToRemove.data.id);
     }
   }
 
   private addSpotMarkers(spots: MapSpotTO[]) {
     for (const spot of spots) {
-      const spotMarker = marker([spot.location.lat, spot.location.lng], {
-        icon: this.createIcon(spot),
-      });
-
-      const spotsToAdd = {
-        data: spot,
-        marker: spotMarker,
-      };
-
-      spotsToAdd.marker
-        .addTo(this.markerLayer!)
-        .on('click', () => this.openSpotPreview(spot.location));
-      this.currentSpots.set(spot.id, spotsToAdd);
+      this.addSpotMarker(spot);
     }
   }
 
-  private openSpotPreview(coord: CoordinateTO) {
-    if (this.map) {
-      this.map.panTo(coord);
+  private addSpotMarker(spot: MapSpotTO) {
+    const spotMarker = marker([spot.location.lat, spot.location.lng], {
+      icon: this.createIcon(spot),
+    });
+
+    const spotsToAdd = {
+      data: spot,
+      marker: spotMarker,
+    };
+
+    spotsToAdd.marker
+      .addTo(this.markerLayer!)
+      .on('click', () => this.openSpotPreview(spotMarker));
+    this.currentSpots.set(spot.id, spotsToAdd);
+  }
+
+  private openSpotPreview(marker: Marker) {
+    if (!this.map) {
+      return;
     }
+
+    const latlng = marker.getLatLng();
+    const bounds = this.map.getBounds();
+    const mapHeight = bounds.getNorth() - bounds.getSouth();
+    const newCenterLat = latlng.lat - mapHeight / 4.5; // upper half
+    this.map.setView([newCenterLat, latlng.lng]);
+
+    marker.getElement()?.classList.add('selected-spot');
   }
 }
 

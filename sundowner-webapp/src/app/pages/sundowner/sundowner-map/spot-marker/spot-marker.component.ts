@@ -9,7 +9,7 @@ import { MapService } from '../sundowner-map.service';
   standalone: true,
 })
 export class SpotMarkerComponent implements OnInit {
-  constructor(private _mapService: MapService) {
+  constructor() {
     // nothing to do
   }
 

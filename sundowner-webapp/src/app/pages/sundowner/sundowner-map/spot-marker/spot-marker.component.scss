@@ -76,3 +76,13 @@
     }
   }
 }
+
+:host ::ng-deep .spot-marker.selected-spot {
+  .spot-progress-container {
+    transform: scale(1.5) !important;
+
+    .spot-name {
+      display: none !important;
+    }
+  }
+}
