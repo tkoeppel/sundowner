@@ -7,8 +7,9 @@ import {
   marker,
   DivIcon,
   map,
+  latLngBounds,
 } from 'leaflet';
-import { MapSpotTO } from '../../../../../gensrc';
+import { CoordinateTO, MapSpotTO } from '../../../../../gensrc';
 import { SpotMarkerService } from './spot-marker/spot-marker.service';
 
 @Injectable({
@@ -110,8 +111,16 @@ export class MapService {
         marker: spotMarker,
       };
 
-      spotsToAdd.marker.addTo(this.markerLayer!);
+      spotsToAdd.marker
+        .addTo(this.markerLayer!)
+        .on('click', () => this.openSpotPreview(spot.location));
       this.currentSpots.set(spot.id, spotsToAdd);
+    }
+  }
+
+  private openSpotPreview(coord: CoordinateTO) {
+    if (this.map) {
+      this.map.panTo(coord);
     }
   }
 }

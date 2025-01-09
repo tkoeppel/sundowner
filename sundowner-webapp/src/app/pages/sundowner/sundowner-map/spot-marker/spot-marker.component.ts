@@ -1,4 +1,6 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { MapSpotTO } from '../../../../../../gensrc';
+import { MapService } from '../sundowner-map.service';
 
 @Component({
   selector: 'app-spot-marker',
@@ -7,18 +9,20 @@ import { Component, Input, OnInit } from '@angular/core';
   standalone: true,
 })
 export class SpotMarkerComponent implements OnInit {
-  @Input()
-  public avgRating: number | undefined;
+  constructor(private _mapService: MapService) {
+    // nothing to do
+  }
 
   @Input()
-  public name: string | undefined;
+  public spot: MapSpotTO | undefined;
 
   public circumference = 2 * Math.PI * 14;
   public finalDashoffset = 0;
 
   ngOnInit() {
-    if (this.avgRating) {
-      this.finalDashoffset = this.circumference * (1 - this.avgRating / 10);
+    if (this.spot) {
+      this.finalDashoffset =
+        this.circumference * (1 - this.spot.avgRating / 10);
     }
   }
 }
