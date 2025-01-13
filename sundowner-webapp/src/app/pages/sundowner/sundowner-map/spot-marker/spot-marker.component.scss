@@ -20,6 +20,7 @@
   --circle-center: calc(var(--circle-size) / 2);
 
   .spot-progress-container {
+    transition: transform 0.3s ease-in-out;
     position: relative;
     width: var(--circle-size);
     height: var(--circle-size);
@@ -77,12 +78,12 @@
   }
 }
 
-:host ::ng-deep .spot-marker.selected-spot {
-  .spot-progress-container {
-    transform: scale(1.5) !important;
+::ng-deep .spot-marker.selected-spot .spot-progress-container {
+  transition: transform 0.3s ease-in-out;
+  transform: scale(2.5);
+}
 
-    .spot-name {
-      display: none !important;
-    }
-  }
+::ng-deep .spot-marker.selected-spot .spot-progress-container .spot-name {
+  transition: display 0.3s ease-in-out;
+  display: none !important;
 }
