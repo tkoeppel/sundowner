@@ -30,7 +30,7 @@ export class MapService {
     mapId: string,
     currentPos: LatLngExpression,
     onMapMove: (bounds: LatLngBounds) => void
-  ): L.Map {
+  ): void {
     this.map = map(mapId, {
       center: currentPos,
       zoom: 16, // initial zoom
@@ -42,8 +42,6 @@ export class MapService {
 
     // first move
     onMapMove(this.map.getBounds());
-
-    return this.map;
   }
 
   private initTileLayer(tiles: L.TileLayer | undefined, map: L.Map) {
