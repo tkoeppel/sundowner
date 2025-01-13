@@ -20,44 +20,47 @@ export class MapService {
   private markerLayer: L.LayerGroup | undefined;
 
   private currentSpots: Map<number, MapSpot> = new Map<number, MapSpot>();
+  private selectedSpot: MapSpot | undefined;
 
   constructor(private _spotMarkerService: SpotMarkerService) {
     // nothing to do
   }
 
-  public createMap(
+  public initMap(
     mapId: string,
     currentPos: LatLngExpression,
     onMapMove: (bounds: LatLngBounds) => void
-  ): L.Map {
+  ): void {
     this.map = map(mapId, {
       center: currentPos,
       zoom: 16, // initial zoom
     });
 
-    this.initTileLayer();
-
+    this.initTileLayer(this.tiles, this.map);
+    this.initMapEvents(this.map, onMapMove);
     this.markerLayer = layerGroup();
 
+    // first move
     onMapMove(this.map.getBounds());
+  }
 
-    this.map.on('moveend', () => {
+  private initTileLayer(tiles: L.TileLayer | undefined, map: L.Map) {
+    tiles = tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      maxZoom: 19,
+      attribution:
+        '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+    });
+    tiles.addTo(map!);
+  }
+
+  private initMapEvents(map: L.Map, onMapMove: (bounds: LatLngBounds) => void) {
+    map.on('moveend', () => {
       onMapMove(this.map!.getBounds());
     });
 
-    return this.map;
-  }
-
-  private initTileLayer() {
-    this.tiles = tileLayer(
-      'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
-      {
-        maxZoom: 19,
-        attribution:
-          '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
-      }
-    );
-    this.tiles.addTo(this.map!);
+    map.on('click', (e: L.LeafletMouseEvent) => {
+      this.closeSpotPreview();
+    });
   }
 
   public markSpots(newSpots: MapSpotTO[]) {
@@ -68,7 +71,9 @@ export class MapService {
     // remove unseen spots
     const spotsToRemove = [...this.currentSpots.values()]
       .filter(
-        (spot) => !newSpots.find((newSpot) => newSpot.id === spot.data.id)
+        (spot) =>
+          !newSpots.find((newSpot) => newSpot.id === spot.data.id) &&
+          spot.data.id !== this.selectedSpot?.data.id // do not remove selected
       )
       .map((spot) => spot.data);
     this.removeSpotMarkers(spotsToRemove);
@@ -91,28 +96,62 @@ export class MapService {
 
   private removeSpotMarkers(spotsToRemove: MapSpotTO[]) {
     for (const spot of spotsToRemove) {
-      const spotToRemove = this.currentSpots.get(spot.id);
-      if (spotToRemove) {
-        this.markerLayer?.removeLayer(spotToRemove.marker);
-        this.currentSpots.delete(spotToRemove.data.id);
-      }
+      this.removeSpotMarker(spot);
+    }
+  }
+
+  private removeSpotMarker(spot: MapSpotTO) {
+    const spotToRemove = this.currentSpots.get(spot.id);
+    if (spotToRemove) {
+      this.markerLayer?.removeLayer(spotToRemove.marker);
+      this.currentSpots.delete(spotToRemove.data.id);
     }
   }
 
   private addSpotMarkers(spots: MapSpotTO[]) {
     for (const spot of spots) {
-      const spotMarker = marker([spot.location.lat, spot.location.lng], {
-        icon: this.createIcon(spot),
-      });
-
-      const spotsToAdd = {
-        data: spot,
-        marker: spotMarker,
-      };
-
-      spotsToAdd.marker.addTo(this.markerLayer!);
-      this.currentSpots.set(spot.id, spotsToAdd);
+      this.addSpotMarker(spot);
     }
+  }
+
+  private addSpotMarker(spot: MapSpotTO) {
+    const spotMarker = marker([spot.location.lat, spot.location.lng], {
+      icon: this.createIcon(spot),
+    });
+
+    const spotToAdd = {
+      data: spot,
+      marker: spotMarker,
+    };
+
+    spotToAdd.marker
+      .addTo(this.markerLayer!)
+      .on('click', () => this.openSpotPreview(spotToAdd));
+    this.currentSpots.set(spot.id, spotToAdd);
+  }
+
+  private openSpotPreview(spot: MapSpot) {
+    if (!this.map) {
+      return;
+    }
+
+    this.selectedSpot = spot;
+
+    const latlng = spot.data.location;
+    const bounds = this.map.getBounds();
+    const mapHeight = bounds.getNorth() - bounds.getSouth();
+    const newCenterLat = latlng.lat - mapHeight / 4.5; // upper half
+    this.map.setView([newCenterLat, latlng.lng]);
+    spot.marker.getElement()?.classList.add('selected-spot');
+  }
+
+  private closeSpotPreview() {
+    if (!this.selectedSpot) {
+      return;
+    }
+
+    this.selectedSpot.marker.getElement()?.classList.remove('selected-spot');
+    this.selectedSpot = undefined;
   }
 }
 

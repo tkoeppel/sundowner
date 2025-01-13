@@ -25,7 +25,7 @@ export class SundownerMapComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this._mapService.createMap('map', this.currentPos, (bounds) => {
+    this._mapService.initMap('map', this.currentPos, (bounds) => {
       // lat = y, lng = x
       const min = bounds.getSouthWest();
       const max = bounds.getNorthEast();

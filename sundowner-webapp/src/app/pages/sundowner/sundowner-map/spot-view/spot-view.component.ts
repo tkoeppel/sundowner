@@ -1,17 +1,21 @@
 import {
   ApplicationRef,
+  Component,
   createComponent,
   EnvironmentInjector,
-  Injectable,
   Injector,
 } from '@angular/core';
-import { SpotMarkerComponent } from './spot-marker.component';
 import { MapSpotTO } from '../../../../../../gensrc';
+import { SpotMarkerComponent } from '../spot-marker/spot-marker.component';
 
-@Injectable({
-  providedIn: 'root',
+@Component({
+  selector: 'app-spot-view',
+  standalone: true,
+  imports: [],
+  templateUrl: './spot-view.component.html',
+  styleUrl: './spot-view.component.scss',
 })
-export class SpotMarkerService {
+export class SpotViewComponent {
   constructor(
     private injector: Injector,
     private environmentInjector: EnvironmentInjector,
