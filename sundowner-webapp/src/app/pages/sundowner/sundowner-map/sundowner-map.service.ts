@@ -10,11 +10,15 @@ import {
 } from 'leaflet';
 import { MapSpotTO } from '../../../../../gensrc';
 import { SpotMarkerService } from './spot-marker/spot-marker.service';
+import { environment } from '../../../../environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class MapService {
+  private static readonly LEAFLET_ATTRIBUTION =
+    '<a href="https://www.jawg.io?utm_medium=map&utm_source=attribution" target="_blank">&copy; Jawg</a> - <a href="https://www.openstreetmap.org?utm_medium=map-attribution&utm_source=jawg" target="_blank">&copy; OSM</a>&nbsp;contributors';
+
   private map: L.Map | undefined;
   private tiles: L.TileLayer | undefined;
   private markerLayer: L.LayerGroup | undefined;
@@ -45,12 +49,12 @@ export class MapService {
   }
 
   private initTileLayer(tiles: L.TileLayer | undefined, map: L.Map) {
-    tiles = tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      maxZoom: 19,
-      attribution:
-        '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
-    });
+    tiles = tileLayer(
+      `${environment.tileProviderLink}?access-token=${environment.accessToken}`,
+      {}
+    );
     tiles.addTo(map!);
+    map.attributionControl.addAttribution(MapService.LEAFLET_ATTRIBUTION);
   }
 
   private initMapEvents(map: L.Map, onMapMove: (bounds: LatLngBounds) => void) {

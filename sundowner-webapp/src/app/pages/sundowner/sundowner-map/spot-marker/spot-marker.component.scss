@@ -25,11 +25,6 @@
     width: var(--circle-size);
     height: var(--circle-size);
 
-    .spot-progress-circle {
-      width: 100%;
-      height: 100%;
-    }
-
     .spot-progress-background {
       cx: var(--circle-center);
       cy: var(--circle-center);
@@ -64,8 +59,12 @@
   .spot-name {
     top: 0;
     text-align: center;
+    visibility: visible;
+    opacity: 1;
+    transition: opacity 0.3s ease-in-out;
     display: block;
     width: 100px;
+    color: white;
   }
 
   @keyframes progress-animation {
@@ -78,12 +77,15 @@
   }
 }
 
-::ng-deep .spot-marker.selected-spot .spot-progress-container {
-  transition: transform 0.3s ease-in-out;
-  transform: scale(2.5);
-}
+::ng-deep .spot-marker.selected-spot {
+  .spot-progress-container {
+    transition: transform 0.3s ease-in-out;
+    transform: scale(2.5);
+  }
 
-::ng-deep .spot-marker.selected-spot .spot-progress-container .spot-name {
-  transition: display 0.3s ease-in-out;
-  display: none !important;
+  .spot-name {
+    visibility: hidden;
+    opacity: 0 !important;
+    transition: opacity 0.3s ease-in-out;
+  }
 }
