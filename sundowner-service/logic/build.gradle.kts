@@ -16,6 +16,7 @@ dependencies {
 	implementation("org.springframework.boot:spring-boot-starter-data-jpa")
 	implementation("org.springframework.boot:spring-boot-starter-security")
 	implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
+	implementation("io.minio:minio:8.5.17")
 
 	// spatial data
 	implementation("org.locationtech.jts:jts-core")

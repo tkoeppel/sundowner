@@ -20,7 +20,7 @@ class GlobalExceptionHandler {
 		return ResponseEntity(errorDetails, HttpStatus.BAD_REQUEST)
 	}
 
-	@ExceptionHandler(Exception::class)
+	@ExceptionHandler(Exception::class, StorageException::class)
 	fun handleGlobalException(
 		exception: Exception, request: WebRequest
 	): ResponseEntity<ErrorDetails> {
