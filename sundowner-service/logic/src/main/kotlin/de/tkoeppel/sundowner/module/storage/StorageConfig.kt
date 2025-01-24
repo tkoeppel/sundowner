@@ -1,5 +1,7 @@
 package de.tkoeppel.sundowner.module.storage
 
+import de.tkoeppel.sundowner.security.ssl.KeyStoreLoader
+import de.tkoeppel.sundowner.security.ssl.SslData
 import io.minio.MinioClient
 import org.springframework.boot.context.properties.ConfigurationProperties
 import org.springframework.context.annotation.Bean
@@ -12,12 +14,21 @@ class StorageConfig {
 	lateinit var endpoint: String
 	lateinit var accessKey: String
 	lateinit var secretKey: String
+	lateinit var ssl: SslData
+
 
 	@Bean
 	fun minioClient(): MinioClient {
-		return MinioClient.builder() //
+		val builder = MinioClient.builder() //
 			.endpoint(endpoint) //
 			.credentials(accessKey, secretKey) //
-			.build()
+
+		if (ssl.enabled) {
+			val httpClient = KeyStoreLoader.createHttpClient(ssl)
+			return builder.httpClient(httpClient).build()
+		}
+		
+		return builder.build()
 	}
+
 }

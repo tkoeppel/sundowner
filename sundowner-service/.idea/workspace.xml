@@ -5,14 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="01f43c56-3111-4ec4-9664-d60d64d27ffb" name="Changes" comment="Initial basis for error handling in service #29">
-      <change afterPath="$PROJECT_DIR$/logic/src/main/kotlin/de/tkoeppel/sundowner/exceptions/StorageException.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/logic/src/main/kotlin/de/tkoeppel/sundowner/module/storage/IStorageService.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/logic/src/main/kotlin/de/tkoeppel/sundowner/module/storage/StorageConfig.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/logic/src/main/kotlin/de/tkoeppel/sundowner/module/storage/StorageService.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/../.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/logic/src/main/kotlin/de/tkoeppel/sundowner/security/ssl/KeyStoreLoader.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/logic/src/main/kotlin/de/tkoeppel/sundowner/security/ssl/SslData.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/logic/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/logic/build.gradle.kts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/logic/src/main/kotlin/de/tkoeppel/sundowner/exceptions/GlobalExceptionHandler.kt" beforeDir="false" afterPath="$PROJECT_DIR$/logic/src/main/kotlin/de/tkoeppel/sundowner/exceptions/GlobalExceptionHandler.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/logic/src/main/kotlin/de/tkoeppel/sundowner/module/storage/StorageConfig.kt" beforeDir="false" afterPath="$PROJECT_DIR$/logic/src/main/kotlin/de/tkoeppel/sundowner/module/storage/StorageConfig.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/logic/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/logic/src/main/resources/application.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -166,6 +163,7 @@
       <recent name="de.tkoeppel.sundowner.to" />
     </key>
     <key name="K2MoveDeclarationsDialog.RECENT_PACKAGE_KEY">
+      <recent name="de.tkoeppel.sundowner.security.ssl" />
       <recent name="de.tkoeppel.sundowner.module.spots" />
       <recent name="de.tkoeppel.sundowner.security" />
       <recent name="de.tkoeppel.sundowner.to" />
