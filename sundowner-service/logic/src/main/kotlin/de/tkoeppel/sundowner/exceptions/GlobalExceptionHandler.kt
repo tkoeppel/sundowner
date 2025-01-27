@@ -1,5 +1,6 @@
 package de.tkoeppel.sundowner.exceptions
 
+import de.tkoeppel.sundowner.module.storage.StorageException
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.ExceptionHandler
