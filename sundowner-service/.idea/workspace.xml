@@ -9,7 +9,11 @@
       <change beforePath="$PROJECT_DIR$/logic/src/main/kotlin/de/tkoeppel/sundowner/exceptions/StorageException.kt" beforeDir="false" afterPath="$PROJECT_DIR$/logic/src/main/kotlin/de/tkoeppel/sundowner/module/storage/StorageException.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/logic/src/main/kotlin/de/tkoeppel/sundowner/module/storage/StorageConfig.kt" beforeDir="false" afterPath="$PROJECT_DIR$/logic/src/main/kotlin/de/tkoeppel/sundowner/module/storage/StorageConfig.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/logic/src/main/kotlin/de/tkoeppel/sundowner/module/storage/StorageService.kt" beforeDir="false" afterPath="$PROJECT_DIR$/logic/src/main/kotlin/de/tkoeppel/sundowner/module/storage/StorageService.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/logic/src/main/kotlin/de/tkoeppel/sundowner/security/securestore/SecureStoreLoader.kt" beforeDir="false" afterPath="$PROJECT_DIR$/logic/src/main/kotlin/de/tkoeppel/sundowner/security/securestore/SecureStoreLoader.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/logic/src/main/kotlin/de/tkoeppel/sundowner/security/WebConfig.kt" beforeDir="false" afterPath="$PROJECT_DIR$/logic/src/main/kotlin/de/tkoeppel/sundowner/security/web/WebConfig.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/logic/src/main/kotlin/de/tkoeppel/sundowner/security/WebSecurityConfig.kt" beforeDir="false" afterPath="$PROJECT_DIR$/logic/src/main/kotlin/de/tkoeppel/sundowner/security/web/WebSecurityConfig.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/logic/src/main/kotlin/de/tkoeppel/sundowner/security/tls/StoreLoader.kt" beforeDir="false" afterPath="$PROJECT_DIR$/logic/src/main/kotlin/de/tkoeppel/sundowner/security/tls/StoreLoader.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/logic/src/main/kotlin/de/tkoeppel/sundowner/security/tls/keystore/KeyStoreConfig.kt" beforeDir="false" afterPath="$PROJECT_DIR$/logic/src/main/kotlin/de/tkoeppel/sundowner/security/tls/keystore/KeyStoreConfig.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/logic/src/main/kotlin/de/tkoeppel/sundowner/security/tls/truststore/TrustStoreConfig.kt" beforeDir="false" afterPath="$PROJECT_DIR$/logic/src/main/kotlin/de/tkoeppel/sundowner/security/tls/truststore/TrustStoreConfig.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/logic/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/logic/src/main/resources/application.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -95,54 +99,55 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;Downloaded.Files.Path.Enabled&quot;: &quot;false&quot;,
-    &quot;Gradle.Build sundowner-service.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.CoordinateTOTest.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.Download Sources.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.DummyTest.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.DummyTest.testDummy.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.GetPointsInViewTest.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.ITDummy.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.ITDummyTest.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.ITDummyTest.testDummy.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.IT_DummyTest.testDummy.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.Load Gradle Dependencies.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.MapSpotTOTest.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.SundownerServiceApplicationTests (1).executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.SundownerServiceApplicationTests.contextLoads.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.SundownerServiceApplicationTests.executor&quot;: &quot;Coverage&quot;,
-    &quot;Gradle.Tests in 'de.tkoeppel.sundowner.to'.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.Tests in 'sundowner-service.integrationtest'.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.sundowner-service [integrationtest].executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.All in sundowner-service.executor&quot;: &quot;Debug&quot;,
-    &quot;JUnit.de.tkoeppel.sundowner.to in sundowner-service.logic.main.executor&quot;: &quot;Run&quot;,
-    &quot;Kotlin.SundownerServiceApplication.executor&quot;: &quot;Coverage&quot;,
-    &quot;Kotlin.SundownerServiceApplicationKt (1).executor&quot;: &quot;Run&quot;,
-    &quot;Kotlin.SundownerServiceApplicationKt.executor&quot;: &quot;Run&quot;,
-    &quot;Kotlin.SundownerServiceApplicationKtKt.executor&quot;: &quot;Run&quot;,
-    &quot;Repository.Attach.Annotations&quot;: &quot;false&quot;,
-    &quot;Repository.Attach.JavaDocs&quot;: &quot;false&quot;,
-    &quot;Repository.Attach.Sources&quot;: &quot;false&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;code.cleanup.on.save&quot;: &quot;true&quot;,
-    &quot;deletionFromPopupRequiresConfirmation&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/home/tim/Workspace/pgp-crypt&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.5080645&quot;,
-    &quot;rearrange.code.on.save&quot;: &quot;true&quot;,
-    &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;actions.on.save&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "Downloaded.Files.Path.Enabled": "false",
+    "Gradle.Build sundowner-service.executor": "Run",
+    "Gradle.CoordinateTOTest.executor": "Run",
+    "Gradle.Download Sources.executor": "Run",
+    "Gradle.DummyTest.executor": "Run",
+    "Gradle.DummyTest.testDummy.executor": "Run",
+    "Gradle.GetPointsInViewTest.executor": "Run",
+    "Gradle.ITDummy.executor": "Run",
+    "Gradle.ITDummyTest.executor": "Run",
+    "Gradle.ITDummyTest.testDummy.executor": "Run",
+    "Gradle.IT_DummyTest.testDummy.executor": "Run",
+    "Gradle.Load Gradle Dependencies.executor": "Run",
+    "Gradle.MapSpotTOTest.executor": "Run",
+    "Gradle.SundownerServiceApplicationTests (1).executor": "Run",
+    "Gradle.SundownerServiceApplicationTests.contextLoads.executor": "Run",
+    "Gradle.SundownerServiceApplicationTests.executor": "Coverage",
+    "Gradle.Tests in 'de.tkoeppel.sundowner.to'.executor": "Run",
+    "Gradle.Tests in 'sundowner-service.integrationtest'.executor": "Run",
+    "Gradle.sundowner-service [integrationtest].executor": "Run",
+    "JUnit.All in sundowner-service.executor": "Debug",
+    "JUnit.de.tkoeppel.sundowner.to in sundowner-service.logic.main.executor": "Run",
+    "Kotlin.SundownerServiceApplication.executor": "Coverage",
+    "Kotlin.SundownerServiceApplicationKt (1).executor": "Run",
+    "Kotlin.SundownerServiceApplicationKt.executor": "Run",
+    "Kotlin.SundownerServiceApplicationKtKt.executor": "Run",
+    "Repository.Attach.Annotations": "false",
+    "Repository.Attach.JavaDocs": "false",
+    "Repository.Attach.Sources": "false",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "code.cleanup.on.save": "true",
+    "deletionFromPopupRequiresConfirmation": "false",
+    "git-widget-placeholder": "master",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "/home/tim/Workspace/sundowner/sundowner-service/logic/src/main/kotlin/de/tkoeppel/sundowner/module",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.5080645",
+    "rearrange.code.on.save": "true",
+    "run.code.analysis.last.selected.profile": "pProject Default",
+    "settings.editor.selected.configurable": "actions.on.save"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/logic/src/main/kotlin/de/tkoeppel/sundowner/module" />
       <recent name="$PROJECT_DIR$/integrationtest/src/main/resources" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
@@ -166,11 +171,11 @@
       <recent name="de.tkoeppel.sundowner.security.securestore" />
     </key>
     <key name="K2MoveDeclarationsDialog.RECENT_PACKAGE_KEY">
+      <recent name="de.tkoeppel.sundowner.security.web" />
+      <recent name="de.tkoeppel.sundowner.security.tls" />
       <recent name="de.tkoeppel.sundowner.security.securestore.keystore" />
       <recent name="de.tkoeppel.sundowner.security.securestore.truststore" />
       <recent name="de.tkoeppel.sundowner.module.storage" />
-      <recent name="de.tkoeppel.sundowner.security.keystore" />
-      <recent name="de.tkoeppel.sundowner.security.ssl" />
     </key>
   </component>
   <component name="RunManager" selected="Kotlin.SundownerServiceApplicationKt">
@@ -557,7 +562,15 @@
       <option name="project" value="LOCAL" />
       <updated>1738010438485</updated>
     </task>
-    <option name="localTasksCounter" value="33" />
+    <task id="LOCAL-00033" summary="secure store handling #38">
+      <option name="closed" value="true" />
+      <created>1738082926439</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1738082926439</updated>
+    </task>
+    <option name="localTasksCounter" value="34" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -611,6 +624,11 @@
           <url>file://$PROJECT_DIR$/integrationtest/src/test/kotlin/de/tkoeppel/sundowner/module/spots/GetPointsInViewTest.kt</url>
           <line>153</line>
           <option name="timeStamp" value="18" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="kotlin-line">
+          <url>file://$PROJECT_DIR$/logic/src/main/kotlin/de/tkoeppel/sundowner/security/tls/StoreLoader.kt</url>
+          <line>17</line>
+          <option name="timeStamp" value="22" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="kotlin-function">
           <url>file://$PROJECT_DIR$/logic/src/main/kotlin/de/tkoeppel/sundowner/module/storage/StorageService.kt</url>

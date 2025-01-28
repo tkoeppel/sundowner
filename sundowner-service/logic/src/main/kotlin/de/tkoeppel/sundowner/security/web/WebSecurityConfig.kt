@@ -1,4 +1,4 @@
-package de.tkoeppel.sundowner.security
+package de.tkoeppel.sundowner.security.web
 
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration

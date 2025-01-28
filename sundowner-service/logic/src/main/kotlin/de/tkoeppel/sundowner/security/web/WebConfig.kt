@@ -1,5 +1,6 @@
-package de.tkoeppel.sundowner.security
+package de.tkoeppel.sundowner.security.web
 
+import de.tkoeppel.sundowner.security.SpringMvcConfig
 import org.springframework.context.annotation.Configuration
 import org.springframework.web.servlet.config.annotation.CorsRegistry
 import org.springframework.web.servlet.config.annotation.EnableWebMvc

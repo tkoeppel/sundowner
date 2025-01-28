@@ -11,10 +11,15 @@ import java.util.logging.Logger
 
 abstract class StoreLoader() {
 	private val logger = Logger.getLogger(StoreLoader::class.java.name)
-	private lateinit var secureStore: KeyStore
-	private lateinit var certificates: Map<String, SundownerCertificate>
+	private var secureStore: KeyStore? = null
+	private var certificates: Map<String, SundownerCertificate> = mapOf()
 
 	fun loadKeystore(config: StoreConfig) {
+		if (config.type.isEmpty() || config.path.isEmpty() || config.password.isEmpty()) {
+			this.logger.info("No store configuration provided.")
+			return
+		}
+
 		val keyStore = KeyStore.getInstance(config.type)
 		val resource = ClassPathResource(config.path)
 		val keystoreStream = resource.getInputStream()
@@ -33,8 +38,8 @@ abstract class StoreLoader() {
 	private fun loadCertificate(alias: String, password: String): SundownerCertificate {
 		return SundownerCertificate(
 			alias,
-			this.secureStore.getCertificate(alias) as Certificate,
-			this.secureStore.getKey(alias, password.toCharArray()) as PrivateKey
+			this.secureStore!!.getCertificate(alias) as Certificate,
+			this.secureStore!!.getKey(alias, password.toCharArray()) as PrivateKey
 		)
 	}
 
@@ -48,6 +53,11 @@ abstract class StoreLoader() {
 
 	fun hasCertificate(alias: String): Boolean {
 		return this.certificates.contains(alias)
+	}
+
+	fun getStore(): KeyStore {
+		if (this.secureStore == null) throw IllegalStateException("Store not loaded.")
+		return this.secureStore!!
 	}
 
 }
