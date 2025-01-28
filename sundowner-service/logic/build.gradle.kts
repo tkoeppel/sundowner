@@ -10,6 +10,7 @@ repositories {
 }
 
 
+val mockitoAgent = configurations.create("mockitoAgent")
 
 dependencies {
 	implementation("org.springframework.boot:spring-boot-starter-web")
@@ -29,8 +30,11 @@ dependencies {
 	runtimeOnly("org.postgresql:postgresql")
 
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
-	testImplementation("org.mockito:mockito-core")
-	testImplementation("org.mockito.kotlin:mockito-kotlin")
+	testImplementation("org.mockito:mockito-core:5.15.2")
+	mockitoAgent("org.mockito:mockito-core:5.15.2") { isTransitive = false }
+	testImplementation("org.mockito:mockito-junit-jupiter:5.14.2")
+	testImplementation("org.assertj:assertj-core")
+
 
 	// sundowner dependencies
 	implementation(project(":data"))
@@ -42,6 +46,7 @@ dependencies {
 
 tasks.test {
 	useJUnitPlatform()
+	jvmArgs("-javaagent:${mockitoAgent.asPath}")
 }
 
 kotlin {

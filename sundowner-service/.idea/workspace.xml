@@ -4,13 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="01f43c56-3111-4ec4-9664-d60d64d27ffb" name="Changes" comment="Minio Storage HTTP client handling #37">
+    <list default="true" id="01f43c56-3111-4ec4-9664-d60d64d27ffb" name="Changes" comment="Organize store managing better #38">
+      <change afterPath="$PROJECT_DIR$/logic/src/test/kotlin/de/tkoeppel/sundowner/security/tls/StoreLoaderTest.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/logic/src/test/kotlin/de/tkoeppel/sundowner/security/tls/TestStoreConfig.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/logic/src/test/kotlin/de/tkoeppel/sundowner/security/tls/TestStoreManager.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/logic/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/logic/build.gradle.kts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/logic/src/main/kotlin/de/tkoeppel/sundowner/security/tls/StoreLoader.kt" beforeDir="false" afterPath="$PROJECT_DIR$/logic/src/main/kotlin/de/tkoeppel/sundowner/security/tls/StoreLoader.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/logic/src/main/kotlin/de/tkoeppel/sundowner/security/tls/keystore/KeyStoreManager.kt" beforeDir="false" afterPath="$PROJECT_DIR$/logic/src/main/kotlin/de/tkoeppel/sundowner/security/tls/keystore/KeyStoreManager.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/logic/src/main/kotlin/de/tkoeppel/sundowner/security/tls/truststore/TrustStoreManager.kt" beforeDir="false" afterPath="$PROJECT_DIR$/logic/src/main/kotlin/de/tkoeppel/sundowner/security/tls/truststore/TrustStoreManager.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/logic/src/test/kotlin/de/tkoeppel/sundowner/security/ssl/KeyStoreLoaderTest.kt" beforeDir="false" afterPath="$PROJECT_DIR$/logic/src/test/kotlin/de/tkoeppel/sundowner/security/ssl/StoreLoaderTest.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/logic/src/test/kotlin/de/tkoeppel/sundowner/security/ssl/StoreLoaderTest.kt" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -111,6 +111,7 @@
     "Gradle.IT_DummyTest.testDummy.executor": "Run",
     "Gradle.Load Gradle Dependencies.executor": "Run",
     "Gradle.MapSpotTOTest.executor": "Run",
+    "Gradle.StoreLoaderTest.testLoadStoreNoConfig.executor": "Run",
     "Gradle.SundownerServiceApplicationTests (1).executor": "Run",
     "Gradle.SundownerServiceApplicationTests.contextLoads.executor": "Run",
     "Gradle.SundownerServiceApplicationTests.executor": "Coverage",
@@ -174,31 +175,7 @@
       <recent name="de.tkoeppel.sundowner.module.storage" />
     </key>
   </component>
-  <component name="RunManager" selected="Kotlin.SundownerServiceApplicationKt">
-    <configuration name="DummyTest.testDummy" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
-      <ExternalSystemSettings>
-        <option name="executionName" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$" />
-        <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" value="" />
-        <option name="taskDescriptions">
-          <list />
-        </option>
-        <option name="taskNames">
-          <list>
-            <option value=":integrationtest:test" />
-            <option value="--tests" />
-            <option value="&quot;de.tkoeppel.sundowner.module.dummy.DummyTest.testDummy&quot;" />
-          </list>
-        </option>
-        <option name="vmOptions" />
-      </ExternalSystemSettings>
-      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
-      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
-      <DebugAllEnabled>false</DebugAllEnabled>
-      <RunAsTest>true</RunAsTest>
-      <method v="2" />
-    </configuration>
+  <component name="RunManager" selected="Gradle.StoreLoaderTest.testLoadStoreNoConfig">
     <configuration name="GetPointsInViewTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -247,6 +224,30 @@
       <RunAsTest>true</RunAsTest>
       <method v="2" />
     </configuration>
+    <configuration name="StoreLoaderTest.testLoadStoreNoConfig" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":logic:test" />
+            <option value="--tests" />
+            <option value="&quot;de.tkoeppel.sundowner.security.tls.StoreLoaderTest.testLoadStoreNoConfig&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>true</RunAsTest>
+      <method v="2" />
+    </configuration>
     <configuration name="Tests in 'sundowner-service.integrationtest'" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -277,19 +278,19 @@
       </method>
     </configuration>
     <list>
+      <item itemvalue="Gradle.StoreLoaderTest.testLoadStoreNoConfig" />
       <item itemvalue="Gradle.Tests in 'sundowner-service.integrationtest'" />
       <item itemvalue="Gradle.GetPointsInViewTest" />
       <item itemvalue="Gradle.MapSpotTOTest" />
-      <item itemvalue="Gradle.DummyTest.testDummy" />
       <item itemvalue="Kotlin.SundownerServiceApplicationKt" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Gradle.StoreLoaderTest.testLoadStoreNoConfig" />
         <item itemvalue="Kotlin.SundownerServiceApplicationKt" />
         <item itemvalue="Gradle.MapSpotTOTest" />
         <item itemvalue="Gradle.Tests in 'sundowner-service.integrationtest'" />
         <item itemvalue="Gradle.GetPointsInViewTest" />
-        <item itemvalue="Gradle.DummyTest.testDummy" />
       </list>
     </recent_temporary>
   </component>
@@ -582,7 +583,15 @@
       <option name="project" value="LOCAL" />
       <updated>1738087176008</updated>
     </task>
-    <option name="localTasksCounter" value="36" />
+    <task id="LOCAL-00036" summary="Organize store managing better #38">
+      <option name="closed" value="true" />
+      <created>1738098366661</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1738098366661</updated>
+    </task>
+    <option name="localTasksCounter" value="37" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -597,7 +606,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="first step to solve postgis location db issues #12" />
     <MESSAGE value="postgis db problem solved #12" />
     <MESSAGE value="postgis db problem solved. Postgresdialect which gets used automatically #12" />
     <MESSAGE value="Remove unused properties and specific dependency version" />
@@ -622,7 +630,8 @@
     <MESSAGE value="secure store handling #38" />
     <MESSAGE value="full store handling exception proof #38" />
     <MESSAGE value="Minio Storage HTTP client handling #37" />
-    <option name="LAST_COMMIT_MESSAGE" value="Minio Storage HTTP client handling #37" />
+    <MESSAGE value="Organize store managing better #38" />
+    <option name="LAST_COMMIT_MESSAGE" value="Organize store managing better #38" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
