@@ -1,15 +1,60 @@
 package de.tkoeppel.sundowner.module.storage
 
-import de.tkoeppel.sundowner.exceptions.StorageException
+import de.tkoeppel.sundowner.security.certificate.InvalidCertificateException
+import de.tkoeppel.sundowner.security.tls.truststore.TrustStoreManager
 import io.minio.BucketExistsArgs
 import io.minio.MakeBucketArgs
 import io.minio.MinioClient
+import jakarta.annotation.PostConstruct
+import okhttp3.OkHttpClient
+import org.apache.hc.core5.ssl.SSLContexts
+import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
 import org.springframework.web.multipart.MultipartFile
 import java.io.InputStream
+import javax.net.ssl.TrustManagerFactory
+import javax.net.ssl.X509TrustManager
+
 
 @Service
-class StorageService(private val minioClient: MinioClient) : IStorageService {
+class StorageService() : IStorageService {
+
+	@Autowired
+	private lateinit var storageConfig: StorageConfig
+
+	@Autowired
+	private lateinit var trustStoreManager: TrustStoreManager
+
+	private lateinit var minioClient: MinioClient
+
+	@PostConstruct
+	fun initMinioClient() {
+		val builder = MinioClient.builder() //
+			.endpoint(storageConfig.endpoint) //
+			.credentials(storageConfig.accessKey, storageConfig.secretKey) //
+
+		this.minioClient =
+			if (storageConfig.trustStoreAlias.isNullOrEmpty()) builder.build() else builder.httpClient(createHttpClient())
+				.build()
+	}
+
+	private fun createHttpClient(): OkHttpClient {
+		if (!this.trustStoreManager.hasCertificate(storageConfig.trustStoreAlias!!)) {
+			throw InvalidCertificateException("Certificate with alias ${storageConfig.trustStoreAlias} not found.")
+		}
+
+		val trustManagerFactory = TrustManagerFactory.getInstance(TrustManagerFactory.getDefaultAlgorithm())
+		trustManagerFactory.init(this.trustStoreManager.getStore())
+		val trustManagers = trustManagerFactory.trustManagers
+		check(trustManagers.size == 1 && trustManagers[0] is X509TrustManager) {
+			"Unexpected default trust managers: ${trustManagers.contentToString()}"
+		}
+		val trustManager = trustManagers[0] as X509TrustManager
+		val sslContext = SSLContexts.custom().loadTrustMaterial(this.trustStoreManager.getStore(), null).build()
+
+		return OkHttpClient.Builder().sslSocketFactory(sslContext.socketFactory, trustManager).build()
+	}
+
 	override fun createBucket(bucketName: String) {
 		try {
 			if (!minioClient.bucketExists(BucketExistsArgs.builder().bucket(bucketName).build())) {

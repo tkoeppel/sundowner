@@ -1,34 +1,14 @@
 package de.tkoeppel.sundowner.module.storage
 
-import de.tkoeppel.sundowner.security.ssl.KeyStoreLoader
-import de.tkoeppel.sundowner.security.ssl.SslData
-import io.minio.MinioClient
+import jakarta.validation.constraints.NotEmpty
 import org.springframework.boot.context.properties.ConfigurationProperties
-import org.springframework.context.annotation.Bean
-import org.springframework.context.annotation.Configuration
+import org.springframework.boot.context.properties.bind.ConstructorBinding
 
 
-@Configuration
-@ConfigurationProperties("storage.minio")
-class StorageConfig {
-	lateinit var endpoint: String
-	lateinit var accessKey: String
-	lateinit var secretKey: String
-	lateinit var ssl: SslData
-
-
-	@Bean
-	fun minioClient(): MinioClient {
-		val builder = MinioClient.builder() //
-			.endpoint(endpoint) //
-			.credentials(accessKey, secretKey) //
-
-		if (ssl.enabled) {
-			val httpClient = KeyStoreLoader.createHttpClient(ssl)
-			return builder.httpClient(httpClient).build()
-		}
-		
-		return builder.build()
-	}
-
-}
+@ConfigurationProperties(prefix = "storage.minio")
+data class StorageConfig @ConstructorBinding constructor(
+	@field:NotEmpty(message = "Endpoint must not be empty") val endpoint: String,
+	@field:NotEmpty(message = "Access key must not be empty") val accessKey: String,
+	@field:NotEmpty(message = "Secret key must not be empty") val secretKey: String,
+	val trustStoreAlias: String?
+)
