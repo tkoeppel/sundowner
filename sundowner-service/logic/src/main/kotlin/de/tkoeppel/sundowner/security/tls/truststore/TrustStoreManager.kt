@@ -13,6 +13,10 @@ class TrustStoreManager : StoreLoader() {
 
 	@PostConstruct
 	private fun loadTrustStore() {
-		this.loadKeystore(trustStoreConfig)
+		this.initStore(trustStoreConfig)
+	}
+
+	override fun getName(): String {
+		return "trust"
 	}
 }

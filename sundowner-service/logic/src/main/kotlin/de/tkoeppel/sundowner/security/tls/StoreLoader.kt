@@ -9,25 +9,34 @@ import java.security.cert.Certificate
 import java.util.logging.Logger
 
 
-abstract class StoreLoader() {
-	private val logger = Logger.getLogger(StoreLoader::class.java.name)
-	private var secureStore: KeyStore? = null
+abstract class StoreLoader(
+	private val logger: Logger = Logger.getLogger(StoreLoader::class.java.name),
+	private var store: KeyStore? = null,
 	private var certificates: Map<String, SundownerCertificate> = mapOf()
+) {
 
-	fun loadKeystore(config: StoreConfig) {
+	fun initStore(config: StoreConfig) {
 		if (config.type.isEmpty() || config.path.isEmpty() || config.password.isEmpty()) {
-			this.logger.info("No store configuration provided.")
+			this.logger.info("No ${getName()}store configuration provided.")
 			return
 		}
 
+		this.store = loadStore(config)
+		this.certificates = loadCertificates(config)
+	}
+
+	private fun loadStore(config: StoreConfig): KeyStore {
 		val keyStore = KeyStore.getInstance(config.type)
 		val resource = ClassPathResource(config.path)
 		val keystoreStream = resource.getInputStream()
 		keyStore.load(keystoreStream, config.password.toCharArray())
-		this.secureStore = keyStore
-		this.certificates = config.keys.map { (alias, passphrase) ->
+		return keyStore
+	}
+
+	private fun loadCertificates(config: StoreConfig): Map<String, SundownerCertificate> {
+		return config.keys.map { (alias, passphrase) ->
 			if (passphrase.isEmpty()) {
-				logger.info("No passphrase provided for alias $alias. Keystore password will be used.")
+				logger.info("No passphrase provided for alias $alias. The ${getName()}store password will be used.")
 				loadCertificate(alias, config.password)
 			} else {
 				loadCertificate(alias, passphrase)
@@ -38,8 +47,8 @@ abstract class StoreLoader() {
 	private fun loadCertificate(alias: String, password: String): SundownerCertificate {
 		return SundownerCertificate(
 			alias,
-			this.secureStore!!.getCertificate(alias) as Certificate,
-			this.secureStore!!.getKey(alias, password.toCharArray()) as PrivateKey
+			this.store!!.getCertificate(alias) as Certificate,
+			this.store!!.getKey(alias, password.toCharArray()) as PrivateKey
 		)
 	}
 
@@ -56,8 +65,10 @@ abstract class StoreLoader() {
 	}
 
 	fun getStore(): KeyStore {
-		if (this.secureStore == null) throw IllegalStateException("Store not loaded.")
-		return this.secureStore!!
+		if (this.store == null) throw IllegalStateException("The ${getName()}store is not loaded.")
+		return this.store!!
 	}
+
+	abstract fun getName(): String
 
 }

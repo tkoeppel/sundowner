@@ -4,17 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="01f43c56-3111-4ec4-9664-d60d64d27ffb" name="Changes" comment="secure store handling #38">
+    <list default="true" id="01f43c56-3111-4ec4-9664-d60d64d27ffb" name="Changes" comment="Minio Storage HTTP client handling #37">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/logic/src/main/kotlin/de/tkoeppel/sundowner/exceptions/StorageException.kt" beforeDir="false" afterPath="$PROJECT_DIR$/logic/src/main/kotlin/de/tkoeppel/sundowner/module/storage/StorageException.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/logic/src/main/kotlin/de/tkoeppel/sundowner/module/storage/StorageConfig.kt" beforeDir="false" afterPath="$PROJECT_DIR$/logic/src/main/kotlin/de/tkoeppel/sundowner/module/storage/StorageConfig.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/logic/src/main/kotlin/de/tkoeppel/sundowner/module/storage/StorageService.kt" beforeDir="false" afterPath="$PROJECT_DIR$/logic/src/main/kotlin/de/tkoeppel/sundowner/module/storage/StorageService.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/logic/src/main/kotlin/de/tkoeppel/sundowner/security/WebConfig.kt" beforeDir="false" afterPath="$PROJECT_DIR$/logic/src/main/kotlin/de/tkoeppel/sundowner/security/web/WebConfig.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/logic/src/main/kotlin/de/tkoeppel/sundowner/security/WebSecurityConfig.kt" beforeDir="false" afterPath="$PROJECT_DIR$/logic/src/main/kotlin/de/tkoeppel/sundowner/security/web/WebSecurityConfig.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/logic/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/logic/build.gradle.kts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/logic/src/main/kotlin/de/tkoeppel/sundowner/security/tls/StoreLoader.kt" beforeDir="false" afterPath="$PROJECT_DIR$/logic/src/main/kotlin/de/tkoeppel/sundowner/security/tls/StoreLoader.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/logic/src/main/kotlin/de/tkoeppel/sundowner/security/tls/keystore/KeyStoreConfig.kt" beforeDir="false" afterPath="$PROJECT_DIR$/logic/src/main/kotlin/de/tkoeppel/sundowner/security/tls/keystore/KeyStoreConfig.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/logic/src/main/kotlin/de/tkoeppel/sundowner/security/tls/truststore/TrustStoreConfig.kt" beforeDir="false" afterPath="$PROJECT_DIR$/logic/src/main/kotlin/de/tkoeppel/sundowner/security/tls/truststore/TrustStoreConfig.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/logic/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/logic/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/logic/src/main/kotlin/de/tkoeppel/sundowner/security/tls/keystore/KeyStoreManager.kt" beforeDir="false" afterPath="$PROJECT_DIR$/logic/src/main/kotlin/de/tkoeppel/sundowner/security/tls/keystore/KeyStoreManager.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/logic/src/main/kotlin/de/tkoeppel/sundowner/security/tls/truststore/TrustStoreManager.kt" beforeDir="false" afterPath="$PROJECT_DIR$/logic/src/main/kotlin/de/tkoeppel/sundowner/security/tls/truststore/TrustStoreManager.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/logic/src/test/kotlin/de/tkoeppel/sundowner/security/ssl/KeyStoreLoaderTest.kt" beforeDir="false" afterPath="$PROJECT_DIR$/logic/src/test/kotlin/de/tkoeppel/sundowner/security/ssl/StoreLoaderTest.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -570,7 +566,23 @@
       <option name="project" value="LOCAL" />
       <updated>1738082926439</updated>
     </task>
-    <option name="localTasksCounter" value="34" />
+    <task id="LOCAL-00034" summary="full store handling exception proof #38">
+      <option name="closed" value="true" />
+      <created>1738087137844</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1738087137844</updated>
+    </task>
+    <task id="LOCAL-00035" summary="Minio Storage HTTP client handling #37">
+      <option name="closed" value="true" />
+      <created>1738087176008</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1738087176008</updated>
+    </task>
+    <option name="localTasksCounter" value="36" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -585,8 +597,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Restructured project. test module is called integraation test" />
-    <MESSAGE value="Fix project setup. Make integrationtest pipeline possible" />
     <MESSAGE value="first step to solve postgis location db issues #12" />
     <MESSAGE value="postgis db problem solved #12" />
     <MESSAGE value="postgis db problem solved. Postgresdialect which gets used automatically #12" />
@@ -610,7 +620,9 @@
     <MESSAGE value="Initial basis for error handling in service #29" />
     <MESSAGE value="MinIO Integration #37" />
     <MESSAGE value="secure store handling #38" />
-    <option name="LAST_COMMIT_MESSAGE" value="secure store handling #38" />
+    <MESSAGE value="full store handling exception proof #38" />
+    <MESSAGE value="Minio Storage HTTP client handling #37" />
+    <option name="LAST_COMMIT_MESSAGE" value="Minio Storage HTTP client handling #37" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -624,11 +636,6 @@
           <url>file://$PROJECT_DIR$/integrationtest/src/test/kotlin/de/tkoeppel/sundowner/module/spots/GetPointsInViewTest.kt</url>
           <line>153</line>
           <option name="timeStamp" value="18" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="kotlin-line">
-          <url>file://$PROJECT_DIR$/logic/src/main/kotlin/de/tkoeppel/sundowner/security/tls/StoreLoader.kt</url>
-          <line>17</line>
-          <option name="timeStamp" value="22" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="kotlin-function">
           <url>file://$PROJECT_DIR$/logic/src/main/kotlin/de/tkoeppel/sundowner/module/storage/StorageService.kt</url>

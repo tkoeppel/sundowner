@@ -17,7 +17,7 @@ dependencies {
 	implementation("org.springframework.boot:spring-boot-starter-security")
 	implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
 	implementation("io.minio:minio:8.5.17")
-	implementation("org.apache.httpcomponents.client5:httpclient5:5.4.1")
+	implementation("org.apache.httpcomponents.client5:httpclient5")
 
 
 	// spatial data
@@ -28,14 +28,16 @@ dependencies {
 
 	runtimeOnly("org.postgresql:postgresql")
 
-	testImplementation("org.apache.httpcomponents.client5:httpclient5")
-
+	testImplementation("org.springframework.boot:spring-boot-starter-test")
+	testImplementation("org.mockito:mockito-core")
+	testImplementation("org.mockito.kotlin:mockito-kotlin")
 
 	// sundowner dependencies
 	implementation(project(":data"))
 
 	// Open API
 	implementation("org.springdoc:springdoc-openapi-starter-webmvc-api:2.6.0")
+	testImplementation(kotlin("test"))
 }
 
 tasks.test {

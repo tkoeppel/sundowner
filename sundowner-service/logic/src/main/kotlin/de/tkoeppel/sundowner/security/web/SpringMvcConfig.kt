@@ -1,4 +1,4 @@
-package de.tkoeppel.sundowner.security
+package de.tkoeppel.sundowner.security.web
 
 import org.springframework.boot.context.properties.ConfigurationProperties
 

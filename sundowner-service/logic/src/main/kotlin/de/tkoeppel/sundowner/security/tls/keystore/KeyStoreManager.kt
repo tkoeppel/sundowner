@@ -13,6 +13,10 @@ class KeyStoreManager : StoreLoader() {
 
 	@PostConstruct
 	private fun loadKeyStore() {
-		this.loadKeystore(keyStoreConfig)
+		this.initStore(keyStoreConfig)
+	}
+
+	override fun getName(): String {
+		return "key"
 	}
 }
