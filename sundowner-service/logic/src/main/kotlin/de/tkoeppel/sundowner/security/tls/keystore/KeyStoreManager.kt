@@ -1,12 +1,12 @@
-package de.tkoeppel.sundowner.security.securestore.keystore
+package de.tkoeppel.sundowner.security.tls.keystore
 
-import de.tkoeppel.sundowner.security.securestore.SecureStoreLoader
+import de.tkoeppel.sundowner.security.tls.StoreLoader
 import jakarta.annotation.PostConstruct
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Component
 
 @Component
-class KeyStoreManager : SecureStoreLoader() {
+class KeyStoreManager : StoreLoader() {
 
 	@Autowired
 	private lateinit var keyStoreConfig: KeyStoreConfig

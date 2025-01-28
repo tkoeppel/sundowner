@@ -1,6 +1,6 @@
-package de.tkoeppel.sundowner.security.securestore
+package de.tkoeppel.sundowner.security.tls
 
-import de.tkoeppel.sundowner.security.certificate.CertificateException
+import de.tkoeppel.sundowner.security.certificate.InvalidCertificateException
 import de.tkoeppel.sundowner.security.certificate.SundownerCertificate
 import org.springframework.core.io.ClassPathResource
 import java.security.KeyStore
@@ -9,25 +9,25 @@ import java.security.cert.Certificate
 import java.util.logging.Logger
 
 
-abstract class SecureStoreLoader() {
-	private val logger = Logger.getLogger(SecureStoreLoader::class.java.name)
+abstract class StoreLoader() {
+	private val logger = Logger.getLogger(StoreLoader::class.java.name)
 	private lateinit var secureStore: KeyStore
 	private lateinit var certificates: Map<String, SundownerCertificate>
 
-	fun loadKeystore(config: SecureStoreConfig) {
+	fun loadKeystore(config: StoreConfig) {
 		val keyStore = KeyStore.getInstance(config.type)
 		val resource = ClassPathResource(config.path)
 		val keystoreStream = resource.getInputStream()
 		keyStore.load(keystoreStream, config.password.toCharArray())
 		this.secureStore = keyStore
-		this.certificates = config.keys.map { (alias, pwd) ->
-			if (pwd.isEmpty()) {
-				logger.warning("No certificate authentication provided for alias $alias")
-				null
+		this.certificates = config.keys.map { (alias, passphrase) ->
+			if (passphrase.isEmpty()) {
+				logger.info("No passphrase provided for alias $alias. Keystore password will be used.")
+				loadCertificate(alias, config.password)
 			} else {
-				loadCertificate(alias, pwd)
+				loadCertificate(alias, passphrase)
 			}
-		}.filterNotNull().associateBy { it.alias }
+		}.associateBy { it.alias }
 	}
 
 	private fun loadCertificate(alias: String, password: String): SundownerCertificate {
@@ -40,7 +40,7 @@ abstract class SecureStoreLoader() {
 
 	fun getCertificate(alias: String): SundownerCertificate {
 		if (!this.certificates.contains(alias)) {
-			throw CertificateException("Certificate with alias $alias not found.")
+			throw InvalidCertificateException("Certificate with alias $alias not found.")
 		}
 
 		return this.certificates[alias]!!

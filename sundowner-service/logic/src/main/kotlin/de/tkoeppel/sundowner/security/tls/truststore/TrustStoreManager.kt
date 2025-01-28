@@ -1,12 +1,12 @@
-package de.tkoeppel.sundowner.security.securestore.truststore
+package de.tkoeppel.sundowner.security.tls.truststore
 
-import de.tkoeppel.sundowner.security.securestore.SecureStoreLoader
+import de.tkoeppel.sundowner.security.tls.StoreLoader
 import jakarta.annotation.PostConstruct
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Component
 
 @Component
-class TrustStoreManager : SecureStoreLoader() {
+class TrustStoreManager : StoreLoader() {
 
 	@Autowired
 	private lateinit var trustStoreConfig: TrustStoreConfig
