@@ -2,7 +2,7 @@ package de.tkoeppel.sundowner.security.tls
 
 import de.tkoeppel.sundowner.security.certificate.InvalidCertificateException
 import de.tkoeppel.sundowner.security.certificate.SundownerCertificate
-import org.springframework.core.io.ClassPathResource
+import java.io.FileInputStream
 import java.security.KeyStore
 import java.security.PrivateKey
 import java.security.cert.Certificate
@@ -22,26 +22,34 @@ abstract class StoreLoader(
 		}
 
 		this.store = loadStore(config)
+		logger.info("Initialized ${getName()}store successfully.")
 		this.certificates = loadCertificates(config)
+		logger.info("Initialized ${getName()}store with ${this.certificates.size} certificates.")
 	}
 
 	private fun loadStore(config: StoreConfig): KeyStore {
-		val keyStore = KeyStore.getInstance(config.type)
-		val resource = ClassPathResource(config.path)
-		val keystoreStream = resource.getInputStream()
-		keyStore.load(keystoreStream, config.password.toCharArray())
-		return keyStore
+		try {
+			val keyStore = KeyStore.getInstance(config.type)
+			FileInputStream(config.path).use { keyStore.load(it, config.password.toCharArray()) }
+			return keyStore
+		} catch (e: Exception) {
+			throw TlsException("Failed to load ${getName()}store.", e)
+		}
 	}
 
 	private fun loadCertificates(config: StoreConfig): Map<String, SundownerCertificate> {
-		return config.keys.map { (alias, passphrase) ->
-			if (passphrase.isEmpty()) {
-				logger.info("No passphrase provided for alias $alias. The ${getName()}store password will be used.")
-				loadCertificate(alias, config.password)
-			} else {
-				loadCertificate(alias, passphrase)
-			}
-		}.associateBy { it.alias }
+		try {
+			return config.keys.map { (alias, passphrase) ->
+				if (passphrase.isEmpty()) {
+					logger.info("No passphrase provided for alias $alias. The ${getName()}store password will be used.")
+					loadCertificate(alias, config.password)
+				} else {
+					loadCertificate(alias, passphrase)
+				}
+			}.associateBy { it.alias }
+		} catch (e: Exception) {
+			throw TlsException("Failed to load ${getName()}store certificates.", e)
+		}
 	}
 
 	private fun loadCertificate(alias: String, password: String): SundownerCertificate {
@@ -65,10 +73,12 @@ abstract class StoreLoader(
 	}
 
 	fun getStore(): KeyStore {
-		if (this.store == null) throw IllegalStateException("The ${getName()}store is not loaded.")
+		if (this.store == null) {
+			throw TlsException("The ${getName()}store is not loaded.")
+		}
 		return this.store!!
 	}
 
-	abstract fun getName(): String
+	protected abstract fun getName(): String
 
 }

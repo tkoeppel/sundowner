@@ -2,6 +2,7 @@ package de.tkoeppel.sundowner.exceptions
 
 import de.tkoeppel.sundowner.module.storage.StorageException
 import de.tkoeppel.sundowner.security.certificate.InvalidCertificateException
+import de.tkoeppel.sundowner.security.tls.TlsException
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.ExceptionHandler
@@ -22,7 +23,12 @@ class GlobalExceptionHandler {
 		return ResponseEntity(errorDetails, HttpStatus.BAD_REQUEST)
 	}
 
-	@ExceptionHandler(Exception::class, StorageException::class, InvalidCertificateException::class)
+	@ExceptionHandler(
+		Exception::class,
+		StorageException::class,
+		InvalidCertificateException::class,
+		TlsException::class
+	)
 	fun handleGlobalException(
 		exception: Exception, request: WebRequest
 	): ResponseEntity<ErrorDetails> {

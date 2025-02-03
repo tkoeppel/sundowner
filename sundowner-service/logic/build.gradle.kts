@@ -19,6 +19,7 @@ dependencies {
 	implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
 	implementation("io.minio:minio:8.5.17")
 	implementation("org.apache.httpcomponents.client5:httpclient5")
+	implementation("io.ktor:ktor-network-tls-certificates:3.0.3")
 
 
 	// spatial data
@@ -44,10 +45,23 @@ dependencies {
 	testImplementation(kotlin("test"))
 }
 
+sourceSets {
+	test {
+		resources {
+			srcDir("src/test/resources")
+		}
+	}
+}
+
 tasks.test {
 	useJUnitPlatform()
 	jvmArgs("-javaagent:${mockitoAgent.asPath}")
 }
+
+tasks.processTestResources {
+	duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+}
+
 
 kotlin {
 	jvmToolchain(21)

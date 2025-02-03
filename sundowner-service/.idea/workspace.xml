@@ -4,13 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="01f43c56-3111-4ec4-9664-d60d64d27ffb" name="Changes" comment="Organize store managing better #38">
-      <change afterPath="$PROJECT_DIR$/logic/src/test/kotlin/de/tkoeppel/sundowner/security/tls/StoreLoaderTest.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/logic/src/test/kotlin/de/tkoeppel/sundowner/security/tls/TestStoreConfig.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/logic/src/test/kotlin/de/tkoeppel/sundowner/security/tls/TestStoreManager.kt" afterDir="false" />
+    <list default="true" id="01f43c56-3111-4ec4-9664-d60d64d27ffb" name="Changes" comment="First Unit Test  for #38">
+      <change afterPath="$PROJECT_DIR$/logic/src/main/kotlin/de/tkoeppel/sundowner/security/tls/TlsException.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/logic/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/logic/build.gradle.kts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/logic/src/test/kotlin/de/tkoeppel/sundowner/security/ssl/StoreLoaderTest.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/logic/src/main/kotlin/de/tkoeppel/sundowner/exceptions/GlobalExceptionHandler.kt" beforeDir="false" afterPath="$PROJECT_DIR$/logic/src/main/kotlin/de/tkoeppel/sundowner/exceptions/GlobalExceptionHandler.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/logic/src/main/kotlin/de/tkoeppel/sundowner/security/certificate/SundownerCertificate.kt" beforeDir="false" afterPath="$PROJECT_DIR$/logic/src/main/kotlin/de/tkoeppel/sundowner/security/certificate/SundownerCertificate.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/logic/src/main/kotlin/de/tkoeppel/sundowner/security/tls/StoreLoader.kt" beforeDir="false" afterPath="$PROJECT_DIR$/logic/src/main/kotlin/de/tkoeppel/sundowner/security/tls/StoreLoader.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/logic/src/test/kotlin/de/tkoeppel/sundowner/security/tls/StoreLoaderTest.kt" beforeDir="false" afterPath="$PROJECT_DIR$/logic/src/test/kotlin/de/tkoeppel/sundowner/security/tls/StoreLoaderTest.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/logic/src/test/kotlin/de/tkoeppel/sundowner/security/tls/TestStoreManager.kt" beforeDir="false" afterPath="$PROJECT_DIR$/logic/src/test/kotlin/de/tkoeppel/sundowner/security/tls/TestStoreManager.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -31,12 +33,37 @@
         <task path="$PROJECT_DIR$">
           <activation />
         </task>
+        <task path="$PROJECT_DIR$/logic">
+          <activation />
+        </task>
         <projects_view>
           <tree_state>
             <expand>
               <path>
                 <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
                 <item name="sundowner-service" type="f1a62948:ProjectNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="sundowner-service" type="f1a62948:ProjectNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="sundowner-service" type="f1a62948:ProjectNode" />
+                <item name="logic" type="2d1252cf:ModuleNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="sundowner-service" type="f1a62948:ProjectNode" />
+                <item name="logic" type="2d1252cf:ModuleNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="sundowner-service" type="f1a62948:ProjectNode" />
+                <item name="logic" type="2d1252cf:ModuleNode" />
+                <item name="Dependencies" type="6de06a37:ExternalSystemViewDefaultContributor$MyDependenciesNode" />
               </path>
             </expand>
             <select />
@@ -111,6 +138,13 @@
     "Gradle.IT_DummyTest.testDummy.executor": "Run",
     "Gradle.Load Gradle Dependencies.executor": "Run",
     "Gradle.MapSpotTOTest.executor": "Run",
+    "Gradle.StoreLoaderTest.executor": "Run",
+    "Gradle.StoreLoaderTest.test get certificate with invalid alias.executor": "Run",
+    "Gradle.StoreLoaderTest.test get not loaded store.executor": "Run",
+    "Gradle.StoreLoaderTest.test loading the store with a valid config.executor": "Run",
+    "Gradle.StoreLoaderTest.test loading the store with an empty config.executor": "Run",
+    "Gradle.StoreLoaderTest.test loading the store with invalid store type.executor": "Run",
+    "Gradle.StoreLoaderTest.test loading the store with valid config.executor": "Run",
     "Gradle.StoreLoaderTest.testLoadStoreNoConfig.executor": "Run",
     "Gradle.SundownerServiceApplicationTests (1).executor": "Run",
     "Gradle.SundownerServiceApplicationTests.contextLoads.executor": "Run",
@@ -139,7 +173,7 @@
     "project.structure.side.proportion": "0.5080645",
     "rearrange.code.on.save": "true",
     "run.code.analysis.last.selected.profile": "pProject Default",
-    "settings.editor.selected.configurable": "actions.on.save"
+    "settings.editor.selected.configurable": "reference.settingsdialog.project.gradle"
   }
 }]]></component>
   <component name="RecentsManager">
@@ -175,56 +209,8 @@
       <recent name="de.tkoeppel.sundowner.module.storage" />
     </key>
   </component>
-  <component name="RunManager" selected="Gradle.StoreLoaderTest.testLoadStoreNoConfig">
-    <configuration name="GetPointsInViewTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
-      <ExternalSystemSettings>
-        <option name="executionName" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$" />
-        <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" value="" />
-        <option name="taskDescriptions">
-          <list />
-        </option>
-        <option name="taskNames">
-          <list>
-            <option value=":integrationtest:test" />
-            <option value="--tests" />
-            <option value="&quot;de.tkoeppel.sundowner.module.spots.GetPointsInViewTest&quot;" />
-          </list>
-        </option>
-        <option name="vmOptions" />
-      </ExternalSystemSettings>
-      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
-      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
-      <DebugAllEnabled>false</DebugAllEnabled>
-      <RunAsTest>true</RunAsTest>
-      <method v="2" />
-    </configuration>
-    <configuration name="MapSpotTOTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
-      <ExternalSystemSettings>
-        <option name="executionName" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$" />
-        <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" value="" />
-        <option name="taskDescriptions">
-          <list />
-        </option>
-        <option name="taskNames">
-          <list>
-            <option value=":data:test" />
-            <option value="--tests" />
-            <option value="&quot;de.tkoeppel.sundowner.to.MapSpotTOTest&quot;" />
-          </list>
-        </option>
-        <option name="vmOptions" />
-      </ExternalSystemSettings>
-      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
-      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
-      <DebugAllEnabled>false</DebugAllEnabled>
-      <RunAsTest>true</RunAsTest>
-      <method v="2" />
-    </configuration>
-    <configuration name="StoreLoaderTest.testLoadStoreNoConfig" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+  <component name="RunManager" selected="Gradle.StoreLoaderTest">
+    <configuration name="StoreLoaderTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
@@ -237,7 +223,7 @@
           <list>
             <option value=":logic:test" />
             <option value="--tests" />
-            <option value="&quot;de.tkoeppel.sundowner.security.tls.StoreLoaderTest.testLoadStoreNoConfig&quot;" />
+            <option value="&quot;de.tkoeppel.sundowner.security.tls.StoreLoaderTest&quot;" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -248,7 +234,7 @@
       <RunAsTest>true</RunAsTest>
       <method v="2" />
     </configuration>
-    <configuration name="Tests in 'sundowner-service.integrationtest'" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="StoreLoaderTest.test get certificate with invalid alias" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
@@ -259,7 +245,9 @@
         </option>
         <option name="taskNames">
           <list>
-            <option value=":integrationtest:test" />
+            <option value=":logic:test" />
+            <option value="--tests" />
+            <option value="&quot;de.tkoeppel.sundowner.security.tls.StoreLoaderTest.test get certificate with invalid alias&quot;" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -270,27 +258,92 @@
       <RunAsTest>true</RunAsTest>
       <method v="2" />
     </configuration>
-    <configuration name="SundownerServiceApplicationKt" type="JetRunConfigurationType" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="de.tkoeppel.sundowner.SundownerServiceApplicationKt" />
-      <module name="sundowner-service.logic.main" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
+    <configuration name="StoreLoaderTest.test get not loaded store" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":logic:test" />
+            <option value="--tests" />
+            <option value="&quot;de.tkoeppel.sundowner.security.tls.StoreLoaderTest.test get not loaded store&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>true</RunAsTest>
+      <method v="2" />
+    </configuration>
+    <configuration name="StoreLoaderTest.test loading the store with an empty config" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":logic:test" />
+            <option value="--tests" />
+            <option value="&quot;de.tkoeppel.sundowner.security.tls.StoreLoaderTest.test loading the store with an empty config&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>true</RunAsTest>
+      <method v="2" />
+    </configuration>
+    <configuration name="StoreLoaderTest.test loading the store with invalid store type" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":logic:test" />
+            <option value="--tests" />
+            <option value="&quot;de.tkoeppel.sundowner.security.tls.StoreLoaderTest.test loading the store with invalid store type&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>true</RunAsTest>
+      <method v="2" />
     </configuration>
     <list>
-      <item itemvalue="Gradle.StoreLoaderTest.testLoadStoreNoConfig" />
-      <item itemvalue="Gradle.Tests in 'sundowner-service.integrationtest'" />
-      <item itemvalue="Gradle.GetPointsInViewTest" />
-      <item itemvalue="Gradle.MapSpotTOTest" />
-      <item itemvalue="Kotlin.SundownerServiceApplicationKt" />
+      <item itemvalue="Gradle.StoreLoaderTest" />
+      <item itemvalue="Gradle.StoreLoaderTest.test get certificate with invalid alias" />
+      <item itemvalue="Gradle.StoreLoaderTest.test get not loaded store" />
+      <item itemvalue="Gradle.StoreLoaderTest.test loading the store with invalid store type" />
+      <item itemvalue="Gradle.StoreLoaderTest.test loading the store with an empty config" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Gradle.StoreLoaderTest.testLoadStoreNoConfig" />
-        <item itemvalue="Kotlin.SundownerServiceApplicationKt" />
-        <item itemvalue="Gradle.MapSpotTOTest" />
-        <item itemvalue="Gradle.Tests in 'sundowner-service.integrationtest'" />
-        <item itemvalue="Gradle.GetPointsInViewTest" />
+        <item itemvalue="Gradle.StoreLoaderTest" />
+        <item itemvalue="Gradle.StoreLoaderTest.test get not loaded store" />
+        <item itemvalue="Gradle.StoreLoaderTest.test get certificate with invalid alias" />
+        <item itemvalue="Gradle.StoreLoaderTest.test loading the store with invalid store type" />
+        <item itemvalue="Gradle.StoreLoaderTest.test loading the store with an empty config" />
       </list>
     </recent_temporary>
   </component>
@@ -591,7 +644,15 @@
       <option name="project" value="LOCAL" />
       <updated>1738098366661</updated>
     </task>
-    <option name="localTasksCounter" value="37" />
+    <task id="LOCAL-00037" summary="First Unit Test  for #38">
+      <option name="closed" value="true" />
+      <created>1738100983665</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL-00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1738100983665</updated>
+    </task>
+    <option name="localTasksCounter" value="38" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -606,7 +667,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="postgis db problem solved #12" />
     <MESSAGE value="postgis db problem solved. Postgresdialect which gets used automatically #12" />
     <MESSAGE value="Remove unused properties and specific dependency version" />
     <MESSAGE value="implemented DAOs #12" />
@@ -631,7 +691,8 @@
     <MESSAGE value="full store handling exception proof #38" />
     <MESSAGE value="Minio Storage HTTP client handling #37" />
     <MESSAGE value="Organize store managing better #38" />
-    <option name="LAST_COMMIT_MESSAGE" value="Organize store managing better #38" />
+    <MESSAGE value="First Unit Test  for #38" />
+    <option name="LAST_COMMIT_MESSAGE" value="First Unit Test  for #38" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -645,6 +706,11 @@
           <url>file://$PROJECT_DIR$/integrationtest/src/test/kotlin/de/tkoeppel/sundowner/module/spots/GetPointsInViewTest.kt</url>
           <line>153</line>
           <option name="timeStamp" value="18" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="kotlin-line">
+          <url>file://$PROJECT_DIR$/logic/src/main/kotlin/de/tkoeppel/sundowner/security/tls/StoreLoader.kt</url>
+          <line>75</line>
+          <option name="timeStamp" value="22" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="kotlin-function">
           <url>file://$PROJECT_DIR$/logic/src/main/kotlin/de/tkoeppel/sundowner/module/storage/StorageService.kt</url>
