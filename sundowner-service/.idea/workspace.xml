@@ -5,14 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="01f43c56-3111-4ec4-9664-d60d64d27ffb" name="Changes" comment="First Unit Test  for #38">
-      <change afterPath="$PROJECT_DIR$/logic/src/main/kotlin/de/tkoeppel/sundowner/security/tls/TlsException.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/logic/src/test/kotlin/de/tkoeppel/sundowner/security/certificate/SundownerCertificateTest.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/logic/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/logic/build.gradle.kts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/logic/src/main/kotlin/de/tkoeppel/sundowner/exceptions/GlobalExceptionHandler.kt" beforeDir="false" afterPath="$PROJECT_DIR$/logic/src/main/kotlin/de/tkoeppel/sundowner/exceptions/GlobalExceptionHandler.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/logic/src/main/kotlin/de/tkoeppel/sundowner/security/certificate/SundownerCertificate.kt" beforeDir="false" afterPath="$PROJECT_DIR$/logic/src/main/kotlin/de/tkoeppel/sundowner/security/certificate/SundownerCertificate.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/logic/src/main/kotlin/de/tkoeppel/sundowner/security/tls/StoreLoader.kt" beforeDir="false" afterPath="$PROJECT_DIR$/logic/src/main/kotlin/de/tkoeppel/sundowner/security/tls/StoreLoader.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/logic/src/test/kotlin/de/tkoeppel/sundowner/security/tls/StoreLoaderTest.kt" beforeDir="false" afterPath="$PROJECT_DIR$/logic/src/test/kotlin/de/tkoeppel/sundowner/security/tls/StoreLoaderTest.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/logic/src/test/kotlin/de/tkoeppel/sundowner/security/tls/TestStoreManager.kt" beforeDir="false" afterPath="$PROJECT_DIR$/logic/src/test/kotlin/de/tkoeppel/sundowner/security/tls/TestStoreManager.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -146,6 +141,9 @@
     "Gradle.StoreLoaderTest.test loading the store with invalid store type.executor": "Run",
     "Gradle.StoreLoaderTest.test loading the store with valid config.executor": "Run",
     "Gradle.StoreLoaderTest.testLoadStoreNoConfig.executor": "Run",
+    "Gradle.SundownerCertificateTest (1).executor": "Run",
+    "Gradle.SundownerCertificateTest.executor": "Run",
+    "Gradle.SundownerCertificateTest.willExpireSoon should return true when certificate will expire within given days.executor": "Debug",
     "Gradle.SundownerServiceApplicationTests (1).executor": "Run",
     "Gradle.SundownerServiceApplicationTests.contextLoads.executor": "Run",
     "Gradle.SundownerServiceApplicationTests.executor": "Coverage",
@@ -209,7 +207,7 @@
       <recent name="de.tkoeppel.sundowner.module.storage" />
     </key>
   </component>
-  <component name="RunManager" selected="Gradle.StoreLoaderTest">
+  <component name="RunManager" selected="Gradle.SundownerCertificateTest">
     <configuration name="StoreLoaderTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -282,7 +280,7 @@
       <RunAsTest>true</RunAsTest>
       <method v="2" />
     </configuration>
-    <configuration name="StoreLoaderTest.test loading the store with an empty config" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="SundownerCertificateTest (1)" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
@@ -295,7 +293,7 @@
           <list>
             <option value=":logic:test" />
             <option value="--tests" />
-            <option value="&quot;de.tkoeppel.sundowner.security.tls.StoreLoaderTest.test loading the store with an empty config&quot;" />
+            <option value="&quot;de.tkoeppel.sundowner.security.certificate.SundownerCertificateTest&quot;" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -306,7 +304,7 @@
       <RunAsTest>true</RunAsTest>
       <method v="2" />
     </configuration>
-    <configuration name="StoreLoaderTest.test loading the store with invalid store type" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="SundownerCertificateTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
@@ -319,7 +317,7 @@
           <list>
             <option value=":logic:test" />
             <option value="--tests" />
-            <option value="&quot;de.tkoeppel.sundowner.security.tls.StoreLoaderTest.test loading the store with invalid store type&quot;" />
+            <option value="&quot;SundownerCertificateTest&quot;" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -331,19 +329,19 @@
       <method v="2" />
     </configuration>
     <list>
+      <item itemvalue="Gradle.SundownerCertificateTest" />
+      <item itemvalue="Gradle.SundownerCertificateTest (1)" />
       <item itemvalue="Gradle.StoreLoaderTest" />
       <item itemvalue="Gradle.StoreLoaderTest.test get certificate with invalid alias" />
       <item itemvalue="Gradle.StoreLoaderTest.test get not loaded store" />
-      <item itemvalue="Gradle.StoreLoaderTest.test loading the store with invalid store type" />
-      <item itemvalue="Gradle.StoreLoaderTest.test loading the store with an empty config" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Gradle.SundownerCertificateTest" />
+        <item itemvalue="Gradle.SundownerCertificateTest (1)" />
         <item itemvalue="Gradle.StoreLoaderTest" />
         <item itemvalue="Gradle.StoreLoaderTest.test get not loaded store" />
         <item itemvalue="Gradle.StoreLoaderTest.test get certificate with invalid alias" />
-        <item itemvalue="Gradle.StoreLoaderTest.test loading the store with invalid store type" />
-        <item itemvalue="Gradle.StoreLoaderTest.test loading the store with an empty config" />
       </list>
     </recent_temporary>
   </component>
