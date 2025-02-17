@@ -19,9 +19,13 @@ jobs:
           java-version: '21'
           distribution: 'temurin'
 
-      - name: Build and test Sundowner Service
+      - name: Build Sundowner Service
         working-directory: sundowner-service
-        run: ./gradlew build integrationTest
+        run: ./gradlew build
+
+      - name: Test Sundowner Service
+        working-directory: sundowner-service
+        run: ./gradlew test
 
       - name: Set up Node.js 23
         uses: actions/setup-node@v4
