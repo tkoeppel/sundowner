@@ -14,26 +14,26 @@ abstract class SerializationTestBase<T>(
 	@Test
 	fun testSerialization() {
 		val serialized = this.mapper.writeValueAsString(obj)
-		assertEquals(serialized, json)
+		assertEquals(json, serialized)
 	}
 
 	@Test
 	fun testSerializedToDeserialized() {
 		val serialized = this.mapper.writeValueAsString(obj)
 		val deserialized = this.mapper.readValue(serialized, type)
-		assertEquals(deserialized, obj)
+		assertEquals(obj, deserialized)
 	}
 
 	@Test
 	fun testDeserialization() {
 		val deserialized = this.mapper.readValue(json, type)
-		assertEquals(deserialized, obj)
+		assertEquals(obj, deserialized)
 	}
 
 	@Test
 	fun testDeserializedToSerialized() {
 		val deserialized = this.mapper.readValue(json, type)
 		val serialized = this.mapper.writeValueAsString(deserialized)
-		assertEquals(serialized, json)
+		assertEquals(json, serialized)
 	}
 }
