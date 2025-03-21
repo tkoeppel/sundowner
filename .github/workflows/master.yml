@@ -9,6 +9,17 @@ on:
 jobs:
   build-and-test:
     runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:13
+        ports:
+          - 5433:5433
+        env:
+          POSTGRES_USER: sundowner_test
+          POSTGRES_PASSWORD: SUNDOWNER_TEST
+          POSTGRES_DB: sundowner_test_db
+        options: >-
+          --health-cmd pg_isready --health-timeout 10s
 
     steps:
       - uses: actions/checkout@v4
@@ -22,6 +33,38 @@ jobs:
       - name: Build Sundowner Service
         working-directory: sundowner-service
         run: ./gradlew build
+
+      - name: Create Database
+        run: |
+          sed "s/%s/test/g" sundowner-service/src/test/resources/sql/create_database.sql | psql -v ON_ERROR_STOP=1 --username "$POSTGRES_USER" --host localhost --port 5432 -f sundowner-service/src/test/resources/sql/create_database.sql
+        env:
+          POSTGRES_USER: postgres
+
+      - name: Create Tablespace
+        run: |
+          sed "s/%s/test/g" sundowner-service/src/test/resources/sql/create_tablespace.sql | psql -v ON_ERROR_STOP=1 --username "$POSTGRES_USER" --host localhost --port 5432 -f sundowner-service/src/test/resources/sql/create_tablespace.sql
+        env:
+          POSTGRES_USER: postgres
+
+      - name: Create User
+        run: |
+          sed "s/%S/TEST/g" sundowner-service/src/test/resources/sql/create_user.sql | sed "s/%s/test/g" sundowner-service/src/test/resources/sql/create_user.sql | psql -v ON_ERROR_STOP=1 --username "$POSTGRES_USER" --host localhost --port 5432 --dbname "$POSTGRES_DB" -f sundowner-service/src/test/resources/sql/create_user.sql
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_DB: sundowner_db
+
+      - name: Create Tables
+        run: |
+          sed "s/%s/test/g" sundowner-service/src/test/resources/sql/create_tables.sql | psql -v ON_ERROR_STOP=1 --username "$POSTGRES_USER" --host localhost --port 5432 --dbname "$POSTGRES_DB" -f sundowner-service/src/test/resources/sql/create_tables.sql
+        env:
+          POSTGRES_USER: sundowner_test
+          POSTGRES_DB: sundowner_test_db
+
+      - name: Initialize Data
+        run: psql -v ON_ERROR_STOP=1 --username "$POSTGRES_USER" --host localhost --port 5432 --dbname "$POSTGRES_DB" -f sundowner-service/src/test/resources/sql/initialize_data.sql
+        env:
+          POSTGRES_USER: sundowner_test
+          POSTGRES_DB: sundowner_test_db
 
       - name: Test Sundowner Service
         working-directory: sundowner-service
