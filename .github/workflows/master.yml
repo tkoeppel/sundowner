@@ -30,10 +30,6 @@ jobs:
           java-version: '21'
           distribution: 'temurin'
 
-      - name: Build Sundowner Service
-        working-directory: sundowner-service
-        run: ./gradlew build
-
       - name: Create Database
         run: |
           sed "s/%s/test/g" sundowner-service/src/test/resources/sql/create_database.sql | psql -v ON_ERROR_STOP=1 --username "$POSTGRES_USER" --host localhost --port 5432 -f sundowner-service/src/test/resources/sql/create_database.sql
@@ -66,6 +62,10 @@ jobs:
           POSTGRES_USER: sundowner_test
           POSTGRES_DB: sundowner_test_db
 
+      - name: Build Sundowner Service
+        working-directory: sundowner-service
+        run: ./gradlew build
+
       - name: Test Sundowner Service
         working-directory: sundowner-service
         run: ./gradlew test
@@ -80,7 +80,7 @@ jobs:
         run: |
           npm install
           ng build --prod
-          ng test --watch=false --browsers=ChromeHeadlessCI test run
+          ng test --watch=false
 
       - name: Upload artifacts (optional)
         uses: actions/upload-artifact@v4
