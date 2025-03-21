@@ -19,6 +19,8 @@ import javax.net.ssl.X509TrustManager
 @Service
 class StorageService() : IStorageService {
 
+	private val logger: java.util.logging.Logger = java.util.logging.Logger.getLogger(StorageService::class.java.name)
+
 	@Autowired
 	private lateinit var storageConfig: StorageConfig
 
@@ -29,12 +31,17 @@ class StorageService() : IStorageService {
 
 	@PostConstruct
 	fun initMinioClient() {
+		if (storageConfig.endpoint.isEmpty() || storageConfig.accessKey.isEmpty() || storageConfig.secretKey.isEmpty()) {
+			this.logger.warning { "No storage complete configuration provided." }
+			return
+		}
+
 		val builder = MinioClient.builder() //
 			.endpoint(storageConfig.endpoint) //
 			.credentials(storageConfig.accessKey, storageConfig.secretKey) //
 
 		this.minioClient =
-			if (storageConfig.trustStoreAlias.isNullOrEmpty()) builder.build() else builder.httpClient(createHttpClient())
+			if (storageConfig.trustStoreAlias.isEmpty()) builder.build() else builder.httpClient(createHttpClient())
 				.build()
 	}
 
