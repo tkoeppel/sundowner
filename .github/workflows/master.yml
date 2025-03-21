@@ -31,32 +31,37 @@ jobs:
           distribution: 'temurin'
 
       - name: Create Database
+        working-directory: sundowner-service
         run: |
-          sed "s/%s/test/g" sundowner-service/data/src/main/resources/sql/create_database.sql | psql -v ON_ERROR_STOP=1 --username "$POSTGRES_USER" --host localhost --port 5432 -f sundowner-service/data/src/main/resources/db/create_database.sql
+          sed "s/%s/test/g" data/src/main/resources/sql/create_database.sql | psql -v ON_ERROR_STOP=1 --username "$POSTGRES_USER" --host localhost --port 5433 -f data/src/main/resources/db/create_database.sql
         env:
           POSTGRES_USER: postgres
 
       - name: Create Tablespace
+        working-directory: sundowner-service
         run: |
-          sed "s/%s/test/g" sundowner-service/data/src/main/resources/db/create_tablespace.sql | psql -v ON_ERROR_STOP=1 --username "$POSTGRES_USER" --host localhost --port 5432 -f sundowner-service/data/src/main/resources/db/create_tablespace.sql
+          sed "s/%s/test/g" data/src/main/resources/db/create_tablespace.sql | psql -v ON_ERROR_STOP=1 --username "$POSTGRES_USER" --host localhost --port 5433 -f data/src/main/resources/db/create_tablespace.sql
         env:
           POSTGRES_USER: postgres
 
       - name: Create User
+        working-directory: sundowner-service
         run: |
-          sed "s/%S/TEST/g" sundowner-service/data/src/main/resources/db/create_user.sql | sed "s/%s/test/g" sundowner-service/data/src/main/resources/db/create_user.sql | psql -v ON_ERROR_STOP=1 --username "$POSTGRES_USER" --host localhost --port 5432 --dbname "$POSTGRES_DB" -f sundowner-service/data/src/main/resources/db/create_user.sql
+          sed "s/%S/TEST/g" data/src/main/resources/db/create_user.sql | sed "s/%s/test/g" data/src/main/resources/db/create_user.sql | psql -v ON_ERROR_STOP=1 --username "$POSTGRES_USER" --host localhost --port 5433 --dbname "$POSTGRES_DB" -f data/src/main/resources/db/create_user.sql
         env:
           POSTGRES_USER: postgres
-          POSTGRES_DB: sundowner_db
+          POSTGRES_DB: sundowner_test_db
 
       - name: Create Tables
+        working-directory: sundowner-service
         run: |
-          sed "s/%s/test/g" sundowner-service/data/src/main/resources/db/create_tables.sql | psql -v ON_ERROR_STOP=1 --username "$POSTGRES_USER" --host localhost --port 5432 --dbname "$POSTGRES_DB" -f sundowner-service/data/src/main/resources/db/create_tables.sql
+          sed "s/%s/test/g" sundowner-service/data/src/main/resources/db/create_tables.sql | psql -v ON_ERROR_STOP=1 --username "$POSTGRES_USER" --host localhost --port 5433 --dbname "$POSTGRES_DB" -f sundowner-service/data/src/main/resources/db/create_tables.sql
         env:
           POSTGRES_USER: sundowner_test
           POSTGRES_DB: sundowner_test_db
 
       - name: Initialize Data
+        working-directory: sundowner-service
         run: psql -v ON_ERROR_STOP=1 --username "$POSTGRES_USER" --host localhost --port 5432 --dbname "$POSTGRES_DB" -f sundowner-service/data/src/main/resources/db/initialize_data.sql
         env:
           POSTGRES_USER: sundowner_test
@@ -85,8 +90,8 @@ jobs:
         working-directory: sundowner-webapp
         run: |
           npm install
-          ng build --prod
-          ng test --watch=false
+          ./node_modules/bin/ng build --prod
+          ./node_modules/bin/ng test --watch=false
 
       - name: Upload Webapp Artifacts (optional)
         uses: actions/upload-artifact@v4
