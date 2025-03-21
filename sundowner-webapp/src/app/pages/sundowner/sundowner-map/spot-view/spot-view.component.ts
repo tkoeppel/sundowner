@@ -9,11 +9,10 @@ import { MapSpotTO } from '../../../../../../gensrc';
 import { SpotMarkerComponent } from '../spot-marker/spot-marker.component';
 
 @Component({
-  selector: 'app-spot-view',
-  standalone: true,
-  imports: [],
-  templateUrl: './spot-view.component.html',
-  styleUrl: './spot-view.component.scss',
+    selector: 'app-spot-view',
+    imports: [],
+    templateUrl: './spot-view.component.html',
+    styleUrl: './spot-view.component.scss'
 })
 export class SpotViewComponent {
   constructor(

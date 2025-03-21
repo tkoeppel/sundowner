@@ -5,11 +5,10 @@ import { MapBounds } from './sundowner-map/MapBounds';
 import { SundownerMapComponent } from './sundowner-map/sundowner-map.component';
 
 @Component({
-  selector: 'app-sundowner',
-  templateUrl: './sundowner.component.html',
-  styleUrl: './sundowner.component.scss',
-  standalone: true,
-  imports: [SundownerMapComponent],
+    selector: 'app-sundowner',
+    templateUrl: './sundowner.component.html',
+    styleUrl: './sundowner.component.scss',
+    imports: [SundownerMapComponent]
 })
 export class SundownerComponent implements OnInit {
   private readonly MAX_POINTS = 10;
