@@ -72,7 +72,6 @@ jobs:
 
   sundowner-webapp:
     runs-on: ubuntu-latest
-    needs: build-and-test-service
 
     steps:
       - uses: actions/checkout@v4
