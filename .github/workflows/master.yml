@@ -90,6 +90,10 @@ jobs:
         working-directory: sundowner-webapp
         run: npm install
 
+      - name: Build Sundowner Webapp
+        working-directory: sundowner-webapp
+        run: ./node_modules/.bin/ng build --configuration=test
+
       - name: Test Sundowner Webapp
         working-directory: sundowner-webapp
         run: ./node_modules/.bin/ng test --watch=false
