@@ -62,7 +62,7 @@ jobs:
 
       - name: Initialize Data
         working-directory: sundowner-service/data/src/main/resources/db
-        run: psql -v ON_ERROR_STOP=1 --username "$POSTGRES_USER" --host localhost --port 5432 --dbname "$POSTGRES_DB" -f ./initialize_data.sql
+        run: psql -v ON_ERROR_STOP=1 --username "$POSTGRES_USER" --host localhost --port 5433 --dbname "$POSTGRES_DB" -f ./initialize_data.sql
         env:
           POSTGRES_USER: sundowner_test
           POSTGRES_DB: sundowner_test_db
@@ -81,17 +81,22 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Set up Node.js 23
+      - name: Set up Node.js 22
         uses: actions/setup-node@v4
         with:
-          node-version: 23
+          node-version: 22
 
-      - name: Build and test Sundowner Webapp
+      - name: Install node modules
         working-directory: sundowner-webapp
-        run: |
-          npm install
-          ./node_modules/.bin/ng build
-          ./node_modules/.bin/ng test --watch=false
+        run: npm install
+
+      - name: Build Sundowner Webapp
+        working-directory: sundowner-webapp
+        run: ./node_modules/.bin/ng build
+
+      - name: Test Sundowner Webapp
+        working-directory: sundowner-webapp
+        run: ./node_modules/.bin/ng test --watch=false
 
       - name: Upload Webapp Artifacts (optional)
         uses: actions/upload-artifact@v4
