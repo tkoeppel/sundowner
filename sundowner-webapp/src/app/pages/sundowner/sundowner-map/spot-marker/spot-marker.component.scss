@@ -13,11 +13,13 @@
     }
   }
 
-  animation: marker-appear 0.5s ease-in-out;
+  & {
+    animation: marker-appear 0.5s ease-in-out;
 
-  --circle-size: 32px;
-  --circle-radius: 14px;
-  --circle-center: calc(var(--circle-size) / 2);
+    --circle-size: 32px;
+    --circle-radius: 14px;
+    --circle-center: calc(var(--circle-size) / 2);
+  }
 
   .spot-progress-container {
     transition: transform 0.3s ease-in-out;
