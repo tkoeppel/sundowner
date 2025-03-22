@@ -1,3 +1,5 @@
 export const environment = {
-  // let it be replaced
+  production: false,
+  tileProviderLink: '',
+  accessToken: '',
 };
