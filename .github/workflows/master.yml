@@ -68,11 +68,7 @@ jobs:
 
       - name: Build Sundowner Service
         working-directory: sundowner-service
-        run: ./gradlew build
-
-      - name: Test Sundowner Service
-        working-directory: sundowner-service
-        run: ./gradlew test
+        run: ./gradlew build --scan
 
   sundowner-webapp:
     runs-on: ubuntu-latest
