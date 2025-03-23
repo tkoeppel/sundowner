@@ -2,7 +2,7 @@
 -- \c sundowner_@DBTAGLOWERCASE_db
 
 -- Install postgis beforehand
-SET ROLE sundowner_@DBTAGLOWERCASE;
+-- SET ROLE sundowner_@DBTAGLOWERCASE;
 CREATE EXTENSION IF NOT EXISTS postgis;
 CREATE EXTENSION IF NOT EXISTS postgis_topology;
 
