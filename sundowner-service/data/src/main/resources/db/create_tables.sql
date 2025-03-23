@@ -1,5 +1,5 @@
 -- Connect to created Database
-\c sundowner_%s_db
+-- \c sundowner_%s_db
 
 -- Install postgis beforehand
 SET ROLE sundowner_%s;
