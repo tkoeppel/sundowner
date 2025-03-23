@@ -32,8 +32,8 @@ jobs:
         with:
           files: sundowner-service/data/src/main/resources/db/**/*.sql
           find: '[{ "find": "@DBTAGLOWERCASE", "replace": "test" }, { "find": "@DBTAGUPPERCASE", "replace": "TEST" }]'
-          prefix: ''
-          suffix: ''
+          prefix: '.*'
+          suffix: '.*'
 
       - name: Create User
         working-directory: sundowner-service/data/src/main/resources/db
