@@ -40,13 +40,6 @@ jobs:
           POSTGRES_USER: postgres
           PGPASSWORD: postgres
 
-      - name: Create Tablespace
-        working-directory: sundowner-service/data/src/main/resources/db
-        run: psql -v ON_ERROR_STOP=1 --username "$POSTGRES_USER" --host localhost --port 5432 -f ./create_tablespace.sql
-        env:
-          POSTGRES_USER: postgres
-          PGPASSWORD: postgres
-
       - name: Create Database
         working-directory: sundowner-service/data/src/main/resources/db
         run: psql -v ON_ERROR_STOP=1 --username "$POSTGRES_USER" --host localhost --port 5432 -f ./create_database.sql
