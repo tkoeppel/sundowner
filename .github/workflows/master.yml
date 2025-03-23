@@ -28,9 +28,8 @@ jobs:
           distribution: temurin
       - name: Replace placeholders in SQL files
         uses: flcdrg/replace-multiple-action@v1
-        working-directory: sundowner-service
         with:
-          files: data/src/main/resources/db/**/*.sql
+          files: sundowner-service/data/src/main/resources/db/**/*.sql
           find: '[{ "find": "%s", "replace": "test" }, { "find": "%S", "replace": "TEST"
             }]'
       - name: Create Database
