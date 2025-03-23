@@ -35,7 +35,9 @@ jobs:
 
       - name: Create User
         working-directory: sundowner-service/data/src/main/resources/db
-        run: psql -v ON_ERROR_STOP=1 --username "$POSTGRES_USER" --host localhost --port 5432 -f ./create_user.sql
+        run: |
+          cat ./create_user.sql
+          psql -v ON_ERROR_STOP=1 --username "$POSTGRES_USER" --host localhost --port 5432 -f ./create_user.sql
         env:
           POSTGRES_USER: postgres
           PGPASSWORD: postgres
