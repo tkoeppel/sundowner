@@ -1,2 +1,2 @@
-DROP DATABASE IF EXISTS sundowner_%s_db;
-DROP ROLE sundowner_%s;
+DROP DATABASE IF EXISTS sundowner_@DBTAGLOWERCASE_db;
+DROP ROLE sundowner_@DBTAGLOWERCASE;

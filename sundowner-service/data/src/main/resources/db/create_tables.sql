@@ -1,16 +1,16 @@
 -- Connect to created Database
--- \c sundowner_%s_db
+-- \c sundowner_@DBTAGLOWERCASE_db
 
 -- Install postgis beforehand
-SET ROLE sundowner_%s;
+SET ROLE sundowner_@DBTAGLOWERCASE;
 CREATE EXTENSION IF NOT EXISTS postgis;
 CREATE EXTENSION IF NOT EXISTS postgis_topology;
 
-ALTER SCHEMA topology OWNER TO sundowner_%s;
+ALTER SCHEMA topology OWNER TO sundowner_@DBTAGLOWERCASE;
 
-ALTER TABLE spatial_ref_sys OWNER TO sundowner_%s;
-ALTER TABLE layer OWNER TO sundowner_%s;
-ALTER TABLE topology OWNER TO sundowner_%s;
+ALTER TABLE spatial_ref_sys OWNER TO sundowner_@DBTAGLOWERCASE;
+ALTER TABLE layer OWNER TO sundowner_@DBTAGLOWERCASE;
+ALTER TABLE topology OWNER TO sundowner_@DBTAGLOWERCASE;
 
 -- Create Tables
 START TRANSACTION;
@@ -28,7 +28,7 @@ CREATE TABLE IF NOT EXISTS spots (
   transport VARCHAR(255)[] NOT NULL CHECK (transport <@ ARRAY['BY_FOOT', 'CAR', 'BIKE', 'PUBLIC_TRANSPORT']::VARCHAR[])
 );
 -- set owner
-ALTER TABLE spots OWNER TO sundowner_%s;
+ALTER TABLE spots OWNER TO sundowner_@DBTAGLOWERCASE;
 -- spatial index on the 'location' column in 'spots'
 CREATE INDEX scenic_spots_location_idx ON spots USING GIST (location);
 
@@ -42,7 +42,7 @@ CREATE TABLE IF NOT EXISTS spot_reviews (
   comment TEXT
 );
 -- set owner
-ALTER TABLE spot_reviews OWNER TO sundowner_%s;
+ALTER TABLE spot_reviews OWNER TO sundowner_@DBTAGLOWERCASE;
 
 -- Create the 'photos' table
 CREATE TABLE IF NOT EXISTS photos (
@@ -53,7 +53,7 @@ CREATE TABLE IF NOT EXISTS photos (
   url TEXT NOT NULL
 );
 -- set owner
-ALTER TABLE photos OWNER TO sundowner_%s;
+ALTER TABLE photos OWNER TO sundowner_@DBTAGLOWERCASE;
 
 END;
 

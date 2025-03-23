@@ -31,7 +31,7 @@ jobs:
         uses: flcdrg/replace-multiple-action@v1
         with:
           files: sundowner-service/data/src/main/resources/db/**/*.sql
-          find: '[{ "find": "\\%s", "replace": "test" }, { "find": "\\%S", "replace": "TEST" }]'
+          find: '[{ "find": "@DBTAGLOWERCASE", "replace": "test" }, { "find": "@DBTAGUPPERCASE", "replace": "TEST" }]'
 
       - name: Create User
         working-directory: sundowner-service/data/src/main/resources/db
