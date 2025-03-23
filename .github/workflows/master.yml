@@ -33,6 +33,11 @@ jobs:
           files: sundowner-service/data/src/main/resources/db/**/*.sql
           find: '[{ "find": "%s", "replace": "test" }, { "find": "%S", "replace": "TEST" }]'
 
+      - name: Install PostGIS packages
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y postgis postgresql-$(pg_config --version)-postgis-3
+
       - name: Create User
         working-directory: sundowner-service/data/src/main/resources/db
         run: psql -v ON_ERROR_STOP=1 --username "$POSTGRES_USER" --host localhost --port 5432 -f ./create_user.sql
