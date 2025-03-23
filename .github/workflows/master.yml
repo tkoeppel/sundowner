@@ -18,7 +18,7 @@ jobs:
         options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s
           --health-retries 5
         ports:
-          - 5433:5433
+          - 5432:5432
     steps:
       - uses: actions/checkout@v4
       - name: Set up JDK 21
@@ -35,35 +35,35 @@ jobs:
 
       - name: Create User
         working-directory: sundowner-service/data/src/main/resources/db
-        run: psql -v ON_ERROR_STOP=1 --username "$POSTGRES_USER" --host localhost --port 5432./create_user.sql
+        run: psql -v ON_ERROR_STOP=1 --username "$POSTGRES_USER" --host localhost --port 5432 -f ./create_user.sql
         env:
           POSTGRES_USER: postgres
           PGPASSWORD: postgres
 
       - name: Create Tablespace
         working-directory: sundowner-service/data/src/main/resources/db
-        run: psql -v ON_ERROR_STOP=1 --username "$POSTGRES_USER" --host localhost --port 5432-f ./create_tablespace.sql
+        run: psql -v ON_ERROR_STOP=1 --username "$POSTGRES_USER" --host localhost --port 5432 -f ./create_tablespace.sql
         env:
           POSTGRES_USER: postgres
           PGPASSWORD: postgres
 
       - name: Create Database
         working-directory: sundowner-service/data/src/main/resources/db
-        run: psql -v ON_ERROR_STOP=1 --username "$POSTGRES_USER" --host localhost --port 5432-f ./create_database.sql
+        run: psql -v ON_ERROR_STOP=1 --username "$POSTGRES_USER" --host localhost --port 5432 -f ./create_database.sql
         env:
           POSTGRES_USER: postgres
           PGPASSWORD: postgres
 
       - name: Create Tables
         working-directory: sundowner-service/data/src/main/resources/db
-        run: psql -v ON_ERROR_STOP=1 --username "$POSTGRES_USER" --host localhost --port 5432-f ./create_tables.sql
+        run: psql -v ON_ERROR_STOP=1 --username "$POSTGRES_USER" --host localhost --port 5432 -f ./create_tables.sql
         env:
           POSTGRES_USER: postgres
           PGPASSWORD: postgres
 
       - name: Initialize Data
         working-directory: sundowner-service/data/src/main/resources/db
-        run: psql -v ON_ERROR_STOP=1 --username "$POSTGRES_USER" --host localhost --port 5432-f ./initialize_data.sql
+        run: psql -v ON_ERROR_STOP=1 --username "$POSTGRES_USER" --host localhost --port 5432 -f ./initialize_data.sql
         env:
           POSTGRES_USER: postgres
           PGPASSWORD: postgres
