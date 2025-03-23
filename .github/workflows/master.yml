@@ -27,13 +27,21 @@ jobs:
           java-version: "21"
           distribution: temurin
 
-      - name: Replace placeholders in SQL files
-        uses: flcdrg/replace-multiple-action@v1
+      - name: Replace lowercase placeholders in SQL files 
+        uses: jacobtomlinson/gha-find-replace@v3
         with:
-          files: sundowner-service/data/src/main/resources/db/**/*.sql
-          find: '[{ "find": "@DBTAGLOWERCASE", "replace": "test" }, { "find": "@DBTAGUPPERCASE", "replace": "TEST" }]'
-          prefix: '(^|.*)'
-          suffix: '($|.*)'
+          find: "@DBTAGLOWERCASE"
+          replace: "test"
+          include: "sundowner-service/data/src/main/resources/db/**"
+          regex: false
+          
+      - name: Replace uppercase placeholders in SQL files 
+        uses: jacobtomlinson/gha-find-replace@v3
+        with:
+          find: "@DBTAGUPPERCASE"
+          replace: "TEST"
+          include: "sundowner-service/data/src/main/resources/db/**"
+          regex: false
 
       - name: Create User
         working-directory: sundowner-service/data/src/main/resources/db
