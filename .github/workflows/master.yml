@@ -51,15 +51,15 @@ jobs:
         working-directory: sundowner-service/data/src/main/resources/db
         run: psql -v ON_ERROR_STOP=1 --username "$POSTGRES_USER" --host localhost --port 5432 -f ./create_tables.sql
         env:
-          POSTGRES_USER: postgres
-          PGPASSWORD: postgres
+          POSTGRES_USER: sundowner_test
+          PGPASSWORD: SUNDOWNER_TEST
 
       - name: Initialize Data
         working-directory: sundowner-service/data/src/main/resources/db
         run: psql -v ON_ERROR_STOP=1 --username "$POSTGRES_USER" --host localhost --port 5432 -f ./initialize_data.sql
         env:
-          POSTGRES_USER: postgres
-          PGPASSWORD: postgres
+          POSTGRES_USER: sundowner_test
+          PGPASSWORD: SUNDOWNER_TEST
 
       - name: Build Sundowner Service
         working-directory: sundowner-service
