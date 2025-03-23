@@ -68,7 +68,7 @@ jobs:
 
       - name: Initialize Data
         working-directory: sundowner-service/data/src/main/resources/db
-        run: psql -v ON_ERROR_STOP=1 --username "$POSTGRES_USER" --host localhost --port 5432 -f ./initialize_data.sql
+        run: psql -v ON_ERROR_STOP=1 --username "$POSTGRES_USER" --host localhost --port 5432 -f ./initialize.sql
         env:
           POSTGRES_USER: postgres
           PGPASSWORD: postgres
