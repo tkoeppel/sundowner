@@ -66,13 +66,6 @@ jobs:
           POSTGRES_USER: postgres
           PGPASSWORD: postgres
 
-      - name: Initialize Data
-        working-directory: sundowner-service/data/src/main/resources/db
-        run: psql -v ON_ERROR_STOP=1 --username "$POSTGRES_USER" --host localhost --port 5432 -f ./initialize.sql
-        env:
-          POSTGRES_USER: postgres
-          PGPASSWORD: postgres
-
       - name: Build Sundowner Service
         working-directory: sundowner-service
         run: ./gradlew build
