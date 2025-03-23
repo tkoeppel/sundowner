@@ -18,7 +18,7 @@ jobs:
         options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s
           --health-retries 5
         ports:
-          - 5432:5432
+          - 5433:5433
     steps:
       - uses: actions/checkout@v4
       - name: Set up JDK 21
@@ -32,47 +32,41 @@ jobs:
         with:
           files: sundowner-service/data/src/main/resources/db/**/*.sql
           find: '[{ "find": "%s", "replace": "test" }, { "find": "%S", "replace": "TEST" }]'
-      - name: Create Database
+
+      - name: Create User
         working-directory: sundowner-service/data/src/main/resources/db
-        run: psql -v ON_ERROR_STOP=1 --username "$POSTGRES_USER" --host localhost --port
-          5432 -f ./create_database.sql
-        env:
-          POSTGRES_USER: postgres
-          PGPASSWORD: postgres
-         
-      - name: Create Tablespace
-        working-directory: sundowner-service/data/src/main/resources/db
-        run: psql -v ON_ERROR_STOP=1 --username "$POSTGRES_USER" --host localhost --port
-          5432 -f ./create_tablespace.sql
+        run: psql -v ON_ERROR_STOP=1 --username "$POSTGRES_USER" --host localhost --port 5433 ./create_user.sql
         env:
           POSTGRES_USER: postgres
           PGPASSWORD: postgres
 
-      - name: Create User
+      - name: Create Tablespace
         working-directory: sundowner-service/data/src/main/resources/db
-        run: psql -v ON_ERROR_STOP=1 --username "$POSTGRES_USER" --host localhost --port
-          5432 --dbname "$POSTGRES_DB" ./create_user.sql
+        run: psql -v ON_ERROR_STOP=1 --username "$POSTGRES_USER" --host localhost --port 5433 -f ./create_tablespace.sql
+        env:
+          POSTGRES_USER: postgres
+          PGPASSWORD: postgres
+
+      - name: Create Database
+        working-directory: sundowner-service/data/src/main/resources/db
+        run: psql -v ON_ERROR_STOP=1 --username "$POSTGRES_USER" --host localhost --port 5433 -f ./create_database.sql
         env:
           POSTGRES_USER: postgres
           PGPASSWORD: postgres
 
       - name: Create Tables
         working-directory: sundowner-service/data/src/main/resources/db
-        run: psql -v ON_ERROR_STOP=1 --username "$POSTGRES_USER" --host localhost --port
-          5432 --dbname "$POSTGRES_DB" -f ./create_tables.sql
+        run: psql -v ON_ERROR_STOP=1 --username "$POSTGRES_USER" --host localhost --port 5433 -f ./create_tables.sql
         env:
-          POSTGRES_USER: sundowner_test
-          POSTGRES_DB: sundowner_test_db
-          PGPASSWORD: SUNDOWNER_TEST
+          POSTGRES_USER: postgres
+          PGPASSWORD: postgres
 
       - name: Initialize Data
         working-directory: sundowner-service/data/src/main/resources/db
-        run: psql -v ON_ERROR_STOP=1 --username "$POSTGRES_USER" --host localhost --port
-          5432 --dbname "$POSTGRES_DB" -f ./initialize_data.sql
+        run: psql -v ON_ERROR_STOP=1 --username "$POSTGRES_USER" --host localhost --port 5433 -f ./initialize_data.sql
         env:
-          POSTGRES_USER: sundowner_test
-          POSTGRES_DB: sundowner_test_db
-          PGPASSWORD: SUNDOWNER_TEST
+          POSTGRES_USER: postgres
+          PGPASSWORD: postgres
 
       - name: Build Sundowner Service
         working-directory: sundowner-service
