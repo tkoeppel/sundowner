@@ -26,31 +26,36 @@ jobs:
         with:
           java-version: "21"
           distribution: temurin
+
       - name: Replace placeholders in SQL files
         uses: flcdrg/replace-multiple-action@v1
         with:
           files: sundowner-service/data/src/main/resources/db/**/*.sql
-          find: '[{ "find": "%s", "replace": "test" }, { "find": "%S", "replace": "TEST"
-            }]'
+          find: '[{ "find": "%s", "replace": "test" }, { "find": "%S", "replace": "TEST" }]'
       - name: Create Database
         working-directory: sundowner-service/data/src/main/resources/db
         run: psql -v ON_ERROR_STOP=1 --username "$POSTGRES_USER" --host localhost --port
           5432 -f ./create_database.sql
         env:
           POSTGRES_USER: postgres
+          PGPASSWORD: postgres
+         
       - name: Create Tablespace
         working-directory: sundowner-service/data/src/main/resources/db
         run: psql -v ON_ERROR_STOP=1 --username "$POSTGRES_USER" --host localhost --port
           5432 -f ./create_tablespace.sql
         env:
           POSTGRES_USER: postgres
+          PGPASSWORD: postgres
+
       - name: Create User
         working-directory: sundowner-service/data/src/main/resources/db
         run: psql -v ON_ERROR_STOP=1 --username "$POSTGRES_USER" --host localhost --port
           5432 --dbname "$POSTGRES_DB" ./create_user.sql
         env:
-          POSTGRES_USER: sundowner_test
-          POSTGRES_DB: sundowner_test_db
+          POSTGRES_USER: postgres
+          PGPASSWORD: postgres
+
       - name: Create Tables
         working-directory: sundowner-service/data/src/main/resources/db
         run: psql -v ON_ERROR_STOP=1 --username "$POSTGRES_USER" --host localhost --port
@@ -58,6 +63,8 @@ jobs:
         env:
           POSTGRES_USER: sundowner_test
           POSTGRES_DB: sundowner_test_db
+          PGPASSWORD: SUNDOWNER_TEST
+
       - name: Initialize Data
         working-directory: sundowner-service/data/src/main/resources/db
         run: psql -v ON_ERROR_STOP=1 --username "$POSTGRES_USER" --host localhost --port
@@ -65,29 +72,38 @@ jobs:
         env:
           POSTGRES_USER: sundowner_test
           POSTGRES_DB: sundowner_test_db
+          PGPASSWORD: SUNDOWNER_TEST
+
       - name: Build Sundowner Service
         working-directory: sundowner-service
         run: ./gradlew build
+
       - name: Test Sundowner Service
         working-directory: sundowner-service
         run: ./gradlew test
+
   sundowner-webapp:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+
       - name: Set up Node.js 22
         uses: actions/setup-node@v4
         with:
           node-version: 22
+
       - name: Install node modules
         working-directory: sundowner-webapp
         run: npm install
+
       - name: Build Sundowner Webapp
         working-directory: sundowner-webapp
         run: ./node_modules/.bin/ng build --configuration=test
+
       - name: Test Sundowner Webapp
         working-directory: sundowner-webapp
         run: ./node_modules/.bin/ng test --watch=false
+
       - name: Upload Webapp Artifacts (optional)
         uses: actions/upload-artifact@v4
         with:
