@@ -49,15 +49,17 @@ jobs:
 
       - name: Create Tables
         working-directory: sundowner-service/data/src/main/resources/db
-        run: psql -v ON_ERROR_STOP=1 --username "$POSTGRES_USER" --host localhost --port 5432 -f ./create_tables.sql
+        run: psql -v ON_ERROR_STOP=1 --username "$POSTGRES_USER" -d "$POSTGRES_TABLE" --host localhost --port 5432 -f ./create_tables.sql
         env:
+          POSTGRES_TABLE: sundowner_test_db
           POSTGRES_USER: sundowner_test
           PGPASSWORD: SUNDOWNER_TEST
 
       - name: Initialize Data
         working-directory: sundowner-service/data/src/main/resources/db
-        run: psql -v ON_ERROR_STOP=1 --username "$POSTGRES_USER" --host localhost --port 5432 -f ./initialize_data.sql
+        run: psql -v ON_ERROR_STOP=1 --username "$POSTGRES_USER" -d "$POSTGRES_TABLE" --host localhost --port 5432 -f ./initialize_data.sql
         env:
+          POSTGRES_TABLE: sundowner_test_db
           POSTGRES_USER: sundowner_test
           PGPASSWORD: SUNDOWNER_TEST
 
