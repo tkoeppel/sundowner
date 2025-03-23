@@ -1,11 +1,12 @@
+---
 name: Sundowner CI/CD
-
 on:
   push:
-    branches: [master]
+    branches:
+      - master
   pull_request:
-    branches: [master]
-
+    branches:
+      - master
 jobs:
   sundowner-service:
     runs-on: ubuntu-latest
@@ -14,96 +15,83 @@ jobs:
         image: postgres
         env:
           POSTGRES_PASSWORD: postgres
-        options: >-
-          --health-cmd pg_isready
-          --health-interval 10s
-          --health-timeout 5s
+        options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s
           --health-retries 5
         ports:
           - 5432:5432
-
     steps:
       - uses: actions/checkout@v4
-
       - name: Set up JDK 21
         uses: actions/setup-java@v4
         with:
-          java-version: '21'
-          distribution: 'temurin'
-
+          java-version: "21"
+          distribution: temurin
       - name: Replace placeholders in SQL files
         uses: flcdrg/replace-multiple-action@v1
-	working-directory: sundowner-service
+        working-directory: sundowner-service
         with:
-          files: 'data/src/main/resources/db/**/*.sql'
-          find: '[{ "find": "%s", "replace": "test" }, { "find": "%S", "replace": "TEST" }]'
-
+          files: data/src/main/resources/db/**/*.sql
+          find: '[{ "find": "%s", "replace": "test" }, { "find": "%S", "replace": "TEST"
+            }]'
       - name: Create Database
         working-directory: sundowner-service/data/src/main/resources/db
-        run: psql -v ON_ERROR_STOP=1 --username "$POSTGRES_USER" --host localhost --port 5432 -f ./create_database.sql
+        run: psql -v ON_ERROR_STOP=1 --username "$POSTGRES_USER" --host localhost --port
+          5432 -f ./create_database.sql
         env:
           POSTGRES_USER: postgres
-
       - name: Create Tablespace
         working-directory: sundowner-service/data/src/main/resources/db
-        run: psql -v ON_ERROR_STOP=1 --username "$POSTGRES_USER" --host localhost --port 5432 -f ./create_tablespace.sql
+        run: psql -v ON_ERROR_STOP=1 --username "$POSTGRES_USER" --host localhost --port
+          5432 -f ./create_tablespace.sql
         env:
           POSTGRES_USER: postgres
-
       - name: Create User
         working-directory: sundowner-service/data/src/main/resources/db
-        run: psql -v ON_ERROR_STOP=1 --username "$POSTGRES_USER" --host localhost --port 5432 --dbname "$POSTGRES_DB" ./create_user.sql
+        run: psql -v ON_ERROR_STOP=1 --username "$POSTGRES_USER" --host localhost --port
+          5432 --dbname "$POSTGRES_DB" ./create_user.sql
         env:
           POSTGRES_USER: sundowner_test
           POSTGRES_DB: sundowner_test_db
-
       - name: Create Tables
         working-directory: sundowner-service/data/src/main/resources/db
-        run: psql -v ON_ERROR_STOP=1 --username "$POSTGRES_USER" --host localhost --port 5432 --dbname "$POSTGRES_DB" -f ./create_tables.sql
+        run: psql -v ON_ERROR_STOP=1 --username "$POSTGRES_USER" --host localhost --port
+          5432 --dbname "$POSTGRES_DB" -f ./create_tables.sql
         env:
           POSTGRES_USER: sundowner_test
           POSTGRES_DB: sundowner_test_db
-
       - name: Initialize Data
         working-directory: sundowner-service/data/src/main/resources/db
-        run: psql -v ON_ERROR_STOP=1 --username "$POSTGRES_USER" --host localhost --port 5432 --dbname "$POSTGRES_DB" -f ./initialize_data.sql
+        run: psql -v ON_ERROR_STOP=1 --username "$POSTGRES_USER" --host localhost --port
+          5432 --dbname "$POSTGRES_DB" -f ./initialize_data.sql
         env:
           POSTGRES_USER: sundowner_test
           POSTGRES_DB: sundowner_test_db
-
       - name: Build Sundowner Service
         working-directory: sundowner-service
         run: ./gradlew build
-
       - name: Test Sundowner Service
         working-directory: sundowner-service
         run: ./gradlew test
-
   sundowner-webapp:
     runs-on: ubuntu-latest
-
     steps:
       - uses: actions/checkout@v4
-
       - name: Set up Node.js 22
         uses: actions/setup-node@v4
         with:
           node-version: 22
-
       - name: Install node modules
         working-directory: sundowner-webapp
         run: npm install
-
       - name: Build Sundowner Webapp
         working-directory: sundowner-webapp
         run: ./node_modules/.bin/ng build --configuration=test
-
       - name: Test Sundowner Webapp
         working-directory: sundowner-webapp
         run: ./node_modules/.bin/ng test --watch=false
-
       - name: Upload Webapp Artifacts (optional)
         uses: actions/upload-artifact@v4
         with:
           name: sundowner-webapp-artifacts
           path: sundowner-webapp/dist/*
+
