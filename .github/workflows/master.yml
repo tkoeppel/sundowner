@@ -12,7 +12,7 @@ jobs:
     runs-on: ubuntu-latest
     services:
       postgres:
-        image: postgres
+        image: postgis/postgis:17-master
         env:
           POSTGRES_PASSWORD: postgres
         options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s
@@ -32,11 +32,6 @@ jobs:
         with:
           files: sundowner-service/data/src/main/resources/db/**/*.sql
           find: '[{ "find": "%s", "replace": "test" }, { "find": "%S", "replace": "TEST" }]'
-
-      - name: Install PostGIS packages
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y postgis postgresql-$(pg_config --version)-postgis-3
 
       - name: Create User
         working-directory: sundowner-service/data/src/main/resources/db
