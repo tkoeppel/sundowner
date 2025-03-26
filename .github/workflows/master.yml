@@ -15,7 +15,7 @@ jobs:
         image: postgis/postgis:17-master
         env:
           PGPASSWORD: postgres
-          POSTGRES_PASSOWORD: postgres
+          POSTGRES_PASSWORD: postgres
           PGUSER: postgres
           POSTGRES_USER: postgres
           PGDATABASE: sundowner_test_dev
