@@ -64,13 +64,13 @@ jobs:
           POSTGRES_USER: postgres
           PGPASSWORD: postgres
 
-     - name: Replace port for testing
-       uses: jacobtomlinson/gha-find-replace@v3
-       with:
-         find: "5433"
-         replace: "5432"
-         include: "sundowner-service/integrationtest/src/test/resources/**"
-         regex: false
+      - name: Replace port for testing
+        uses: jacobtomlinson/gha-find-replace@v3
+        with:
+          find: "5433"
+          replace: "5432"
+          include: "sundowner-service/integrationtest/src/test/resources/**"
+          regex: false
 
       - name: Debug Schema
         run: |
