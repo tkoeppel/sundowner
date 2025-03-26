@@ -15,8 +15,11 @@ jobs:
         image: postgis/postgis:17-master
         env:
           PGPASSWORD: postgres
+          POSTGRES_PASSOWORD: postgres
           PGUSER: postgres
+          POSTGRES_USER: postgres
           PGDATABASE: sundowner_test_dev
+          POSTGRES_DB: sundowner_test_dev
           PGHOST: localhost
         options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s
           --health-retries 5
