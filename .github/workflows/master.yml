@@ -18,7 +18,7 @@ jobs:
         options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s
           --health-retries 5
         ports:
-          - 5433:5432
+          - 5433:5433
     steps:
       - uses: actions/checkout@v4
       - name: Set up JDK 21
@@ -45,9 +45,7 @@ jobs:
 
       - name: Create User
         working-directory: sundowner-service/data/src/main/resources/db
-        run: |
-          cat ./create_user.sql
-          psql -v ON_ERROR_STOP=1 --username "$POSTGRES_USER" --host localhost --port 5433 -f ./create_user.sql
+        run: psql -v ON_ERROR_STOP=1 --username "$POSTGRES_USER" --host localhost --port 5433 -f ./create_user.sql
         env:
           POSTGRES_USER: postgres
           PGPASSWORD: postgres
