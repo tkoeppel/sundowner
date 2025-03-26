@@ -32,7 +32,6 @@ ALTER TABLE spots OWNER TO sundowner_@DBTAGLOWERCASE;
 -- spatial index on the 'location' column in 'spots'
 CREATE INDEX scenic_spots_location_idx ON spots USING GIST (location);
 
-
 -- Create the 'spot_reviews' table
 CREATE TABLE IF NOT EXISTS spot_reviews (
   id BIGINT PRIMARY KEY,

@@ -16,7 +16,7 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers.status
 
 @AutoConfigureMockMvc
 @SpringBootTest
-class SundownerServiceTestBase {
+open class SundownerServiceTestBase {
 
 	@Autowired
 	protected lateinit var spotDAO: SpotDAO
@@ -33,8 +33,8 @@ class SundownerServiceTestBase {
 	@Autowired
 	protected lateinit var mapper: ObjectMapper
 
-	protected final val API_VERSION = "v1"
-	protected final val API_PATH = "/api/" + API_VERSION
+	protected val API_VERSION = "v1"
+	protected val API_PATH = "/api/" + API_VERSION
 
 
 	protected fun <T> convertToTO(result: MvcResult, typeRef: TypeReference<T>): T {

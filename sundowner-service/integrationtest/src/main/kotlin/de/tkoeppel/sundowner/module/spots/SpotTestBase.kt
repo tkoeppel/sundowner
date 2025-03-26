@@ -8,10 +8,10 @@ import org.junit.jupiter.api.BeforeEach
 import org.locationtech.jts.geom.Coordinate
 import java.time.ZonedDateTime
 
-class SpotTestBase : SundownerServiceTestBase() {
-	protected final val GET_PATH = "$API_PATH/spots"
+open class SpotTestBase : SundownerServiceTestBase() {
+	protected val GET_PATH = "$API_PATH/spots"
 
-	protected final val GET_SPOTS_PATH: String = GET_PATH
+	protected val GET_SPOTS_PATH: String = GET_PATH
 
 	@BeforeEach
 	fun beforeEachTest() {
