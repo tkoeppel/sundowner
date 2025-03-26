@@ -14,13 +14,10 @@ jobs:
       postgres:
         image: postgis/postgis:17-master
         env:
-          PGPASSWORD: postgres
-          POSTGRES_PASSWORD: postgres
           PGUSER: postgres
+          PGPASSWORD: postgres
           POSTGRES_USER: postgres
-          PGDATABASE: sundowner_test_dev
-          POSTGRES_DB: sundowner_test_dev
-          PGHOST: localhost
+          POSTGRES_PASSWORD: postgres
         options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s
           --health-retries 5
         ports:
@@ -51,20 +48,32 @@ jobs:
 
       - name: Create User
         working-directory: sundowner-service/data/src/main/resources/db
-        run: psql -v ON_ERROR_STOP=1 --username "$PGUSER" --host localhost --port 5433 -f ./create_user.sql
+        run: psql -v ON_ERROR_STOP=1 --username "$POSTGRES_USER" --host localhost --port 5433 -f ./create_user.sql
+        env:
+          POSTGRES_USER: postgres
+          PGPASSWORD: postgres
 
       - name: Create Database
         working-directory: sundowner-service/data/src/main/resources/db
-        run: psql -v ON_ERROR_STOP=1 --username "$PGUSER" --host localhost --port 5433 -f ./create_database.sql
+        run: psql -v ON_ERROR_STOP=1 --username "$POSTGRES_USER" --host localhost --port 5433 -f ./create_database.sql
+        env:
+          POSTGRES_USER: postgres
+          PGPASSWORD: postgres
 
       - name: Create Extensions
         working-directory: sundowner-service/data/src/main/resources/db
-        run: psql -v ON_ERROR_STOP=1 -U "$PGUSER" --host localhost --port 5433 -f ./create_extensions.sql -d "$PGDATABASE"
+        run: psql -v ON_ERROR_STOP=1 -U "$POSTGRES_USER" --host localhost --port 5433 -f ./create_extensions.sql -d "$POSTGRES_DB"
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_DB: sundowner_test_db
+          PGPASSWORD: postgres
 
       - name: Create Tables
         working-directory: sundowner-service/data/src/main/resources/db
-        run: psql -v ON_ERROR_STOP=1 -U sundowner_test --host localhost --port 5433 -f ./create_tables.sql -d "$PGDATABASE"
+        run: psql -v ON_ERROR_STOP=1 -U "$POSTGRES_USER" --host localhost --port 5433 -f ./create_tables.sql -d "$POSTGRES_DB"
         env:
+          POSTGRES_USER: sundowner_test
+          POSTGRES_DB: sundowner_test_db
           PGPASSWORD: SUNDOWNER_TEST
 
       - name: Build Sundowner Service
