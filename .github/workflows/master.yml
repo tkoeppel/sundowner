@@ -14,9 +14,11 @@ jobs:
       postgres:
         image: postgis/postgis:17-master
         env:
-          POSTGRES_USER: postgres
+          PGPASSWORD: postgres
           POSTGRES_PASSWORD: postgres
-          POSTGRES_DB: sundowner_test_dev
+          PGDATABASE: sundowner_test_dev
+          PGPORT: 5433
+          PGHOST: localhost
         options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s
           --health-retries 5
         ports:
@@ -47,21 +49,21 @@ jobs:
 
       - name: Create User
         working-directory: sundowner-service/data/src/main/resources/db
-        run: psql -v ON_ERROR_STOP=1 --username "$POSTGRES_USER" --host localhost --port 5433 -f ./create_user.sql
+        run: psql -v ON_ERROR_STOP=1 --username "$PGPASSWORD" --host localhost --port 5433 -f ./create_user.sql
 
       - name: Create Database
         working-directory: sundowner-service/data/src/main/resources/db
-        run: psql -v ON_ERROR_STOP=1 --username "$POSTGRES_USER" --host localhost --port 5433 -f ./create_database.sql
+        run: psql -v ON_ERROR_STOP=1 --username "$PGPASSWORD" --host localhost --port 5433 -f ./create_database.sql
 
       - name: Create Extensions
         working-directory: sundowner-service/data/src/main/resources/db
-        run: psql -v ON_ERROR_STOP=1 -U "$POSTGRES_USER" --host localhost --port 5433 -f ./create_extensions.sql -d "$POSTGRES_DB"
+        run: psql -v ON_ERROR_STOP=1 -U "$PGPASSWORD" --host localhost --port 5433 -f ./create_extensions.sql -d "$PGDATABASE"
 
       - name: Create Tables
         working-directory: sundowner-service/data/src/main/resources/db
-        run: psql -v ON_ERROR_STOP=1 -U sundowner_test --host localhost --port 5433 -f ./create_tables.sql -d "$POSTGRES_DB"
+        run: psql -v ON_ERROR_STOP=1 -U sundowner_test --host localhost --port 5433 -f ./create_tables.sql -d "$PGDATABASE"
         env:
-          POSTGRESS_PASSWORD: SUNDOWNER_TEST
+          PGPASSWORD: SUNDOWNER_TEST
 
       - name: Build Sundowner Service
         working-directory: sundowner-service
