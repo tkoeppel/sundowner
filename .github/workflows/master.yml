@@ -20,7 +20,7 @@ jobs:
         options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s
           --health-retries 5
         ports:
-          - 5432:5432
+          - 5433:5432
     steps:
       - uses: actions/checkout@v4
       - name: Set up JDK 21
@@ -47,42 +47,24 @@ jobs:
 
       - name: Create User
         working-directory: sundowner-service/data/src/main/resources/db
-        run: psql -v ON_ERROR_STOP=1 --username "$POSTGRES_USER" --host localhost --port 5432 -f ./create_user.sql
+        run: psql -v ON_ERROR_STOP=1 --username "$POSTGRES_USER" --host localhost --port 5433 -f ./create_user.sql
         env:
           POSTGRES_USER: postgres
           PGPASSWORD: postgres
 
       - name: Create Database
         working-directory: sundowner-service/data/src/main/resources/db
-        run: psql -v ON_ERROR_STOP=1 --username "$POSTGRES_USER" --host localhost --port 5432 -f ./create_database.sql
+        run: psql -v ON_ERROR_STOP=1 --username "$POSTGRES_USER" --host localhost --port 5433 -f ./create_database.sql
         env:
           POSTGRES_USER: postgres
           PGPASSWORD: postgres
 
       - name: Create Tables
         working-directory: sundowner-service/data/src/main/resources/db
-        run: psql -v ON_ERROR_STOP=1 -U "$POSTGRES_USER" --host localhost --port 5432 -f ./create_tables.sql
+        run: psql -v ON_ERROR_STOP=1 -U "$POSTGRES_USER" --host localhost --port 5433 -f ./create_tables.sql
         env:
           POSTGRES_USER: postgres
           PGPASSWORD: postgres
-
-      - name: Debug Schema
-        run: |
-          psql -h localhost --port 5432 -U "$POSTGRES_USER" -d "$POSTGRES_DB" -t -c \
-            "SELECT tableowner, tablename FROM pg_tables WHERE schemaname = 'public' ORDER BY tableowner, tablename;" > stdout
-          cat stdout
-        env:
-          POSTGRES_USER: sundowner_test
-          POSTGRES_DB: sundowner_test_db
-          PGPASSWORD: SUNDOWNER_TEST
-
-      - name: Replace port for testing
-        uses: jacobtomlinson/gha-find-replace@v3
-        with:
-          find: "5433"
-          replace: "5432"
-          include: "sundowner-service/integrationtest/src/test/resources/**"
-          regex: false
 
       - name: Build Sundowner Service
         working-directory: sundowner-service
