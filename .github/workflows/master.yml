@@ -68,7 +68,7 @@ jobs:
 
       - name: Debug Schema
         run: |
-          psql -h localhost -U "$POSTGRES_USER" -d "$POSTGRES_DB" -t -c \
+          psql -h localhost --port 5433 -U "$POSTGRES_USER" -d "$POSTGRES_DB" -t -c \
             "SELECT tableowner, tablename FROM pg_tables WHERE schemaname = 'public' ORDER BY tableowner, tablename;"
         env:
           POSTGRES_USER: sundowner_test
