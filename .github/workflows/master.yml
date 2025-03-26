@@ -14,8 +14,6 @@ jobs:
       postgres:
         image: postgis/postgis:17-master
         env:
-          PGUSER: postgres
-          PGPASSWORD: postgres
           POSTGRES_USER: postgres
           POSTGRES_PASSWORD: postgres
         options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s
@@ -51,14 +49,14 @@ jobs:
         run: psql -v ON_ERROR_STOP=1 --username "$POSTGRES_USER" --host localhost --port 5433 -f ./create_user.sql
         env:
           POSTGRES_USER: postgres
-          PGPASSWORD: postgres
+          POSTGRES_PASSWORD: postgres
 
       - name: Create Database
         working-directory: sundowner-service/data/src/main/resources/db
         run: psql -v ON_ERROR_STOP=1 --username "$POSTGRES_USER" --host localhost --port 5433 -f ./create_database.sql
         env:
           POSTGRES_USER: postgres
-          PGPASSWORD: postgres
+          POSTGRES_PASSWORD: postgres
 
       - name: Create Extensions
         working-directory: sundowner-service/data/src/main/resources/db
@@ -66,7 +64,7 @@ jobs:
         env:
           POSTGRES_USER: postgres
           POSTGRES_DB: sundowner_test_db
-          PGPASSWORD: postgres
+          POSTGRES_PASSWORD: postgres
 
       - name: Create Tables
         working-directory: sundowner-service/data/src/main/resources/db
@@ -74,7 +72,7 @@ jobs:
         env:
           POSTGRES_USER: sundowner_test
           POSTGRES_DB: sundowner_test_db
-          PGPASSWORD: SUNDOWNER_TEST
+          POSTGRES_PASSWORD: SUNDOWNER_TEST
 
       - name: Build Sundowner Service
         working-directory: sundowner-service
