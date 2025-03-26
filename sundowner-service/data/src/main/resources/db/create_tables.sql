@@ -1,21 +1,6 @@
--- Connect to created Database
--- \c sundowner_@DBTAGLOWERCASE_db
-
--- Install postgis beforehand
+-- Install postgis as sundowner_@DBTAGLOWERCASE user
 CREATE EXTENSION IF NOT EXISTS postgis;
 CREATE EXTENSION IF NOT EXISTS postgis_topology;
-
--- SET ROLE sundowner_@DBTAGLOWERCASE;
-ALTER SCHEMA topology OWNER TO sundowner_@DBTAGLOWERCASE;
-
-ALTER TABLE spatial_ref_sys OWNER TO sundowner_@DBTAGLOWERCASE;
-ALTER TABLE layer OWNER TO sundowner_@DBTAGLOWERCASE;
-ALTER TABLE topology OWNER TO sundowner_@DBTAGLOWERCASE;
-
-GRANT USAGE ON SCHEMA topology TO sundowner_@DBTAGLOWERCASE;
-GRANT EXECUTE ON ALL FUNCTIONS IN SCHEMA topology TO sundowner_@DBTAGLOWERCASE;
-GRANT SELECT ON spatial_ref_sys TO sundowner_@DBTAGLOWERCASE;
-
 
 -- Create Tables
 START TRANSACTION;
