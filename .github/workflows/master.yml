@@ -75,6 +75,14 @@ jobs:
           POSTGRES_DB: sundowner_test_db
           PGPASSWORD: SUNDOWNER_TEST
 
+      - name: Replace port for testing
+        uses: jacobtomlinson/gha-find-replace@v3
+        with:
+          find: "5433"
+          replace: "5432"
+          include: "sundowner-service/integrationtest/src/test/resources/**"
+          regex: false
+
       - name: Build Sundowner Service
         working-directory: sundowner-service
         run: ./gradlew build --scan
