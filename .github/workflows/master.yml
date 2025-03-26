@@ -69,7 +69,8 @@ jobs:
       - name: Debug Schema
         run: |
           psql -h localhost --port 5433 -U "$POSTGRES_USER" -d "$POSTGRES_DB" -t -c \
-            "SELECT tableowner, tablename FROM pg_tables WHERE schemaname = 'public' ORDER BY tableowner, tablename;"
+            "SELECT tableowner, tablename FROM pg_tables WHERE schemaname = 'public' ORDER BY tableowner, tablename;" > stdout
+          cat stdout
         env:
           POSTGRES_USER: sundowner_test
           POSTGRES_DB: sundowner_test_db
@@ -77,7 +78,7 @@ jobs:
 
       - name: Build Sundowner Service
         working-directory: sundowner-service
-        run: ./gradlew build --debug --scan
+        run: ./gradlew build --scan
 
   sundowner-webapp:
     runs-on: ubuntu-latest
