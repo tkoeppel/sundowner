@@ -2,11 +2,13 @@ import { TestBed } from '@angular/core/testing';
 
 import { SpotMarkerService } from './spot-marker.service';
 
-describe('SpotMarkerService', () => {
+describe('Test SpotMarkerService', () => {
   let service: SpotMarkerService;
 
   beforeEach(() => {
-    TestBed.configureTestingModule({});
+    TestBed.configureTestingModule({
+      providers: [SpotMarkerService],
+    });
     service = TestBed.inject(SpotMarkerService);
   });
 

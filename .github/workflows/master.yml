@@ -100,5 +100,5 @@ jobs:
 
       - name: Test Sundowner Webapp
         working-directory: sundowner-webapp
-        run: ./node_modules/.bin/ng test --watch=false
+        run: npm test --watch=false
 
