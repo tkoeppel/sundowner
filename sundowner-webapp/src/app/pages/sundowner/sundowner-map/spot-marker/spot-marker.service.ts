@@ -7,27 +7,22 @@ import {
 } from '@angular/core';
 import { SpotMarkerComponent } from './spot-marker.component';
 import { MapSpotTO } from '../../../../../../gensrc';
+import { ComponentFactoryService } from '../../../../core/service/component-factory.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class SpotMarkerService {
-  constructor(
-    private injector: Injector,
-    private environmentInjector: EnvironmentInjector,
-    private applicationRef: ApplicationRef
-  ) {
+  constructor(private componentFactoryService: ComponentFactoryService) {
     // nothing to do
   }
 
   public getSpotMarkerHTML(spot: MapSpotTO): HTMLElement {
     const element = document.createElement('div');
-    const component = createComponent(SpotMarkerComponent, {
-      elementInjector: this.injector,
-      environmentInjector: this.environmentInjector,
-      hostElement: element,
-    });
-    this.applicationRef.attachView(component.hostView);
+    const component = this.componentFactoryService.createComponent(
+      SpotMarkerComponent,
+      element
+    );
     component.instance.spot = spot;
     return element;
   }

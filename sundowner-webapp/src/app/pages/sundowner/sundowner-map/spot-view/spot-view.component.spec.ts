@@ -2,7 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { SpotViewComponent } from './spot-view.component';
 
-describe('Test SpotViewComponent', () => {
+describe('SpotViewComponent', () => {
   let component: SpotViewComponent;
   let fixture: ComponentFixture<SpotViewComponent>;
 
