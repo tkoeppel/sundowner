@@ -1,7 +1,5 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { MapSpotTO } from '../../../../../../gensrc';
-import { SundownerMapService } from '../sundowner-map.service';
-
 @Component({
   selector: 'app-spot-marker',
   templateUrl: './spot-marker.component.html',

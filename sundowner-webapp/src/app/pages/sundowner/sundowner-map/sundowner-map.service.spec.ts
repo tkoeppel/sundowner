@@ -225,7 +225,7 @@ describe('MapService', () => {
 
   it('should create a DivIcon with the correct HTML', () => {
     service.initMap(MAP_ID, [51.505, -0.09], jest.fn());
-    (L.DivIcon as jest.Mock).mockClear();
+    (L.divIcon as jest.Mock).mockClear();
     (L.marker as jest.Mock).mockClear();
     (L.marker as jest.Mock).mockReturnValue(mockMarker);
 

@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { AppComponent } from './app.component';
-import { provideRouter, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { Location } from '@angular/common';
 import { RouterModule } from '@angular/router'; // Import RouterModule
 
@@ -38,11 +38,13 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should navigate to sundowner after timeout`, (done) => {
+  it(`should navigate to sundowner after timeout`, () => {
     fixture.detectChanges();
-    setTimeout(() => {
-      expect(location.path()).toBe('/sundowner');
-      done();
-    }, 1000);
+    return new Promise((resolve) => {
+      setTimeout(() => {
+        expect(location.path()).toBe('/sundowner');
+        resolve(null); // Resolve the Promise when the assertion is done
+      }, 1000);
+    });
   });
 });

@@ -1,10 +1,4 @@
-import {
-  ApplicationRef,
-  Component,
-  createComponent,
-  EnvironmentInjector,
-  Injector,
-} from '@angular/core';
+import { Component } from '@angular/core';
 import { MapSpotTO } from '../../../../../../gensrc';
 import { SpotMarkerComponent } from '../spot-marker/spot-marker.component';
 import { ComponentFactoryService } from '../../../../core/service/component-factory.service';

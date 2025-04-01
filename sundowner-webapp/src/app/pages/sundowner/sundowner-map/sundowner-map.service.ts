@@ -64,7 +64,7 @@ export class SundownerMapService {
       onMapMove(this.map!.getBounds());
     });
 
-    map.on('click', (e: L.LeafletMouseEvent) => {
+    map.on('click', () => {
       this.closeSpotPreview();
     });
   }

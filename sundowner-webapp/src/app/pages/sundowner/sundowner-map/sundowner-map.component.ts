@@ -10,7 +10,7 @@ import { MapBounds } from './MapBounds';
 })
 export class SundownerMapComponent implements OnInit {
   @Output()
-  public onMapMove: EventEmitter<MapBounds> = new EventEmitter();
+  public mapMove: EventEmitter<MapBounds> = new EventEmitter<MapBounds>();
 
   @Input()
   public currentPos: CoordinateTO = { lat: 0, lng: 0 };
@@ -30,7 +30,7 @@ export class SundownerMapComponent implements OnInit {
       const min = bounds.getSouthWest();
       const max = bounds.getNorthEast();
 
-      this.onMapMove.emit({
+      this.mapMove.emit({
         minX: min.lng,
         maxX: max.lng,
         minY: min.lat,
