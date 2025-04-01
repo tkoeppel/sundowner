@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { CoordinateTO, MapSpotTO } from '../../../../../gensrc';
-import { MapService } from './sundowner-map.service';
+import { SundownerMapService } from './sundowner-map.service';
 import { MapBounds } from './MapBounds';
 @Component({
   selector: 'app-sundowner-map',
@@ -20,7 +20,7 @@ export class SundownerMapComponent implements OnInit {
     this._mapService.markSpots(mapSpots);
   }
 
-  constructor(private _mapService: MapService) {
+  constructor(private _mapService: SundownerMapService) {
     // nothing to do
   }
 

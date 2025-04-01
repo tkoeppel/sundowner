@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { MapSpotTO } from '../../../../../../gensrc';
-import { MapService } from '../sundowner-map.service';
+import { SundownerMapService } from '../sundowner-map.service';
 
 @Component({
   selector: 'app-spot-marker',

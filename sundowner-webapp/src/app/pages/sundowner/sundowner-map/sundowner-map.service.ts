@@ -15,7 +15,7 @@ import { environment } from '../../../../environments/environment';
 @Injectable({
   providedIn: 'root',
 })
-export class MapService {
+export class SundownerMapService {
   private static readonly LEAFLET_ATTRIBUTION =
     '<a href="https://www.jawg.io?utm_medium=map&utm_source=attribution" target="_blank">&copy; Jawg</a> - <a href="https://www.openstreetmap.org?utm_medium=map-attribution&utm_source=jawg" target="_blank">&copy; OSM</a>&nbsp;contributors';
 
@@ -54,7 +54,9 @@ export class MapService {
       {}
     );
     tiles.addTo(map!);
-    map.attributionControl.addAttribution(MapService.LEAFLET_ATTRIBUTION);
+    map.attributionControl.addAttribution(
+      SundownerMapService.LEAFLET_ATTRIBUTION
+    );
   }
 
   private initMapEvents(map: L.Map, onMapMove: (bounds: LatLngBounds) => void) {
