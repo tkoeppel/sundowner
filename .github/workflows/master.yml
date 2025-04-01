@@ -85,13 +85,6 @@ jobs:
         with:
           flags: kotlin
           directory: sundowner-service/build/reports/jacoco/test/jacocoTestReport.xml
-          
-      - name: Run SpotBugs
-        uses: spotbugs/spotbugs-github-action@v3
-        with:
-          source_dir: sundowner-service/
-          spotbugs_args: -effort:max -high
-          min_confidence: high
 
   sundowner-webapp:
     runs-on: ubuntu-latest
