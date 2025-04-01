@@ -76,9 +76,17 @@ jobs:
           POSTGRES_DB: sundowner_test_db
           PGPASSWORD: SUNDOWNER_TEST
 
-      - name: Build Sundowner Service
+      - name: Build and Test Sundowner Service with JaCoCo Coverage
         working-directory: sundowner-service
-        run: ./gradlew build --scan
+        run: ./gradlew test jacocoTestReport --scan
+
+      - name: Display JaCoCo Coverage Report
+        working-directory: sundowner-service/build/reports/jacoco/test
+        run: |
+          echo "## JaCoCo Code Coverage Report"
+          echo "### Line Coverage"
+          line_coverage=$(grep -oP '<tfoot>.*?([0-9.]+)%.*?</tfoot>' index.html | grep -oP '([0-9.]+)%')
+          echo "Line Coverage: $line_coverage"
 
   sundowner-webapp:
     runs-on: ubuntu-latest

@@ -4,6 +4,7 @@ plugins {
 	id("org.springframework.boot") version "3.4.3"
 	id("io.spring.dependency-management") version "1.1.6"
 	kotlin("plugin.noarg") version "2.0.20"
+	jacoco
 }
 
 noArg {
@@ -33,6 +34,11 @@ dependencies {
 
 tasks.test {
 	useJUnitPlatform()
+	finalizedBy(tasks.jacocoTestReport)
+}
+
+tasks.jacocoTestReport {
+	dependsOn(tasks.test)
 }
 
 kotlin {
@@ -40,5 +46,5 @@ kotlin {
 }
 
 tasks.bootJar {
-   enabled = false
+	enabled = false
 }

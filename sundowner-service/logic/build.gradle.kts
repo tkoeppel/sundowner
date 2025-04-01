@@ -3,6 +3,7 @@ plugins {
 	id("org.jetbrains.kotlin.plugin.spring") version "2.1.20"
 	id("org.springframework.boot") version "3.4.3"
 	id("io.spring.dependency-management") version "1.1.6"
+	jacoco
 }
 
 repositories {
@@ -56,10 +57,15 @@ sourceSets {
 tasks.test {
 	useJUnitPlatform()
 	jvmArgs("-javaagent:${mockitoAgent.asPath}")
+	finalizedBy(tasks.jacocoTestReport)
 }
 
 tasks.processTestResources {
 	duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+}
+
+tasks.jacocoTestReport {
+	dependsOn(tasks.test)
 }
 
 

@@ -5,8 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="01f43c56-3111-4ec4-9664-d60d64d27ffb" name="Changes" comment="First Unit Test  for #38">
+      <change beforePath="$PROJECT_DIR$/../.github/workflows/master.yml" beforeDir="false" afterPath="$PROJECT_DIR$/../.github/workflows/master.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/src/main/resources/db/create_extensions.sql" beforeDir="false" afterPath="$PROJECT_DIR$/data/src/main/resources/db/create_extensions.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/data/build.gradle.kts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/integrationtest/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/integrationtest/build.gradle.kts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/logic/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/logic/build.gradle.kts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
