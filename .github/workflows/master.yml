@@ -84,7 +84,7 @@ jobs:
         uses: codecov/codecov-action@v3
         with:
           flags: kotlin
-          directory: kotlin-gradle-service/build/reports/jacoco/test/jacocoTestReport.xml
+          directory: sundowner-service/build/reports/jacoco/test/jacocoTestReport.xml
           
       - name: Run SpotBugs
         uses: spotbugs/spotbugs-github-action@v3
