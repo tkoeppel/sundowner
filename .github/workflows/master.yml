@@ -98,6 +98,10 @@ jobs:
         working-directory: sundowner-webapp
         run: ./node_modules/.bin/ng build --configuration=test
 
+      - name: Lint Code
+        working-directory: sundowner-webapp
+        run: npm run lint
+
       - name: Test Sundowner Webapp
         working-directory: sundowner-webapp
         run: npm run test -- --coverage --watchAll=false
