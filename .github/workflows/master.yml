@@ -80,12 +80,6 @@ jobs:
         working-directory: sundowner-service
         run: ./gradlew build --scan
 
-      - name: Upload Kotlin coverage to Codecov
-        uses: codecov/codecov-action@v3
-        with:
-          flags: kotlin
-          directory: sundowner-service/build/reports/jacoco/test/jacocoTestReport.xml
-
   sundowner-webapp:
     runs-on: ubuntu-latest
     steps:
