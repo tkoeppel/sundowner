@@ -106,9 +106,3 @@ jobs:
         working-directory: sundowner-webapp
         run: npm run test -- --coverage --watchAll=false
 
-      - name: Upload Angular coverage to Codecov
-        uses: codecov/codecov-action@v3
-        with:
-          flags: angular
-          directory: angular-webapp/coverage/
-
