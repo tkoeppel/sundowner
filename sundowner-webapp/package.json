@@ -7,8 +7,8 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "jest",
-    "generate": "openapi-generator-cli generate -i ./api-docs.json -g typescript-angular -o ./gensrc",
-    "lint": "eslint --config eslint.config.mjs ./src/app/**"
+    "generate": "openapi-generator-cli generate",
+    "lint": "eslint --config eslint.config.mjs ./src/**"
   },
   "private": true,
   "dependencies": {

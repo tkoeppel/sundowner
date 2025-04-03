@@ -2,6 +2,13 @@
   "$schema": "./node_modules/@openapitools/openapi-generator-cli/config.schema.json",
   "spaces": 2,
   "generator-cli": {
-    "version": "7.8.0"
+    "version": "7.8.0",
+    "generators": {
+      "typescript-angular": {
+        "inputSpec": "./sundowner-service-api-docs.json",
+        "output": "./gensrc",
+        "generatorName": "typescript-angular"
+      }
+    }
   }
 }

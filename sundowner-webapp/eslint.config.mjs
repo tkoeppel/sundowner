@@ -70,6 +70,6 @@ export default defineConfig([
     extends: ["js/recommended"],
   },
   {
-    ignores: ["node_modules/**/*", "dist/**/*", "coverage/**/*"],
+    ignores: ["node_modules/**/*", "dist/**/*", "coverage/**/*", "gensrc/**/*"],
   },
 ]);
