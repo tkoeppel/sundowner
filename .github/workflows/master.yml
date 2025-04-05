@@ -83,7 +83,7 @@ jobs:
       - name: Upload Jacoco Coverage to Codecov
         uses: codecov/codecov-action@v5
         with:
-          files: ./sundowner-service/build/reports/jacoco/test
+          files: ./sundowner-service/build/reports/jacoco/test/jacoco.xml
           flags: "Backend"
           name: "Sundowner Service Coverage"
           fail_ci_if_error: true
@@ -103,6 +103,7 @@ jobs:
       - name: Install node modules
         working-directory: sundowner-webapp
         run: npm install
+        retries: 3
 
       - name: Build Sundowner Webapp
         working-directory: sundowner-webapp
