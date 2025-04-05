@@ -1,7 +1,3 @@
-plugins {
-    alias(libs.plugins.spring.boot)
-}
-
 dependencies {
     implementation(project(":data"))
 

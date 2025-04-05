@@ -1,7 +1,7 @@
 plugins {
+    alias(libs.plugins.spring.boot) apply false
     alias(libs.plugins.kotlin.jvm) apply false
     alias(libs.plugins.kotlin.spring) apply false
-    alias(libs.plugins.spring.boot) apply false
     alias(libs.plugins.spring.dependency.management) apply false
     alias(libs.plugins.kotlin.noarg) apply false
 }
@@ -25,6 +25,7 @@ subprojects {
     plugins.apply(rootProject.libs.plugins.kotlin.jvm.get().pluginId)
     plugins.apply(rootProject.libs.plugins.kotlin.spring.get().pluginId)
     plugins.apply(rootProject.libs.plugins.spring.dependency.management.get().pluginId)
+    plugins.apply(rootProject.libs.plugins.spring.boot.get().pluginId)
 
     tasks.withType<Test> {
         maxHeapSize = "1G"
@@ -35,9 +36,9 @@ subprojects {
         targetCompatibility = javaVersion.toString()
     }
 
-    tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
-        kotlinOptions {
-            jvmTarget = javaVersion.toString()
+    tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>().configureEach {
+        compilerOptions {
+            jvmTarget.set(org.jetbrains.kotlin.gradle.dsl.JvmTarget.fromTarget(javaVersion.toString()))
         }
     }
 }
