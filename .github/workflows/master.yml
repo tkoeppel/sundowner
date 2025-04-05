@@ -78,7 +78,7 @@ jobs:
 
       - name: Build and Test Sundowner Service with JaCoCo Coverage
         working-directory: sundowner-service
-        run: ./gradlew test jacocoTestReport --scan
+        run: ./gradlew build jacocoTestReport
 
       - name: Upload Jacoco Coverage to Codecov
         uses: codecov/codecov-action@v5
