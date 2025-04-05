@@ -3,7 +3,6 @@ plugins {
 	id("org.jetbrains.kotlin.plugin.spring") version "2.1.20"
 	id("org.springframework.boot") version "3.4.3"
 	id("io.spring.dependency-management") version "1.1.6"
-	jacoco
 }
 
 repositories {
@@ -47,12 +46,6 @@ tasks.test {
 
 	// Ensure the classpath includes the logic module's dependencies
 	classpath = sourceSets["test"].runtimeClasspath + project(":logic").sourceSets["main"].runtimeClasspath
-
-	finalizedBy(tasks.jacocoTestReport)
-}
-
-tasks.jacocoTestReport {
-	dependsOn(tasks.test)
 }
 
 kotlin {

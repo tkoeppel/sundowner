@@ -3,8 +3,7 @@ plugins {
 	id("org.jetbrains.kotlin.plugin.spring") version "2.1.20"
 	id("org.springframework.boot") version "3.4.3"
 	id("io.spring.dependency-management") version "1.1.6"
-	kotlin("plugin.noarg") version "2.0.20"
-	jacoco
+	kotlin("plugin.noarg") version "2.0.20"	
 }
 
 noArg {
@@ -34,11 +33,6 @@ dependencies {
 
 tasks.test {
 	useJUnitPlatform()
-	finalizedBy(tasks.jacocoTestReport)
-}
-
-tasks.jacocoTestReport {
-	dependsOn(tasks.test)
 }
 
 kotlin {
