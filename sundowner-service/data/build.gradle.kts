@@ -1,44 +1,39 @@
 plugins {
-	id("org.jetbrains.kotlin.jvm") version "2.1.20"
-	id("org.jetbrains.kotlin.plugin.spring") version "2.1.20"
-	id("org.springframework.boot") version "3.4.3"
-	id("io.spring.dependency-management") version "1.1.6"
-	kotlin("plugin.noarg") version "2.0.20"	
+    alias(libs.plugins.kotlin.jvm)
+    alias(libs.plugins.kotlin.spring)
+    alias(libs.plugins.spring.boot)
+    alias(libs.plugins.spring.dependency.management)
+    alias(libs.plugins.kotlin.noarg)
 }
 
 noArg {
-	annotation("jakarta.persistence.Entity")
+    annotation("jakarta.persistence.Entity")
 }
 
 repositories {
-	mavenCentral()
+    mavenCentral()
 }
 
 dependencies {
-	implementation("org.jetbrains.kotlin:kotlin-reflect")
-	implementation("org.springframework.boot:spring-boot-starter-data-jpa")
-	implementation("jakarta.persistence:jakarta.persistence-api")
-	implementation("org.locationtech.jts:jts-core")
-	implementation("org.hibernate.orm:hibernate-spatial")
-	implementation("org.postgresql:postgresql")
-
-	implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
-
-	// Open API
-	implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.5.0")
-
-	// sundowner dependencies
-	testImplementation(kotlin("test"))
+    implementation(libs.kotlin.reflect)
+    implementation(libs.spring.boot.starter.data.jpa)
+    implementation(libs.jakarta.persistence.api)
+    implementation(libs.jts.core)
+    implementation(libs.hibernate.spatial)
+    implementation(libs.postgresql)
+    implementation(libs.jackson.module.kotlin)
+    implementation(libs.springdoc.openapi.starter.webmvc.ui)
+    testImplementation(libs.kotlin.test)
 }
 
 tasks.test {
-	useJUnitPlatform()
+    useJUnitPlatform()
 }
 
 kotlin {
-	jvmToolchain(21)
+    jvmToolchain(21)
 }
 
 tasks.bootJar {
-	enabled = false
+    enabled = false
 }

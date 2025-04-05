@@ -1,0 +1,55 @@
+[versions]
+kotlin = "2.1.20"
+kotlin-noarg = "2.0.20"
+spring-boot = "3.4.3"
+spring-dependency-management = "1.1.7"
+springdoc = "2.6.0"
+minio = "8.5.17"
+httpclient5 = "5.4.3"
+ktor-network-tls-certificates = "3.0.3"
+jts = "1.20.0"
+hibernate-spatial = "6.6.12.Final"
+jackson-datatype-jts = "1.2.10"
+postgresql = "42.7.5"
+mockito = "5.15.2"
+mockito-junit-jupiter = "5.14.2"
+assertj = "3.27.3"
+junit-platform-launcher = "1.12.1"
+jackson-module-kotlin = "2.18.3"
+
+[libraries]
+kotlin-reflect = { module = "org.jetbrains.kotlin:kotlin-reflect", version.ref = "kotlin" }
+kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "kotlin" }
+kotlin-noarg = { module = "org.jetbrains.kotlin:kotlin-noarg", version.ref = "kotlin-noarg" }
+spring-boot-starter-data-jpa = { module = "org.springframework.boot:spring-boot-starter-data-jpa", version.ref = "spring-boot" }
+spring-boot-starter-web = { module = "org.springframework.boot:spring-boot-starter-web", version.ref = "spring-boot" }
+spring-boot-starter-security = { module = "org.springframework.boot:spring-boot-starter-security", version.ref = "spring-boot" }
+spring-boot-starter-test = { module = "org.springframework.boot:spring-boot-starter-test", version.ref = "spring-boot" }
+jakarta-persistence-api = { module = "jakarta.persistence:jakarta.persistence-api", version = "3.2.0" }
+jakarta-servlet-api = { module = "jakarta.servlet:jakarta.servlet-api", version = "6.1.0" }
+jts-core = { module = "org.locationtech.jts:jts-core", version.ref = "jts" }
+hibernate-spatial = { module = "org.hibernate.orm:hibernate-spatial", version.ref = "hibernate-spatial" }
+jackson-module-kotlin = { module = "com.fasterxml.jackson.module:jackson-module-kotlin", version.ref = "jackson-module-kotlin" }
+jackson-datatype-jts = { module = "org.n52.jackson:jackson-datatype-jts", version.ref = "jackson-datatype-jts" }
+springdoc-openapi-starter-webmvc-ui = { module = "org.springdoc:springdoc-openapi-starter-webmvc-ui", version = "2.5.0" }
+springdoc-openapi-starter-webmvc-api = { module = "org.springdoc:springdoc-openapi-starter-webmvc-api", version.ref = "springdoc" }
+minio = { module = "io.minio:minio", version.ref = "minio" }
+httpclient5 = { module = "org.apache.httpcomponents.client5:httpclient5", version.ref = "httpclient5" }
+ktor-network-tls-certificates = { module = "io.ktor:ktor-network-tls-certificates", version.ref = "ktor-network-tls-certificates" }
+postgresql = { module = "org.postgresql:postgresql", version.ref = "postgresql" }
+mockito-core = { module = "org.mockito:mockito-core", version.ref = "mockito" }
+mockito-junit-jupiter = { module = "org.mockito:mockito-junit-jupiter", version.ref = "mockito-junit-jupiter" }
+assertj-core = { module = "org.assertj:assertj-core", version.ref = "assertj" }
+junit-platform-launcher = { module = "org.junit.platform:junit-platform-launcher", version.ref = "junit-platform-launcher" }
+
+[bundles]
+spring-boot = ["spring-boot-starter-data-jpa", "spring-boot-starter-web", "spring-boot-starter-security", "spring-boot-starter-test"]
+spatial = ["jts-core", "hibernate-spatial", "jackson-datatype-jts"]
+test = ["kotlin-test", "spring-boot-starter-test", "mockito-core", "mockito-junit-jupiter", "assertj-core", "junit-platform-launcher"]
+
+[plugins]
+kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
+kotlin-spring = { id = "org.jetbrains.kotlin.plugin.spring", version.ref = "kotlin" }
+spring-boot = { id = "org.springframework.boot", version.ref = "spring-boot" }
+spring-dependency-management = { id = "io.spring.dependency-management", version.ref = "spring-dependency-management" }
+kotlin-noarg = { id = "org.jetbrains.kotlin.plugin.noarg", version.ref = "kotlin-noarg" }
