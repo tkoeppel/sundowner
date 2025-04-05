@@ -1,12 +1,5 @@
 plugins {
-    alias(libs.plugins.kotlin.jvm)
-    alias(libs.plugins.kotlin.spring)
     alias(libs.plugins.spring.boot)
-    alias(libs.plugins.spring.dependency.management)
-}
-
-repositories {
-    mavenCentral()
 }
 
 val mockitoAgent = configurations.create("mockitoAgent")
@@ -27,18 +20,14 @@ dependencies {
 
     runtimeOnly(libs.postgresql)
 
-    testImplementation(libs.spring.boot.starter.test)
-    testImplementation(libs.mockito.core)
+    testImplementation(libs.bundles.test)
     mockitoAgent(libs.mockito.core) { isTransitive = false }
-    testImplementation(libs.mockito.junit.jupiter)
-    testImplementation(libs.assertj.core)
 
     // sundowner dependencies
     implementation(project(":data"))
 
     // Open API
     implementation(libs.springdoc.openapi.starter.webmvc.api)
-    testImplementation(libs.kotlin.test)
 }
 
 sourceSets {
@@ -50,7 +39,6 @@ sourceSets {
 }
 
 tasks.test {
-    useJUnitPlatform()
     jvmArgs("-javaagent:${mockitoAgent.asPath}")
 }
 
@@ -58,6 +46,3 @@ tasks.processTestResources {
     duplicatesStrategy = DuplicatesStrategy.EXCLUDE
 }
 
-kotlin {
-    jvmToolchain(21)
-}

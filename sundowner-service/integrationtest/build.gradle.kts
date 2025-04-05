@@ -1,12 +1,5 @@
 plugins {
-    alias(libs.plugins.kotlin.jvm)
-    alias(libs.plugins.kotlin.spring)
     alias(libs.plugins.spring.boot)
-    alias(libs.plugins.spring.dependency.management)
-}
-
-repositories {
-    mavenCentral()
 }
 
 dependencies {
@@ -19,8 +12,8 @@ dependencies {
     implementation(libs.jakarta.servlet.api)
     implementation(libs.jackson.module.kotlin)
 
+    testImplementation(libs.bundles.test)
     testImplementation(libs.spring.boot.starter.web)
-    testImplementation(libs.spring.boot.starter.test)
 
     testRuntimeOnly(project(":logic"))
 }
@@ -28,9 +21,6 @@ dependencies {
 tasks.test {
     group = "verification"
     description = "Runs the integration tests."
-    maxHeapSize = "1G"
-
-    useJUnitPlatform()
 
     testLogging {
         events("passed")
@@ -43,10 +33,6 @@ tasks.test {
 
     // Ensure the classpath includes the logic module's dependencies
     classpath = sourceSets["test"].runtimeClasspath + project(":logic").sourceSets["main"].runtimeClasspath
-}
-
-kotlin {
-    jvmToolchain(21)
 }
 
 tasks.bootJar {
