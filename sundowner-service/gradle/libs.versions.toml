@@ -14,7 +14,8 @@ postgresql = "42.7.5"
 mockito = "5.15.2"
 mockito-junit-jupiter = "5.14.2"
 assertj = "3.27.3"
-junit-platform-launcher = "1.12.1"
+junit-jupiter = "5.12.1"
+junit-platform = "1.12.1"
 jackson-module-kotlin = "2.18.3"
 
 [libraries]
@@ -40,12 +41,14 @@ postgresql = { module = "org.postgresql:postgresql", version.ref = "postgresql" 
 mockito-core = { module = "org.mockito:mockito-core", version.ref = "mockito" }
 mockito-junit-jupiter = { module = "org.mockito:mockito-junit-jupiter", version.ref = "mockito-junit-jupiter" }
 assertj-core = { module = "org.assertj:assertj-core", version.ref = "assertj" }
-junit-platform-launcher = { module = "org.junit.platform:junit-platform-launcher", version.ref = "junit-platform-launcher" }
+junit-jupiter-api = { module = "org.junit.jupiter:junit-jupiter-api", version.ref = "junit-jupiter" }
+junit-jupiter-engine = { module = "org.junit.jupiter:junit-jupiter-engine", version.ref = "junit-jupiter" } 
+junit-platform-launcher = { module = "org.junit.platform:junit-platform-launcher", version.ref = "junit-platform" }
 
 [bundles]
 spring-boot = ["spring-boot-starter-data-jpa", "spring-boot-starter-web", "spring-boot-starter-security", "spring-boot-starter-test"]
 spatial = ["jts-core", "hibernate-spatial", "jackson-datatype-jts"]
-test = ["kotlin-test", "spring-boot-starter-test", "mockito-core", "mockito-junit-jupiter", "assertj-core", "junit-platform-launcher"]
+test = ["kotlin-test", "spring-boot-starter-test", "mockito-core", "mockito-junit-jupiter", "assertj-core", "junit-jupiter-api", "junit-jupiter-engine"]
 
 [plugins]
 kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
