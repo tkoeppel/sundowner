@@ -103,7 +103,6 @@ jobs:
       - name: Install node modules
         working-directory: sundowner-webapp
         run: npm install
-        retries: 3
 
       - name: Build Sundowner Webapp
         working-directory: sundowner-webapp
