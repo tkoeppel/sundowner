@@ -25,3 +25,6 @@ replay_pid*
 
 # minio storage
 /storage
+
+# VS-Code
+sundowner.code-workspace

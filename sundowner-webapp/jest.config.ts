@@ -22,7 +22,7 @@ const config: Config = {
   },
   collectCoverage: true,
   coverageDirectory: '<rootDir>/coverage',
-  coverageReporters: ['html', 'text-summary', 'lcov', 'clover'],
+  coverageReporters: ['lcov', 'cobertura', 'text-summary'],
   collectCoverageFrom: [
     'src/app/**/*.ts', // Specify where to collect coverage from
     '!src/main.ts', // ignore main file

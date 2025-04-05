@@ -80,13 +80,15 @@ jobs:
         working-directory: sundowner-service
         run: ./gradlew test jacocoTestReport --scan
 
-      - name: Display JaCoCo Coverage Report
-        working-directory: sundowner-service/build/reports/jacoco/test
-        run: |
-          echo "## JaCoCo Code Coverage Report"
-          echo "### Line Coverage"
-          line_coverage=$(grep -oP '<tfoot>.*?([0-9.]+)%.*?</tfoot>' index.html | grep -oP '([0-9.]+)%')
-          echo "Line Coverage: $line_coverage"
+      - name: Upload Jacoco Coverage to Codecov
+        uses: codecov/codecov-action@v5
+        with:
+          files: ./sundowner-service/build/reports/jacoco/test
+          flags: "Backend"
+          name: "Sundowner Service Coverage"
+          fail_ci_if_error: true
+          token: ${{ secrets.CODECOV_TOKEN }}
+          slug: tkoeppel/sundowner
 
   sundowner-webapp:
     runs-on: ubuntu-latest
@@ -114,3 +116,13 @@ jobs:
         working-directory: sundowner-webapp
         run: npm run test -- --coverage --watchAll=false
 
+      - name: Upload Cobertura Coverage to Codecov
+        uses: codecov/codecov-action@v5
+        with:
+          files: ./sundowner-webapp/coverage/cobertura-coverage.xml
+          flags: "Frontend"
+          name: "Sundowner Webapp Coverage"
+          fail_ci_if_error: true
+          token: ${{ secrets.CODECOV_TOKEN }}
+          slug: tkoeppel/sundowner
+ 	
