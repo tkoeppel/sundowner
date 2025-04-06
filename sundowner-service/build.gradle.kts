@@ -88,7 +88,7 @@ tasks.register<JacocoReport>("jacocoRootReport") {
     }
 
     doLast {
-        logger.lifecycle("Aggregated JaCoCo report generated at: ${reports.html.outputLocation.get().asFile}/index.html")
+        logger.lifecycle("Aggregated JaCoCo report generated at: ${reports.xml.outputLocation.get().asFile}")
     }
 }
 
