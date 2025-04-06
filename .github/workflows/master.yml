@@ -4,9 +4,13 @@ on:
   push:
     branches:
       - master
+      - 'feature/**'
+      - 'bugfix/**'
+      - 'release/**'
   pull_request:
     branches:
       - master
+      - 'release/**'
 jobs:
   sundowner-service:
     runs-on: ubuntu-latest
