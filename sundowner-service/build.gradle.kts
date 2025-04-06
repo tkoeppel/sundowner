@@ -38,7 +38,6 @@ subprojects {
     apply(plugin = rootProject.libs.plugins.kotlin.spring.get().pluginId)
     apply(plugin = rootProject.libs.plugins.spring.dependency.management.get().pluginId)
     apply(plugin = rootProject.libs.plugins.spring.boot.get().pluginId)
-    // apply(plugin = rootProject.libs.plugins.kotlin.noarg.get().pluginId)
 
     tasks.withType<JavaCompile> {
         sourceCompatibility = javaVersion.toString()
@@ -48,10 +47,6 @@ subprojects {
         compilerOptions {
             jvmTarget.set(org.jetbrains.kotlin.gradle.dsl.JvmTarget.fromTarget(javaVersion.toString()))
         }
-    }
-
-    configure<JacocoPluginExtension> {
-        toolVersion = "0.8.12"
     }
 
     tasks.withType<Test> {
@@ -90,8 +85,6 @@ tasks.register<JacocoReport>("jacocoRootReport") {
     reports {
         xml.required.set(true)
         html.required.set(true)
-        html.outputLocation.set(layout.buildDirectory.file("reports/jacoco/jacocoRootReport/html"))
-        xml.outputLocation.set(layout.buildDirectory.file("reports/jacoco/jacocoRootReport/jacocoRootReport.xml"))
     }
 
     doLast {

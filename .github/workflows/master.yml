@@ -83,7 +83,7 @@ jobs:
       - name: Upload Jacoco Coverage to Codecov
         uses: codecov/codecov-action@v5
         with:
-          files: ./sundowner-service/build/reports/jacoco/test/jacoco.xml
+          files: ./sundowner-service/build/reports/jacoco/jacocoRootReport/jacocoRootReport.xml
           flags: "Backend"
           name: "Sundowner Service Coverage"
           fail_ci_if_error: true
