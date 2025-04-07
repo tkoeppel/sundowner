@@ -4,213 +4,78 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="01f43c56-3111-4ec4-9664-d60d64d27ffb" name="Changes" comment="First Unit Test  for #38">
-      <change beforePath="$PROJECT_DIR$/../.github/workflows/master.yml" beforeDir="false" afterPath="$PROJECT_DIR$/../.github/workflows/master.yml" afterDir="false" />
+    <list default="true" id="a1856a26-3204-4700-b309-975dd197607f" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_16_09_24,_20_55_[Changes]/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_16_09_24,_20_55_[Changes]1/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_16_09_24__20_55__Changes_.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/uiDesigner.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/data/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/data/build.gradle.kts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/src/main/kotlin/de/tkoeppel/sundowner/basetype/SpotType.kt" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/kotlin/de/tkoeppel/sundowner/basetype/SpotType.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/src/main/kotlin/de/tkoeppel/sundowner/basetype/TransportType.kt" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/kotlin/de/tkoeppel/sundowner/basetype/TransportType.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/src/main/kotlin/de/tkoeppel/sundowner/to/BaseElementTO.kt" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/kotlin/de/tkoeppel/sundowner/to/BaseElementTO.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/src/main/kotlin/de/tkoeppel/sundowner/to/CoordinateTO.kt" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/kotlin/de/tkoeppel/sundowner/to/CoordinateTO.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/src/main/kotlin/de/tkoeppel/sundowner/to/MapSpotTO.kt" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/kotlin/de/tkoeppel/sundowner/to/MapSpotTO.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/src/test/kotlin/de/tkoeppel/sundowner/to/CoordinateTOTest.kt" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/test/kotlin/de/tkoeppel/sundowner/to/CoordinateTOTest.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/src/test/kotlin/de/tkoeppel/sundowner/to/MapSpotTOTest.kt" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/test/kotlin/de/tkoeppel/sundowner/to/MapSpotTOTest.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/src/test/kotlin/de/tkoeppel/sundowner/to/SerializationTestBase.kt" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/test/kotlin/de/tkoeppel/sundowner/to/SerializationTestBase.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/integrationtest/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/integrationtest/build.gradle.kts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/logic/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/logic/build.gradle.kts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/settings.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/settings.gradle.kts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="CodeInsightWorkspaceSettings">
-    <option name="optimizeImportsOnTheFly" value="true" />
-  </component>
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
     </projectState>
   </component>
-  <component name="ExternalProjectsManager">
-    <system id="GRADLE">
-      <state>
-        <task path="$PROJECT_DIR$">
-          <activation />
-        </task>
-        <task path="$PROJECT_DIR$/logic">
-          <activation />
-        </task>
-        <projects_view>
-          <tree_state>
-            <expand>
-              <path>
-                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
-                <item name="sundowner-service" type="f1a62948:ProjectNode" />
-              </path>
-              <path>
-                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
-                <item name="sundowner-service" type="f1a62948:ProjectNode" />
-                <item name="Tasks" type="e4a08cd1:TasksNode" />
-              </path>
-              <path>
-                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
-                <item name="sundowner-service" type="f1a62948:ProjectNode" />
-                <item name="logic" type="2d1252cf:ModuleNode" />
-              </path>
-              <path>
-                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
-                <item name="sundowner-service" type="f1a62948:ProjectNode" />
-                <item name="logic" type="2d1252cf:ModuleNode" />
-                <item name="Tasks" type="e4a08cd1:TasksNode" />
-              </path>
-              <path>
-                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
-                <item name="sundowner-service" type="f1a62948:ProjectNode" />
-                <item name="logic" type="2d1252cf:ModuleNode" />
-                <item name="Dependencies" type="6de06a37:ExternalSystemViewDefaultContributor$MyDependenciesNode" />
-              </path>
-            </expand>
-            <select />
-          </tree_state>
-        </projects_view>
-      </state>
-    </system>
-  </component>
-  <component name="FileTemplateManagerImpl">
-    <option name="RECENT_TEMPLATES">
-      <list>
-        <option value="Kotlin Enum" />
-        <option value="Class" />
-        <option value="Interface" />
-        <option value="Kotlin Script" />
-        <option value="Kotlin Interface" />
-        <option value="Kotlin Object" />
-        <option value="Kotlin Data Class" />
-        <option value="Kotlin Class" />
-      </list>
-    </option>
-  </component>
-  <component name="FormatOnSaveOptions">
-    <option name="myRunOnSave" value="true" />
-  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
-    <option name="UPDATE_TYPE" value="REBASE" />
   </component>
-  <component name="GitHubPullRequestSearchHistory">{
-  &quot;lastFilter&quot;: {
-    &quot;state&quot;: &quot;OPEN&quot;,
-    &quot;assignee&quot;: &quot;tkoeppel&quot;
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN",
+    "assignee": "tkoeppel"
   }
-}</component>
-  <component name="GithubPullRequestsUISettings">{
-  &quot;selectedUrlAndAccountId&quot;: {
-    &quot;url&quot;: &quot;https://github.com/tkoeppel/sundowner.git&quot;,
-    &quot;accountId&quot;: &quot;ebc7ca20-ff78-4983-ab21-d3e5bb33c5ef&quot;
+}]]></component>
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/tkoeppel/sundowner.git",
+    "accountId": "ebc7ca20-ff78-4983-ab21-d3e5bb33c5ef"
   }
-}</component>
-  <component name="OptimizeOnSaveOptions">
-    <option name="myRunOnSave" value="true" />
-  </component>
-  <component name="ProblemsViewState">
-    <option name="selectedTabId" value="CurrentFile" />
-  </component>
-  <component name="ProjectColorInfo">{
-  &quot;associatedIndex&quot;: 5
-}</component>
-  <component name="ProjectId" id="2lqjyqnV6DJszmXuL2N5rMKPkwK" />
-  <component name="ProjectLevelVcsManager">
-    <ConfirmationsSetting value="2" id="Add" />
-  </component>
+}]]></component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "customColor": "",
+  "associatedIndex": 5
+}]]></component>
+  <component name="ProjectId" id="2vPo7jY2Q0FPFNLKa3tFJgIZJuy" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;Downloaded.Files.Path.Enabled&quot;: &quot;false&quot;,
-    &quot;Gradle.Build sundowner-service.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.CoordinateTOTest.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.Download Sources.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.DummyTest.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.DummyTest.testDummy.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.GetPointsInViewTest.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.ITDummy.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.ITDummyTest.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.ITDummyTest.testDummy.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.IT_DummyTest.testDummy.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.Load Gradle Dependencies.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.MapSpotTOTest.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.StoreLoaderTest.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.StoreLoaderTest.test get certificate with invalid alias.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.StoreLoaderTest.test get not loaded store.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.StoreLoaderTest.test loading the store with a valid config.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.StoreLoaderTest.test loading the store with an empty config.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.StoreLoaderTest.test loading the store with invalid store type.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.StoreLoaderTest.test loading the store with valid config.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.StoreLoaderTest.testLoadStoreNoConfig.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.SundownerCertificateTest (1).executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.SundownerCertificateTest.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.SundownerCertificateTest.willExpireSoon should return true when certificate will expire within given days.executor&quot;: &quot;Debug&quot;,
-    &quot;Gradle.SundownerServiceApplicationTests (1).executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.SundownerServiceApplicationTests.contextLoads.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.SundownerServiceApplicationTests.executor&quot;: &quot;Coverage&quot;,
-    &quot;Gradle.Tests in 'de.tkoeppel.sundowner.to'.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.Tests in 'sundowner-service.integrationtest'.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.sundowner-service [integrationtest].executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.All in sundowner-service.executor&quot;: &quot;Debug&quot;,
-    &quot;JUnit.de.tkoeppel.sundowner.to in sundowner-service.logic.main.executor&quot;: &quot;Run&quot;,
-    &quot;Kotlin.SundownerServiceApplication.executor&quot;: &quot;Coverage&quot;,
-    &quot;Kotlin.SundownerServiceApplicationKt (1).executor&quot;: &quot;Run&quot;,
-    &quot;Kotlin.SundownerServiceApplicationKt.executor&quot;: &quot;Run&quot;,
-    &quot;Kotlin.SundownerServiceApplicationKtKt.executor&quot;: &quot;Run&quot;,
-    &quot;Repository.Attach.Annotations&quot;: &quot;false&quot;,
-    &quot;Repository.Attach.JavaDocs&quot;: &quot;false&quot;,
-    &quot;Repository.Attach.Sources&quot;: &quot;false&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;code.cleanup.on.save&quot;: &quot;true&quot;,
-    &quot;deletionFromPopupRequiresConfirmation&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/home/tim/Workspace/sundowner/sundowner-service/logic/src/main/kotlin/de/tkoeppel/sundowner/module&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.5080645&quot;,
-    &quot;rearrange.code.on.save&quot;: &quot;true&quot;,
-    &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settingsdialog.project.gradle&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Gradle.Build sundowner-service.executor": "Run",
+    "Gradle.Tests in 'sundowner-service.common.test'.executor": "Run",
+    "Gradle.Tests in 'sundowner-service.integrationtest.main'.executor": "Run",
+    "Kotlin.SundownerServiceApplicationKt.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "master"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/logic/src/main/kotlin/de/tkoeppel/sundowner/module" />
-      <recent name="$PROJECT_DIR$/integrationtest/src/main/resources" />
-    </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/data/src/test/kotlin/de/tkoeppel/sundowner" />
-      <recent name="$PROJECT_DIR$/test/src/test/resources" />
-      <recent name="$PROJECT_DIR$/data/src/main/resources/db" />
-      <recent name="$PROJECT_DIR$/data/src/main/resources" />
-      <recent name="$PROJECT_DIR$/logic/src/main" />
-    </key>
-    <key name="CreateTestDialog.Recents.Supers">
-      <recent name="" />
-    </key>
-    <key name="MoveKotlinTopLevelDeclarationsDialog.RECENTS_KEY">
-      <recent name="de.tkoeppel.sundowner.to" />
-      <recent name="de.tkoeppel.sundowner" />
-    </key>
-    <key name="CreateTestDialog.RecentsKey">
-      <recent name="de.tkoeppel.sundowner.to" />
-    </key>
-    <key name="CopyKotlinDeclarationDialog.RECENTS_KEY">
-      <recent name="de.tkoeppel.sundowner.security.securestore" />
-    </key>
     <key name="K2MoveDeclarationsDialog.RECENT_PACKAGE_KEY">
-      <recent name="de.tkoeppel.sundowner.security.web" />
-      <recent name="de.tkoeppel.sundowner.security.tls" />
-      <recent name="de.tkoeppel.sundowner.security.securestore.keystore" />
-      <recent name="de.tkoeppel.sundowner.security.securestore.truststore" />
-      <recent name="de.tkoeppel.sundowner.module.storage" />
+      <recent name="de.tkoeppel.sundowner.basetype" />
     </key>
   </component>
-  <component name="RunManager" selected="Gradle.SundownerCertificateTest">
-    <configuration name="StoreLoaderTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+  <component name="RunManager" selected="Gradle.Tests in 'sundowner-service.common.test'">
+    <configuration name="Tests in 'sundowner-service.common.test'" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
@@ -221,9 +86,7 @@
         </option>
         <option name="taskNames">
           <list>
-            <option value=":logic:test" />
-            <option value="--tests" />
-            <option value="&quot;de.tkoeppel.sundowner.security.tls.StoreLoaderTest&quot;" />
+            <option value=":common:test" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -234,7 +97,7 @@
       <RunAsTest>true</RunAsTest>
       <method v="2" />
     </configuration>
-    <configuration name="StoreLoaderTest.test get certificate with invalid alias" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="Tests in 'sundowner-service.integrationtest.main'" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
@@ -245,9 +108,7 @@
         </option>
         <option name="taskNames">
           <list>
-            <option value=":logic:test" />
-            <option value="--tests" />
-            <option value="&quot;de.tkoeppel.sundowner.security.tls.StoreLoaderTest.test get certificate with invalid alias&quot;" />
+            <option value=":integrationtest:test" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -258,479 +119,41 @@
       <RunAsTest>true</RunAsTest>
       <method v="2" />
     </configuration>
-    <configuration name="StoreLoaderTest.test get not loaded store" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
-      <ExternalSystemSettings>
-        <option name="executionName" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$" />
-        <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" value="" />
-        <option name="taskDescriptions">
-          <list />
-        </option>
-        <option name="taskNames">
-          <list>
-            <option value=":logic:test" />
-            <option value="--tests" />
-            <option value="&quot;de.tkoeppel.sundowner.security.tls.StoreLoaderTest.test get not loaded store&quot;" />
-          </list>
-        </option>
-        <option name="vmOptions" />
-      </ExternalSystemSettings>
-      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
-      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
-      <DebugAllEnabled>false</DebugAllEnabled>
-      <RunAsTest>true</RunAsTest>
+    <configuration name="SundownerServiceApplicationKt" type="JetRunConfigurationType" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="de.tkoeppel.sundowner.SundownerServiceApplicationKt" />
+      <module name="sundowner-service.logic.main" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="JetRunConfigurationType">
+      <module name="Kotlin Scripts.KotlinBuildScript.data:build.gradle.kts" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
+      <module name="Kotlin Scripts.KotlinBuildScript.data:build.gradle.kts" />
+      <option name="filePath" />
       <method v="2" />
     </configuration>
-    <configuration name="SundownerCertificateTest (1)" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
-      <ExternalSystemSettings>
-        <option name="executionName" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$" />
-        <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" value="" />
-        <option name="taskDescriptions">
-          <list />
-        </option>
-        <option name="taskNames">
-          <list>
-            <option value=":logic:test" />
-            <option value="--tests" />
-            <option value="&quot;de.tkoeppel.sundowner.security.certificate.SundownerCertificateTest&quot;" />
-          </list>
-        </option>
-        <option name="vmOptions" />
-      </ExternalSystemSettings>
-      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
-      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
-      <DebugAllEnabled>false</DebugAllEnabled>
-      <RunAsTest>true</RunAsTest>
-      <method v="2" />
-    </configuration>
-    <configuration name="SundownerCertificateTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
-      <ExternalSystemSettings>
-        <option name="executionName" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$" />
-        <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" value="" />
-        <option name="taskDescriptions">
-          <list />
-        </option>
-        <option name="taskNames">
-          <list>
-            <option value=":logic:test" />
-            <option value="--tests" />
-            <option value="&quot;SundownerCertificateTest&quot;" />
-          </list>
-        </option>
-        <option name="vmOptions" />
-      </ExternalSystemSettings>
-      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
-      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
-      <DebugAllEnabled>false</DebugAllEnabled>
-      <RunAsTest>true</RunAsTest>
-      <method v="2" />
-    </configuration>
-    <list>
-      <item itemvalue="Gradle.SundownerCertificateTest" />
-      <item itemvalue="Gradle.SundownerCertificateTest (1)" />
-      <item itemvalue="Gradle.StoreLoaderTest" />
-      <item itemvalue="Gradle.StoreLoaderTest.test get certificate with invalid alias" />
-      <item itemvalue="Gradle.StoreLoaderTest.test get not loaded store" />
-    </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Gradle.SundownerCertificateTest" />
-        <item itemvalue="Gradle.SundownerCertificateTest (1)" />
-        <item itemvalue="Gradle.StoreLoaderTest" />
-        <item itemvalue="Gradle.StoreLoaderTest.test get not loaded store" />
-        <item itemvalue="Gradle.StoreLoaderTest.test get certificate with invalid alias" />
+        <item itemvalue="Gradle.Tests in 'sundowner-service.common.test'" />
+        <item itemvalue="Kotlin.SundownerServiceApplicationKt" />
+        <item itemvalue="Gradle.Tests in 'sundowner-service.integrationtest.main'" />
       </list>
     </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="01f43c56-3111-4ec4-9664-d60d64d27ffb" name="Changes" comment="" />
-      <created>1725914760724</created>
+      <changelist id="a1856a26-3204-4700-b309-975dd197607f" name="Changes" comment="" />
+      <created>1744055906721</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1725914760724</updated>
+      <updated>1744055906721</updated>
     </task>
-    <task id="LOCAL-00001" summary="Refactored build #5">
-      <option name="closed" value="true" />
-      <created>1725915750213</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1725915750213</updated>
-    </task>
-    <task id="LOCAL-00002" summary="creates persistence objects and adjust sql scripts #6">
-      <option name="closed" value="true" />
-      <created>1726775633779</created>
-      <option name="number" value="00002" />
-      <option name="presentableId" value="LOCAL-00002" />
-      <option name="project" value="LOCAL" />
-      <updated>1726775633779</updated>
-    </task>
-    <task id="LOCAL-00003" summary="Corrected the SQL scripts #8">
-      <option name="closed" value="true" />
-      <created>1726780471419</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL-00003" />
-      <option name="project" value="LOCAL" />
-      <updated>1726780471419</updated>
-    </task>
-    <task id="LOCAL-00004" summary="Corrected the SQL scripts again #8">
-      <option name="closed" value="true" />
-      <created>1726781224768</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL-00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1726781224768</updated>
-    </task>
-    <task id="LOCAL-00005" summary="Project restructuring #9">
-      <option name="closed" value="true" />
-      <created>1726929320420</created>
-      <option name="number" value="00005" />
-      <option name="presentableId" value="LOCAL-00005" />
-      <option name="project" value="LOCAL" />
-      <updated>1726929320421</updated>
-    </task>
-    <task id="LOCAL-00006" summary="Configure and generate databases right #9">
-      <option name="closed" value="true" />
-      <created>1727129092226</created>
-      <option name="number" value="00006" />
-      <option name="presentableId" value="LOCAL-00006" />
-      <option name="project" value="LOCAL" />
-      <updated>1727129092226</updated>
-    </task>
-    <task id="LOCAL-00007" summary="Remove User from DB. Not part of this release. Restructured dbs to public schema #12">
-      <option name="closed" value="true" />
-      <created>1727202233195</created>
-      <option name="number" value="00007" />
-      <option name="presentableId" value="LOCAL-00007" />
-      <option name="project" value="LOCAL" />
-      <updated>1727202233195</updated>
-    </task>
-    <task id="LOCAL-00008" summary="Restructured project to not hold configs">
-      <option name="closed" value="true" />
-      <created>1727214540271</created>
-      <option name="number" value="00008" />
-      <option name="presentableId" value="LOCAL-00008" />
-      <option name="project" value="LOCAL" />
-      <updated>1727214540271</updated>
-    </task>
-    <task id="LOCAL-00009" summary="Restructured project. test module is called integraation test">
-      <option name="closed" value="true" />
-      <created>1727296921120</created>
-      <option name="number" value="00009" />
-      <option name="presentableId" value="LOCAL-00009" />
-      <option name="project" value="LOCAL" />
-      <updated>1727296921120</updated>
-    </task>
-    <task id="LOCAL-00010" summary="Fix project setup. Make integrationtest pipeline possible">
-      <option name="closed" value="true" />
-      <created>1727301633394</created>
-      <option name="number" value="00010" />
-      <option name="presentableId" value="LOCAL-00010" />
-      <option name="project" value="LOCAL" />
-      <updated>1727301633394</updated>
-    </task>
-    <task id="LOCAL-00011" summary="first step to solve postgis location db issues #12">
-      <option name="closed" value="true" />
-      <created>1727384843074</created>
-      <option name="number" value="00011" />
-      <option name="presentableId" value="LOCAL-00011" />
-      <option name="project" value="LOCAL" />
-      <updated>1727384843075</updated>
-    </task>
-    <task id="LOCAL-00012" summary="postgis db problem solved. Postgresdialect which gets used automatically #12">
-      <option name="closed" value="true" />
-      <created>1727385424124</created>
-      <option name="number" value="00012" />
-      <option name="presentableId" value="LOCAL-00012" />
-      <option name="project" value="LOCAL" />
-      <updated>1727385424124</updated>
-    </task>
-    <task id="LOCAL-00013" summary="Remove unused properties and specific dependency version">
-      <option name="closed" value="true" />
-      <created>1727456111938</created>
-      <option name="number" value="00013" />
-      <option name="presentableId" value="LOCAL-00013" />
-      <option name="project" value="LOCAL" />
-      <updated>1727456111938</updated>
-    </task>
-    <task id="LOCAL-00014" summary="implemented DAOs #12">
-      <option name="closed" value="true" />
-      <created>1727456198596</created>
-      <option name="number" value="00014" />
-      <option name="presentableId" value="LOCAL-00014" />
-      <option name="project" value="LOCAL" />
-      <updated>1727456198596</updated>
-    </task>
-    <task id="LOCAL-00015" summary="Basic API structure for spot retrieving #15 with OpenApi snnaotations #14">
-      <option name="closed" value="true" />
-      <created>1727541269438</created>
-      <option name="number" value="00015" />
-      <option name="presentableId" value="LOCAL-00015" />
-      <option name="project" value="LOCAL" />
-      <updated>1727541269438</updated>
-    </task>
-    <task id="LOCAL-00016" summary="Added average rating to table and implemented get points API #15">
-      <option name="closed" value="true" />
-      <created>1727603345448</created>
-      <option name="number" value="00016" />
-      <option name="presentableId" value="LOCAL-00016" />
-      <option name="project" value="LOCAL" />
-      <updated>1727603345448</updated>
-    </task>
-    <task id="LOCAL-00017" summary="Restructuring and first integrationtest #15 some openapi attempts #14">
-      <option name="closed" value="true" />
-      <created>1727641534561</created>
-      <option name="number" value="00017" />
-      <option name="presentableId" value="LOCAL-00017" />
-      <option name="project" value="LOCAL" />
-      <updated>1727641534561</updated>
-    </task>
-    <task id="LOCAL-00018" summary="Make API work #14, integration test #15">
-      <option name="closed" value="true" />
-      <created>1727730124058</created>
-      <option name="number" value="00018" />
-      <option name="presentableId" value="LOCAL-00018" />
-      <option name="project" value="LOCAL" />
-      <updated>1727730124058</updated>
-    </task>
-    <task id="LOCAL-00019" summary="Complete API #14">
-      <option name="closed" value="true" />
-      <created>1727732911764</created>
-      <option name="number" value="00019" />
-      <option name="presentableId" value="LOCAL-00019" />
-      <option name="project" value="LOCAL" />
-      <updated>1727732911764</updated>
-    </task>
-    <task id="LOCAL-00020" summary="Added forgotten tests">
-      <option name="closed" value="true" />
-      <created>1727732988320</created>
-      <option name="number" value="00020" />
-      <option name="presentableId" value="LOCAL-00020" />
-      <option name="project" value="LOCAL" />
-      <updated>1727732988320</updated>
-    </task>
-    <task id="LOCAL-00021" summary="Fixed Integrationtests and Create tables script #15">
-      <option name="closed" value="true" />
-      <created>1727822541935</created>
-      <option name="number" value="00021" />
-      <option name="presentableId" value="LOCAL-00021" />
-      <option name="project" value="LOCAL" />
-      <updated>1727822541936</updated>
-    </task>
-    <task id="LOCAL-00022" summary="Fixed Integrationtests and object mapping  #15">
-      <option name="closed" value="true" />
-      <created>1727866345624</created>
-      <option name="number" value="00022" />
-      <option name="presentableId" value="LOCAL-00022" />
-      <option name="project" value="LOCAL" />
-      <updated>1727866345624</updated>
-    </task>
-    <task id="LOCAL-00023" summary="Complete all integrationtests #15">
-      <option name="closed" value="true" />
-      <created>1727874386493</created>
-      <option name="number" value="00023" />
-      <option name="presentableId" value="LOCAL-00023" />
-      <option name="project" value="LOCAL" />
-      <updated>1727874386493</updated>
-    </task>
-    <task id="LOCAL-00024" summary="service part of #16">
-      <option name="closed" value="true" />
-      <created>1728084296780</created>
-      <option name="number" value="00024" />
-      <option name="presentableId" value="LOCAL-00024" />
-      <option name="project" value="LOCAL" />
-      <updated>1728084296780</updated>
-    </task>
-    <task id="LOCAL-00025" summary="Enabling CORS #18">
-      <option name="closed" value="true" />
-      <created>1728142759335</created>
-      <option name="number" value="00025" />
-      <option name="presentableId" value="LOCAL-00025" />
-      <option name="project" value="LOCAL" />
-      <updated>1728142759335</updated>
-    </task>
-    <task id="LOCAL-00026" summary="Enabling CORS with spring security #18">
-      <option name="closed" value="true" />
-      <created>1728144305392</created>
-      <option name="number" value="00026" />
-      <option name="presentableId" value="LOCAL-00026" />
-      <option name="project" value="LOCAL" />
-      <updated>1728144305392</updated>
-    </task>
-    <task id="LOCAL-00027" summary="Enabling CORS with spring security #18">
-      <option name="closed" value="true" />
-      <created>1728145592347</created>
-      <option name="number" value="00027" />
-      <option name="presentableId" value="LOCAL-00027" />
-      <option name="project" value="LOCAL" />
-      <updated>1728145592347</updated>
-    </task>
-    <task id="LOCAL-00028" summary="correct create tables enums #16">
-      <option name="closed" value="true" />
-      <created>1728322533555</created>
-      <option name="number" value="00028" />
-      <option name="presentableId" value="LOCAL-00028" />
-      <option name="project" value="LOCAL" />
-      <updated>1728322533555</updated>
-    </task>
-    <task id="LOCAL-00029" summary="move spatial config">
-      <option name="closed" value="true" />
-      <created>1728322572548</created>
-      <option name="number" value="00029" />
-      <option name="presentableId" value="LOCAL-00029" />
-      <option name="project" value="LOCAL" />
-      <updated>1728322572548</updated>
-    </task>
-    <task id="LOCAL-00030" summary="MinIO Integration #37">
-      <option name="closed" value="true" />
-      <created>1737732702400</created>
-      <option name="number" value="00030" />
-      <option name="presentableId" value="LOCAL-00030" />
-      <option name="project" value="LOCAL" />
-      <updated>1737732702400</updated>
-    </task>
-    <task id="LOCAL-00031" summary="secure store handling #38">
-      <option name="closed" value="true" />
-      <created>1738010349010</created>
-      <option name="number" value="00031" />
-      <option name="presentableId" value="LOCAL-00031" />
-      <option name="project" value="LOCAL" />
-      <updated>1738010349010</updated>
-    </task>
-    <task id="LOCAL-00032" summary="secure store handling #38">
-      <option name="closed" value="true" />
-      <created>1738010438485</created>
-      <option name="number" value="00032" />
-      <option name="presentableId" value="LOCAL-00032" />
-      <option name="project" value="LOCAL" />
-      <updated>1738010438485</updated>
-    </task>
-    <task id="LOCAL-00033" summary="secure store handling #38">
-      <option name="closed" value="true" />
-      <created>1738082926439</created>
-      <option name="number" value="00033" />
-      <option name="presentableId" value="LOCAL-00033" />
-      <option name="project" value="LOCAL" />
-      <updated>1738082926439</updated>
-    </task>
-    <task id="LOCAL-00034" summary="full store handling exception proof #38">
-      <option name="closed" value="true" />
-      <created>1738087137844</created>
-      <option name="number" value="00034" />
-      <option name="presentableId" value="LOCAL-00034" />
-      <option name="project" value="LOCAL" />
-      <updated>1738087137844</updated>
-    </task>
-    <task id="LOCAL-00035" summary="Minio Storage HTTP client handling #37">
-      <option name="closed" value="true" />
-      <created>1738087176008</created>
-      <option name="number" value="00035" />
-      <option name="presentableId" value="LOCAL-00035" />
-      <option name="project" value="LOCAL" />
-      <updated>1738087176008</updated>
-    </task>
-    <task id="LOCAL-00036" summary="Organize store managing better #38">
-      <option name="closed" value="true" />
-      <created>1738098366661</created>
-      <option name="number" value="00036" />
-      <option name="presentableId" value="LOCAL-00036" />
-      <option name="project" value="LOCAL" />
-      <updated>1738098366661</updated>
-    </task>
-    <task id="LOCAL-00037" summary="First Unit Test  for #38">
-      <option name="closed" value="true" />
-      <created>1738100983665</created>
-      <option name="number" value="00037" />
-      <option name="presentableId" value="LOCAL-00037" />
-      <option name="project" value="LOCAL" />
-      <updated>1738100983665</updated>
-    </task>
-    <option name="localTasksCounter" value="38" />
     <servers />
-  </component>
-  <component name="Vcs.Log.Tabs.Properties">
-    <option name="TAB_STATES">
-      <map>
-        <entry key="MAIN">
-          <value>
-            <State />
-          </value>
-        </entry>
-      </map>
-    </option>
-  </component>
-  <component name="VcsManagerConfiguration">
-    <MESSAGE value="postgis db problem solved. Postgresdialect which gets used automatically #12" />
-    <MESSAGE value="Remove unused properties and specific dependency version" />
-    <MESSAGE value="implemented DAOs #12" />
-    <MESSAGE value="Basic API structure for spot retrieving #15 with OpenApi snnaotations #14" />
-    <MESSAGE value="Added average rating to table and implemented get points API" />
-    <MESSAGE value="Added average rating to table and implemented get points API #15" />
-    <MESSAGE value="Restructuring and first integrationtest #15 some openapi attempts #14" />
-    <MESSAGE value="Make API work #14, integration test #15" />
-    <MESSAGE value="Complete API #14" />
-    <MESSAGE value="Added forgotten tests" />
-    <MESSAGE value="Fixed Integrationtests and Create tables script #15" />
-    <MESSAGE value="Fixed Integrationtests and object mapping  #15" />
-    <MESSAGE value="Complete all integrationtests #15" />
-    <MESSAGE value="service part of #16" />
-    <MESSAGE value="Enabling CORS #18" />
-    <MESSAGE value="Enabling CORS with spring security #18" />
-    <MESSAGE value="correct create tables enums #16" />
-    <MESSAGE value="move spatial config" />
-    <MESSAGE value="Initial basis for error handling in service #29" />
-    <MESSAGE value="MinIO Integration #37" />
-    <MESSAGE value="secure store handling #38" />
-    <MESSAGE value="full store handling exception proof #38" />
-    <MESSAGE value="Minio Storage HTTP client handling #37" />
-    <MESSAGE value="Organize store managing better #38" />
-    <MESSAGE value="First Unit Test  for #38" />
-    <option name="LAST_COMMIT_MESSAGE" value="First Unit Test  for #38" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="kotlin-line">
-          <url>file://$PROJECT_DIR$/integrationtest/src/test/kotlin/de/tkoeppel/sundowner/module/dummy/DummyTest.kt</url>
-          <line>26</line>
-          <option name="timeStamp" value="5" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="kotlin-line">
-          <url>file://$PROJECT_DIR$/integrationtest/src/test/kotlin/de/tkoeppel/sundowner/module/spots/GetPointsInViewTest.kt</url>
-          <line>153</line>
-          <option name="timeStamp" value="18" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="kotlin-line">
-          <url>file://$PROJECT_DIR$/logic/src/main/kotlin/de/tkoeppel/sundowner/security/tls/StoreLoader.kt</url>
-          <line>75</line>
-          <option name="timeStamp" value="22" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="kotlin-function">
-          <url>file://$PROJECT_DIR$/logic/src/main/kotlin/de/tkoeppel/sundowner/module/storage/StorageService.kt</url>
-          <line>1</line>
-          <properties class="de.tkoeppel.sundowner.module.storage.&lt;no name provided&gt;">
-            <option name="EMULATED" value="true" />
-            <option name="WATCH_EXIT" value="false" />
-          </properties>
-          <option name="timeStamp" value="19" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
-    <pin-to-top-manager>
-      <pinned-members>
-        <PinnedItemInfo parentTag="de.tkoeppel.sundowner.po.UserPO" memberName="id" />
-      </pinned-members>
-    </pin-to-top-manager>
-  </component>
-  <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/sundowner_service$DummyTest.ic" NAME="DummyTest Coverage Results" MODIFIED="1727208416621" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />
-    <SUITE FILE_PATH="coverage/sundowner_service$SundownerServiceApplicationTests.ic" NAME="SundownerServiceApplicationTests Coverage Results" MODIFIED="1726849140442" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />
   </component>
 </project>

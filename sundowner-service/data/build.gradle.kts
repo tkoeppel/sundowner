@@ -7,6 +7,8 @@ noArg {
 }
 
 dependencies {
+    implementation(project(":common"))
+
     implementation(libs.kotlin.reflect)
     implementation(libs.spring.boot.starter.data.jpa)
     implementation(libs.jakarta.persistence.api)

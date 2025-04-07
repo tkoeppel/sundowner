@@ -1,4 +1,5 @@
 dependencies {
+    implementation(project(":common"))
     implementation(project(":data"))
 
     implementation(libs.spring.boot.starter.test)

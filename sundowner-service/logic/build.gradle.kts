@@ -21,6 +21,7 @@ dependencies {
 
     // sundowner dependencies
     implementation(project(":data"))
+    implementation(project(":common"))
 
     // Open API
     implementation(libs.springdoc.openapi.starter.webmvc.api)

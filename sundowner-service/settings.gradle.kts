@@ -16,3 +16,4 @@ rootProject.name = "sundowner-service"
 include("logic")
 include("integrationtest")
 include("data")
+include("common")
