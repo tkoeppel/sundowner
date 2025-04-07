@@ -38,37 +38,37 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
-  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
-  "lastFilter": {
-    "state": "OPEN",
-    "assignee": "tkoeppel"
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;tkoeppel&quot;
   }
-}]]></component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/tkoeppel/sundowner.git",
-    "accountId": "ebc7ca20-ff78-4983-ab21-d3e5bb33c5ef"
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/tkoeppel/sundowner.git&quot;,
+    &quot;accountId&quot;: &quot;ebc7ca20-ff78-4983-ab21-d3e5bb33c5ef&quot;
   }
-}]]></component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "customColor": "",
-  "associatedIndex": 5
-}]]></component>
+}</component>
+  <component name="ProjectColorInfo">{
+  &quot;customColor&quot;: &quot;&quot;,
+  &quot;associatedIndex&quot;: 5
+}</component>
   <component name="ProjectId" id="2vPo7jY2Q0FPFNLKa3tFJgIZJuy" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Gradle.Build sundowner-service.executor": "Run",
-    "Gradle.Tests in 'sundowner-service.common.test'.executor": "Run",
-    "Gradle.Tests in 'sundowner-service.integrationtest.main'.executor": "Run",
-    "Kotlin.SundownerServiceApplicationKt.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "master"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Gradle.Build sundowner-service.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.Tests in 'sundowner-service.common.test'.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.Tests in 'sundowner-service.integrationtest.main'.executor&quot;: &quot;Run&quot;,
+    &quot;Kotlin.SundownerServiceApplicationKt.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="K2MoveDeclarationsDialog.RECENT_PACKAGE_KEY">
       <recent name="de.tkoeppel.sundowner.basetype" />
