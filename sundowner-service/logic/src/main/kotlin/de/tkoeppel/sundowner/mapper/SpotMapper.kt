@@ -1,8 +1,8 @@
 package de.tkoeppel.sundowner.mapper
 
 import de.tkoeppel.sundowner.po.SpotPO
-import de.tkoeppel.sundowner.to.CoordinateTO
-import de.tkoeppel.sundowner.to.MapSpotTO
+import de.tkoeppel.sundowner.to.spots.CoordinateTO
+import de.tkoeppel.sundowner.to.spots.MapSpotTO
 
 class SpotMapper {
 	fun mapMapSpot(po: SpotPO): MapSpotTO {

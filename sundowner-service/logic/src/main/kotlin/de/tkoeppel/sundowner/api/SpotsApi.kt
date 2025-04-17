@@ -1,6 +1,6 @@
 package de.tkoeppel.sundowner.api
 
-import de.tkoeppel.sundowner.to.MapSpotTO
+import de.tkoeppel.sundowner.to.spots.MapSpotTO
 import io.swagger.v3.oas.annotations.Operation
 import io.swagger.v3.oas.annotations.Parameter
 import io.swagger.v3.oas.annotations.media.Content

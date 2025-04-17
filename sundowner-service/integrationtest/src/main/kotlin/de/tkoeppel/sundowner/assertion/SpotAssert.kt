@@ -1,8 +1,8 @@
 package de.tkoeppel.sundowner.assertion
 
 import de.tkoeppel.sundowner.po.SpotPO
-import de.tkoeppel.sundowner.to.CoordinateTO
-import de.tkoeppel.sundowner.to.MapSpotTO
+import de.tkoeppel.sundowner.to.spots.CoordinateTO
+import de.tkoeppel.sundowner.to.spots.MapSpotTO
 import org.assertj.core.api.Assertions.assertThat
 import org.locationtech.jts.geom.Coordinate
 

@@ -1,5 +1,6 @@
-package de.tkoeppel.sundowner.to
+package de.tkoeppel.sundowner.to.spots
 
+import de.tkoeppel.sundowner.to.BaseElementTO
 import io.swagger.v3.oas.annotations.media.Schema
 
 /**
@@ -22,4 +23,4 @@ data class MapSpotTO(
 	@Schema(
 		description = "The overall rating of the spot.", minimum = "0", maximum = "10"
 	) val avgRating: Double
-) : BaseElementTO(id)
+) : BaseElementTO

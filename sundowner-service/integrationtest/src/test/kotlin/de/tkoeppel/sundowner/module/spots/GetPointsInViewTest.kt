@@ -3,7 +3,7 @@ package de.tkoeppel.sundowner.module.spots
 import com.fasterxml.jackson.core.type.TypeReference
 import de.tkoeppel.sundowner.assertion.SpotAssert
 import de.tkoeppel.sundowner.po.SpotPO
-import de.tkoeppel.sundowner.to.MapSpotTO
+import de.tkoeppel.sundowner.to.spots.MapSpotTO
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.ValueSource

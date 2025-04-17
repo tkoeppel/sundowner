@@ -1,4 +1,4 @@
-package de.tkoeppel.sundowner.to
+package de.tkoeppel.sundowner.to.spots
 
 import io.swagger.v3.oas.annotations.media.Schema
 

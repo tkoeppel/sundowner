@@ -3,7 +3,7 @@ package de.tkoeppel.sundowner.module.spots
 import de.tkoeppel.sundowner.dao.SpotDAO
 import de.tkoeppel.sundowner.exceptions.LimitExceededException
 import de.tkoeppel.sundowner.mapper.SpotMapper
-import de.tkoeppel.sundowner.to.MapSpotTO
+import de.tkoeppel.sundowner.to.spots.MapSpotTO
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
 
