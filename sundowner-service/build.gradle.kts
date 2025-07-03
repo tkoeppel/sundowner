@@ -1,6 +1,5 @@
 import org.gradle.api.tasks.testing.Test
 import org.gradle.kotlin.dsl.*
-import org.gradle.testing.jacoco.plugins.JacocoPluginExtension
 import org.gradle.testing.jacoco.plugins.JacocoTaskExtension
 import org.gradle.testing.jacoco.tasks.JacocoReport
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
@@ -46,6 +45,7 @@ subprojects {
     tasks.withType<KotlinCompile>().configureEach {
         compilerOptions {
             jvmTarget.set(org.jetbrains.kotlin.gradle.dsl.JvmTarget.fromTarget(javaVersion.toString()))
+            freeCompilerArgs.add("-Xannotation-default-target=param-property")
         }
     }
 
