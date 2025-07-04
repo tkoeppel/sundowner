@@ -25,6 +25,7 @@ dependencies {
 
     // Open API
     implementation(libs.springdoc.openapi.starter.webmvc.api)
+    runtimeOnly(libs.kotlinx.coroutines.core)
 }
 
 sourceSets {

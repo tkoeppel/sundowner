@@ -1,5 +1,6 @@
 package de.tkoeppel.sundowner.po
 
+import de.tkoeppel.sundowner.basetype.SpotStatus
 import de.tkoeppel.sundowner.basetype.SpotType
 import de.tkoeppel.sundowner.basetype.TransportType
 import de.tkoeppel.sundowner.converter.PointConverter
@@ -28,5 +29,7 @@ data class SpotPO(
 
 	@Column(
 		name = "transport", nullable = false
-	) @ElementCollection @Enumerated(EnumType.STRING) val transport: List<TransportType>
+	) @ElementCollection @Enumerated(EnumType.STRING) val transport: List<TransportType>,
+
+	@Column(name = "status", nullable = false) @Enumerated(EnumType.STRING) val status: SpotStatus
 ) : BasePO()

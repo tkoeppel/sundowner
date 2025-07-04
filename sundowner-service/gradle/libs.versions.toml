@@ -1,5 +1,6 @@
 [versions]
 kotlin = "2.2.0"
+kotlinx-coroutines = "1.10.2"
 spring-boot = "3.5.3"
 spring-dependency-management = "1.1.7"
 springdoc = "2.6.0"
@@ -23,6 +24,7 @@ kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "kotl
 kotlin-spring = { module = "org.jetbrains.kotlin.spring:kotlin-spring", version.ref = "kotlin" }
 kotlin-jvm = { module = "org.jetbrains.kotlin.jvm:kotlin-jvm", version.ref = "kotlin" }
 kotlin-noarg = { module = "org.jetbrains.kotlin:kotlin-noarg", version.ref = "kotlin" }
+kotlinx-coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "kotlinx-coroutines" }
 spring-boot-starter-data-jpa = { module = "org.springframework.boot:spring-boot-starter-data-jpa", version.ref = "spring-boot" }
 spring-boot-starter-web = { module = "org.springframework.boot:spring-boot-starter-web", version.ref = "spring-boot" }
 spring-boot-starter-security = { module = "org.springframework.boot:spring-boot-starter-security", version.ref = "spring-boot" }
@@ -47,8 +49,6 @@ junit-jupiter-engine = { module = "org.junit.jupiter:junit-jupiter-engine", vers
 junit-platform-launcher = { module = "org.junit.platform:junit-platform-launcher", version.ref = "junit-platform" } 
 junit-platform-commons = { module = "org.junit.platform:junit-platform-commons", version.ref = "junit-platform" }
 junit-platform-engine = { module = "org.junit.platform:junit-platform-engine", version.ref = "junit-platform" }
-
-
 
 [bundles]
 spring-boot = ["spring-boot-starter-data-jpa", "spring-boot-starter-web", "spring-boot-starter-security", "spring-boot-starter-test"]

@@ -5,11 +5,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a1856a26-3204-4700-b309-975dd197607f" name="Changes" comment="outsourced DTO parts into a common module">
-      <change beforePath="$PROJECT_DIR$/.idea/kotlinc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/kotlinc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common/src/main/kotlin/de/tkoeppel/sundowner/basetype/SpotStatus.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common/src/main/kotlin/de/tkoeppel/sundowner/to/spots/CreateSpotTO.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle.kts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/kotlin/de/tkoeppel/sundowner/basetype/SpotType.kt" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/kotlin/de/tkoeppel/sundowner/basetype/SpotType.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/kotlin/de/tkoeppel/sundowner/to/spots/CoordinateTO.kt" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/kotlin/de/tkoeppel/sundowner/to/spots/CoordinateTO.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/src/main/kotlin/de/tkoeppel/sundowner/po/SpotPO.kt" beforeDir="false" afterPath="$PROJECT_DIR$/data/src/main/kotlin/de/tkoeppel/sundowner/po/SpotPO.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/src/main/resources/db/create_tables.sql" beforeDir="false" afterPath="$PROJECT_DIR$/data/src/main/resources/db/create_tables.sql" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/gradle/libs.versions.toml" beforeDir="false" afterPath="$PROJECT_DIR$/gradle/libs.versions.toml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/logic/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/logic/build.gradle.kts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/logic/src/main/kotlin/de/tkoeppel/sundowner/api/SpotsApi.kt" beforeDir="false" afterPath="$PROJECT_DIR$/logic/src/main/kotlin/de/tkoeppel/sundowner/api/SpotsApi.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/logic/src/main/kotlin/de/tkoeppel/sundowner/module/spots/SpotEndpoint.kt" beforeDir="false" afterPath="$PROJECT_DIR$/logic/src/main/kotlin/de/tkoeppel/sundowner/module/spots/SpotEndpoint.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/logic/src/main/kotlin/de/tkoeppel/sundowner/module/spots/SpotService.kt" beforeDir="false" afterPath="$PROJECT_DIR$/logic/src/main/kotlin/de/tkoeppel/sundowner/module/spots/SpotService.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -35,9 +42,10 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Kotlin Data Class" />
-        <option value="Kotlin Enum" />
         <option value="Kotlin Interface" />
         <option value="Kotlin Class" />
+        <option value="Class" />
+        <option value="Kotlin Enum" />
       </list>
     </option>
   </component>
@@ -69,19 +77,19 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Gradle.Build sundowner-service.executor": "Run",
-    "Gradle.Tests in 'de.tkoeppel.sundowner.module.spots'.executor": "Run",
-    "Gradle.Tests in 'sundowner-service.common.test'.executor": "Run",
-    "Gradle.Tests in 'sundowner-service.integrationtest.main'.executor": "Run",
-    "Kotlin.SundownerServiceApplicationKt.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "master",
-    "settings.editor.selected.configurable": "com.android.studio.ml.bot.mainConfigurable"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Gradle.Build sundowner-service.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.Tests in 'de.tkoeppel.sundowner.module.spots'.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.Tests in 'sundowner-service.common.test'.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.Tests in 'sundowner-service.integrationtest.main'.executor&quot;: &quot;Run&quot;,
+    &quot;Kotlin.SundownerServiceApplicationKt.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;com.android.studio.ml.bot.mainConfigurable&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="K2MoveDeclarationsDialog.RECENT_PACKAGE_KEY">
       <recent name="de.tkoeppel.sundowner.to.spots" />
