@@ -3,20 +3,22 @@ kotlin = "2.2.0"
 kotlinx-coroutines = "1.10.2"
 spring-boot = "3.5.3"
 spring-dependency-management = "1.1.7"
-springdoc = "2.6.0"
+springdoc = "2.8.9"
 minio = "8.5.17"
-httpclient5 = "5.4.3"
-ktor-network-tls-certificates = "3.0.3"
+httpclient5 = "5.5"
+ktor-network-tls-certificates = "3.2.0"
 jts = "1.20.0"
-hibernate-spatial = "6.6.12.Final"
-jackson-datatype-jts = "1.2.10"
-postgresql = "42.7.5"
-mockito = "5.15.2"
-mockito-junit-jupiter = "5.14.2"
+hibernate-spatial = "7.0.4.Final"
+jackson-datatype-jts = "2.0.0"
+postgresql = "42.7.7"
+mockito = "5.18.0"
 assertj = "3.27.3"
-junit-jupiter = "5.12.1"
-junit-platform = "1.12.1"
-jackson-module-kotlin = "2.18.3"
+junit-jupiter = "5.13.2"
+junit-platform = "1.13.1"
+jackson-module-kotlin = "2.19.1"
+kotlin-logging-jvm = "7.0.7"
+logback-classic = "1.5.18"
+
 
 [libraries]
 kotlin-reflect = { module = "org.jetbrains.kotlin:kotlin-reflect", version.ref = "kotlin" }
@@ -35,20 +37,22 @@ jts-core = { module = "org.locationtech.jts:jts-core", version.ref = "jts" }
 hibernate-spatial = { module = "org.hibernate.orm:hibernate-spatial", version.ref = "hibernate-spatial" }
 jackson-module-kotlin = { module = "com.fasterxml.jackson.module:jackson-module-kotlin", version.ref = "jackson-module-kotlin" }
 jackson-datatype-jts = { module = "org.n52.jackson:jackson-datatype-jts", version.ref = "jackson-datatype-jts" }
-springdoc-openapi-starter-webmvc-ui = { module = "org.springdoc:springdoc-openapi-starter-webmvc-ui", version = "2.5.0" }
+springdoc-openapi-starter-webmvc-ui = { module = "org.springdoc:springdoc-openapi-starter-webmvc-ui", version.ref = "springdoc" }
 springdoc-openapi-starter-webmvc-api = { module = "org.springdoc:springdoc-openapi-starter-webmvc-api", version.ref = "springdoc" }
 minio = { module = "io.minio:minio", version.ref = "minio" }
 httpclient5 = { module = "org.apache.httpcomponents.client5:httpclient5", version.ref = "httpclient5" }
 ktor-network-tls-certificates = { module = "io.ktor:ktor-network-tls-certificates", version.ref = "ktor-network-tls-certificates" }
 postgresql = { module = "org.postgresql:postgresql", version.ref = "postgresql" }
 mockito-core = { module = "org.mockito:mockito-core", version.ref = "mockito" }
-mockito-junit-jupiter = { module = "org.mockito:mockito-junit-jupiter", version.ref = "mockito-junit-jupiter" }
+mockito-junit-jupiter = { module = "org.mockito:mockito-junit-jupiter", version.ref = "mockito" }
 assertj-core = { module = "org.assertj:assertj-core", version.ref = "assertj" }
 junit-jupiter-api = { module = "org.junit.jupiter:junit-jupiter-api", version.ref = "junit-jupiter" }
 junit-jupiter-engine = { module = "org.junit.jupiter:junit-jupiter-engine", version.ref = "junit-jupiter" }
 junit-platform-launcher = { module = "org.junit.platform:junit-platform-launcher", version.ref = "junit-platform" } 
 junit-platform-commons = { module = "org.junit.platform:junit-platform-commons", version.ref = "junit-platform" }
 junit-platform-engine = { module = "org.junit.platform:junit-platform-engine", version.ref = "junit-platform" }
+kotlin-logging-jvm = { module = "io.github.oshai:kotlin-logging-jvm", version.ref = "kotlin-logging-jvm" }
+logback-classic = {module = "ch.qos.logback:logback-classic", version.ref = "logback-classic"}
 
 [bundles]
 spring-boot = ["spring-boot-starter-data-jpa", "spring-boot-starter-web", "spring-boot-starter-security", "spring-boot-starter-test"]

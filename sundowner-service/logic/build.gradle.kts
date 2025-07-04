@@ -14,6 +14,10 @@ dependencies {
     implementation(libs.hibernate.spatial)
     implementation(libs.jackson.datatype.jts)
 
+    // logging
+    implementation(libs.kotlin.logging.jvm)
+    implementation(libs.logback.classic)
+
     runtimeOnly(libs.postgresql)
 
     testImplementation(libs.bundles.test)
@@ -25,6 +29,8 @@ dependencies {
 
     // Open API
     implementation(libs.springdoc.openapi.starter.webmvc.api)
+
+    // coroutines
     runtimeOnly(libs.kotlinx.coroutines.core)
 }
 
