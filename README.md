@@ -1,2 +1,2 @@
 # sundowner
-A website, which shows you the best spots wo watch a sunset
+A website, which shows you the best spots to watch a sunset
