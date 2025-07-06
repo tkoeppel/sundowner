@@ -6,9 +6,9 @@ import jakarta.persistence.*
 @Table(name = "spot_reviews")
 data class SpotReviewPO(
 
-	@ManyToOne @JoinColumn(name = "spot", nullable = false) val spot: SpotPO,
-	
-	@Column(name = "review_user", nullable = false) val reviewUser: String,
+	@ManyToOne @JoinColumn(name = "spot_id", nullable = false) val spot: SpotPO,
+
+	@Column(name = "review_user", nullable = false) val user: String,
 
 	@Column(name = "rating", nullable = false) val rating: Int,
 

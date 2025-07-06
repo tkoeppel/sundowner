@@ -5,9 +5,10 @@ import de.tkoeppel.sundowner.to.spots.CoordinateTO
 import de.tkoeppel.sundowner.to.spots.MapSpotTO
 
 class SpotMapper {
-	fun mapMapSpot(po: SpotPO): MapSpotTO {
+	fun mapMapSpot(po: SpotPO, averageRating: Double?): MapSpotTO {
 		val point = po.location
 		val coordinateTO = CoordinateTO(point.x, point.y)
-		return MapSpotTO(po.id, coordinateTO, po.name, po.averageRating)
+		val name = po.name
+		return MapSpotTO(po.id, coordinateTO, name, averageRating)
 	}
 }

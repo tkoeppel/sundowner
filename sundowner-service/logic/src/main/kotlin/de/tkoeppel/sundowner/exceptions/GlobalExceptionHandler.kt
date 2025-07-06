@@ -1,5 +1,7 @@
 package de.tkoeppel.sundowner.exceptions
 
+import de.tkoeppel.sundowner.module.geocoding.GeoCodingException
+import de.tkoeppel.sundowner.module.spots.LimitExceededException
 import de.tkoeppel.sundowner.module.storage.StorageException
 import de.tkoeppel.sundowner.security.certificate.InvalidCertificateException
 import de.tkoeppel.sundowner.security.tls.TlsException
@@ -14,7 +16,7 @@ import java.time.LocalDateTime
 class GlobalExceptionHandler {
 
 	@ExceptionHandler(LimitExceededException::class)
-	fun handleLimitExceededException(
+	fun handleBadRequestException(
 		exception: LimitExceededException, request: WebRequest
 	): ResponseEntity<ErrorDetails> {
 		val errorDetails = ErrorDetails(
@@ -24,17 +26,28 @@ class GlobalExceptionHandler {
 	}
 
 	@ExceptionHandler(
-		Exception::class,
-		StorageException::class,
-		InvalidCertificateException::class,
-		TlsException::class
+		Exception::class, StorageException::class, InvalidCertificateException::class, TlsException::class
 	)
-	fun handleGlobalException(
+	fun handleInternalServerErrorException(
 		exception: Exception, request: WebRequest
 	): ResponseEntity<ErrorDetails> {
 		val errorDetails = ErrorDetails(
 			timestamp = LocalDateTime.now(), message = "Internal Server Error", details = request.getDescription(false)
 		)
 		return ResponseEntity(errorDetails, HttpStatus.INTERNAL_SERVER_ERROR)
+	}
+
+	@ExceptionHandler(
+		GeoCodingException::class
+	)
+	fun handleBadGatewayException(
+		exception: Exception, request: WebRequest
+	): ResponseEntity<ErrorDetails> {
+		val errorDetails = ErrorDetails(
+			timestamp = LocalDateTime.now(),
+			message = "Connection to 3rd party service failed.",
+			details = request.getDescription(false)
+		)
+		return ResponseEntity(errorDetails, HttpStatus.BAD_GATEWAY)
 	}
 }

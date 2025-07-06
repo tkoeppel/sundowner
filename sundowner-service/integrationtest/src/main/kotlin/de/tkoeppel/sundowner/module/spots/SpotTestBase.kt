@@ -1,9 +1,11 @@
 package de.tkoeppel.sundowner.module.spots
 
 import de.tkoeppel.sundowner.SundownerServiceTestBase
-import de.tkoeppel.sundowner.basetype.SpotType
-import de.tkoeppel.sundowner.basetype.TransportType
+import de.tkoeppel.sundowner.basetype.spots.SpotStatus
+import de.tkoeppel.sundowner.basetype.spots.SpotType
+import de.tkoeppel.sundowner.basetype.spots.TransportType
 import de.tkoeppel.sundowner.po.SpotPO
+import de.tkoeppel.sundowner.po.SpotReviewPO
 import org.junit.jupiter.api.BeforeEach
 import org.locationtech.jts.geom.Coordinate
 import java.time.ZonedDateTime
@@ -18,19 +20,31 @@ open class SpotTestBase : SundownerServiceTestBase() {
 		this.spotDAO.deleteAll()
 	}
 
-	protected fun create(
+	protected fun createSpot(
 		type: SpotType = SpotType.SUNSET,
 		location: Coordinate = Coordinate(0.0, 0.0),
 		name: String = "My Spot",
 		description: String = "This is a fun place",
-		avgRating: Double = 9.9,
-		addedBy: String = "sunset-enjoyer",
+		addedBy: String = "sunset_enjoyer",
 		addedDate: ZonedDateTime = ZonedDateTime.now(),
-		transport: List<TransportType> = listOf<TransportType>(TransportType.BY_FOOT, TransportType.BIKE)
+		transport: List<TransportType> = listOf<TransportType>(TransportType.BY_FOOT, TransportType.BIKE),
+		status: SpotStatus = SpotStatus.CONFIRMED
 	): SpotPO {
-		val spot = SpotPO(type, location, name, description, avgRating, addedBy, addedDate, transport)
+		val spot = SpotPO(type, location, name, description, addedBy, addedDate, transport, status)
 		this.spotDAO.save(spot)
 		return spot
+	}
+
+	protected fun createReview(
+		spot: SpotPO, //
+		user: String = "user", // TODO
+		rating: Int = 0, //
+		comment: String = "This is a comment"
+	): SpotReviewPO {
+		val spotReview = SpotReviewPO(spot, user, rating, comment)
+		this.spotReviewDAO.save(spotReview)
+		return spotReview
+
 	}
 
 }

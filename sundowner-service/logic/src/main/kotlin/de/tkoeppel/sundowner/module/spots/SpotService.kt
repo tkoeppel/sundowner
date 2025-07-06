@@ -1,15 +1,17 @@
 package de.tkoeppel.sundowner.module.spots
 
-import de.tkoeppel.sundowner.basetype.SpotStatus
+import de.tkoeppel.sundowner.basetype.spots.SpotStatus
 import de.tkoeppel.sundowner.dao.SpotDAO
-import de.tkoeppel.sundowner.exceptions.LimitExceededException
+import de.tkoeppel.sundowner.dao.SpotReviewDAO
 import de.tkoeppel.sundowner.mapper.SpotMapper
+import de.tkoeppel.sundowner.module.geocoding.GeoCodingService
 import de.tkoeppel.sundowner.po.SpotPO
+import de.tkoeppel.sundowner.to.spots.CoordinateTO
 import de.tkoeppel.sundowner.to.spots.CreateSpotTO
 import de.tkoeppel.sundowner.to.spots.MapSpotTO
+import de.tkoeppel.sundowner.util.SpotNameUtil
 import org.locationtech.jts.geom.Coordinate
 import org.springframework.beans.factory.annotation.Autowired
-import org.springframework.context.annotation.Bean
 import org.springframework.stereotype.Service
 import java.time.ZonedDateTime
 
@@ -22,39 +24,55 @@ class SpotService {
 	@Autowired
 	private lateinit var spotDAO: SpotDAO
 
+	@Autowired
+	private lateinit var spotReviewDAO: SpotReviewDAO
+
+
+	@Autowired
+	private lateinit var geoCodingService: GeoCodingService
+
 	fun getPointsInView(limit: Int, minX: Double, minY: Double, maxX: Double, maxY: Double): List<MapSpotTO> {
 		if (limit < 0 || limit > LIMIT_CEILING) {
 			throw LimitExceededException("Limit must be between 0 and $LIMIT_CEILING")
 		}
 
-		val pos = this.spotDAO.findPointsInBoundingBox(limit, minX, minY, maxX, maxY)
+		val spots = this.spotDAO.findPointsInBoundingBox(limit, minX, minY, maxX, maxY)
 		val mapper = SpotMapper()
 		val tos: MutableList<MapSpotTO> = mutableListOf<MapSpotTO>()
-		for (po in pos) {
-			tos.add(mapper.mapMapSpot(po))
+		val spotId2AvgRating = this.spotReviewDAO.getAverageRatingBySpotIds(spots.map { it.id })
+			.associate { it.getSpotId() to it.getAverageRating() }
+
+		for (spot in spots) {
+			tos.add(mapper.mapMapSpot(spot, spotId2AvgRating[spot.id]))
 		}
 
 		return tos.toList()
 	}
 
 	fun createSpot(createSpotTO: CreateSpotTO): Long {
-		// TODO check for nearby point min. 10m or sth. allowed
-		// TODO check for inappropiate description
 
-		val name = "" // TODO Reverse Geocode?
-		val coordinate = Coordinate(createSpotTO.location.lng, createSpotTO.location.lat)
+		val revGeoCodeAddress = this.geoCodingService.reverseGeocode(createSpotTO.location)?.address
+		val name = SpotNameUtil.getSpotName(createSpotTO.type, createSpotTO.location, revGeoCodeAddress)
+
 		val po = SpotPO(
 			createSpotTO.type,
-			coordinate,
+			Coordinate(createSpotTO.location.lng, createSpotTO.location.lat),
 			name,
 			createSpotTO.description,
-			0.0,
 			"" /* TODO */,
 			ZonedDateTime.now(),
 			createSpotTO.transport,
-			SpotStatus.DRAFT)
+			SpotStatus.DRAFT
+		)
 		val saved = this.spotDAO.save(po)
 		return saved.id
+	}
+
+	private fun checkSpotsNearby(location: CoordinateTO, radiusInMeters: Int) {
+		val spotsNearby = this.spotDAO.findPointsNearby(location.lng, location.lat, 10)
+		if (!spotsNearby.isEmpty()) {
+			throw IllegalArgumentException()
+		}
 	}
 
 }

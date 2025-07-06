@@ -26,7 +26,7 @@ class GetPointsInViewTest : SpotTestBase() {
 	@Test
 	fun `get single point`() {
 		// pre
-		val po = create(name = "point", location = Coordinate(0.0, 0.0))
+		val po = createSpot(name = "point", location = Coordinate(0.0, 0.0))
 
 		// act
 		val tos = getPoints()
@@ -43,7 +43,9 @@ class GetPointsInViewTest : SpotTestBase() {
 		val pos = mutableListOf<SpotPO>()
 		for (i in 0..<amount) {
 			val coord = i * 00.1
-			pos.add(create(name = "point$i", location = Coordinate(coord, coord), avgRating = 10.0 - i))
+			val spot = createSpot(name = "point$i", location = Coordinate(coord, coord))
+			createReview(spot = spot, rating = 5 - i)
+			pos.add(spot)
 		}
 
 		// act
@@ -59,8 +61,8 @@ class GetPointsInViewTest : SpotTestBase() {
 	@Test
 	fun `get some points`() {
 		// pre
-		val po = create(name = "point 1", location = Coordinate(0.0, 0.0))
-		create(name = "point 2", location = Coordinate(2.0, 2.0))
+		val po = createSpot(name = "point 1", location = Coordinate(0.0, 0.0))
+		createSpot(name = "point 2", location = Coordinate(2.0, 2.0))
 
 		// act
 		val tos = getPoints()
@@ -73,10 +75,10 @@ class GetPointsInViewTest : SpotTestBase() {
 	@Test
 	fun `get points outside of box`() {
 		// pre
-		create(name = "point 1", location = Coordinate(2.0, 2.0))
-		create(name = "point 2", location = Coordinate(2.0, -2.0))
-		create(name = "point 3", location = Coordinate(-2.0, 2.0))
-		create(name = "point 4", location = Coordinate(-2.0, -2.0))
+		createSpot(name = "point 1", location = Coordinate(2.0, 2.0))
+		createSpot(name = "point 2", location = Coordinate(2.0, -2.0))
+		createSpot(name = "point 3", location = Coordinate(-2.0, 2.0))
+		createSpot(name = "point 4", location = Coordinate(-2.0, -2.0))
 
 		// act
 		val tos = getPoints()
@@ -99,10 +101,14 @@ class GetPointsInViewTest : SpotTestBase() {
 	@Test
 	fun `get points on edge`() {
 		// pre
-		val po1 = create(name = "point 1", location = Coordinate(1.0, 1.0), avgRating = 10.0)
-		val po2 = create(name = "point 2", location = Coordinate(1.0, -1.0), avgRating = 9.0)
-		val po3 = create(name = "point 3", location = Coordinate(-1.0, 1.0), avgRating = 8.0)
-		val po4 = create(name = "point 4", location = Coordinate(-1.0, -1.0), avgRating = 7.0)
+		val po1 = createSpot(name = "point 1", location = Coordinate(1.0, 1.0))
+		createReview(spot = po1, rating = 5)
+		val po2 = createSpot(name = "point 2", location = Coordinate(1.0, -1.0))
+		createReview(spot = po2, rating = 4)
+		val po3 = createSpot(name = "point 3", location = Coordinate(-1.0, 1.0))
+		createReview(spot = po3, rating = 3)
+		val po4 = createSpot(name = "point 4", location = Coordinate(-1.0, -1.0))
+		createReview(spot = po4, rating = 2)
 
 		// act
 		val tos = getPoints()
@@ -118,7 +124,7 @@ class GetPointsInViewTest : SpotTestBase() {
 	@Test
 	fun `get point with invalid box`() {
 		// pre
-		create(name = "point", location = Coordinate(0.0, 0.0))
+		createSpot(name = "point", location = Coordinate(0.0, 0.0))
 
 		// act
 		val tos = getPoints(10, 1.0, 1.0, -1.0 - 1.0)
@@ -130,7 +136,7 @@ class GetPointsInViewTest : SpotTestBase() {
 	@Test
 	fun `get points with 0 limit`() {
 		// pre
-		create(name = "point", location = Coordinate(0.0, 0.0))
+		createSpot(name = "point", location = Coordinate(0.0, 0.0))
 
 		// act
 		val tos = getPoints(limit = 0)
@@ -143,7 +149,7 @@ class GetPointsInViewTest : SpotTestBase() {
 	@ValueSource(strings = ["-1", "100000"])
 	fun `get points with invalid limit`(limit: String) {
 		// pre
-		create(name = "point", location = Coordinate(0.0, 0.0))
+		createSpot(name = "point", location = Coordinate(0.0, 0.0))
 
 		// act, post
 		val builder = get(GET_SPOTS_PATH).contentType(MediaType.APPLICATION_JSON).param("limit", limit)
@@ -156,8 +162,10 @@ class GetPointsInViewTest : SpotTestBase() {
 	fun `get points with limit`() {
 		// pre
 		val limit = 1
-		val po = create(name = "point 1", location = Coordinate(0.0, 0.0), avgRating = 10.0)
-		create(name = "point 2", location = Coordinate(0.0, 0.0), avgRating = 0.0)
+		val po = createSpot(name = "point 1", location = Coordinate(0.0, 0.0))
+		createReview(spot = po, rating = 5)
+		val po2 = createSpot(name = "point 2", location = Coordinate(0.0, 0.0))
+		createReview(spot = po, rating = 0)
 
 		// act
 		val tos = getPoints(limit = limit)
@@ -165,6 +173,69 @@ class GetPointsInViewTest : SpotTestBase() {
 		// post
 		assertThat(tos.size).isEqualTo(limit)
 		SpotAssert.assert(tos[0], po)
+	}
+
+	@Test
+	fun `get point with specific average rating`() {
+		// pre
+		val expectedRating = 8.5
+		val po = createSpot(name = "point with rating", location = Coordinate(0.5, 0.5))
+		createReview(spot = po, rating = 8)
+		createReview(spot = po, rating = 9)
+
+
+		// act
+		val tos = getPoints()
+
+		// post
+		assertThat(tos).hasSize(1)
+		val resultTO = tos.first()
+		SpotAssert.assert(resultTO, po)
+		assertThat(resultTO.avgRating).isEqualTo(expectedRating)
+	}
+
+	@Test
+	fun `get point with no reviews should have null rating`() {
+		// pre
+		val po = createSpot(name = "point without rating", location = Coordinate(0.5, 0.5))
+
+		// act
+		val tos = getPoints()
+
+		// post
+		assertThat(tos).hasSize(1)
+		val resultTO = tos.first()
+		SpotAssert.assert(resultTO, po)
+		assertThat(resultTO.avgRating).isNull()
+	}
+
+	@Test
+	fun `get points with and without ratings`() {
+		// pre
+		val poWithRating1 = createSpot(name = "point 1", location = Coordinate(0.1, 0.1))
+		createReview(poWithRating1, rating = 9)
+		val poWithoutRating =
+			createSpot(name = "point 2", location = Coordinate(0.2, 0.2)) // No avgRating -> no reviews
+		val poWithRating2 = createSpot(name = "point 3", location = Coordinate(0.3, 0.3))
+		createReview(poWithRating1, rating = 8)
+
+		// act
+		val tos = getPoints()
+
+		// post
+		assertThat(tos).hasSize(3)
+		// The DAO is expected to sort by rating DESC, with NULLS LAST
+		// 1. poWithRating1 (9.0)
+		// 2. poWithRating2 (8.0)
+		// 3. poWithoutRating (null)
+		SpotAssert.assert(tos[0], poWithRating1)
+		assertThat(tos[0].avgRating).isEqualTo(9.0)
+
+		SpotAssert.assert(tos[1], poWithRating2)
+		assertThat(tos[1].avgRating).isEqualTo(8.0)
+
+		SpotAssert.assert(tos[2], poWithoutRating)
+		assertThat(tos[2].avgRating).isNull()
 	}
 
 	private fun getPoints(

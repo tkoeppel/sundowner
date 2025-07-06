@@ -4,19 +4,42 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a1856a26-3204-4700-b309-975dd197607f" name="Changes" comment="outsourced DTO parts into a common module">
-      <change afterPath="$PROJECT_DIR$/common/src/main/kotlin/de/tkoeppel/sundowner/basetype/SpotStatus.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/common/src/main/kotlin/de/tkoeppel/sundowner/to/spots/CreateSpotTO.kt" afterDir="false" />
+    <list default="true" id="a1856a26-3204-4700-b309-975dd197607f" name="Changes" comment="Upgrade libs and added GeoCoding Service">
+      <change afterPath="$PROJECT_DIR$/common/src/main/kotlin/de/tkoeppel/sundowner/basetype/jobs/JobState.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common/src/main/kotlin/de/tkoeppel/sundowner/basetype/spots/AddressType.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common/src/main/kotlin/de/tkoeppel/sundowner/basetype/spots/SpotType.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/src/main/kotlin/de/tkoeppel/sundowner/dao/SpotAverageRating.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/logic/src/main/kotlin/de/tkoeppel/sundowner/configuration/HttpClientConfiguration.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/logic/src/main/kotlin/de/tkoeppel/sundowner/module/geocoding/GeoCodingException.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/logic/src/main/kotlin/de/tkoeppel/sundowner/module/geocoding/ReverseGeocodeAdress.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/logic/src/main/kotlin/de/tkoeppel/sundowner/module/spots/LimitExceededException.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/logic/src/main/kotlin/de/tkoeppel/sundowner/util/SpotNameUtil.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/kotlin/de/tkoeppel/sundowner/basetype/SpotType.kt" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/kotlin/de/tkoeppel/sundowner/basetype/SpotType.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/kotlin/de/tkoeppel/sundowner/to/spots/CoordinateTO.kt" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/kotlin/de/tkoeppel/sundowner/to/spots/CoordinateTO.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/kotlin/de/tkoeppel/sundowner/basetype/JobState.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/kotlin/de/tkoeppel/sundowner/basetype/SpotStatus.kt" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/kotlin/de/tkoeppel/sundowner/basetype/spots/SpotStatus.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/kotlin/de/tkoeppel/sundowner/basetype/SpotType.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/kotlin/de/tkoeppel/sundowner/basetype/TransportType.kt" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/kotlin/de/tkoeppel/sundowner/basetype/spots/TransportType.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/kotlin/de/tkoeppel/sundowner/to/jobs/JobTO.kt" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/kotlin/de/tkoeppel/sundowner/to/jobs/JobTO.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/kotlin/de/tkoeppel/sundowner/to/spots/CreateSpotTO.kt" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/kotlin/de/tkoeppel/sundowner/to/spots/CreateSpotTO.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/kotlin/de/tkoeppel/sundowner/to/spots/MapSpotTO.kt" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/kotlin/de/tkoeppel/sundowner/to/spots/MapSpotTO.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/data/build.gradle.kts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/src/main/kotlin/de/tkoeppel/sundowner/dao/SpotDAO.kt" beforeDir="false" afterPath="$PROJECT_DIR$/data/src/main/kotlin/de/tkoeppel/sundowner/dao/SpotDAO.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/src/main/kotlin/de/tkoeppel/sundowner/dao/SpotReviewDAO.kt" beforeDir="false" afterPath="$PROJECT_DIR$/data/src/main/kotlin/de/tkoeppel/sundowner/dao/SpotReviewDAO.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/data/src/main/kotlin/de/tkoeppel/sundowner/po/SpotPO.kt" beforeDir="false" afterPath="$PROJECT_DIR$/data/src/main/kotlin/de/tkoeppel/sundowner/po/SpotPO.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/src/main/kotlin/de/tkoeppel/sundowner/po/SpotReviewPO.kt" beforeDir="false" afterPath="$PROJECT_DIR$/data/src/main/kotlin/de/tkoeppel/sundowner/po/SpotReviewPO.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/data/src/main/resources/db/create_tables.sql" beforeDir="false" afterPath="$PROJECT_DIR$/data/src/main/resources/db/create_tables.sql" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/gradle/libs.versions.toml" beforeDir="false" afterPath="$PROJECT_DIR$/gradle/libs.versions.toml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/logic/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/logic/build.gradle.kts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/logic/src/main/kotlin/de/tkoeppel/sundowner/api/SpotsApi.kt" beforeDir="false" afterPath="$PROJECT_DIR$/logic/src/main/kotlin/de/tkoeppel/sundowner/api/SpotsApi.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/logic/src/main/kotlin/de/tkoeppel/sundowner/module/spots/SpotEndpoint.kt" beforeDir="false" afterPath="$PROJECT_DIR$/logic/src/main/kotlin/de/tkoeppel/sundowner/module/spots/SpotEndpoint.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/integrationtest/src/main/kotlin/de/tkoeppel/sundowner/assertion/SpotAssert.kt" beforeDir="false" afterPath="$PROJECT_DIR$/integrationtest/src/main/kotlin/de/tkoeppel/sundowner/assertion/SpotAssert.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/integrationtest/src/main/kotlin/de/tkoeppel/sundowner/module/spots/SpotTestBase.kt" beforeDir="false" afterPath="$PROJECT_DIR$/integrationtest/src/main/kotlin/de/tkoeppel/sundowner/module/spots/SpotTestBase.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/integrationtest/src/test/kotlin/de/tkoeppel/sundowner/module/spots/GetPointsInViewTest.kt" beforeDir="false" afterPath="$PROJECT_DIR$/integrationtest/src/test/kotlin/de/tkoeppel/sundowner/module/spots/GetPointsInViewTest.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/integrationtest/src/test/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/integrationtest/src/test/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/logic/src/main/kotlin/de/tkoeppel/sundowner/exceptions/GlobalExceptionHandler.kt" beforeDir="false" afterPath="$PROJECT_DIR$/logic/src/main/kotlin/de/tkoeppel/sundowner/exceptions/GlobalExceptionHandler.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/logic/src/main/kotlin/de/tkoeppel/sundowner/exceptions/LimitExceededException.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/logic/src/main/kotlin/de/tkoeppel/sundowner/mapper/SpotMapper.kt" beforeDir="false" afterPath="$PROJECT_DIR$/logic/src/main/kotlin/de/tkoeppel/sundowner/mapper/SpotMapper.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/logic/src/main/kotlin/de/tkoeppel/sundowner/module/geocoding/GeoCodingService.kt" beforeDir="false" afterPath="$PROJECT_DIR$/logic/src/main/kotlin/de/tkoeppel/sundowner/module/geocoding/GeoCodingService.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/logic/src/main/kotlin/de/tkoeppel/sundowner/module/geocoding/ReverseGeocodeResponse.kt" beforeDir="false" afterPath="$PROJECT_DIR$/logic/src/main/kotlin/de/tkoeppel/sundowner/module/geocoding/ReverseGeoCodeDetails.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/logic/src/main/kotlin/de/tkoeppel/sundowner/module/spots/SpotService.kt" beforeDir="false" afterPath="$PROJECT_DIR$/logic/src/main/kotlin/de/tkoeppel/sundowner/module/spots/SpotService.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/logic/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/logic/src/main/resources/application.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -42,12 +65,15 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Kotlin Data Class" />
-        <option value="Kotlin Interface" />
-        <option value="Kotlin Class" />
         <option value="Class" />
         <option value="Kotlin Enum" />
+        <option value="Kotlin Interface" />
+        <option value="Kotlin Class" />
       </list>
     </option>
+  </component>
+  <component name="FormatOnSaveOptions">
+    <option name="myRunOnSave" value="true" />
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
@@ -65,6 +91,12 @@
     &quot;accountId&quot;: &quot;ebc7ca20-ff78-4983-ab21-d3e5bb33c5ef&quot;
   }
 }</component>
+  <component name="OptimizeOnSaveOptions">
+    <option name="myRunOnSave" value="true" />
+  </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
   <component name="ProjectColorInfo">{
   &quot;customColor&quot;: &quot;&quot;,
   &quot;associatedIndex&quot;: 5
@@ -80,6 +112,7 @@
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
     &quot;Gradle.Build sundowner-service.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.GetPointsInViewTest.executor&quot;: &quot;Run&quot;,
     &quot;Gradle.Tests in 'de.tkoeppel.sundowner.module.spots'.executor&quot;: &quot;Run&quot;,
     &quot;Gradle.Tests in 'sundowner-service.common.test'.executor&quot;: &quot;Run&quot;,
     &quot;Gradle.Tests in 'sundowner-service.integrationtest.main'.executor&quot;: &quot;Run&quot;,
@@ -87,17 +120,44 @@
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
     &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;com.android.studio.ml.bot.mainConfigurable&quot;
+    &quot;rearrange.code.on.save&quot;: &quot;true&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;actions.on.save&quot;
   }
 }</component>
   <component name="RecentsManager">
     <key name="K2MoveDeclarationsDialog.RECENT_PACKAGE_KEY">
+      <recent name="de.tkoeppel.sundowner.dao" />
+      <recent name="de.tkoeppel.sundowner.basetype.jobs" />
+      <recent name="de.tkoeppel.sundowner.basetype.spots" />
+      <recent name="de.tkoeppel.sundowner.module.spots" />
       <recent name="de.tkoeppel.sundowner.to.spots" />
-      <recent name="de.tkoeppel.sundowner.to.jobs" />
-      <recent name="de.tkoeppel.sundowner.basetype" />
     </key>
   </component>
-  <component name="RunManager" selected="Kotlin.SundownerServiceApplicationKt">
+  <component name="RunManager" selected="Gradle.GetPointsInViewTest">
+    <configuration name="GetPointsInViewTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":integrationtest:test" />
+            <option value="--tests" />
+            <option value="&quot;de.tkoeppel.sundowner.module.spots.GetPointsInViewTest&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>true</RunAsTest>
+      <method v="2" />
+    </configuration>
     <configuration name="Tests in 'de.tkoeppel.sundowner.module.spots'" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -186,6 +246,7 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Gradle.GetPointsInViewTest" />
         <item itemvalue="Kotlin.SundownerServiceApplicationKt" />
         <item itemvalue="Gradle.Tests in 'de.tkoeppel.sundowner.module.spots'" />
         <item itemvalue="Gradle.Tests in 'sundowner-service.integrationtest.main'" />
@@ -226,11 +287,29 @@
       <option name="project" value="LOCAL" />
       <updated>1744057918454</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Spot creation base #32">
+      <option name="closed" value="true" />
+      <created>1751634839856</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1751634839856</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Upgrade libs and added GeoCoding Service">
+      <option name="closed" value="true" />
+      <created>1751658725130</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1751658725130</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="outsourced DTO parts into a common module" />
-    <option name="LAST_COMMIT_MESSAGE" value="outsourced DTO parts into a common module" />
+    <MESSAGE value="Spot creation base #32" />
+    <MESSAGE value="Upgrade libs and added GeoCoding Service" />
+    <option name="LAST_COMMIT_MESSAGE" value="Upgrade libs and added GeoCoding Service" />
   </component>
 </project>

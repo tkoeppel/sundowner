@@ -22,5 +22,5 @@ data class MapSpotTO(
 
 	@Schema(
 		description = "The overall rating of the spot.", minimum = "0", maximum = "10"
-	) val avgRating: Double
+	) val avgRating: Double?
 ) : BaseElementTO
