@@ -14,7 +14,7 @@ CREATE TABLE IF NOT EXISTS spots (
   description TEXT,
   added_by TEXT NOT NULL,
   added_date TIMESTAMP WITH TIME ZONE NOT NULL,
-  transport VARCHAR(255)[] NOT NULL CHECK (transport <@ ARRAY['BY_FOOT', 'CAR', 'BIKE', 'PUBLIC_TRANSPORT']::VARCHAR[]),
+  transport VARCHAR(255)[] NOT NULL CHECK (transport <@ ARRAY['BY_FOOT', 'CAR', 'BIKE', 'PUBLIC_TRANSPORT']::VARCHAR(255)[]),
   status VARCHAR(255) NOT NULL CHECK (status IN ('DRAFT', 'PENDING', 'CONFIRMED', 'REJECTED', 'ARCHIVED'))
 );
 -- set owner
