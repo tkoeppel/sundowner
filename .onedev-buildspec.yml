@@ -1,0 +1,12 @@
+version: 40
+jobs:
+- name: sundowner-service
+  retryCondition: never
+  maxRetries: 3
+  retryDelay: 30
+  timeout: 14400
+- name: sundowner-webapp
+  retryCondition: never
+  maxRetries: 3
+  retryDelay: 30
+  timeout: 14400
