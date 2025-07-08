@@ -2,6 +2,8 @@ package de.tkoeppel.sundowner.module.spots
 
 import com.fasterxml.jackson.core.type.TypeReference
 import de.tkoeppel.sundowner.assertion.SpotAssert
+import de.tkoeppel.sundowner.basetype.spots.SpotStatus
+import de.tkoeppel.sundowner.basetype.spots.SpotType
 import de.tkoeppel.sundowner.po.SpotPO
 import de.tkoeppel.sundowner.to.spots.MapSpotTO
 import org.assertj.core.api.Assertions.assertThat
@@ -33,7 +35,7 @@ class GetPointsInViewTest : SpotTestBase() {
 
 		// post
 		assertThat(tos.size).isEqualTo(1)
-		SpotAssert.assert(tos[0], po)
+		SpotAssert.assert(tos[0], po, null)
 	}
 
 	@Test
@@ -42,8 +44,8 @@ class GetPointsInViewTest : SpotTestBase() {
 		val amount = 5
 		val pos = mutableListOf<SpotPO>()
 		for (i in 0..<amount) {
-			val coord = i * 00.1
-			val spot = createSpot(name = "point$i", location = Coordinate(coord, coord))
+			val coordinate = i * 00.1
+			val spot = createSpot(name = "point$i", location = Coordinate(coordinate, coordinate))
 			createReview(spot = spot, rating = 5 - i)
 			pos.add(spot)
 		}
@@ -54,7 +56,7 @@ class GetPointsInViewTest : SpotTestBase() {
 		// post
 		assertThat(tos.size).isEqualTo(amount)
 		for (i in 0..<amount) {
-			SpotAssert.assert(tos[i], pos[i])
+			SpotAssert.assert(tos[i], pos[i], (5 - i).toDouble())
 		}
 	}
 
@@ -69,7 +71,7 @@ class GetPointsInViewTest : SpotTestBase() {
 
 		// post
 		assertThat(tos.size).isEqualTo(1)
-		SpotAssert.assert(tos[0], po)
+		SpotAssert.assert(tos[0], po, null)
 	}
 
 	@Test
@@ -115,10 +117,10 @@ class GetPointsInViewTest : SpotTestBase() {
 
 		// post
 		assertThat(tos.size).isEqualTo(4)
-		SpotAssert.assert(tos[0], po1)
-		SpotAssert.assert(tos[1], po2)
-		SpotAssert.assert(tos[2], po3)
-		SpotAssert.assert(tos[3], po4)
+		SpotAssert.assert(tos[0], po1, 5.0)
+		SpotAssert.assert(tos[1], po2, 4.0)
+		SpotAssert.assert(tos[2], po3, 3.0)
+		SpotAssert.assert(tos[3], po4, 2.0)
 	}
 
 	@Test
@@ -162,26 +164,28 @@ class GetPointsInViewTest : SpotTestBase() {
 	fun `get points with limit`() {
 		// pre
 		val limit = 1
-		val po = createSpot(name = "point 1", location = Coordinate(0.0, 0.0))
+		val po = createSpot(name = "point 1", location = Coordinate(DEFAULT_MIN_X, 0.0))
 		createReview(spot = po, rating = 5)
-		val po2 = createSpot(name = "point 2", location = Coordinate(0.0, 0.0))
-		createReview(spot = po, rating = 0)
+		val po2 = createSpot(name = "point 2", location = Coordinate(DEFAULT_MAX_X, 0.0))
+		createReview(spot = po2, rating = 0)
+		createSpot(name = "point 3", location = Coordinate(0.0, DEFAULT_MIN_Y))
+
 
 		// act
 		val tos = getPoints(limit = limit)
 
 		// post
 		assertThat(tos.size).isEqualTo(limit)
-		SpotAssert.assert(tos[0], po)
+		SpotAssert.assert(tos[0], po, 5.0)
 	}
 
 	@Test
 	fun `get point with specific average rating`() {
 		// pre
-		val expectedRating = 8.5
+		val expectedRating = 3.5
 		val po = createSpot(name = "point with rating", location = Coordinate(0.5, 0.5))
-		createReview(spot = po, rating = 8)
-		createReview(spot = po, rating = 9)
+		createReview(spot = po, rating = 3)
+		createReview(spot = po, rating = 4)
 
 
 		// act
@@ -190,7 +194,7 @@ class GetPointsInViewTest : SpotTestBase() {
 		// post
 		assertThat(tos).hasSize(1)
 		val resultTO = tos.first()
-		SpotAssert.assert(resultTO, po)
+		SpotAssert.assert(resultTO, po, 3.5)
 		assertThat(resultTO.avgRating).isEqualTo(expectedRating)
 	}
 
@@ -205,7 +209,7 @@ class GetPointsInViewTest : SpotTestBase() {
 		// post
 		assertThat(tos).hasSize(1)
 		val resultTO = tos.first()
-		SpotAssert.assert(resultTO, po)
+		SpotAssert.assert(resultTO, po, null)
 		assertThat(resultTO.avgRating).isNull()
 	}
 
@@ -213,30 +217,86 @@ class GetPointsInViewTest : SpotTestBase() {
 	fun `get points with and without ratings`() {
 		// pre
 		val poWithRating1 = createSpot(name = "point 1", location = Coordinate(0.1, 0.1))
-		createReview(poWithRating1, rating = 9)
+		createReview(poWithRating1, rating = 5)
 		val poWithoutRating =
 			createSpot(name = "point 2", location = Coordinate(0.2, 0.2)) // No avgRating -> no reviews
 		val poWithRating2 = createSpot(name = "point 3", location = Coordinate(0.3, 0.3))
-		createReview(poWithRating1, rating = 8)
+		createReview(poWithRating2, rating = 4)
 
 		// act
 		val tos = getPoints()
 
 		// post
 		assertThat(tos).hasSize(3)
-		// The DAO is expected to sort by rating DESC, with NULLS LAST
-		// 1. poWithRating1 (9.0)
-		// 2. poWithRating2 (8.0)
-		// 3. poWithoutRating (null)
-		SpotAssert.assert(tos[0], poWithRating1)
-		assertThat(tos[0].avgRating).isEqualTo(9.0)
-
-		SpotAssert.assert(tos[1], poWithRating2)
-		assertThat(tos[1].avgRating).isEqualTo(8.0)
-
-		SpotAssert.assert(tos[2], poWithoutRating)
-		assertThat(tos[2].avgRating).isNull()
+		SpotAssert.assert(tos[0], poWithRating1, 5.0)
+		SpotAssert.assert(tos[1], poWithRating2, 4.0)
+		SpotAssert.assert(tos[2], poWithoutRating, null)
 	}
+
+	@Test
+	fun `get only confirmed points and ignore others`() {
+		// pre
+		val confirmedSpot = createSpot(
+			name = "A confirmed spot", location = Coordinate(0.1, 0.1), status = SpotStatus.CONFIRMED
+		)
+		createSpot(
+			name = "A pending spot", location = Coordinate(0.2, 0.2), status = SpotStatus.PENDING
+		)
+
+		// act
+		val tos = getPoints()
+
+		// post
+		assertThat(tos).hasSize(1)
+		SpotAssert.assert(tos[0], confirmedSpot, null)
+	}
+
+	@Test
+	fun `get only sunset type points and ignore others`() {
+		// pre
+		val sunsetSpot = createSpot(
+			name = "A sunset spot", location = Coordinate(0.1, 0.1), type = SpotType.SUNSET
+		)
+		createSpot(
+			name = "A sunrise spot", location = Coordinate(0.2, 0.2), type = SpotType.SUNRISE
+		)
+
+		// act
+		val tos = getPoints()
+
+		// post
+		assertThat(tos).hasSize(1)
+		SpotAssert.assert(tos[0], sunsetSpot, null)
+	}
+
+	@Test
+	fun `get only points that are confirmed and of type sunset`() {
+		// pre
+		val expectedSpot = createSpot(
+			name = "The one", location = Coordinate(0.1, 0.1), status = SpotStatus.CONFIRMED, type = SpotType.SUNSET
+		)
+		// Other spots that should be filtered out
+		createSpot(
+			name = "Pending sunset",
+			location = Coordinate(0.2, 0.2),
+			status = SpotStatus.PENDING,
+			type = SpotType.SUNSET
+		)
+		createSpot(
+			name = "Confirmed sunrise",
+			location = Coordinate(0.3, 0.3),
+			status = SpotStatus.CONFIRMED,
+			type = SpotType.SUNRISE
+		)
+
+		// act
+		val tos = getPoints()
+
+		// post
+		assertThat(tos).hasSize(1)
+		SpotAssert.assert(tos[0], expectedSpot, null)
+	}
+
 
 	private fun getPoints(
 		limit: Int = DEFAULT_LIMIT,

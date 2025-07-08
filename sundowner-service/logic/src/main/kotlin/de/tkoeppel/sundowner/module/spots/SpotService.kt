@@ -2,7 +2,6 @@ package de.tkoeppel.sundowner.module.spots
 
 import de.tkoeppel.sundowner.basetype.spots.SpotStatus
 import de.tkoeppel.sundowner.dao.SpotDAO
-import de.tkoeppel.sundowner.dao.SpotReviewDAO
 import de.tkoeppel.sundowner.mapper.SpotMapper
 import de.tkoeppel.sundowner.module.geocoding.GeoCodingService
 import de.tkoeppel.sundowner.po.SpotPO
@@ -25,10 +24,6 @@ class SpotService {
 	private lateinit var spotDAO: SpotDAO
 
 	@Autowired
-	private lateinit var spotReviewDAO: SpotReviewDAO
-
-
-	@Autowired
 	private lateinit var geoCodingService: GeoCodingService
 
 	fun getPointsInView(limit: Int, minX: Double, minY: Double, maxX: Double, maxY: Double): List<MapSpotTO> {
@@ -36,17 +31,10 @@ class SpotService {
 			throw LimitExceededException("Limit must be between 0 and $LIMIT_CEILING")
 		}
 
-		val spots = this.spotDAO.findPointsInBoundingBox(limit, minX, minY, maxX, maxY)
-		val mapper = SpotMapper()
-		val tos: MutableList<MapSpotTO> = mutableListOf<MapSpotTO>()
-		val spotId2AvgRating = this.spotReviewDAO.getAverageRatingBySpotIds(spots.map { it.id })
-			.associate { it.getSpotId() to it.getAverageRating() }
+		val tos = this.spotDAO.findPointsInBoundingBox(limit, minX, minY, maxX, maxY)
+			.map { so -> SpotMapper().mapMapSpot(so) }
 
-		for (spot in spots) {
-			tos.add(mapper.mapMapSpot(spot, spotId2AvgRating[spot.id]))
-		}
-
-		return tos.toList()
+		return tos
 	}
 
 	fun createSpot(createSpotTO: CreateSpotTO): Long {

@@ -1,6 +1,7 @@
 package de.tkoeppel.sundowner.dao
 
 import de.tkoeppel.sundowner.po.SpotPO
+import de.tkoeppel.sundowner.so.MapSpotSO
 import org.springframework.data.jpa.repository.JpaRepository
 import org.springframework.data.jpa.repository.Query
 
@@ -12,16 +13,30 @@ import org.springframework.data.jpa.repository.Query
 interface SpotDAO : JpaRepository<SpotPO, Long> {
 	@Query(
 		nativeQuery = true, value = """
-        SELECT *
-        FROM spots
-        WHERE ST_Covers(ST_MakeEnvelope(:minX, :minY, :maxX, :maxY, 4326), location)
-        ORDER BY average_rating DESC NULLS LAST 
-        LIMIT :limit;
+        SELECT
+            s.id,
+            s.name, 
+			ST_X(s.location) AS longitude,
+            ST_Y(s.location) AS latitude,
+            AVG(r.rating) AS avgRating
+        FROM
+            spots s
+        LEFT JOIN
+            spot_reviews r ON s.id = r.spot_id
+        WHERE
+            ST_Covers(ST_MakeEnvelope(:minX, :minY, :maxX, :maxY, 4326), s.location)
+            AND s.status = 'CONFIRMED'
+            AND s.type = 'SUNSET'
+        GROUP BY
+            s.id
+        ORDER BY
+            avgRating DESC NULLS LAST
+        LIMIT :limit
     """
 	)
 	fun findPointsInBoundingBox(
 		limit: Int, minX: Double, minY: Double, maxX: Double, maxY: Double
-	): List<SpotPO>
+	): List<MapSpotSO>
 
 	@Query(
 		nativeQuery = true, value = """

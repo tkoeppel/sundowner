@@ -27,7 +27,7 @@ open class SpotTestBase : SundownerServiceTestBase() {
 		description: String = "This is a fun place",
 		addedBy: String = "sunset_enjoyer",
 		addedDate: ZonedDateTime = ZonedDateTime.now(),
-		transport: List<TransportType> = listOf<TransportType>(TransportType.BY_FOOT, TransportType.BIKE),
+		transport: List<TransportType> = listOf(TransportType.BY_FOOT, TransportType.BIKE),
 		status: SpotStatus = SpotStatus.CONFIRMED
 	): SpotPO {
 		val spot = SpotPO(type, location, name, description, addedBy, addedDate, transport, status)

@@ -1,7 +1,3 @@
--- Install postgis as sundowner_@DBTAGLOWERCASE user
-CREATE EXTENSION IF NOT EXISTS postgis;
-CREATE EXTENSION IF NOT EXISTS postgis_topology;
-
 -- Create Tables
 START TRANSACTION;
 

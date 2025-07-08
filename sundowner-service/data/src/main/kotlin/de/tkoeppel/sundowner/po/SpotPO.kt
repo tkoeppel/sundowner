@@ -29,5 +29,10 @@ data class SpotPO(
 		name = "transport", nullable = false
 	) @ElementCollection @Enumerated(EnumType.STRING) val transport: List<TransportType>,
 
-	@Column(name = "status", nullable = false) @Enumerated(EnumType.STRING) val status: SpotStatus
+	@Column(name = "status", nullable = false) @Enumerated(EnumType.STRING) val status: SpotStatus,
+
+	@OneToMany(
+		mappedBy = "spot", cascade = [CascadeType.REMOVE], orphanRemoval = true
+	) val reviews: List<SpotReviewPO> = emptyList()
+
 ) : BasePO()
