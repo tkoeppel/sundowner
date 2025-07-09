@@ -5,18 +5,17 @@ version: 8
 # Define reusable step templates
 stepTemplates:
   - name: "codecov-upload"
-    steps:
-      - name: "Upload Coverage to Codecov"
-        uses: "command" # Explicitly define this as a command step
-        image: "alpine"
-        commands: |
-          # Download and execute the Codecov uploader
-          apk add --no-cache curl
-          curl -Os https://uploader.codecov.io/latest/linux/codecov
-          chmod +x codecov
-          ./codecov -t ${get('secret:CODECOV_TOKEN')} -f "@file@" -F "@flag@" -n "@name@" --slug "tkoeppel/sundowner" --fail-ci-if-error
-        # Note: The 'get' function is OneDev's way to securely access secrets.
-        # You need to create a secret named 'CODECOV_TOKEN' in your OneDev project settings.
+    # The properties of the step are defined directly in the template, not under a 'steps' block.
+    uses: "command" 
+    image: "alpine"
+    commands: |
+      # Download and execute the Codecov uploader
+      apk add --no-cache curl
+      curl -Os https://uploader.codecov.io/latest/linux/codecov
+      chmod +x codecov
+      ./codecov -t ${get('secret:CODECOV_TOKEN')} -f "@file@" -F "@flag@" -n "@name@" --slug "tkoeppel/sundowner" --fail-ci-if-error
+    # Note: The 'get' function is OneDev's way to securely access secrets.
+    # You need to create a secret named 'CODECOV_TOKEN' in your OneDev project settings.
 
 # Define the jobs to be executed in the pipeline
 jobs:
