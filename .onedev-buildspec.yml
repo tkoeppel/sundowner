@@ -6,7 +6,8 @@ version: 8
 jobs:
   # Job for building and testing the Java backend service
   - name: "Sundowner Service"
-    # Use a base image with Java 21. We will install psql client at runtime.
+    # The job executor specifies how/where the job runs. For Docker, it defines the image.
+    jobExecutor: "docker"
     image: "eclipse-temurin:21-jdk"
     # Define services needed for this job, similar to 'services' in GitHub Actions
     services:
@@ -80,7 +81,7 @@ jobs:
 
   # Job for building and testing the Angular frontend
   - name: "Sundowner Webapp"
-    # Use a Node.js image that matches the required version
+    jobExecutor: "docker"
     image: "node:22"
     steps:
       - name: "Checkout Code"
