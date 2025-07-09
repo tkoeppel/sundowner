@@ -6,10 +6,12 @@ version: 8
 jobs:
   # Job for building and testing the Java backend service
   - name: "Sundowner Service"
-    # The jobExecutor block defines how the job runs. The image is a property of the executor.
+    # The jobExecutor block defines how the job runs. 
+    # The image is specified as a parameter for the docker executor.
     jobExecutor:
       name: "docker"
-      image: "eclipse-temurin:21-jdk"
+      params:
+        image: "eclipse-temurin:21-jdk"
     # Define services needed for this job
     services:
       - name: "postgres"
@@ -80,7 +82,8 @@ jobs:
   - name: "Sundowner Webapp"
     jobExecutor:
       name: "docker"
-      image: "node:22"
+      params:
+        image: "node:22"
     steps:
       - name: "Checkout Code"
         uses: "checkout"
