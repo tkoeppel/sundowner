@@ -1,14 +1,19 @@
-version: 40
-imports:
-  - name: codecov-upload
+---
+# OneDev Build Specification v4
+version: 4
+
+# Define reusable step templates
+stepTemplates:
+  - name: "codecov-upload"
     steps:
       - name: "Upload Coverage to Codecov"
         image: "alpine"
         commands: |
           # Download and execute the Codecov uploader
-          wget https://uploader.codecov.io/latest/linux/codecov -O codecov
+          apk add --no-cache curl
+          curl -Os https://uploader.codecov.io/latest/linux/codecov
           chmod +x codecov
-          ./codecov -t ${get('secret:CODECOV_TOKEN')} -f "@file@" -F "@flag@" -n "@name@" --slug "tkoeppel/sundowner" --fail-on-error
+          ./codecov -t ${get('secret:CODECOV_TOKEN')} -f "@file@" -F "@flag@" -n "@name@" --slug "tkoeppel/sundowner" --fail-ci-if-error
         # Note: The 'get' function is OneDev's way to securely access secrets.
         # You need to create a secret named 'CODECOV_TOKEN' in your OneDev project settings.
 
@@ -16,8 +21,7 @@ imports:
 jobs:
   # Job for building and testing the Java backend service
   - name: "Sundowner Service"
-    # Use a base image with Java 21 and psql client installed.
-    # A custom Docker image might be more efficient here, but for simplicity, we install psql at runtime.
+    # Use a base image with Java 21. We will install psql client at runtime.
     image: "eclipse-temurin:21-jdk"
     # Define services needed for this job, similar to 'services' in GitHub Actions
     services:
@@ -35,7 +39,7 @@ jobs:
             value: "postgres"
         # Readiness check to ensure the service is running before steps proceed
         readinessCheck:
-          command: "pg_isready"
+          command: "pg_isready -U postgres"
           # OneDev uses a simpler readiness check; the health options from GHA are implicit.
 
     # Steps to execute for this job
@@ -43,33 +47,28 @@ jobs:
       - name: "Checkout Code"
         uses: "checkout" # OneDev's built-in checkout action
 
-      - name: "Install psql Client"
-        # The base temurin image doesn't have psql, so we install it.
-        # For long-term use, creating a custom Docker image with all dependencies is recommended.
-        image: "ubuntu:latest" # Use a different image just for this step
-        commands: |
-          apt-get update
-          apt-get install -y postgresql-client
-          
-      - name: "Setup Database"
-        # This setupScript runs before the main commands. It's a good place for preparatory work.
+      - name: "Prepare Database and Run Migrations"
+        # This setupScript runs before the main commands. It installs dependencies and prepares the DB.
         setupScript: |
           #!/bin/bash
-          
-          # Wait a moment for postgres to be fully available
-          sleep 10
-          
-          # Replace placeholders in SQL files, equivalent to 'gha-find-replace'
+          set -ex # Exit on error and print commands
+
+          echo "--> Installing PostgreSQL client..."
+          apt-get update && apt-get install -y postgresql-client
+
+          echo "--> Waiting for database service to be ready..."
+          # The service is available on localhost from the job's perspective
+          until pg_isready -h localhost -U postgres; do
+            echo "Postgres is unavailable - sleeping"
+            sleep 1
+          done
+          echo "--> Database is ready."
+
           echo "--> Replacing placeholders in SQL files..."
-          # Use find and sed for replacement. Note the use of different delimiters for sed.
           find sundowner-service/data/src/main/resources/db -type f -name "*.sql" -exec sed -i 's|@DBTAGLOWERCASE|test|g' {} +
           find sundowner-service/data/src/main/resources/db -type f -name "*.sql" -exec sed -i 's|@DBTAGUPPERCASE|TEST|g' {} +
           
-          # Set environment variables for psql commands
           export PGPASSWORD=postgres
-
-          # Execute SQL scripts to set up the database schema
-          # Note: The postgres service is available on 'localhost' inside the job environment.
           echo "--> Creating user..."
           psql -v ON_ERROR_STOP=1 --username="postgres" --host="localhost" -f sundowner-service/data/src/main/resources/db/create_user.sql
           
@@ -79,9 +78,7 @@ jobs:
           echo "--> Creating extensions..."
           psql -v ON_ERROR_STOP=1 --username="postgres" --host="localhost" --dbname="sundowner_test_db" -f sundowner-service/data/src/main/resources/db/create_extensions.sql
           
-          # Change password for the next step
           export PGPASSWORD=SUNDOWNER_TEST
-          
           echo "--> Creating tables..."
           psql -v ON_ERROR_STOP=1 --username="sundowner_test" --host="localhost" --dbname="sundowner_test_db" -f sundowner-service/data/src/main/resources/db/create_tables.sql
 
@@ -157,4 +154,3 @@ triggers:
     branches:
       - "master"
       - "release/**"
-
