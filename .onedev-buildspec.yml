@@ -1,12 +1,159 @@
-version: 40
+imports:
+  - name: codecov-upload
+    steps:
+      - name: "Upload Coverage to Codecov"
+        image: "alpine"
+        commands: |
+          # Download and execute the Codecov uploader
+          wget https://uploader.codecov.io/latest/linux/codecov -O codecov
+          chmod +x codecov
+          ./codecov -t ${get('secret:CODECOV_TOKEN')} -f "@file@" -F "@flag@" -n "@name@" --slug "tkoeppel/sundowner" --fail-on-error
+        # Note: The 'get' function is OneDev's way to securely access secrets.
+        # You need to create a secret named 'CODECOV_TOKEN' in your OneDev project settings.
+
+# Define the jobs to be executed in the pipeline
 jobs:
-- name: sundowner-service
-  retryCondition: never
-  maxRetries: 3
-  retryDelay: 30
-  timeout: 14400
-- name: sundowner-webapp
-  retryCondition: never
-  maxRetries: 3
-  retryDelay: 30
-  timeout: 14400
+  # Job for building and testing the Java backend service
+  - name: "Sundowner Service"
+    # Use a base image with Java 21 and psql client installed.
+    # A custom Docker image might be more efficient here, but for simplicity, we install psql at runtime.
+    image: "eclipse-temurin:21-jdk"
+    # Define services needed for this job, similar to 'services' in GitHub Actions
+    services:
+      - name: "postgres"
+        image: "postgis/postgis:17-master"
+        # Environment variables for the postgres service
+        environments:
+          - name: "PGUSER"
+            value: "postgres"
+          - name: "PGPASSWORD"
+            value: "postgres"
+          - name: "POSTGRES_USER"
+            value: "postgres"
+          - name: "POSTGRES_PASSWORD"
+            value: "postgres"
+        # Readiness check to ensure the service is running before steps proceed
+        readinessCheck:
+          command: "pg_isready"
+          # OneDev uses a simpler readiness check; the health options from GHA are implicit.
+
+    # Steps to execute for this job
+    steps:
+      - name: "Checkout Code"
+        uses: "checkout" # OneDev's built-in checkout action
+
+      - name: "Install psql Client"
+        # The base temurin image doesn't have psql, so we install it.
+        # For long-term use, creating a custom Docker image with all dependencies is recommended.
+        image: "ubuntu:latest" # Use a different image just for this step
+        commands: |
+          apt-get update
+          apt-get install -y postgresql-client
+          
+      - name: "Setup Database"
+        # This setupScript runs before the main commands. It's a good place for preparatory work.
+        setupScript: |
+          #!/bin/bash
+          
+          # Wait a moment for postgres to be fully available
+          sleep 10
+          
+          # Replace placeholders in SQL files, equivalent to 'gha-find-replace'
+          echo "--> Replacing placeholders in SQL files..."
+          # Use find and sed for replacement. Note the use of different delimiters for sed.
+          find sundowner-service/data/src/main/resources/db -type f -name "*.sql" -exec sed -i 's|@DBTAGLOWERCASE|test|g' {} +
+          find sundowner-service/data/src/main/resources/db -type f -name "*.sql" -exec sed -i 's|@DBTAGUPPERCASE|TEST|g' {} +
+          
+          # Set environment variables for psql commands
+          export PGPASSWORD=postgres
+
+          # Execute SQL scripts to set up the database schema
+          # Note: The postgres service is available on 'localhost' inside the job environment.
+          echo "--> Creating user..."
+          psql -v ON_ERROR_STOP=1 --username="postgres" --host="localhost" -f sundowner-service/data/src/main/resources/db/create_user.sql
+          
+          echo "--> Creating database..."
+          psql -v ON_ERROR_STOP=1 --username="postgres" --host="localhost" -f sundowner-service/data/src/main/resources/db/create_database.sql
+          
+          echo "--> Creating extensions..."
+          psql -v ON_ERROR_STOP=1 --username="postgres" --host="localhost" --dbname="sundowner_test_db" -f sundowner-service/data/src/main/resources/db/create_extensions.sql
+          
+          # Change password for the next step
+          export PGPASSWORD=SUNDOWNER_TEST
+          
+          echo "--> Creating tables..."
+          psql -v ON_ERROR_STOP=1 --username="sundowner_test" --host="localhost" --dbname="sundowner_test_db" -f sundowner-service/data/src/main/resources/db/create_tables.sql
+
+      - name: "Build and Test with JaCoCo"
+        # Command to run the build and tests
+        commands: |
+          cd sundowner-service
+          ./gradlew build --scan
+        # Publish test and coverage reports to OneDev for visualization
+        reports:
+          - type: "JACOCO_COVERAGE"
+            filePatterns: "sundowner-service/build/reports/jacoco/jacocoRootReport/jacocoRootReport.xml"
+          - type: "JUNIT_TEST"
+            filePatterns: "sundowner-service/build/test-results/test/*.xml"
+
+      - name: "Upload Backend Coverage"
+        # Use the reusable template defined at the top
+        uses: "step-template:codecov-upload"
+        # Pass parameters to the template
+        params:
+          - name: "file"
+            value: "sundowner-service/build/reports/jacoco/jacocoRootReport/jacocoRootReport.xml"
+          - name: "flag"
+            value: "Backend"
+          - name: "name"
+            value: "Sundowner Service Coverage"
+
+  # Job for building and testing the Angular frontend
+  - name: "Sundowner Webapp"
+    # Use a Node.js image that matches the required version
+    image: "node:22"
+    steps:
+      - name: "Checkout Code"
+        uses: "checkout"
+
+      - name: "Install Dependencies, Build, Lint, and Test"
+        # Combine npm steps for efficiency
+        commands: |
+          cd sundowner-webapp
+          npm install
+          npm run build -- --configuration=test
+          npm run lint
+          # The test command generates a Cobertura coverage report
+          npm run test -- --coverage --watch=false --browsers=ChromeHeadless
+        # Publish coverage and test reports to OneDev
+        reports:
+          - type: "COBERTURA_COVERAGE"
+            filePatterns: "sundowner-webapp/coverage/cobertura-coverage.xml"
+          - type: "JUNIT_TEST"
+            filePatterns: "sundowner-webapp/coverage/junit.xml" # Assuming test runner generates JUnit report
+
+      - name: "Upload Frontend Coverage"
+        uses: "step-template:codecov-upload"
+        params:
+          - name: "file"
+            value: "sundowner-webapp/coverage/cobertura-coverage.xml"
+          - name: "flag"
+            value: "Frontend"
+          - name: "name"
+            value: "Sundowner Webapp Coverage"
+
+# Define triggers that will run this pipeline
+triggers:
+  # Trigger for pushes to specific branches
+  - type: "BRANCH_PUSH"
+    branches: 
+      - "master"
+      - "feature/**"
+      - "bugfix/**"
+      - "release/**"
+  # Trigger for pull requests targeting specific branches
+  - type: "PULL_REQUEST"
+    branches:
+      - "master"
+      - "release/**"
+
