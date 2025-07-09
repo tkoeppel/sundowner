@@ -2,21 +2,6 @@
 # OneDev Build Specification v8
 version: 8
 
-# Define reusable step templates
-stepTemplates:
-  - name: "codecov-upload"
-    # The properties of the step are defined directly in the template, not under a 'steps' block.
-    uses: "command" 
-    image: "alpine"
-    commands: |
-      # Download and execute the Codecov uploader
-      apk add --no-cache curl
-      curl -Os https://uploader.codecov.io/latest/linux/codecov
-      chmod +x codecov
-      ./codecov -t ${get('secret:CODECOV_TOKEN')} -f "@file@" -F "@flag@" -n "@name@" --slug "tkoeppel/sundowner" --fail-ci-if-error
-    # Note: The 'get' function is OneDev's way to securely access secrets.
-    # You need to create a secret named 'CODECOV_TOKEN' in your OneDev project settings.
-
 # Define the jobs to be executed in the pipeline
 jobs:
   # Job for building and testing the Java backend service
@@ -40,7 +25,6 @@ jobs:
         # Readiness check to ensure the service is running before steps proceed
         readinessCheck:
           command: "pg_isready -U postgres"
-          # OneDev uses a simpler readiness check; the health options from GHA are implicit.
 
     # The setupScript runs before any steps. It prepares the environment and database.
     setupScript: |
@@ -94,18 +78,6 @@ jobs:
           - type: "TEST_JUNIT"
             filePatterns: "sundowner-service/build/test-results/test/*.xml"
 
-      - name: "Upload Backend Coverage"
-        # Use the reusable template defined at the top
-        uses: "step-template:codecov-upload"
-        # Pass parameters to the template
-        params:
-          - name: "file"
-            value: "sundowner-service/build/reports/jacoco/jacocoRootReport/jacocoRootReport.xml"
-          - name: "flag"
-            value: "Backend"
-          - name: "name"
-            value: "Sundowner Service Coverage"
-
   # Job for building and testing the Angular frontend
   - name: "Sundowner Webapp"
     # Use a Node.js image that matches the required version
@@ -130,16 +102,6 @@ jobs:
             filePatterns: "sundowner-webapp/coverage/cobertura-coverage.xml"
           - type: "TEST_JUNIT"
             filePatterns: "sundowner-webapp/coverage/junit.xml" # Assuming test runner generates JUnit report
-
-      - name: "Upload Frontend Coverage"
-        uses: "step-template:codecov-upload"
-        params:
-          - name: "file"
-            value: "sundowner-webapp/coverage/cobertura-coverage.xml"
-          - name: "flag"
-            value: "Frontend"
-          - name: "name"
-            value: "Sundowner Webapp Coverage"
 
 # Define triggers that will run this pipeline
 triggers:
