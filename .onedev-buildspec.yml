@@ -1,3 +1,4 @@
+version: 40
 imports:
   - name: codecov-upload
     steps:
