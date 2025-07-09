@@ -1,6 +1,6 @@
 ---
-# OneDev Build Specification v4
-version: 4
+# OneDev Build Specification v8
+version: 8
 
 # Define reusable step templates
 stepTemplates:
@@ -88,10 +88,10 @@ jobs:
           cd sundowner-service
           ./gradlew build --scan
         # Publish test and coverage reports to OneDev for visualization
-        reports:
-          - type: "JACOCO_COVERAGE"
+        publishReports:
+          - type: "COVERAGE_JACOCO"
             filePatterns: "sundowner-service/build/reports/jacoco/jacocoRootReport/jacocoRootReport.xml"
-          - type: "JUNIT_TEST"
+          - type: "TEST_JUNIT"
             filePatterns: "sundowner-service/build/test-results/test/*.xml"
 
       - name: "Upload Backend Coverage"
@@ -124,10 +124,10 @@ jobs:
           # The test command generates a Cobertura coverage report
           npm run test -- --coverage --watch=false --browsers=ChromeHeadless
         # Publish coverage and test reports to OneDev
-        reports:
-          - type: "COBERTURA_COVERAGE"
+        publishReports:
+          - type: "COVERAGE_COBERTURA"
             filePatterns: "sundowner-webapp/coverage/cobertura-coverage.xml"
-          - type: "JUNIT_TEST"
+          - type: "TEST_JUNIT"
             filePatterns: "sundowner-webapp/coverage/junit.xml" # Assuming test runner generates JUnit report
 
       - name: "Upload Frontend Coverage"
