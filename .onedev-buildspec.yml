@@ -7,6 +7,7 @@ stepTemplates:
   - name: "codecov-upload"
     steps:
       - name: "Upload Coverage to Codecov"
+        uses: "command" # Explicitly define this as a command step
         image: "alpine"
         commands: |
           # Download and execute the Codecov uploader
@@ -42,47 +43,47 @@ jobs:
           command: "pg_isready -U postgres"
           # OneDev uses a simpler readiness check; the health options from GHA are implicit.
 
+    # The setupScript runs before any steps. It prepares the environment and database.
+    setupScript: |
+      #!/bin/bash
+      set -ex # Exit on error and print commands
+
+      echo "--> Installing PostgreSQL client..."
+      apt-get update && apt-get install -y postgresql-client
+
+      echo "--> Waiting for database service to be ready..."
+      # The service is available on localhost from the job's perspective
+      until pg_isready -h localhost -U postgres; do
+        echo "Postgres is unavailable - sleeping"
+        sleep 1
+      done
+      echo "--> Database is ready."
+
+      echo "--> Replacing placeholders in SQL files..."
+      find sundowner-service/data/src/main/resources/db -type f -name "*.sql" -exec sed -i 's|@DBTAGLOWERCASE|test|g' {} +
+      find sundowner-service/data/src/main/resources/db -type f -name "*.sql" -exec sed -i 's|@DBTAGUPPERCASE|TEST|g' {} +
+      
+      export PGPASSWORD=postgres
+      echo "--> Creating user..."
+      psql -v ON_ERROR_STOP=1 --username="postgres" --host="localhost" -f sundowner-service/data/src/main/resources/db/create_user.sql
+      
+      echo "--> Creating database..."
+      psql -v ON_ERROR_STOP=1 --username="postgres" --host="localhost" -f sundowner-service/data/src/main/resources/db/create_database.sql
+      
+      echo "--> Creating extensions..."
+      psql -v ON_ERROR_STOP=1 --username="postgres" --host="localhost" --dbname="sundowner_test_db" -f sundowner-service/data/src/main/resources/db/create_extensions.sql
+      
+      export PGPASSWORD=SUNDOWNER_TEST
+      echo "--> Creating tables..."
+      psql -v ON_ERROR_STOP=1 --username="sundowner_test" --host="localhost" --dbname="sundowner_test_db" -f sundowner-service/data/src/main/resources/db/create_tables.sql
+
     # Steps to execute for this job
     steps:
       - name: "Checkout Code"
         uses: "checkout" # OneDev's built-in checkout action
 
-      - name: "Prepare Database and Run Migrations"
-        # This setupScript runs before the main commands. It installs dependencies and prepares the DB.
-        setupScript: |
-          #!/bin/bash
-          set -ex # Exit on error and print commands
-
-          echo "--> Installing PostgreSQL client..."
-          apt-get update && apt-get install -y postgresql-client
-
-          echo "--> Waiting for database service to be ready..."
-          # The service is available on localhost from the job's perspective
-          until pg_isready -h localhost -U postgres; do
-            echo "Postgres is unavailable - sleeping"
-            sleep 1
-          done
-          echo "--> Database is ready."
-
-          echo "--> Replacing placeholders in SQL files..."
-          find sundowner-service/data/src/main/resources/db -type f -name "*.sql" -exec sed -i 's|@DBTAGLOWERCASE|test|g' {} +
-          find sundowner-service/data/src/main/resources/db -type f -name "*.sql" -exec sed -i 's|@DBTAGUPPERCASE|TEST|g' {} +
-          
-          export PGPASSWORD=postgres
-          echo "--> Creating user..."
-          psql -v ON_ERROR_STOP=1 --username="postgres" --host="localhost" -f sundowner-service/data/src/main/resources/db/create_user.sql
-          
-          echo "--> Creating database..."
-          psql -v ON_ERROR_STOP=1 --username="postgres" --host="localhost" -f sundowner-service/data/src/main/resources/db/create_database.sql
-          
-          echo "--> Creating extensions..."
-          psql -v ON_ERROR_STOP=1 --username="postgres" --host="localhost" --dbname="sundowner_test_db" -f sundowner-service/data/src/main/resources/db/create_extensions.sql
-          
-          export PGPASSWORD=SUNDOWNER_TEST
-          echo "--> Creating tables..."
-          psql -v ON_ERROR_STOP=1 --username="sundowner_test" --host="localhost" --dbname="sundowner_test_db" -f sundowner-service/data/src/main/resources/db/create_tables.sql
-
       - name: "Build and Test with JaCoCo"
+        uses: "command" # Explicitly define this as a command step
         # Command to run the build and tests
         commands: |
           cd sundowner-service
@@ -115,6 +116,7 @@ jobs:
         uses: "checkout"
 
       - name: "Install Dependencies, Build, Lint, and Test"
+        uses: "command" # Explicitly define this as a command step
         # Combine npm steps for efficiency
         commands: |
           cd sundowner-webapp
