@@ -2,7 +2,6 @@ dependencies {
 	implementation(project(":common"))
 	implementation(project(":data"))
 
-	implementation(libs.spring.boot.starter.test)
 	implementation(libs.spring.boot.starter.data.jpa)
 	implementation(libs.jts.core)
 	implementation(libs.hibernate.spatial)
@@ -10,7 +9,7 @@ dependencies {
 	implementation(libs.jackson.module.kotlin)
 	implementation(libs.spring.boot.starter.security)
 
-	testImplementation(libs.bundles.test)
+	implementation(libs.bundles.test)
 	testImplementation(libs.spring.boot.starter.web)
 
 	testRuntimeOnly(project(":logic"))

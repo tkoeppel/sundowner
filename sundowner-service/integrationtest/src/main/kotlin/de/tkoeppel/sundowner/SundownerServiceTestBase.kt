@@ -7,9 +7,10 @@ import de.tkoeppel.sundowner.dao.SpotDAO
 import de.tkoeppel.sundowner.dao.SpotReviewDAO
 import de.tkoeppel.sundowner.dao.UserDAO
 import de.tkoeppel.sundowner.po.UserPO
+import jakarta.annotation.PostConstruct
 import jakarta.transaction.Transactional
 import org.assertj.core.api.Assertions.assertThat
-import org.junit.jupiter.api.BeforeEach
+import org.junit.jupiter.api.AfterEach
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc
 import org.springframework.boot.test.context.SpringBootTest
@@ -23,7 +24,7 @@ import org.springframework.test.web.servlet.RequestBuilder
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers.status
 import java.time.ZonedDateTime
 
-@Transactional
+
 @AutoConfigureMockMvc
 @SpringBootTest
 open class SundownerServiceTestBase {
@@ -59,7 +60,8 @@ open class SundownerServiceTestBase {
 	protected lateinit var user: UserPO
 
 
-	@BeforeEach
+	@Transactional
+	@PostConstruct
 	fun createUsers() {
 		val admin = UserPO(
 			"admin",
@@ -80,6 +82,14 @@ open class SundownerServiceTestBase {
 			setOf("ROLE_USER")
 		)
 		this.user = this.userDAO.save(user)
+	}
+
+	@Transactional
+	@AfterEach
+	fun resetDatabase() {
+		this.spotDAO.deleteAll()
+		this.userDAO.deleteAll()
+		this.spotReviewDAO.deleteAll()
 	}
 
 	protected fun setUpUser(userToSet: UserPO): Unit {

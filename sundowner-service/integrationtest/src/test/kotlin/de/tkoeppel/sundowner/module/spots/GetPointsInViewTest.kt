@@ -6,14 +6,16 @@ import de.tkoeppel.sundowner.basetype.spots.SpotStatus
 import de.tkoeppel.sundowner.basetype.spots.SpotType
 import de.tkoeppel.sundowner.po.SpotPO
 import de.tkoeppel.sundowner.to.spots.MapSpotTO
+import jakarta.transaction.Transactional
 import org.assertj.core.api.Assertions.assertThat
+import org.junit.jupiter.api.Test
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.ValueSource
 import org.locationtech.jts.geom.Coordinate
 import org.springframework.http.MediaType
+import org.springframework.security.test.context.support.WithUserDetails
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers.status
-import kotlin.test.Test
 
 class GetPointsInViewTest : SpotTestBase() {
 	companion object {
@@ -297,7 +299,35 @@ class GetPointsInViewTest : SpotTestBase() {
 		SpotAssert.assert(tos[0], expectedSpot, null)
 	}
 
+	@WithUserDetails("user")
+	@Test
+	fun `get points as user`() {
+		// pre
+		val po = createSpot(name = "point", location = Coordinate(0.0, 0.0))
 
+		// act
+		val tos = getPoints()
+
+		// post
+		assertThat(tos.size).isEqualTo(1)
+		SpotAssert.assert(tos[0], po, null)
+	}
+
+	@WithUserDetails("admin")
+	@Test
+	fun `get points as admin`() {
+		// pre
+		val po = createSpot(name = "point", location = Coordinate(0.0, 0.0))
+
+		// act
+		val tos = getPoints()
+
+		// post
+		assertThat(tos.size).isEqualTo(1)
+		SpotAssert.assert(tos[0], po, null)
+	}
+
+	@Transactional
 	private fun getPoints(
 		limit: Int = DEFAULT_LIMIT,
 		minX: Double = DEFAULT_MIN_X,

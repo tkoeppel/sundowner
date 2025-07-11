@@ -7,7 +7,6 @@ import de.tkoeppel.sundowner.basetype.spots.TransportType
 import de.tkoeppel.sundowner.po.SpotPO
 import de.tkoeppel.sundowner.po.SpotReviewPO
 import de.tkoeppel.sundowner.po.UserPO
-import org.junit.jupiter.api.BeforeEach
 import org.locationtech.jts.geom.Coordinate
 import java.time.ZonedDateTime
 
@@ -16,10 +15,6 @@ open class SpotTestBase : SundownerServiceTestBase() {
 
 	protected val GET_SPOTS_PATH: String = "$GET_PATH/public/"
 
-	@BeforeEach
-	fun beforeEachTest() {
-		this.spotDAO.deleteAll()
-	}
 
 	protected fun createSpot(
 		type: SpotType = SpotType.SUNSET,
