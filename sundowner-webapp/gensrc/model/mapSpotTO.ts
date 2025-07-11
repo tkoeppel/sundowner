@@ -19,6 +19,9 @@ export interface MapSpotTO {
      * The ID of the element.
      */
     id: number;
+    /**
+     * The location of the spot.
+     */
     location: CoordinateTO;
     /**
      * The name given to the spot.
@@ -27,6 +30,6 @@ export interface MapSpotTO {
     /**
      * The overall rating of the spot.
      */
-    avgRating: number;
+    avgRating?: number;
 }
 

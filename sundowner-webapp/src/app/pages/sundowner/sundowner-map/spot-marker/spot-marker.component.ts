@@ -19,8 +19,12 @@ export class SpotMarkerComponent implements OnInit {
 
   ngOnInit() {
     if (this.spot) {
-      this.finalDashoffset =
-        this.circumference * (1 - this.spot.avgRating / 10);
+      if (!this.spot.avgRating) {
+        this.finalDashoffset = 0;
+      } else {
+        this.finalDashoffset =
+          this.circumference * (1 - this.spot.avgRating / 10);
+      }
     }
   }
 }

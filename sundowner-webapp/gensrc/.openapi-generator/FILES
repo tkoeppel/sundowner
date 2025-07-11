@@ -8,6 +8,7 @@ encoder.ts
 git_push.sh
 index.ts
 model/coordinateTO.ts
+model/createSpotRequest.ts
 model/mapSpotTO.ts
 model/models.ts
 param.ts
