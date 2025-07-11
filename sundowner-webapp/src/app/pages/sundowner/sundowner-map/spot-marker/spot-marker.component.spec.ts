@@ -34,7 +34,7 @@ describe('SpotMarkerComponent', () => {
     component.spot = mockSpot;
     component.ngOnInit();
     const expectedDashoffset =
-      component.circumference * (1 - mockSpot.avgRating / 10);
+      component.circumference * (1 - mockSpot.avgRating! / 10);
     expect(component.finalDashoffset).toBe(expectedDashoffset);
   });
 
@@ -64,22 +64,31 @@ describe('SpotMarkerComponent', () => {
       avgRating: 0,
     };
 
+    const mockSpot4: MapSpotTO = {
+      id: 4,
+      name: 'Test Spot 4',
+      location: { lat: 20, lng: 60 },
+      avgRating: undefined,
+    };
+
     component.spot = mockSpot1;
     component.ngOnInit();
     expect(component.finalDashoffset).toBeCloseTo(
-      component.circumference * (1 - mockSpot1.avgRating / 10)
+      component.circumference * (1 - mockSpot1.avgRating! / 10)
     );
 
     component.spot = mockSpot2;
     component.ngOnInit();
     expect(component.finalDashoffset).toBeCloseTo(
-      component.circumference * (1 - mockSpot2.avgRating / 10)
+      component.circumference * (1 - mockSpot2.avgRating! / 10)
     );
 
     component.spot = mockSpot3;
     component.ngOnInit();
-    expect(component.finalDashoffset).toBeCloseTo(
-      component.circumference * (1 - mockSpot3.avgRating / 10)
-    );
+    expect(component.finalDashoffset).toBeCloseTo(component.circumference * 1);
+
+    component.spot = mockSpot4;
+    component.ngOnInit();
+    expect(component.finalDashoffset).toBeCloseTo(component.circumference * 1);
   });
 });
