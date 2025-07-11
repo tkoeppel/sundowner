@@ -24,7 +24,7 @@ class WebSecurityConfig {
 	@Bean
 	fun filterChain(http: HttpSecurity): SecurityFilterChain {
 		http.authorizeHttpRequests { authorize ->
-			authorize.requestMatchers("/api/v1/*/public/**").permitAll() //
+			authorize.requestMatchers("/api/v1/*/public/**", "/api/v1/api-docs").permitAll() //
 				.anyRequest().authenticated()
 		}.formLogin { } //
 			.cors(Customizer.withDefaults())

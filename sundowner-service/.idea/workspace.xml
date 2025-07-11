@@ -4,14 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a1856a26-3204-4700-b309-975dd197607f" name="Changes" comment="public and private api methods management #46">
+    <list default="true" id="a1856a26-3204-4700-b309-975dd197607f" name="Changes" comment="refactoring and more user specific test #46">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/data/build.gradle.kts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/integrationtest/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/integrationtest/build.gradle.kts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/integrationtest/src/main/kotlin/de/tkoeppel/sundowner/SundownerServiceTestBase.kt" beforeDir="false" afterPath="$PROJECT_DIR$/integrationtest/src/main/kotlin/de/tkoeppel/sundowner/SundownerServiceTestBase.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/integrationtest/src/main/kotlin/de/tkoeppel/sundowner/module/spots/SpotTestBase.kt" beforeDir="false" afterPath="$PROJECT_DIR$/integrationtest/src/main/kotlin/de/tkoeppel/sundowner/module/spots/SpotTestBase.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/integrationtest/src/test/kotlin/de/tkoeppel/sundowner/module/spots/GetPointsInViewTest.kt" beforeDir="false" afterPath="$PROJECT_DIR$/integrationtest/src/test/kotlin/de/tkoeppel/sundowner/module/spots/GetPointsInViewTest.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gradle/libs.versions.toml" beforeDir="false" afterPath="$PROJECT_DIR$/gradle/libs.versions.toml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/logic/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/logic/build.gradle.kts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/logic/src/main/kotlin/de/tkoeppel/sundowner/security/web/WebSecurityConfig.kt" beforeDir="false" afterPath="$PROJECT_DIR$/logic/src/main/kotlin/de/tkoeppel/sundowner/security/web/WebSecurityConfig.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -109,7 +106,7 @@
       <recent name="de.tkoeppel.sundowner.module.spots" />
     </key>
   </component>
-  <component name="RunManager" selected="Gradle.GetPointsInViewTest">
+  <component name="RunManager" selected="Kotlin.SundownerServiceApplicationKt">
     <configuration name="GetPointsInViewTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -226,11 +223,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Kotlin.SundownerServiceApplicationKt" />
         <item itemvalue="Gradle.GetPointsInViewTest" />
         <item itemvalue="Gradle.GetPointsInViewTest.get multiple points" />
         <item itemvalue="Gradle.GetPointsInViewTest.get points as admin" />
         <item itemvalue="Gradle.GetPointsInViewTest.get single point" />
-        <item itemvalue="Kotlin.SundownerServiceApplicationKt" />
       </list>
     </recent_temporary>
   </component>
@@ -331,7 +328,15 @@
       <option name="project" value="LOCAL" />
       <updated>1752267044317</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="refactoring and more user specific test #46">
+      <option name="closed" value="true" />
+      <created>1752270126893</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1752270126893</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -343,6 +348,7 @@
     <MESSAGE value="gitignore adjustment" />
     <MESSAGE value="user management #46" />
     <MESSAGE value="public and private api methods management #46" />
-    <option name="LAST_COMMIT_MESSAGE" value="public and private api methods management #46" />
+    <MESSAGE value="refactoring and more user specific test #46" />
+    <option name="LAST_COMMIT_MESSAGE" value="refactoring and more user specific test #46" />
   </component>
 </project>

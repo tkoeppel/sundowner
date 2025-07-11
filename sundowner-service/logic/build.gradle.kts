@@ -1,9 +1,7 @@
 val mockitoAgent = configurations.create("mockitoAgent")
 
 dependencies {
-	implementation(libs.spring.boot.starter.web)
-	implementation(libs.spring.boot.starter.data.jpa)
-	implementation(libs.spring.boot.starter.security)
+	implementation(libs.bundles.spring.boot)
 	implementation(libs.jackson.module.kotlin)
 	implementation(libs.minio)
 	implementation(libs.httpclient5)
