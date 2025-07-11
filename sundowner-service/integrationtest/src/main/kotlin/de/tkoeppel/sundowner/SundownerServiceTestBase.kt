@@ -5,21 +5,34 @@ import com.fasterxml.jackson.databind.ObjectMapper
 import de.tkoeppel.sundowner.dao.PhotoDAO
 import de.tkoeppel.sundowner.dao.SpotDAO
 import de.tkoeppel.sundowner.dao.SpotReviewDAO
+import de.tkoeppel.sundowner.dao.UserDAO
+import de.tkoeppel.sundowner.po.UserPO
+import jakarta.transaction.Transactional
 import org.assertj.core.api.Assertions.assertThat
+import org.junit.jupiter.api.BeforeEach
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc
 import org.springframework.boot.test.context.SpringBootTest
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken
+import org.springframework.security.core.context.SecurityContextHolder
+import org.springframework.security.core.userdetails.UserDetailsService
+import org.springframework.security.crypto.password.PasswordEncoder
 import org.springframework.test.web.servlet.MockMvc
 import org.springframework.test.web.servlet.MvcResult
 import org.springframework.test.web.servlet.RequestBuilder
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers.status
+import java.time.ZonedDateTime
 
+@Transactional
 @AutoConfigureMockMvc
 @SpringBootTest
 open class SundownerServiceTestBase {
 
 	@Autowired
 	protected lateinit var spotDAO: SpotDAO
+
+	@Autowired
+	protected lateinit var userDAO: UserDAO
 
 	@Autowired
 	protected lateinit var spotReviewDAO: SpotReviewDAO
@@ -33,8 +46,48 @@ open class SundownerServiceTestBase {
 	@Autowired
 	protected lateinit var mapper: ObjectMapper
 
+	@Autowired
+	protected lateinit var passwordEncoder: PasswordEncoder
+
+	@Autowired
+	private lateinit var userDetailsService: UserDetailsService
+
 	protected val API_VERSION = "v1"
 	protected val API_PATH = "/api/" + API_VERSION
+
+	protected lateinit var admin: UserPO
+	protected lateinit var user: UserPO
+
+	@BeforeEach
+	fun setupUsers() {
+		val admin = UserPO(
+			"admin",
+			this.passwordEncoder.encode("admin_password"),
+			"admin@sundowner.de",
+			true,
+			ZonedDateTime.now(),
+			setOf("ROLE_ADMIN", "ROLE_USER")
+		)
+		this.admin = this.userDAO.save(admin)
+
+		val user = UserPO(
+			"user",
+			this.passwordEncoder.encode("user_password"),
+			"user@sundowner.de",
+			true,
+			ZonedDateTime.now(),
+			setOf("ROLE_USER")
+		)
+		this.user = this.userDAO.save(user)
+
+		val userDetails = userDetailsService.loadUserByUsername(this.user.username)
+
+		val authentication = UsernamePasswordAuthenticationToken(
+			userDetails, null, // No credentials needed
+			userDetails.authorities
+		)
+		SecurityContextHolder.getContext().authentication = authentication
+	}
 
 
 	protected fun <T> convertToTO(result: MvcResult, typeRef: TypeReference<T>): T {

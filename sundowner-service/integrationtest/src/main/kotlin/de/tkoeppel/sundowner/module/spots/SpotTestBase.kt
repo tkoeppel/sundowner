@@ -6,6 +6,7 @@ import de.tkoeppel.sundowner.basetype.spots.SpotType
 import de.tkoeppel.sundowner.basetype.spots.TransportType
 import de.tkoeppel.sundowner.po.SpotPO
 import de.tkoeppel.sundowner.po.SpotReviewPO
+import de.tkoeppel.sundowner.po.UserPO
 import org.junit.jupiter.api.BeforeEach
 import org.locationtech.jts.geom.Coordinate
 import java.time.ZonedDateTime
@@ -25,7 +26,7 @@ open class SpotTestBase : SundownerServiceTestBase() {
 		location: Coordinate = Coordinate(0.0, 0.0),
 		name: String = "My Spot",
 		description: String = "This is a fun place",
-		addedBy: String = "sunset_enjoyer",
+		addedBy: UserPO = this.user,
 		addedDate: ZonedDateTime = ZonedDateTime.now(),
 		transport: List<TransportType> = listOf(TransportType.BY_FOOT, TransportType.BIKE),
 		status: SpotStatus = SpotStatus.CONFIRMED
@@ -37,7 +38,7 @@ open class SpotTestBase : SundownerServiceTestBase() {
 
 	protected fun createReview(
 		spot: SpotPO, //
-		user: String = "user", // TODO
+		user: UserPO = this.user, //
 		rating: Int = 0, //
 		comment: String = "This is a comment"
 	): SpotReviewPO {

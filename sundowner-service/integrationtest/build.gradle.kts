@@ -1,37 +1,38 @@
 dependencies {
-    implementation(project(":common"))
-    implementation(project(":data"))
+	implementation(project(":common"))
+	implementation(project(":data"))
 
-    implementation(libs.spring.boot.starter.test)
-    implementation(libs.spring.boot.starter.data.jpa)
-    implementation(libs.jts.core)
-    implementation(libs.hibernate.spatial)
-    implementation(libs.jakarta.servlet.api)
-    implementation(libs.jackson.module.kotlin)
+	implementation(libs.spring.boot.starter.test)
+	implementation(libs.spring.boot.starter.data.jpa)
+	implementation(libs.jts.core)
+	implementation(libs.hibernate.spatial)
+	implementation(libs.jakarta.servlet.api)
+	implementation(libs.jackson.module.kotlin)
+	implementation(libs.spring.boot.starter.security)
 
-    testImplementation(libs.bundles.test)
-    testImplementation(libs.spring.boot.starter.web)
+	testImplementation(libs.bundles.test)
+	testImplementation(libs.spring.boot.starter.web)
 
-    testRuntimeOnly(project(":logic"))
+	testRuntimeOnly(project(":logic"))
 }
 
 tasks.test {
-    group = "verification"
-    description = "Runs the integration tests."
+	group = "verification"
+	description = "Runs the integration tests."
 
-    testLogging {
-        events("passed")
-    }
+	testLogging {
+		events("passed")
+	}
 
-    jvmArgs("-XX:+EnableDynamicAgentLoading")
+	jvmArgs("-XX:+EnableDynamicAgentLoading")
 
-    // Set the classes directory to include both main and logic module's output
-    testClassesDirs = files(sourceSets["test"].output.classesDirs, sourceSets["main"].output.classesDirs)
+	// Set the classes directory to include both main and logic module's output
+	testClassesDirs = files(sourceSets["test"].output.classesDirs, sourceSets["main"].output.classesDirs)
 
-    // Ensure the classpath includes the logic module's dependencies
-    classpath = sourceSets["test"].runtimeClasspath + project(":logic").sourceSets["main"].runtimeClasspath
+	// Ensure the classpath includes the logic module's dependencies
+	classpath = sourceSets["test"].runtimeClasspath + project(":logic").sourceSets["main"].runtimeClasspath
 }
 
 tasks.bootJar {
-    enabled = false
+	enabled = false
 }

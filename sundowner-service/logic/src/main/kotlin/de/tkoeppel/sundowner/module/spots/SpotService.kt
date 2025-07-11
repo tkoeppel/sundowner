@@ -2,8 +2,10 @@ package de.tkoeppel.sundowner.module.spots
 
 import de.tkoeppel.sundowner.basetype.spots.SpotStatus
 import de.tkoeppel.sundowner.dao.SpotDAO
+import de.tkoeppel.sundowner.dao.UserDAO
 import de.tkoeppel.sundowner.mapper.SpotMapper
 import de.tkoeppel.sundowner.module.geocoding.GeoCodingService
+import de.tkoeppel.sundowner.module.users.UserBean
 import de.tkoeppel.sundowner.po.SpotPO
 import de.tkoeppel.sundowner.to.spots.CoordinateTO
 import de.tkoeppel.sundowner.to.spots.CreateSpotTO
@@ -24,7 +26,14 @@ class SpotService {
 	private lateinit var spotDAO: SpotDAO
 
 	@Autowired
+	private lateinit var userDAO: UserDAO
+
+	@Autowired
 	private lateinit var geoCodingService: GeoCodingService
+
+	@Autowired
+	private lateinit var userBean: UserBean
+
 
 	fun getPointsInView(limit: Int, minX: Double, minY: Double, maxX: Double, maxY: Double): List<MapSpotTO> {
 		if (limit < 0 || limit > LIMIT_CEILING) {
@@ -38,16 +47,17 @@ class SpotService {
 	}
 
 	fun createSpot(createSpotTO: CreateSpotTO): Long {
-
+		checkSpotsNearby(createSpotTO.location, 10)
 		val revGeoCodeAddress = this.geoCodingService.reverseGeocode(createSpotTO.location)?.address
 		val name = SpotNameUtil.getSpotName(createSpotTO.type, createSpotTO.location, revGeoCodeAddress)
+		val user = this.userDAO.getReferenceById(this.userBean.getCurrentUser()!!.id)
 
 		val po = SpotPO(
 			createSpotTO.type,
 			Coordinate(createSpotTO.location.lng, createSpotTO.location.lat),
 			name,
 			createSpotTO.description,
-			"" /* TODO */,
+			user,
 			ZonedDateTime.now(),
 			createSpotTO.transport,
 			SpotStatus.DRAFT
@@ -57,7 +67,7 @@ class SpotService {
 	}
 
 	private fun checkSpotsNearby(location: CoordinateTO, radiusInMeters: Int) {
-		val spotsNearby = this.spotDAO.findPointsNearby(location.lng, location.lat, 10)
+		val spotsNearby = this.spotDAO.findPointsNearby(location.lng, location.lat, radiusInMeters)
 		if (!spotsNearby.isEmpty()) {
 			throw IllegalArgumentException()
 		}

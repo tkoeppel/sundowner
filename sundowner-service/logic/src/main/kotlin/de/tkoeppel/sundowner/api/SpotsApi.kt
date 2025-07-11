@@ -11,12 +11,9 @@ import io.swagger.v3.oas.annotations.responses.ApiResponses
 import io.swagger.v3.oas.annotations.security.SecurityRequirement
 import io.swagger.v3.oas.annotations.tags.Tag
 import org.springframework.http.ResponseEntity
+import org.springframework.security.access.prepost.PreAuthorize
 import org.springframework.validation.annotation.Validated
-import org.springframework.web.bind.annotation.GetMapping
-import org.springframework.web.bind.annotation.PostMapping
-import org.springframework.web.bind.annotation.RequestBody
-import org.springframework.web.bind.annotation.RequestMapping
-import org.springframework.web.bind.annotation.RequestParam
+import org.springframework.web.bind.annotation.*
 
 @Tag(
 	name = "Spots", description = "API handling all sundowner spot requests."
@@ -25,6 +22,7 @@ import org.springframework.web.bind.annotation.RequestParam
 @RequestMapping("/api/v1/spots")
 interface SpotsApi {
 
+	@PreAuthorize("permitAll()")
 	@Operation(
 		summary = "Get the most relevant points of the provided map viewport.",
 		description = "Retrieves a list of points of interest (spots) located within the given bounding box and filtered based on zoom level and center coordinates.",
@@ -54,28 +52,17 @@ interface SpotsApi {
 		tags = ["Spots"]
 	)
 	@ApiResponses(
-		value = [
-			ApiResponse(
-				responseCode = "201",
-				description = "Spot created successfully",
-				content = [
-					Content(
-						mediaType = "application/json",
-						schema = Schema(type = "integer", format = "int64", example = "123")
-					)
-				]
-			),
-			ApiResponse(
-				responseCode = "400",
-				description = "Invalid input data provided",
-				content = [Content()]
-			),
-			ApiResponse(
-				responseCode = "401",
-				description = "Unauthorized - a valid authentication token is required",
-				content = [Content()]
-			)
-		]
+		value = [ApiResponse(
+			responseCode = "201", description = "Spot created successfully", content = [Content(
+				mediaType = "application/json", schema = Schema(type = "integer", format = "int64", example = "123")
+			)]
+		), ApiResponse(
+			responseCode = "400", description = "Invalid input data provided", content = [Content()]
+		), ApiResponse(
+			responseCode = "401",
+			description = "Unauthorized - a valid authentication token is required",
+			content = [Content()]
+		)]
 	)
 	@SecurityRequirement(name = "bearerAuth")
 	@PostMapping()

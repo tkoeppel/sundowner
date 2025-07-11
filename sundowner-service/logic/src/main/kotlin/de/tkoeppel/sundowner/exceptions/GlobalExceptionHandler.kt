@@ -3,6 +3,7 @@ package de.tkoeppel.sundowner.exceptions
 import de.tkoeppel.sundowner.module.geocoding.GeoCodingException
 import de.tkoeppel.sundowner.module.spots.LimitExceededException
 import de.tkoeppel.sundowner.module.storage.StorageException
+import de.tkoeppel.sundowner.module.users.UsernameNotFoundException
 import de.tkoeppel.sundowner.security.certificate.InvalidCertificateException
 import de.tkoeppel.sundowner.security.tls.TlsException
 import org.springframework.http.HttpStatus
@@ -17,12 +18,22 @@ class GlobalExceptionHandler {
 
 	@ExceptionHandler(LimitExceededException::class)
 	fun handleBadRequestException(
-		exception: LimitExceededException, request: WebRequest
+		exception: Exception, request: WebRequest
 	): ResponseEntity<ErrorDetails> {
 		val errorDetails = ErrorDetails(
 			timestamp = LocalDateTime.now(), message = exception.message, details = request.getDescription(false)
 		)
 		return ResponseEntity(errorDetails, HttpStatus.BAD_REQUEST)
+	}
+
+	@ExceptionHandler(UsernameNotFoundException::class)
+	fun handleNotFoundException(exception: Exception, requestException: WebRequest): ResponseEntity<ErrorDetails> {
+		val errorDetails = ErrorDetails(
+			timestamp = LocalDateTime.now(),
+			message = exception.message,
+			details = requestException.getDescription(false)
+		)
+		return ResponseEntity(errorDetails, HttpStatus.NOT_FOUND)
 	}
 
 	@ExceptionHandler(

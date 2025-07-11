@@ -21,7 +21,7 @@ data class SpotPO(
 
 	@Column(name = "description") val description: String? = null,
 
-	@Column(name = "added_by", nullable = false) val addedBy: String,
+	@ManyToOne(fetch = FetchType.LAZY) @JoinColumn(name = "user_id", nullable = false) val addedBy: UserPO,
 
 	@Column(name = "added_date", nullable = false) val addedDate: ZonedDateTime,
 
