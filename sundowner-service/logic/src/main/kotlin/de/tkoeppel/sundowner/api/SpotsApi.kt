@@ -11,7 +11,6 @@ import io.swagger.v3.oas.annotations.responses.ApiResponses
 import io.swagger.v3.oas.annotations.security.SecurityRequirement
 import io.swagger.v3.oas.annotations.tags.Tag
 import org.springframework.http.ResponseEntity
-import org.springframework.security.access.prepost.PreAuthorize
 import org.springframework.validation.annotation.Validated
 import org.springframework.web.bind.annotation.*
 
@@ -22,7 +21,6 @@ import org.springframework.web.bind.annotation.*
 @RequestMapping("/api/v1/spots")
 interface SpotsApi {
 
-	@PreAuthorize("permitAll()")
 	@Operation(
 		summary = "Get the most relevant points of the provided map viewport.",
 		description = "Retrieves a list of points of interest (spots) located within the given bounding box and filtered based on zoom level and center coordinates.",
@@ -36,7 +34,7 @@ interface SpotsApi {
 		operationId = "getPointsInView",
 		parameters = [Parameter("limit"), Parameter("minX"), Parameter("minY"), Parameter("maxX"), Parameter("maxY")]
 	)
-	@GetMapping()
+	@GetMapping("/public/")
 	fun getPointsInView(
 		@RequestParam(required = true, defaultValue = "10") limit: Int,
 		@RequestParam(required = true) minX: Double,
@@ -65,6 +63,6 @@ interface SpotsApi {
 		)]
 	)
 	@SecurityRequirement(name = "bearerAuth")
-	@PostMapping()
+	@PostMapping("/")
 	fun createSpot(@Validated @RequestBody createSpotTO: CreateSpotTO): ResponseEntity<Long>
 }

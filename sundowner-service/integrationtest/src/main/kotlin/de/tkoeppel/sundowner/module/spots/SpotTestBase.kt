@@ -14,7 +14,7 @@ import java.time.ZonedDateTime
 open class SpotTestBase : SundownerServiceTestBase() {
 	protected val GET_PATH = "$API_PATH/spots"
 
-	protected val GET_SPOTS_PATH: String = GET_PATH
+	protected val GET_SPOTS_PATH: String = "$GET_PATH/public/"
 
 	@BeforeEach
 	fun beforeEachTest() {

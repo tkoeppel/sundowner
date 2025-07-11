@@ -23,8 +23,10 @@ class WebSecurityConfig {
 
 	@Bean
 	fun filterChain(http: HttpSecurity): SecurityFilterChain {
-		http.authorizeHttpRequests { it.anyRequest().authenticated() } //
-			.formLogin { } //
+		http.authorizeHttpRequests { authorize ->
+			authorize.requestMatchers("/api/v1/*/public/**").permitAll() //
+				.anyRequest().authenticated()
+		}.formLogin { } //
 			.cors(Customizer.withDefaults())
 		return http.build()
 	}

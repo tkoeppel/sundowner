@@ -58,8 +58,9 @@ open class SundownerServiceTestBase {
 	protected lateinit var admin: UserPO
 	protected lateinit var user: UserPO
 
+
 	@BeforeEach
-	fun setupUsers() {
+	fun createUsers() {
 		val admin = UserPO(
 			"admin",
 			this.passwordEncoder.encode("admin_password"),
@@ -79,8 +80,10 @@ open class SundownerServiceTestBase {
 			setOf("ROLE_USER")
 		)
 		this.user = this.userDAO.save(user)
+	}
 
-		val userDetails = userDetailsService.loadUserByUsername(this.user.username)
+	protected fun setUpUser(userToSet: UserPO): Unit {
+		val userDetails = userDetailsService.loadUserByUsername(userToSet.username)
 
 		val authentication = UsernamePasswordAuthenticationToken(
 			userDetails, null, // No credentials needed
