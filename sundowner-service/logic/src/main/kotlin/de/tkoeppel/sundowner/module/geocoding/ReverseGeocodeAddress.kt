@@ -2,7 +2,7 @@ package de.tkoeppel.sundowner.module.geocoding
 
 import com.fasterxml.jackson.annotation.JsonProperty
 
-data class ReverseGeocodeAdress(
+data class ReverseGeocodeAddress(
 	@JsonProperty("attraction") val attraction: String?,
 
 	@JsonProperty("house_number") val houseNumber: String?,

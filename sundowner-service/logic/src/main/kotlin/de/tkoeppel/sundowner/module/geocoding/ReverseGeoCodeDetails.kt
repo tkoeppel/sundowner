@@ -17,7 +17,7 @@ data class ReverseGeoCodeDetails(
 
 	@JsonProperty("display_name") val displayName: String,
 
-	@JsonProperty("address") val address: ReverseGeocodeAdress,
+	@JsonProperty("address") val address: ReverseGeocodeAddress,
 
 	@JsonProperty("boundingbox") val boundingBox: List<String>
 )

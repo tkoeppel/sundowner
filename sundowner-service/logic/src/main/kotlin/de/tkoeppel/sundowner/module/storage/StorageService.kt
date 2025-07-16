@@ -8,7 +8,6 @@ import io.minio.MinioClient
 import jakarta.annotation.PostConstruct
 import okhttp3.OkHttpClient
 import org.apache.hc.core5.ssl.SSLContexts
-import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
 import org.springframework.web.multipart.MultipartFile
 import java.io.InputStream
@@ -17,15 +16,11 @@ import javax.net.ssl.X509TrustManager
 
 
 @Service
-class StorageService() : IStorageService {
+class StorageService(private var storageConfig: StorageConfig, private var trustStoreManager: TrustStoreManager) :
+	IStorageService {
 
 	private val logger: java.util.logging.Logger = java.util.logging.Logger.getLogger(StorageService::class.java.name)
 
-	@Autowired
-	private lateinit var storageConfig: StorageConfig
-
-	@Autowired
-	private lateinit var trustStoreManager: TrustStoreManager
 
 	private lateinit var minioClient: MinioClient
 

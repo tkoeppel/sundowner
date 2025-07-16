@@ -12,28 +12,19 @@ import de.tkoeppel.sundowner.to.spots.CreateSpotTO
 import de.tkoeppel.sundowner.to.spots.MapSpotTO
 import de.tkoeppel.sundowner.util.SpotNameUtil
 import org.locationtech.jts.geom.Coordinate
-import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
 import java.time.ZonedDateTime
 
 @Service
-class SpotService {
+class SpotService(
+	private var spotDAO: SpotDAO,
+	private var userDAO: UserDAO,
+	private var geoCodingService: GeoCodingService,
+	private var userBean: UserBean
+) {
 	companion object {
 		private const val LIMIT_CEILING = 50
 	}
-
-	@Autowired
-	private lateinit var spotDAO: SpotDAO
-
-	@Autowired
-	private lateinit var userDAO: UserDAO
-
-	@Autowired
-	private lateinit var geoCodingService: GeoCodingService
-
-	@Autowired
-	private lateinit var userBean: UserBean
-
 
 	fun getPointsInView(limit: Int, minX: Double, minY: Double, maxX: Double, maxY: Double): List<MapSpotTO> {
 		if (limit < 0 || limit > LIMIT_CEILING) {
