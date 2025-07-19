@@ -19,6 +19,7 @@ junit-platform = "1.13.3"
 jackson-module-kotlin = "2.19.1"
 kotlin-logging-jvm = "7.0.7"
 logback-classic = "1.5.18"
+jjwt = "0.12.6"
 
 
 [libraries]
@@ -27,6 +28,7 @@ kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "kotl
 kotlin-spring = { module = "org.jetbrains.kotlin.spring:kotlin-spring", version.ref = "kotlin" }
 kotlin-jvm = { module = "org.jetbrains.kotlin.jvm:kotlin-jvm", version.ref = "kotlin" }
 kotlin-noarg = { module = "org.jetbrains.kotlin:kotlin-noarg", version.ref = "kotlin" }
+kotlin-stdlib = { module = "org.jetbrains.kotlin:kotlin-stdlib", version.ref = "kotlin" }
 kotlinx-coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "kotlinx-coroutines" }
 spring-boot-starter-data-jpa = { module = "org.springframework.boot:spring-boot-starter-data-jpa", version.ref = "spring-boot" }
 spring-boot-starter-web = { module = "org.springframework.boot:spring-boot-starter-web", version.ref = "spring-boot" }
@@ -55,11 +57,15 @@ junit-platform-commons = { module = "org.junit.platform:junit-platform-commons",
 junit-platform-engine = { module = "org.junit.platform:junit-platform-engine", version.ref = "junit-platform" }
 kotlin-logging-jvm = { module = "io.github.oshai:kotlin-logging-jvm", version.ref = "kotlin-logging-jvm" }
 logback-classic = { module = "ch.qos.logback:logback-classic", version.ref = "logback-classic" }
+jjwt-impl = { module = "io.jsonwebtoken:jjwt-impl", version.ref = "jjwt" }
+jjwt-api = { module = "io.jsonwebtoken:jjwt-api", version.ref = "jjwt" }
+jjwt-jackson = { module = "io.jsonwebtoken:jjwt-jackson", version.ref = "jjwt" }
 
 [bundles]
 spring-boot = ["spring-boot-starter-data-jpa", "spring-boot-starter-web", "spring-boot-starter-security"]
 spatial = ["jts-core", "hibernate-spatial", "jackson-datatype-jts"]
 test = ["kotlin-test", "spring-boot-starter-test", "mockito-core", "mockito-junit-jupiter", "assertj-core", "junit-jupiter-api", "junit-jupiter-engine", "junit-platform-launcher", "junit-platform-commons", "junit-platform-engine", "spring-security-test"]
+jwt = ["jjwt-impl", "jjwt-api", "jjwt-jackson"]
 
 [plugins]
 kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }

@@ -7,11 +7,13 @@ CREATE TABLE IF NOT EXISTS users (
   username VARCHAR(255) NOT NULL UNIQUE,
   password VARCHAR(255) NOT NULL,
   email VARCHAR(255) NOT NULL UNIQUE,
-  creation_time TIMESTAMP WITH TIME ZONE NOT NULL,
+  creation_time TIMESTAMPTZ NOT NULL,
   active BOOLEAN NOT NULL DEFAULT FALSE
 );
 -- set owner
 ALTER TABLE users OWNER TO sundowner_@DBTAGLOWERCASE;
+-- index
+CREATE INDEX idx_users_username ON users(username);
 
 -- Create the 'authorities' table for user roles
 CREATE TABLE IF NOT EXISTS authorities (
@@ -22,6 +24,7 @@ CREATE TABLE IF NOT EXISTS authorities (
 -- set owner
 ALTER TABLE authorities OWNER TO sundowner_@DBTAGLOWERCASE;
 
+
 -- Create the 'spots' table
 CREATE TABLE IF NOT EXISTS spots (
   id BIGINT PRIMARY KEY,
@@ -30,14 +33,15 @@ CREATE TABLE IF NOT EXISTS spots (
   name TEXT NOT NULL,
   description TEXT,
   added_by_id BIGINT REFERENCES users(id) NOT NULL,
-  added_date TIMESTAMP WITH TIME ZONE NOT NULL,
+  added_at TIMESTAMPTZ NOT NULL,
   transport VARCHAR(255)[] NOT NULL CHECK (transport <@ ARRAY['BY_FOOT', 'CAR', 'BIKE', 'PUBLIC_TRANSPORT']::VARCHAR(255)[]),
   status VARCHAR(255) NOT NULL CHECK (status IN ('DRAFT', 'PENDING', 'CONFIRMED', 'REJECTED', 'ARCHIVED'))
 );
 -- set owner
 ALTER TABLE spots OWNER TO sundowner_@DBTAGLOWERCASE;
--- spatial index on the 'location' column in 'spots'
-CREATE INDEX scenic_spots_location_idx ON spots USING GIST (location);
+-- index
+CREATE INDEX idx_spots_location ON spots USING GIST (location);
+CREATE INDEX idx_spots_status ON spots(status);
 
 -- Create the 'spot_reviews' table
 CREATE TABLE IF NOT EXISTS spot_reviews (
@@ -49,18 +53,37 @@ CREATE TABLE IF NOT EXISTS spot_reviews (
 );
 -- set owner
 ALTER TABLE spot_reviews OWNER TO sundowner_@DBTAGLOWERCASE;
+-- index
+CREATE INDEX idx_spot_reviews_spot_id ON spot_reviews(spot_id);
+CREATE INDEX idx_spot_reviews_rating ON spot_reviews(rating);
 
 -- Create the 'photos' table
 CREATE TABLE IF NOT EXISTS photos (
   id BIGINT PRIMARY KEY,
-  spot_id BIGINT REFERENCES spots(id),
+  spot_id BIGINT NOT NULL REFERENCES spots(id),
   review_id BIGINT REFERENCES spot_reviews(id),
   uploaded_by_id BIGINT REFERENCES users(id) NOT NULL,
-  uploaded_date TIMESTAMP WITH TIME ZONE NOT NULL,
+  uploaded_at TIMESTAMPTZ NOT NULL,
   url TEXT NOT NULL
 );
 -- set owner
 ALTER TABLE photos OWNER TO sundowner_@DBTAGLOWERCASE;
+-- index
+CREATE INDEX idx_photos_spot_id ON photos(spot_id);
+CREATE INDEX id_photos_uploaded_at ON photos(uploaded_at);
+
+-- Create the 'refresh_tokens' table
+CREATE TABLE refresh_tokens (
+    id BIGINT PRIMARY KEY,
+    user_id BIGINT NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+    token TEXT NOT NULL UNIQUE,
+    expires_at TIMESTAMPTZTZ NOT NULL,
+    created_at TIMESTAMPTZTZ NOT NULL DEFAULT NOW()
+);
+-- set owner
+ALTER TABLE refresh_tokens OWNER TO sundowner_@DBTAGLOWERCASE;
+-- index
+CREATE INDEX idx_refresh_tokens_token ON refresh_tokens(token);
 
 GRANT SELECT, INSERT, UPDATE, DELETE ON ALL TABLES IN SCHEMA public TO sundowner_@DBTAGLOWERCASE;
 

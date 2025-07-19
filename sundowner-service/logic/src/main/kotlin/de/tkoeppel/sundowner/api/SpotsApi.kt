@@ -8,9 +8,9 @@ import io.swagger.v3.oas.annotations.media.Content
 import io.swagger.v3.oas.annotations.media.Schema
 import io.swagger.v3.oas.annotations.responses.ApiResponse
 import io.swagger.v3.oas.annotations.responses.ApiResponses
-import io.swagger.v3.oas.annotations.security.SecurityRequirement
 import io.swagger.v3.oas.annotations.tags.Tag
 import org.springframework.http.ResponseEntity
+import org.springframework.security.access.prepost.PreAuthorize
 import org.springframework.validation.annotation.Validated
 import org.springframework.web.bind.annotation.*
 
@@ -34,6 +34,7 @@ interface SpotsApi {
 		operationId = "getPointsInView",
 		parameters = [Parameter("limit"), Parameter("minX"), Parameter("minY"), Parameter("maxX"), Parameter("maxY")]
 	)
+	@PreAuthorize("permitAll()")
 	@GetMapping("/public/")
 	fun getPointsInView(
 		@RequestParam(required = true, defaultValue = "10") limit: Int,
@@ -62,7 +63,7 @@ interface SpotsApi {
 			content = [Content()]
 		)]
 	)
-	@SecurityRequirement(name = "bearerAuth")
+	@PreAuthorize("hasRole('ROLE_USER')")
 	@PostMapping("/")
 	fun createSpot(@Validated @RequestBody createSpotTO: CreateSpotTO): ResponseEntity<Long>
 }

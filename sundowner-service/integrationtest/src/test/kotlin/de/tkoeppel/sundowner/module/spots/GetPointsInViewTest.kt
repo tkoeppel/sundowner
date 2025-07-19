@@ -6,7 +6,6 @@ import de.tkoeppel.sundowner.basetype.spots.SpotStatus
 import de.tkoeppel.sundowner.basetype.spots.SpotType
 import de.tkoeppel.sundowner.po.SpotPO
 import de.tkoeppel.sundowner.to.spots.MapSpotTO
-import jakarta.transaction.Transactional
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.params.ParameterizedTest
@@ -33,7 +32,7 @@ class GetPointsInViewTest : SpotTestBase() {
 		val po = createSpot(name = "point", location = Coordinate(0.0, 0.0))
 
 		// act
-		val tos = getPoints()
+		val tos = getPointsRequest()
 
 		// post
 		assertThat(tos.size).isEqualTo(1)
@@ -53,7 +52,7 @@ class GetPointsInViewTest : SpotTestBase() {
 		}
 
 		// act
-		val tos = getPoints()
+		val tos = getPointsRequest()
 
 		// post
 		assertThat(tos.size).isEqualTo(amount)
@@ -69,7 +68,7 @@ class GetPointsInViewTest : SpotTestBase() {
 		createSpot(name = "point 2", location = Coordinate(2.0, 2.0))
 
 		// act
-		val tos = getPoints()
+		val tos = getPointsRequest()
 
 		// post
 		assertThat(tos.size).isEqualTo(1)
@@ -85,7 +84,7 @@ class GetPointsInViewTest : SpotTestBase() {
 		createSpot(name = "point 4", location = Coordinate(-2.0, -2.0))
 
 		// act
-		val tos = getPoints()
+		val tos = getPointsRequest()
 
 		// post
 		assertThat(tos).isEmpty()
@@ -96,7 +95,7 @@ class GetPointsInViewTest : SpotTestBase() {
 		// pre
 
 		// act
-		val tos = getPoints()
+		val tos = getPointsRequest()
 
 		// post
 		assertThat(tos).isEmpty()
@@ -115,7 +114,7 @@ class GetPointsInViewTest : SpotTestBase() {
 		createReview(spot = po4, rating = 2)
 
 		// act
-		val tos = getPoints()
+		val tos = getPointsRequest()
 
 		// post
 		assertThat(tos.size).isEqualTo(4)
@@ -131,7 +130,7 @@ class GetPointsInViewTest : SpotTestBase() {
 		createSpot(name = "point", location = Coordinate(0.0, 0.0))
 
 		// act
-		val tos = getPoints(10, 1.0, 1.0, -1.0 - 1.0)
+		val tos = getPointsRequest(10, 1.0, 1.0, -1.0 - 1.0)
 
 		// post
 		assertThat(tos).isEmpty()
@@ -143,7 +142,7 @@ class GetPointsInViewTest : SpotTestBase() {
 		createSpot(name = "point", location = Coordinate(0.0, 0.0))
 
 		// act
-		val tos = getPoints(limit = 0)
+		val tos = getPointsRequest(limit = 0)
 
 		// post
 		assertThat(tos).isEmpty()
@@ -174,7 +173,7 @@ class GetPointsInViewTest : SpotTestBase() {
 
 
 		// act
-		val tos = getPoints(limit = limit)
+		val tos = getPointsRequest(limit = limit)
 
 		// post
 		assertThat(tos.size).isEqualTo(limit)
@@ -191,7 +190,7 @@ class GetPointsInViewTest : SpotTestBase() {
 
 
 		// act
-		val tos = getPoints()
+		val tos = getPointsRequest()
 
 		// post
 		assertThat(tos).hasSize(1)
@@ -206,7 +205,7 @@ class GetPointsInViewTest : SpotTestBase() {
 		val po = createSpot(name = "point without rating", location = Coordinate(0.5, 0.5))
 
 		// act
-		val tos = getPoints()
+		val tos = getPointsRequest()
 
 		// post
 		assertThat(tos).hasSize(1)
@@ -226,7 +225,7 @@ class GetPointsInViewTest : SpotTestBase() {
 		createReview(poWithRating2, rating = 4)
 
 		// act
-		val tos = getPoints()
+		val tos = getPointsRequest()
 
 		// post
 		assertThat(tos).hasSize(3)
@@ -246,7 +245,7 @@ class GetPointsInViewTest : SpotTestBase() {
 		)
 
 		// act
-		val tos = getPoints()
+		val tos = getPointsRequest()
 
 		// post
 		assertThat(tos).hasSize(1)
@@ -264,7 +263,7 @@ class GetPointsInViewTest : SpotTestBase() {
 		)
 
 		// act
-		val tos = getPoints()
+		val tos = getPointsRequest()
 
 		// post
 		assertThat(tos).hasSize(1)
@@ -292,7 +291,7 @@ class GetPointsInViewTest : SpotTestBase() {
 		)
 
 		// act
-		val tos = getPoints()
+		val tos = getPointsRequest()
 
 		// post
 		assertThat(tos).hasSize(1)
@@ -306,7 +305,7 @@ class GetPointsInViewTest : SpotTestBase() {
 		val po = createSpot(name = "point", location = Coordinate(0.0, 0.0))
 
 		// act
-		val tos = getPoints()
+		val tos = getPointsRequest()
 
 		// post
 		assertThat(tos.size).isEqualTo(1)
@@ -320,15 +319,14 @@ class GetPointsInViewTest : SpotTestBase() {
 		val po = createSpot(name = "point", location = Coordinate(0.0, 0.0))
 
 		// act
-		val tos = getPoints()
+		val tos = getPointsRequest()
 
 		// post
 		assertThat(tos.size).isEqualTo(1)
 		SpotAssert.assert(tos[0], po, null)
 	}
 
-	@Transactional
-	private fun getPoints(
+	private fun getPointsRequest(
 		limit: Int = DEFAULT_LIMIT,
 		minX: Double = DEFAULT_MIN_X,
 		minY: Double = DEFAULT_MIN_Y,

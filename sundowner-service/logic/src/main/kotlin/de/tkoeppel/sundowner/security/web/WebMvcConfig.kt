@@ -7,7 +7,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer
 
 @Configuration
 @EnableWebMvc
-class WebConfig(private val springMvcConfig: SpringMvcConfig) : WebMvcConfigurer {
+class WebMvcConfig(private val springMvcConfig: SpringMvcConfig) : WebMvcConfigurer {
 
 	override fun addCorsMappings(registry: CorsRegistry) {
 		registry.addMapping(springMvcConfig.mapping) //

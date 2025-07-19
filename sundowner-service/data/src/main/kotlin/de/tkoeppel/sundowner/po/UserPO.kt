@@ -11,11 +11,11 @@ data class UserPO(
 
 	@Column(name = "password_hash", nullable = false, length = 72) val passwordHash: String,
 
-	@Column(unique = true, nullable = false) var email: String,
+	@Column(name = "email", unique = true, nullable = false) var email: String,
 
 	@Column(name = "active", nullable = false) val active: Boolean = false,
 
-	@Column(name = "creation_time", nullable = false) val creationTime: ZonedDateTime,
+	@Column(name = "created_at", nullable = false) val creationTime: ZonedDateTime,
 
 	@ElementCollection(fetch = FetchType.EAGER) @CollectionTable(
 		name = "authorities", joinColumns = [JoinColumn(name = "user_id")]

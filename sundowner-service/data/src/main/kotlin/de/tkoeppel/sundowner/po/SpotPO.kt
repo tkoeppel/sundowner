@@ -23,7 +23,7 @@ data class SpotPO(
 
 	@ManyToOne(fetch = FetchType.LAZY) @JoinColumn(name = "user_id", nullable = false) val addedBy: UserPO,
 
-	@Column(name = "added_date", nullable = false) val addedDate: ZonedDateTime,
+	@Column(name = "added_at", nullable = false) val addedAt: ZonedDateTime,
 
 	@Column(
 		name = "transport", nullable = false

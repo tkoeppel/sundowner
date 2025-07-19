@@ -7,13 +7,13 @@ import java.time.ZonedDateTime
 @Table(name = "photos")
 data class PhotoPO(
 
-	@ManyToOne(fetch = FetchType.LAZY) @JoinColumn(name = "spot_id") val spot: SpotPO? = null,
+	@ManyToOne(fetch = FetchType.LAZY) @JoinColumn(name = "spot_id", nullable = false) val spot: SpotPO? = null,
 
 	@ManyToOne(fetch = FetchType.LAZY) @JoinColumn(name = "review_id") val review: SpotReviewPO? = null,
 
-	@ManyToOne(fetch = FetchType.LAZY) @JoinColumn(name = "user_id", nullable = false) val uploadedBy: UserPO,
+	@ManyToOne(fetch = FetchType.LAZY) @JoinColumn(name = "user_id", nullable = false) val user: UserPO,
 
-	@Column(name = "uploaded_date", nullable = false) val uploadedDate: ZonedDateTime,
+	@Column(name = "uploaded_at", nullable = false) val uploadedAt: ZonedDateTime,
 
 	@Column(name = "url", nullable = false) val url: String
 ) : BasePO()

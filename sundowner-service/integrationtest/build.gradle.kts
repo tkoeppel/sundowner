@@ -1,6 +1,7 @@
 dependencies {
 	implementation(project(":common"))
 	implementation(project(":data"))
+	implementation(project(":logic"))
 
 	implementation(libs.spring.boot.starter.data.jpa)
 	implementation(libs.jts.core)

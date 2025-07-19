@@ -6,6 +6,8 @@ import de.tkoeppel.sundowner.dao.PhotoDAO
 import de.tkoeppel.sundowner.dao.SpotDAO
 import de.tkoeppel.sundowner.dao.SpotReviewDAO
 import de.tkoeppel.sundowner.dao.UserDAO
+import de.tkoeppel.sundowner.module.geocoding.GeoCodingService
+import de.tkoeppel.sundowner.module.users.SundownerUserDetailsService
 import de.tkoeppel.sundowner.po.UserPO
 import jakarta.annotation.PostConstruct
 import jakarta.transaction.Transactional
@@ -16,7 +18,6 @@ import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMock
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken
 import org.springframework.security.core.context.SecurityContextHolder
-import org.springframework.security.core.userdetails.UserDetailsService
 import org.springframework.security.crypto.password.PasswordEncoder
 import org.springframework.test.web.servlet.MockMvc
 import org.springframework.test.web.servlet.MvcResult
@@ -51,7 +52,10 @@ open class SundownerServiceTestBase {
 	protected lateinit var passwordEncoder: PasswordEncoder
 
 	@Autowired
-	private lateinit var userDetailsService: UserDetailsService
+	private lateinit var userDetailsService: SundownerUserDetailsService
+
+	@Autowired
+	private lateinit var geoCodingService: GeoCodingService
 
 	protected val API_VERSION = "v1"
 	protected val API_PATH = "/api/" + API_VERSION
@@ -97,7 +101,7 @@ open class SundownerServiceTestBase {
 
 		val authentication = UsernamePasswordAuthenticationToken(
 			userDetails, null, // No credentials needed
-			userDetails.authorities
+			userDetails?.authorities
 		)
 		SecurityContextHolder.getContext().authentication = authentication
 	}

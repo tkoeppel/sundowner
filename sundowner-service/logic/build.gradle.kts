@@ -1,12 +1,14 @@
 val mockitoAgent = configurations.create("mockitoAgent")
 
 dependencies {
+	implementation(libs.kotlin.stdlib)
 	implementation(libs.bundles.spring.boot)
 	implementation(libs.jackson.module.kotlin)
 	implementation(libs.minio)
 	implementation(libs.httpclient5)
 	implementation(libs.ktor.network.tls.certificates)
 	implementation(libs.bundles.spatial)
+	implementation(libs.bundles.jwt)
 
 	// logging
 	implementation(libs.kotlin.logging.jvm)
