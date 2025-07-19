@@ -8,6 +8,7 @@ import java.time.ZonedDateTime
 
 data class SundownerUser(
 	val id: Long,
+	val sundownerUsername: String,
 	private val passwordHash: String,
 	@Email val email: String,
 	val active: Boolean,
@@ -23,7 +24,7 @@ data class SundownerUser(
 	}
 
 	override fun getUsername(): String {
-		return this.username
+		return this.sundownerUsername
 	}
 
 	override fun isEnabled(): Boolean {

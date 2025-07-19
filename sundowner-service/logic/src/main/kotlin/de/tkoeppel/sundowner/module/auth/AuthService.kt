@@ -9,7 +9,6 @@ import de.tkoeppel.sundowner.security.jwt.JwtConfig
 import de.tkoeppel.sundowner.security.jwt.JwtService
 import de.tkoeppel.sundowner.to.auth.AuthRequestTO
 import de.tkoeppel.sundowner.to.auth.AuthResponseTO
-import org.springframework.security.authentication.AuthenticationManager
 import org.springframework.security.authentication.AuthenticationServiceException
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken
 import org.springframework.stereotype.Service
@@ -19,7 +18,7 @@ import java.util.*
 
 @Service
 class AuthService(
-	private val authManager: AuthenticationManager,
+	private val sundownerAuthProvider: SundownerAuthProvider,
 	private val userDetailsService: SundownerUserDetailsService,
 	private val jwtService: JwtService,
 	private val refreshTokenDAO: RefreshTokenDAO,
@@ -31,7 +30,7 @@ class AuthService(
 		val authRequest = UsernamePasswordAuthenticationToken(
 			authenticationRequest.username, authenticationRequest.password
 		)
-		authManager.authenticate(authRequest)
+		sundownerAuthProvider.authenticate(authRequest)
 
 		val user = userDetailsService.loadUserByUsername(authenticationRequest.username)
 

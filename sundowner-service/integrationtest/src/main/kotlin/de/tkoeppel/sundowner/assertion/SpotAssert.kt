@@ -30,7 +30,7 @@ object SpotAssert {
 		assert(to.location, po.location)
 		assertThat(to.description).isEqualTo(po.description)
 		assertThat(user.id).isEqualTo(po.addedBy.id)
-		assertThat(ZonedDateTime.now()).isCloseTo(po.addedDate, within(5, ChronoUnit.SECONDS))
+		assertThat(ZonedDateTime.now()).isCloseTo(po.addedAt, within(5, ChronoUnit.SECONDS))
 		assertThat(to.transport).isEqualTo(po.transport)
 		assertThat(SpotStatus.DRAFT).isEqualTo(po.status)
 	}

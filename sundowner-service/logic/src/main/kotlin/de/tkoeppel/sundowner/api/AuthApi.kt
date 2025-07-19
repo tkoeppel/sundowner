@@ -15,9 +15,26 @@ import org.springframework.web.bind.annotation.RequestMapping
 @RequestMapping("/api/v1/auth")
 interface AuthApi {
 
-	@PostMapping
-	fun authenticate(
+	// TODO Create rate limit per IP
+	@PostMapping("/login")
+	fun login(
 		@RequestBody authRequest: AuthRequestTO
 	): AuthResponseTO
-	
+
+	@PostMapping("/logout")
+	fun logout(
+		@RequestBody refreshToken: String
+	)
+
+	@PostMapping("/refresh")
+	fun refresh(
+		@RequestBody refreshToken: String
+	): String
+
+	@PostMapping("/signup")
+	fun signup(
+		@RequestBody authRequest: AuthRequestTO
+	)
+
+
 }

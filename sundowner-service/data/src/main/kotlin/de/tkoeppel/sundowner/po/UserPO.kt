@@ -15,7 +15,7 @@ data class UserPO(
 
 	@Column(name = "active", nullable = false) val active: Boolean = false,
 
-	@Column(name = "created_at", nullable = false) val creationTime: ZonedDateTime,
+	@Column(name = "created_at", nullable = false) val createdAt: ZonedDateTime,
 
 	@ElementCollection(fetch = FetchType.EAGER) @CollectionTable(
 		name = "authorities", joinColumns = [JoinColumn(name = "user_id")]

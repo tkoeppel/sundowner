@@ -8,6 +8,7 @@ import de.tkoeppel.sundowner.security.certificate.InvalidCertificateException
 import de.tkoeppel.sundowner.security.tls.TlsException
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
+import org.springframework.security.authentication.BadCredentialsException
 import org.springframework.web.bind.annotation.ExceptionHandler
 import org.springframework.web.bind.annotation.RestControllerAdvice
 import org.springframework.web.context.request.WebRequest
@@ -15,6 +16,7 @@ import java.time.LocalDateTime
 
 @RestControllerAdvice
 class GlobalExceptionHandler {
+
 
 	@ExceptionHandler(LimitExceededException::class)
 	fun handleBadRequestException(
@@ -24,6 +26,16 @@ class GlobalExceptionHandler {
 			timestamp = LocalDateTime.now(), message = exception.message, details = request.getDescription(false)
 		)
 		return ResponseEntity(errorDetails, HttpStatus.BAD_REQUEST)
+	}
+
+	@ExceptionHandler(BadCredentialsException::class)
+	fun handleUnauthorizedException(
+		exception: Exception, request: WebRequest
+	): ResponseEntity<ErrorDetails> {
+		val errorDetails = ErrorDetails(
+			timestamp = LocalDateTime.now(), message = exception.message, details = request.getDescription(false)
+		)
+		return ResponseEntity(errorDetails, HttpStatus.UNAUTHORIZED)
 	}
 
 	@ExceptionHandler(UsernameNotFoundException::class)

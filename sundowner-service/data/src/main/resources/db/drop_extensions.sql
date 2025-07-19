@@ -1,0 +1,3 @@
+-- Drop extensions
+EXECUTE 'DROP EXTENSION IF EXISTS postgis CASCADE';
+EXECUTE 'DROP EXTENSION IF EXISTS postgis_topology CASCADE';

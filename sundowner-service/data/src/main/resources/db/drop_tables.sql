@@ -3,10 +3,6 @@ DECLARE
     rec record;
 BEGIN
 
-    -- Drop extensions first
-    EXECUTE 'DROP EXTENSION IF EXISTS postgis CASCADE';
-    EXECUTE 'DROP EXTENSION IF EXISTS postgis_topology CASCADE';
-
     FOR rec IN
         SELECT table_name
         FROM information_schema.tables

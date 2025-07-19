@@ -1,6 +1,6 @@
 package de.tkoeppel.sundowner.security.web
 
-import de.tkoeppel.sundowner.module.users.SundownerUserDetailsService
+import de.tkoeppel.sundowner.module.auth.SundownerAuthProvider
 import de.tkoeppel.sundowner.security.jwt.JwtAuthFilter
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
@@ -23,12 +23,14 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @EnableMethodSecurity
 @EnableWebSecurity
 class WebSecurityConfig(
-	private val sundownerUserDetailsService: SundownerUserDetailsService, //
-	private val jwtAuthFilter: JwtAuthFilter
+	private val jwtAuthFilter: JwtAuthFilter, //
+	private val sundownerAuthProvider: SundownerAuthProvider
 ) {
-	@Bean
-	fun passwordEncoder(): PasswordEncoder {
-		return PasswordEncoderFactories.createDelegatingPasswordEncoder()
+	companion object {
+		@Bean
+		fun passwordEncoder(): PasswordEncoder {
+			return PasswordEncoderFactories.createDelegatingPasswordEncoder()
+		}
 	}
 
 	@Bean
@@ -47,13 +49,10 @@ class WebSecurityConfig(
 		http //
 			.csrf(AbstractHttpConfigurer<*, *>::disable) //
 			.cors(Customizer.withDefaults()) //
-			.authenticationManager { authentication ->
-				authenticationManager(
-					this.sundownerUserDetailsService, passwordEncoder()
-				).authenticate(authentication)
-			}.authorizeHttpRequests {
+			.authenticationProvider(this.sundownerAuthProvider) //
+			.authorizeHttpRequests {
 				it //
-					.requestMatchers("/api/v1/*/public/**", "/api/v1/api-docs") //
+					.requestMatchers("/api/v1/*/public/**", "/api/v1/api-docs", "/api/v1/auth/**") //
 					.permitAll() //
 					.anyRequest() //
 					.authenticated()

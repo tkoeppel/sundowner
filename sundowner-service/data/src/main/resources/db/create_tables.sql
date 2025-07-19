@@ -5,9 +5,9 @@ START TRANSACTION;
 CREATE TABLE IF NOT EXISTS users (
   id BIGSERIAL PRIMARY KEY,
   username VARCHAR(255) NOT NULL UNIQUE,
-  password VARCHAR(255) NOT NULL,
+  password_hash VARCHAR(255) NOT NULL,
   email VARCHAR(255) NOT NULL UNIQUE,
-  creation_time TIMESTAMPTZ NOT NULL,
+  created_at TIMESTAMPTZ NOT NULL,
   active BOOLEAN NOT NULL DEFAULT FALSE
 );
 -- set owner
@@ -73,12 +73,12 @@ CREATE INDEX idx_photos_spot_id ON photos(spot_id);
 CREATE INDEX id_photos_uploaded_at ON photos(uploaded_at);
 
 -- Create the 'refresh_tokens' table
-CREATE TABLE refresh_tokens (
+CREATE TABLE refresh_tokens IF NOT EXISTS  (
     id BIGINT PRIMARY KEY,
     user_id BIGINT NOT NULL REFERENCES users(id) ON DELETE CASCADE,
     token TEXT NOT NULL UNIQUE,
-    expires_at TIMESTAMPTZTZ NOT NULL,
-    created_at TIMESTAMPTZTZ NOT NULL DEFAULT NOW()
+    expires_at TIMESTAMPTZ NOT NULL,
+    created_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
 );
 -- set owner
 ALTER TABLE refresh_tokens OWNER TO sundowner_@DBTAGLOWERCASE;
