@@ -20,6 +20,7 @@ jackson-module-kotlin = "2.19.1"
 kotlin-logging-jvm = "7.0.7"
 logback-classic = "1.5.18"
 jjwt = "0.12.6"
+mockito-kotlin = "6.0.0"
 
 
 [libraries]
@@ -50,6 +51,7 @@ ktor-network-tls-certificates = { module = "io.ktor:ktor-network-tls-certificate
 postgresql = { module = "org.postgresql:postgresql", version.ref = "postgresql" }
 mockito-core = { module = "org.mockito:mockito-core", version.ref = "mockito" }
 mockito-junit-jupiter = { module = "org.mockito:mockito-junit-jupiter", version.ref = "mockito" }
+mockito-kotlin = { module = "org.mockito.kotlin:mockito-kotlin", version.ref = "mockito-kotlin" }
 assertj-core = { module = "org.assertj:assertj-core", version.ref = "assertj" }
 junit-jupiter-api = { module = "org.junit.jupiter:junit-jupiter-api", version.ref = "junit-jupiter" }
 junit-jupiter-engine = { module = "org.junit.jupiter:junit-jupiter-engine", version.ref = "junit-jupiter" }
@@ -65,7 +67,7 @@ jjwt-jackson = { module = "io.jsonwebtoken:jjwt-jackson", version.ref = "jjwt" }
 [bundles]
 spring-boot = ["spring-boot-starter-data-jpa", "spring-boot-starter-web", "spring-boot-starter-security"]
 spatial = ["jts-core", "hibernate-spatial", "jackson-datatype-jts"]
-test = ["kotlin-test", "spring-boot-starter-test", "mockito-core", "mockito-junit-jupiter", "assertj-core", "junit-jupiter-api", "junit-jupiter-engine", "junit-platform-launcher", "junit-platform-commons", "junit-platform-engine", "spring-security-test"]
+test = ["kotlin-test", "spring-boot-starter-test", "mockito-core", "mockito-junit-jupiter", "assertj-core", "junit-jupiter-api", "junit-jupiter-engine", "junit-platform-launcher", "junit-platform-commons", "junit-platform-engine", "spring-security-test", "mockito-kotlin"]
 jwt = ["jjwt-impl", "jjwt-api", "jjwt-jackson"]
 
 [plugins]

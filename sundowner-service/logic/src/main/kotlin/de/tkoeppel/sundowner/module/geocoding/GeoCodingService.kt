@@ -35,7 +35,7 @@ class GeoCodingService(
 			okHttpClient.newCall(request).execute().use { response ->
 				if (!response.isSuccessful) {
 					logger.error { "Request to LocationIQ failed with status code ${response.code} and message ${response.message}" }
-					throw GeoCodingException("Request to LocationIQ failed with status code ${response.code}")
+					return null
 				}
 
 				val responseBody = response.body?.string()
@@ -44,12 +44,12 @@ class GeoCodingService(
 					objectMapper.readValue<ReverseGeoCodeDetails>(responseBody)
 				} else {
 					logger.error { "No valid reverse geocode details found" }
-					throw GeoCodingException("No valid reverse geocode details found")
+					return null
 				}
 			}
 		} catch (e: IOException) {
 			logger.error { "Request to LocationIQ failed: ${e.message}" }
-			throw GeoCodingException("Request to LocationIQ failed: ${e.message}")
+			return null
 		}
 	}
 }

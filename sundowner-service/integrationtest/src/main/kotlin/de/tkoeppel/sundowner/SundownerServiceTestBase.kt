@@ -15,8 +15,6 @@ import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMock
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.core.io.ResourceLoader
 import org.springframework.jdbc.core.JdbcTemplate
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken
-import org.springframework.security.core.context.SecurityContextHolder
 import org.springframework.security.crypto.password.PasswordEncoder
 import org.springframework.test.web.servlet.MockMvc
 import org.springframework.test.web.servlet.MvcResult
@@ -106,18 +104,7 @@ class SundownerServiceTestBase {
 
 	}
 
-	protected fun setUpUser(userToSet: UserPO): Unit {
-		val userDetails = userDetailsService.loadUserByUsername(userToSet.username)
-
-		val authentication = UsernamePasswordAuthenticationToken(
-			userDetails, null, // No credentials needed
-			userDetails?.authorities
-		)
-		SecurityContextHolder.getContext().authentication = authentication
-	}
-
-
-	protected fun <T> convertToTO(result: MvcResult, typeRef: TypeReference<T>): T {
+	protected fun <T> convertToTO(result: MvcResult, typeRef: Any): T {
 		val objStr = result.response.contentAsString
 		return this.mapper.readValue(objStr, typeRef)
 	}
@@ -126,6 +113,10 @@ class SundownerServiceTestBase {
 		val result = this.mockMvc.perform(reqBuilder).andExpect(status().isBadRequest).andReturn()
 		val exception = this.convertToTO(result, object : TypeReference<Exception>() {})
 		assertThat(exception.message).contains(message)
+	}
+
+	protected fun doTestForbidden(reqBuilder: RequestBuilder) {
+		this.mockMvc.perform(reqBuilder).andExpect(status().isForbidden)
 	}
 
 }

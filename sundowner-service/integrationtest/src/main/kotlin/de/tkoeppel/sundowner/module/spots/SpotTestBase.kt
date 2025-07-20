@@ -11,11 +11,11 @@ import org.locationtech.jts.geom.Coordinate
 import java.time.ZonedDateTime
 
 open class SpotTestBase : SundownerServiceTestBase() {
-	protected val GET_PATH = "$API_PATH/spots"
+	protected val SPOTS_PATH = "$API_PATH/spots"
 
-	protected val GET_SPOTS_PATH: String = "$GET_PATH/public/"
+	protected val GET_SPOTS_PATH: String = "$SPOTS_PATH/public/"
 
-	protected val CREATE_SPOT_PATH = "$GET_PATH/"
+	protected val CREATE_SPOT_PATH = "$SPOTS_PATH/"
 
 
 	protected fun createSpot(

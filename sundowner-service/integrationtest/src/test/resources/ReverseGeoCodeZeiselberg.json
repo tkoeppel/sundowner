@@ -1,0 +1,26 @@
+{
+  "place_id": "116867120",
+  "licence": "https://locationiq.com/attribution",
+  "osm_type": "node",
+  "osm_id": "7794095014",
+  "lat": "48.797922",
+  "lon": "9.8002968",
+  "display_name": "Zeiselberg, Aussichtsplattform Zeiselberg, Schwäbisch Gmünd, Verwaltungsgemeinschaft Schwäbisch Gmünd, Ostalbkreis, Baden-Württemberg, 73525, Germany",
+  "address": {
+    "playground": "Zeiselberg",
+    "road": "Aussichtsplattform Zeiselberg",
+    "town": "Schwäbisch Gmünd",
+    "municipality": "Verwaltungsgemeinschaft Schwäbisch Gmünd",
+    "county2": "Ostalbkreis",
+    "state": "Baden-Württemberg",
+    "postcode": "73525",
+    "country": "Germany",
+    "country_code": "de"
+  },
+  "boundingbox": [
+    "48.797872",
+    "48.797972",
+    "9.8002468",
+    "9.8003468"
+  ]
+}

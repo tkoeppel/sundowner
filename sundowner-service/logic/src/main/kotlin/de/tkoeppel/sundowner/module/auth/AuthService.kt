@@ -16,6 +16,8 @@ import org.springframework.stereotype.Service
 import java.time.ZoneId
 import java.time.ZonedDateTime
 import java.util.*
+import kotlin.uuid.ExperimentalUuidApi
+import kotlin.uuid.Uuid
 
 @Service
 class AuthService(
@@ -26,6 +28,7 @@ class AuthService(
 	private val userDAO: UserDAO,
 	private val jwtConfig: JwtConfig
 ) {
+	@OptIn(ExperimentalUuidApi::class)
 	@Transactional
 	fun login(authenticationRequest: AuthRequestTO): AuthResponseTO {
 
@@ -49,6 +52,7 @@ class AuthService(
 		this.refreshTokenDAO.removeTokenByUsername(jwtService.extractUsername(refreshToken))
 	}
 
+	@Transactional
 	fun refreshAccessToken(refreshToken: String): String {
 		val username = jwtService.extractUsername(refreshToken)
 
@@ -74,15 +78,15 @@ class AuthService(
 		)
 	}
 
+
+	@OptIn(ExperimentalUuidApi::class)
 	private fun createRefreshToken(
-		user: SundownerUser, additionalClaims: Map<String, Any> = emptyMap()
-	): String {
+		user: SundownerUser
+	): Uuid {
 		this.refreshTokenDAO.removeTokenByUsername(user.username)
 
 		val expiresAt = Date(System.currentTimeMillis() + jwtConfig.refreshTokenExpiration)
-		val token = jwtService.generateToken(
-			user.username, expiresAt, additionalClaims
-		)
+		val token = Uuid.random()
 		val userRef = this.userDAO.getReferenceById(user.id)
 		val expiresAtZoned = expiresAt.toInstant().atZone(ZoneId.systemDefault())
 

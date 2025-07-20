@@ -14,24 +14,26 @@ import java.time.temporal.ChronoUnit
 
 object SpotAssert {
 	fun assert(to: MapSpotTO, po: SpotPO, avgRating: Double?) {
-		assertThat(to.id).isEqualTo(po.id)
-		assertThat(to.name).isEqualTo(po.name)
-		assert(to.location, po.location)
+		assertThat(po.id).isEqualTo(to.id)
+		assertThat(po.name).isEqualTo(to.name)
+		assert(po.location, to.location)
 		assertThat(to.avgRating).isEqualTo(avgRating)
 	}
 
-	fun assert(to: CoordinateTO, po: Coordinate) {
-		assertThat(to.lng).isEqualTo(po.x)
-		assertThat(to.lat).isEqualTo(po.y)
+	fun assert(po: Coordinate, to: CoordinateTO) {
+		assertThat(po.x).isEqualTo(to.lng)
+		assertThat(po.y).isEqualTo(to.lat)
 	}
 
-	fun assertNewSpot(to: CreateSpotTO, po: SpotPO, user: UserPO) {
-		assertThat(to.type).isEqualTo(po.type)
-		assert(to.location, po.location)
-		assertThat(to.description).isEqualTo(po.description)
-		assertThat(user.id).isEqualTo(po.addedBy.id)
-		assertThat(ZonedDateTime.now()).isCloseTo(po.addedAt, within(5, ChronoUnit.SECONDS))
-		assertThat(to.transport).isEqualTo(po.transport)
-		assertThat(SpotStatus.DRAFT).isEqualTo(po.status)
+	fun assertNewSpot(to: CreateSpotTO, po: SpotPO, user: UserPO, name: String) {
+		assertThat(po.type).isEqualTo(to.type)
+		assertThat(po.description).isEqualTo(to.description)
+		assertThat(po.transport).containsExactlyInAnyOrderElementsOf(to.transport)
+		assertThat(po.name).isEqualTo(name)
+		assertThat(po.status).isEqualTo(SpotStatus.DRAFT)
+		assertThat(po.addedBy.id).isEqualTo(user.id)
+		assertThat(po.location.x).isEqualTo(to.location.lng)
+		assertThat(po.location.y).isEqualTo(to.location.lat)
+		assertThat(po.addedAt).isCloseTo(ZonedDateTime.now(), within(5, ChronoUnit.SECONDS))
 	}
 }

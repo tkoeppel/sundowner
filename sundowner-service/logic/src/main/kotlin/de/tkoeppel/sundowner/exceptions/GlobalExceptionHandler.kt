@@ -1,7 +1,6 @@
 package de.tkoeppel.sundowner.exceptions
 
-import de.tkoeppel.sundowner.module.geocoding.GeoCodingException
-import de.tkoeppel.sundowner.module.spots.LimitExceededException
+import de.tkoeppel.sundowner.module.spots.InvalidSpotInputException
 import de.tkoeppel.sundowner.module.storage.StorageException
 import de.tkoeppel.sundowner.module.users.UsernameNotFoundException
 import de.tkoeppel.sundowner.security.certificate.InvalidCertificateException
@@ -18,7 +17,7 @@ import java.time.LocalDateTime
 class GlobalExceptionHandler {
 
 
-	@ExceptionHandler(LimitExceededException::class)
+	@ExceptionHandler(InvalidSpotInputException::class)
 	fun handleBadRequestException(
 		exception: Exception, request: WebRequest
 	): ResponseEntity<ErrorDetails> {
@@ -59,10 +58,7 @@ class GlobalExceptionHandler {
 		)
 		return ResponseEntity(errorDetails, HttpStatus.INTERNAL_SERVER_ERROR)
 	}
-
-	@ExceptionHandler(
-		GeoCodingException::class
-	)
+	
 	fun handleBadGatewayException(
 		exception: Exception, request: WebRequest
 	): ResponseEntity<ErrorDetails> {

@@ -4,26 +4,31 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a1856a26-3204-4700-b309-975dd197607f" name="Changes" comment="make jwt signature valid">
-      <change afterPath="$PROJECT_DIR$/data/src/main/kotlin/de/tkoeppel/sundowner/dao/GeneralDAO.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/integrationtest/src/main/kotlin/de/tkoeppel/sundowner/security/WithUser.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/integrationtest/src/main/kotlin/de/tkoeppel/sundowner/security/WithUserSecurityContextFactory.kt" afterDir="false" />
+    <list default="true" id="a1856a26-3204-4700-b309-975dd197607f" name="Changes" comment="refactoring tests">
+      <change afterPath="$PROJECT_DIR$/integrationtest/src/main/kotlin/de/tkoeppel/sundowner/module/auth/AuthTestBase.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/integrationtest/src/test/kotlin/de/tkoeppel/sundowner/module/auth/LoginTest.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/integrationtest/src/test/resources/ReverseGeoCodeZeiselberg.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/logic/src/main/kotlin/de/tkoeppel/sundowner/module/spots/InvalidSpotInputException.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/src/main/kotlin/de/tkoeppel/sundowner/dao/PhotoDAO.kt" beforeDir="false" afterPath="$PROJECT_DIR$/data/src/main/kotlin/de/tkoeppel/sundowner/dao/PhotoDAO.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/src/main/kotlin/de/tkoeppel/sundowner/dao/RefreshTokenDAO.kt" beforeDir="false" afterPath="$PROJECT_DIR$/data/src/main/kotlin/de/tkoeppel/sundowner/dao/RefreshTokenDAO.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/kotlin/de/tkoeppel/sundowner/to/auth/AuthResponseTO.kt" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/kotlin/de/tkoeppel/sundowner/to/auth/AuthResponseTO.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/data/src/main/kotlin/de/tkoeppel/sundowner/dao/SpotDAO.kt" beforeDir="false" afterPath="$PROJECT_DIR$/data/src/main/kotlin/de/tkoeppel/sundowner/dao/SpotDAO.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/src/main/kotlin/de/tkoeppel/sundowner/dao/SpotReviewDAO.kt" beforeDir="false" afterPath="$PROJECT_DIR$/data/src/main/kotlin/de/tkoeppel/sundowner/dao/SpotReviewDAO.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/src/main/kotlin/de/tkoeppel/sundowner/dao/UserDAO.kt" beforeDir="false" afterPath="$PROJECT_DIR$/data/src/main/kotlin/de/tkoeppel/sundowner/dao/UserDAO.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/src/main/kotlin/de/tkoeppel/sundowner/po/RefreshTokenPO.kt" beforeDir="false" afterPath="$PROJECT_DIR$/data/src/main/kotlin/de/tkoeppel/sundowner/po/RefreshTokenPO.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/src/main/resources/db/create_extensions.sql" beforeDir="false" afterPath="$PROJECT_DIR$/data/src/main/resources/db/create_extensions.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/src/main/resources/db/create_tables.sql" beforeDir="false" afterPath="$PROJECT_DIR$/data/src/main/resources/db/create_tables.sql" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/gradle/libs.versions.toml" beforeDir="false" afterPath="$PROJECT_DIR$/gradle/libs.versions.toml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/integrationtest/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/integrationtest/build.gradle.kts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/integrationtest/src/main/kotlin/de/tkoeppel/sundowner/SundownerServiceTestBase.kt" beforeDir="false" afterPath="$PROJECT_DIR$/integrationtest/src/main/kotlin/de/tkoeppel/sundowner/SundownerServiceTestBase.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/integrationtest/src/main/kotlin/de/tkoeppel/sundowner/assertion/SpotAssert.kt" beforeDir="false" afterPath="$PROJECT_DIR$/integrationtest/src/main/kotlin/de/tkoeppel/sundowner/assertion/SpotAssert.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/integrationtest/src/main/kotlin/de/tkoeppel/sundowner/module/spots/SpotTestBase.kt" beforeDir="false" afterPath="$PROJECT_DIR$/integrationtest/src/main/kotlin/de/tkoeppel/sundowner/module/spots/SpotTestBase.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/integrationtest/src/main/kotlin/de/tkoeppel/sundowner/security/WithUser.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/integrationtest/src/main/kotlin/de/tkoeppel/sundowner/security/WithUserSecurityContextFactory.kt" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/integrationtest/src/test/kotlin/de/tkoeppel/sundowner/module/spots/CreateSpotTest.kt" beforeDir="false" afterPath="$PROJECT_DIR$/integrationtest/src/test/kotlin/de/tkoeppel/sundowner/module/spots/CreateSpotTest.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/logic/src/main/kotlin/de/tkoeppel/sundowner/mapper/SpotMapper.kt" beforeDir="false" afterPath="$PROJECT_DIR$/logic/src/main/kotlin/de/tkoeppel/sundowner/mapper/SpotMapper.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/logic/src/main/kotlin/de/tkoeppel/sundowner/module/spots/SpotEndpoint.kt" beforeDir="false" afterPath="$PROJECT_DIR$/logic/src/main/kotlin/de/tkoeppel/sundowner/module/spots/SpotEndpoint.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/logic/src/main/kotlin/de/tkoeppel/sundowner/exceptions/GlobalExceptionHandler.kt" beforeDir="false" afterPath="$PROJECT_DIR$/logic/src/main/kotlin/de/tkoeppel/sundowner/exceptions/GlobalExceptionHandler.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/logic/src/main/kotlin/de/tkoeppel/sundowner/module/auth/AuthService.kt" beforeDir="false" afterPath="$PROJECT_DIR$/logic/src/main/kotlin/de/tkoeppel/sundowner/module/auth/AuthService.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/logic/src/main/kotlin/de/tkoeppel/sundowner/module/geocoding/GeoCodingException.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/logic/src/main/kotlin/de/tkoeppel/sundowner/module/geocoding/GeoCodingService.kt" beforeDir="false" afterPath="$PROJECT_DIR$/logic/src/main/kotlin/de/tkoeppel/sundowner/module/geocoding/GeoCodingService.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/logic/src/main/kotlin/de/tkoeppel/sundowner/module/spots/LimitExceededException.kt" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/logic/src/main/kotlin/de/tkoeppel/sundowner/module/spots/SpotService.kt" beforeDir="false" afterPath="$PROJECT_DIR$/logic/src/main/kotlin/de/tkoeppel/sundowner/module/spots/SpotService.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/logic/src/main/kotlin/de/tkoeppel/sundowner/module/users/UserBean.kt" beforeDir="false" afterPath="$PROJECT_DIR$/logic/src/main/kotlin/de/tkoeppel/sundowner/module/users/UserBean.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/logic/src/test/kotlin/de/tkoeppel/sundowner/security/jwt/RefreshTokenSchedulerTest.kt" beforeDir="false" afterPath="$PROJECT_DIR$/logic/src/test/kotlin/de/tkoeppel/sundowner/security/jwt/RefreshTokenSchedulerTest.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/logic/src/main/kotlin/de/tkoeppel/sundowner/util/SpotNameUtil.kt" beforeDir="false" afterPath="$PROJECT_DIR$/logic/src/main/kotlin/de/tkoeppel/sundowner/util/SpotNameUtil.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -52,8 +57,9 @@
         <option value="Kotlin Enum" />
         <option value="Kotlin Data Class" />
         <option value="Kotlin Annotation" />
-        <option value="Kotlin Class" />
         <option value="Kotlin Interface" />
+        <option value="Kotlin Object" />
+        <option value="Kotlin Class" />
       </list>
     </option>
   </component>
@@ -97,14 +103,18 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "Gradle.Build sundowner-service.executor": "Run",
+    "Gradle.CreateSpotTest.create spot as user.executor": "Run",
+    "Gradle.CreateSpotTest.create spot far from other spots.executor": "Run",
+    "Gradle.CreateSpotTest.create spot in international waters.executor": "Debug",
     "Gradle.CreateSpotTest.create spot.executor": "Run",
-    "Gradle.CreateSpotTest.executor": "Debug",
+    "Gradle.CreateSpotTest.executor": "Run",
     "Gradle.Download Sources.executor": "Run",
     "Gradle.GetPointsInViewTest.executor": "Run",
     "Gradle.GetPointsInViewTest.get multiple points.executor": "Run",
     "Gradle.GetPointsInViewTest.get points as admin.executor": "Run",
     "Gradle.GetPointsInViewTest.get points with invalid limit.executor": "Run",
     "Gradle.GetPointsInViewTest.get single point.executor": "Debug",
+    "Gradle.LoginTest.executor": "Run",
     "Gradle.RefreshTokenSchedulerTest.executor": "Run",
     "Gradle.Tests in 'de.tkoeppel.sundowner.module.spots'.executor": "Run",
     "Gradle.Tests in 'sundowner-service.common.test'.executor": "Run",
@@ -120,6 +130,9 @@
   }
 }]]></component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/integrationtest/src/test/kotlin/de/tkoeppel/sundowner/module/" />
+    </key>
     <key name="K2MoveDeclarationsDialog.RECENT_PACKAGE_KEY">
       <recent name="de.tkoeppel.sundowner.security" />
       <recent name="de.tkoeppel.sundowner.security.jwt" />
@@ -128,8 +141,8 @@
       <recent name="de.tkoeppel.sundowner.dao" />
     </key>
   </component>
-  <component name="RunManager" selected="Gradle.Tests in 'de.tkoeppel.sundowner.module.spots'">
-    <configuration name="CreateSpotTest.create spot" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+  <component name="RunManager" selected="Gradle.LoginTest">
+    <configuration name="CreateSpotTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
@@ -142,7 +155,7 @@
           <list>
             <option value=":integrationtest:test" />
             <option value="--tests" />
-            <option value="&quot;de.tkoeppel.sundowner.module.spots.CreateSpotTest.create spot&quot;" />
+            <option value="&quot;de.tkoeppel.sundowner.module.spots.CreateSpotTest&quot;" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -153,7 +166,7 @@
       <RunAsTest>true</RunAsTest>
       <method v="2" />
     </configuration>
-    <configuration name="GetPointsInViewTest.get multiple points" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="CreateSpotTest.create spot as user" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
@@ -166,7 +179,7 @@
           <list>
             <option value=":integrationtest:test" />
             <option value="--tests" />
-            <option value="&quot;de.tkoeppel.sundowner.module.spots.GetPointsInViewTest.get multiple points&quot;" />
+            <option value="&quot;de.tkoeppel.sundowner.module.spots.CreateSpotTest.create spot as user&quot;" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -177,7 +190,7 @@
       <RunAsTest>true</RunAsTest>
       <method v="2" />
     </configuration>
-    <configuration name="GetPointsInViewTest.get points as admin" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="CreateSpotTest.create spot far from other spots" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
@@ -190,7 +203,7 @@
           <list>
             <option value=":integrationtest:test" />
             <option value="--tests" />
-            <option value="&quot;de.tkoeppel.sundowner.module.spots.GetPointsInViewTest.get points as admin&quot;" />
+            <option value="&quot;de.tkoeppel.sundowner.module.spots.CreateSpotTest.create spot far from other spots&quot;" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -201,7 +214,7 @@
       <RunAsTest>true</RunAsTest>
       <method v="2" />
     </configuration>
-    <configuration name="GetPointsInViewTest.get points with invalid limit" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="CreateSpotTest.create spot in international waters" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
@@ -214,7 +227,7 @@
           <list>
             <option value=":integrationtest:test" />
             <option value="--tests" />
-            <option value="&quot;de.tkoeppel.sundowner.module.spots.GetPointsInViewTest.get points with invalid limit&quot;" />
+            <option value="&quot;de.tkoeppel.sundowner.module.spots.CreateSpotTest.create spot in international waters&quot;" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -225,7 +238,7 @@
       <RunAsTest>true</RunAsTest>
       <method v="2" />
     </configuration>
-    <configuration name="Tests in 'de.tkoeppel.sundowner.module.spots'" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="LoginTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
@@ -238,7 +251,7 @@
           <list>
             <option value=":integrationtest:test" />
             <option value="--tests" />
-            <option value="&quot;de.tkoeppel.sundowner.module.spots.*&quot;" />
+            <option value="&quot;de.tkoeppel.sundowner.module.auth.LoginTest&quot;" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -262,11 +275,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Gradle.Tests in 'de.tkoeppel.sundowner.module.spots'" />
-        <item itemvalue="Gradle.CreateSpotTest.create spot" />
-        <item itemvalue="Gradle.GetPointsInViewTest.get points with invalid limit" />
-        <item itemvalue="Gradle.GetPointsInViewTest.get multiple points" />
-        <item itemvalue="Gradle.GetPointsInViewTest.get points as admin" />
+        <item itemvalue="Gradle.LoginTest" />
+        <item itemvalue="Gradle.CreateSpotTest" />
+        <item itemvalue="Gradle.CreateSpotTest.create spot in international waters" />
+        <item itemvalue="Gradle.CreateSpotTest.create spot as user" />
+        <item itemvalue="Gradle.CreateSpotTest.create spot far from other spots" />
       </list>
     </recent_temporary>
   </component>
@@ -415,7 +428,15 @@
       <option name="project" value="LOCAL" />
       <updated>1752973316389</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="refactoring tests">
+      <option name="closed" value="true" />
+      <created>1753023088619</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1753023088619</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -433,6 +454,7 @@
     <MESSAGE value="refactor authentication" />
     <MESSAGE value="refactor  refresh tokenauthentication" />
     <MESSAGE value="make jwt signature valid" />
-    <option name="LAST_COMMIT_MESSAGE" value="make jwt signature valid" />
+    <MESSAGE value="refactoring tests" />
+    <option name="LAST_COMMIT_MESSAGE" value="refactoring tests" />
   </component>
 </project>

@@ -29,7 +29,7 @@ class SpotService(
 
 	fun getPointsInView(limit: Int, minX: Double, minY: Double, maxX: Double, maxY: Double): List<MapSpotTO> {
 		if (limit < 0 || limit > LIMIT_CEILING) {
-			throw LimitExceededException("Limit must be between 0 and $LIMIT_CEILING")
+			throw InvalidSpotInputException("Limit must be between 0 and $LIMIT_CEILING")
 		}
 
 		val tos = this.spotDAO.findPointsInBoundingBox(limit, minX, minY, maxX, maxY)
@@ -39,9 +39,11 @@ class SpotService(
 	}
 
 	fun createSpot(createSpotTO: CreateSpotTO): Long {
+		checkValidCoordinates(createSpotTO.location)
 		checkSpotsNearby(createSpotTO.location, 10)
-		val revGeoCodeAddress = this.geoCodingService.reverseGeocode(createSpotTO.location)?.address
-		val name = SpotNameUtil.getSpotName(createSpotTO.type, createSpotTO.location, revGeoCodeAddress)
+
+		val reverseGeoCodeDetails = this.geoCodingService.reverseGeocode(createSpotTO.location)
+		val name = SpotNameUtil.getSpotName(createSpotTO.type, createSpotTO.location, reverseGeoCodeDetails)
 		val user = this.userBean.getCurrentUser()
 		val userPO = this.userDAO.getReferenceById(user.id)
 
@@ -62,8 +64,13 @@ class SpotService(
 	private fun checkSpotsNearby(location: CoordinateTO, radiusInMeters: Int) {
 		val spotsNearby = this.spotDAO.findPointsNearby(location.lng, location.lat, radiusInMeters)
 		if (!spotsNearby.isEmpty()) {
-			throw IllegalArgumentException("There is already a spot within $radiusInMeters meters of the given location")
+			throw InvalidSpotInputException("There is already a spot within $radiusInMeters meters of the given location")
 		}
 	}
 
+	private fun checkValidCoordinates(coordinateTO: CoordinateTO) {
+		if (coordinateTO.lat < -90 || coordinateTO.lat > 90 || coordinateTO.lng < -180 || coordinateTO.lng > 180) {
+			throw InvalidSpotInputException("Invalid coordinates")
+		}
+	}
 }

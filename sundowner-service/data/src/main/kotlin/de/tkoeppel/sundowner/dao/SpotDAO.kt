@@ -37,6 +37,14 @@ interface SpotDAO : GeneralDAO<SpotPO> {
 		limit: Int, minX: Double, minY: Double, maxX: Double, maxY: Double
 	): List<MapSpotSO>
 
+	/**
+	 * Find points nearby. Geography is used because in geometry the unit would be degrees
+	 *
+	 * @param lng Longitude
+	 * @param lat Latitude
+	 * @param radius Radius in meters
+	 * @return List of spots
+	 */
 	@Query(
 		nativeQuery = true, value = """
         SELECT *
@@ -44,9 +52,9 @@ interface SpotDAO : GeneralDAO<SpotPO> {
         WHERE ST_DWithin(
 	        location::geography,
 	        ST_SetSRID(ST_MakePoint(:lng, :lat), 4326)::geography,
-	        :radiusInMeters
+	        :radius
         )
 		"""
 	)
-	fun findPointsNearby(lng: Double, lat: Double, radiusInMeters: Int): List<SpotPO>
+	fun findPointsNearby(lng: Double, lat: Double, radius: Int): List<SpotPO>
 }
