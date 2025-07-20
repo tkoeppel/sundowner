@@ -5,11 +5,25 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a1856a26-3204-4700-b309-975dd197607f" name="Changes" comment="make jwt signature valid">
-      <change afterPath="$PROJECT_DIR$/logic/src/test/kotlin/de/tkoeppel/sundowner/security/jwt/RefreshTokenSchedulerTest.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/src/main/kotlin/de/tkoeppel/sundowner/dao/GeneralDAO.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/integrationtest/src/main/kotlin/de/tkoeppel/sundowner/security/WithUser.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/integrationtest/src/main/kotlin/de/tkoeppel/sundowner/security/WithUserSecurityContextFactory.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/src/main/kotlin/de/tkoeppel/sundowner/dao/PhotoDAO.kt" beforeDir="false" afterPath="$PROJECT_DIR$/data/src/main/kotlin/de/tkoeppel/sundowner/dao/PhotoDAO.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/data/src/main/kotlin/de/tkoeppel/sundowner/dao/RefreshTokenDAO.kt" beforeDir="false" afterPath="$PROJECT_DIR$/data/src/main/kotlin/de/tkoeppel/sundowner/dao/RefreshTokenDAO.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/logic/src/main/kotlin/de/tkoeppel/sundowner/module/auth/AuthService.kt" beforeDir="false" afterPath="$PROJECT_DIR$/logic/src/main/kotlin/de/tkoeppel/sundowner/module/auth/AuthService.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/logic/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/logic/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/src/main/kotlin/de/tkoeppel/sundowner/dao/SpotDAO.kt" beforeDir="false" afterPath="$PROJECT_DIR$/data/src/main/kotlin/de/tkoeppel/sundowner/dao/SpotDAO.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/src/main/kotlin/de/tkoeppel/sundowner/dao/SpotReviewDAO.kt" beforeDir="false" afterPath="$PROJECT_DIR$/data/src/main/kotlin/de/tkoeppel/sundowner/dao/SpotReviewDAO.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/src/main/kotlin/de/tkoeppel/sundowner/dao/UserDAO.kt" beforeDir="false" afterPath="$PROJECT_DIR$/data/src/main/kotlin/de/tkoeppel/sundowner/dao/UserDAO.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gradle/libs.versions.toml" beforeDir="false" afterPath="$PROJECT_DIR$/gradle/libs.versions.toml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/integrationtest/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/integrationtest/build.gradle.kts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/integrationtest/src/main/kotlin/de/tkoeppel/sundowner/SundownerServiceTestBase.kt" beforeDir="false" afterPath="$PROJECT_DIR$/integrationtest/src/main/kotlin/de/tkoeppel/sundowner/SundownerServiceTestBase.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/integrationtest/src/main/kotlin/de/tkoeppel/sundowner/module/spots/SpotTestBase.kt" beforeDir="false" afterPath="$PROJECT_DIR$/integrationtest/src/main/kotlin/de/tkoeppel/sundowner/module/spots/SpotTestBase.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/integrationtest/src/test/kotlin/de/tkoeppel/sundowner/module/spots/CreateSpotTest.kt" beforeDir="false" afterPath="$PROJECT_DIR$/integrationtest/src/test/kotlin/de/tkoeppel/sundowner/module/spots/CreateSpotTest.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/logic/src/main/kotlin/de/tkoeppel/sundowner/mapper/SpotMapper.kt" beforeDir="false" afterPath="$PROJECT_DIR$/logic/src/main/kotlin/de/tkoeppel/sundowner/mapper/SpotMapper.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/logic/src/main/kotlin/de/tkoeppel/sundowner/module/spots/SpotEndpoint.kt" beforeDir="false" afterPath="$PROJECT_DIR$/logic/src/main/kotlin/de/tkoeppel/sundowner/module/spots/SpotEndpoint.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/logic/src/main/kotlin/de/tkoeppel/sundowner/module/spots/SpotService.kt" beforeDir="false" afterPath="$PROJECT_DIR$/logic/src/main/kotlin/de/tkoeppel/sundowner/module/spots/SpotService.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/logic/src/main/kotlin/de/tkoeppel/sundowner/module/users/UserBean.kt" beforeDir="false" afterPath="$PROJECT_DIR$/logic/src/main/kotlin/de/tkoeppel/sundowner/module/users/UserBean.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/logic/src/test/kotlin/de/tkoeppel/sundowner/security/jwt/RefreshTokenSchedulerTest.kt" beforeDir="false" afterPath="$PROJECT_DIR$/logic/src/test/kotlin/de/tkoeppel/sundowner/security/jwt/RefreshTokenSchedulerTest.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -37,8 +51,9 @@
         <option value="Class" />
         <option value="Kotlin Enum" />
         <option value="Kotlin Data Class" />
-        <option value="Kotlin Interface" />
+        <option value="Kotlin Annotation" />
         <option value="Kotlin Class" />
+        <option value="Kotlin Interface" />
       </list>
     </option>
   </component>
@@ -87,7 +102,8 @@
     "Gradle.Download Sources.executor": "Run",
     "Gradle.GetPointsInViewTest.executor": "Run",
     "Gradle.GetPointsInViewTest.get multiple points.executor": "Run",
-    "Gradle.GetPointsInViewTest.get points as admin.executor": "Debug",
+    "Gradle.GetPointsInViewTest.get points as admin.executor": "Run",
+    "Gradle.GetPointsInViewTest.get points with invalid limit.executor": "Run",
     "Gradle.GetPointsInViewTest.get single point.executor": "Debug",
     "Gradle.RefreshTokenSchedulerTest.executor": "Run",
     "Gradle.Tests in 'de.tkoeppel.sundowner.module.spots'.executor": "Run",
@@ -105,15 +121,15 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="K2MoveDeclarationsDialog.RECENT_PACKAGE_KEY">
+      <recent name="de.tkoeppel.sundowner.security" />
       <recent name="de.tkoeppel.sundowner.security.jwt" />
       <recent name="de.tkoeppel.sundowner.module.auth" />
       <recent name="de.tkoeppel.sundowner.dao.projections" />
       <recent name="de.tkoeppel.sundowner.dao" />
-      <recent name="de.tkoeppel.sundowner.basetype.jobs" />
     </key>
   </component>
-  <component name="RunManager" selected="Kotlin.SundownerServiceApplicationKt">
-    <configuration name="CreateSpotTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+  <component name="RunManager" selected="Gradle.Tests in 'de.tkoeppel.sundowner.module.spots'">
+    <configuration name="CreateSpotTest.create spot" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
@@ -126,7 +142,31 @@
           <list>
             <option value=":integrationtest:test" />
             <option value="--tests" />
-            <option value="&quot;de.tkoeppel.sundowner.module.spots.CreateSpotTest&quot;" />
+            <option value="&quot;de.tkoeppel.sundowner.module.spots.CreateSpotTest.create spot&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>true</RunAsTest>
+      <method v="2" />
+    </configuration>
+    <configuration name="GetPointsInViewTest.get multiple points" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":integrationtest:test" />
+            <option value="--tests" />
+            <option value="&quot;de.tkoeppel.sundowner.module.spots.GetPointsInViewTest.get multiple points&quot;" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -161,7 +201,7 @@
       <RunAsTest>true</RunAsTest>
       <method v="2" />
     </configuration>
-    <configuration name="RefreshTokenSchedulerTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="GetPointsInViewTest.get points with invalid limit" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
@@ -172,9 +212,9 @@
         </option>
         <option name="taskNames">
           <list>
-            <option value=":logic:test" />
+            <option value=":integrationtest:test" />
             <option value="--tests" />
-            <option value="&quot;de.tkoeppel.sundowner.security.jwt.RefreshTokenSchedulerTest&quot;" />
+            <option value="&quot;de.tkoeppel.sundowner.module.spots.GetPointsInViewTest.get points with invalid limit&quot;" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -209,13 +249,6 @@
       <RunAsTest>true</RunAsTest>
       <method v="2" />
     </configuration>
-    <configuration name="SundownerServiceApplicationKt" type="JetRunConfigurationType" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="de.tkoeppel.sundowner.SundownerServiceApplicationKt" />
-      <module name="sundowner-service.logic.main" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration default="true" type="JetRunConfigurationType">
       <module name="Kotlin Scripts.KotlinBuildScript.data:build.gradle.kts" />
       <method v="2">
@@ -229,11 +262,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Kotlin.SundownerServiceApplicationKt" />
-        <item itemvalue="Gradle.RefreshTokenSchedulerTest" />
-        <item itemvalue="Gradle.GetPointsInViewTest.get points as admin" />
         <item itemvalue="Gradle.Tests in 'de.tkoeppel.sundowner.module.spots'" />
-        <item itemvalue="Gradle.CreateSpotTest" />
+        <item itemvalue="Gradle.CreateSpotTest.create spot" />
+        <item itemvalue="Gradle.GetPointsInViewTest.get points with invalid limit" />
+        <item itemvalue="Gradle.GetPointsInViewTest.get multiple points" />
+        <item itemvalue="Gradle.GetPointsInViewTest.get points as admin" />
       </list>
     </recent_temporary>
   </component>

@@ -2,7 +2,6 @@ package de.tkoeppel.sundowner.dao
 
 import de.tkoeppel.sundowner.po.SpotPO
 import de.tkoeppel.sundowner.so.MapSpotSO
-import org.springframework.data.jpa.repository.JpaRepository
 import org.springframework.data.jpa.repository.Query
 
 /**
@@ -10,7 +9,7 @@ import org.springframework.data.jpa.repository.Query
  *
  * @constructor Create empty {@link SpotDAO}
  */
-interface SpotDAO : JpaRepository<SpotPO, Long> {
+interface SpotDAO : GeneralDAO<SpotPO> {
 	@Query(
 		nativeQuery = true, value = """
         SELECT
@@ -45,7 +44,7 @@ interface SpotDAO : JpaRepository<SpotPO, Long> {
         WHERE ST_DWithin(
 	        location::geography,
 	        ST_SetSRID(ST_MakePoint(:lng, :lat), 4326)::geography,
-	        :radius
+	        :radiusInMeters
         )
 		"""
 	)

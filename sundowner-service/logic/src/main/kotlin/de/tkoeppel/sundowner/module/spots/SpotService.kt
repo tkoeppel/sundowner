@@ -17,10 +17,11 @@ import java.time.ZonedDateTime
 
 @Service
 class SpotService(
-	private var spotDAO: SpotDAO,
-	private var userDAO: UserDAO,
-	private var geoCodingService: GeoCodingService,
-	private var userBean: UserBean
+	private val spotDAO: SpotDAO,
+	private val userDAO: UserDAO,
+	private val geoCodingService: GeoCodingService,
+	private val userBean: UserBean,
+	private val spotMapper: SpotMapper
 ) {
 	companion object {
 		private const val LIMIT_CEILING = 50
@@ -32,7 +33,7 @@ class SpotService(
 		}
 
 		val tos = this.spotDAO.findPointsInBoundingBox(limit, minX, minY, maxX, maxY)
-			.map { so -> SpotMapper().mapMapSpot(so) }
+			.map { so -> this.spotMapper.mapMapSpot(so) }
 
 		return tos
 	}
@@ -41,14 +42,15 @@ class SpotService(
 		checkSpotsNearby(createSpotTO.location, 10)
 		val revGeoCodeAddress = this.geoCodingService.reverseGeocode(createSpotTO.location)?.address
 		val name = SpotNameUtil.getSpotName(createSpotTO.type, createSpotTO.location, revGeoCodeAddress)
-		val user = this.userDAO.getReferenceById(this.userBean.getCurrentUser()!!.id)
+		val user = this.userBean.getCurrentUser()
+		val userPO = this.userDAO.getReferenceById(user.id)
 
 		val po = SpotPO(
 			createSpotTO.type,
 			Coordinate(createSpotTO.location.lng, createSpotTO.location.lat),
 			name,
 			createSpotTO.description,
-			user,
+			userPO,
 			ZonedDateTime.now(),
 			createSpotTO.transport,
 			SpotStatus.DRAFT
@@ -60,7 +62,7 @@ class SpotService(
 	private fun checkSpotsNearby(location: CoordinateTO, radiusInMeters: Int) {
 		val spotsNearby = this.spotDAO.findPointsNearby(location.lng, location.lat, radiusInMeters)
 		if (!spotsNearby.isEmpty()) {
-			throw IllegalArgumentException()
+			throw IllegalArgumentException("There is already a spot within $radiusInMeters meters of the given location")
 		}
 	}
 

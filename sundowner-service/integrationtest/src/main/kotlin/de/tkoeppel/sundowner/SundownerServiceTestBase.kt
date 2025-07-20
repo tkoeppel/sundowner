@@ -2,20 +2,19 @@ package de.tkoeppel.sundowner
 
 import com.fasterxml.jackson.core.type.TypeReference
 import com.fasterxml.jackson.databind.ObjectMapper
-import de.tkoeppel.sundowner.dao.PhotoDAO
-import de.tkoeppel.sundowner.dao.SpotDAO
-import de.tkoeppel.sundowner.dao.SpotReviewDAO
-import de.tkoeppel.sundowner.dao.UserDAO
+import de.tkoeppel.sundowner.dao.*
+import de.tkoeppel.sundowner.module.auth.AuthService
 import de.tkoeppel.sundowner.module.geocoding.GeoCodingService
 import de.tkoeppel.sundowner.module.users.SundownerUserDetailsService
 import de.tkoeppel.sundowner.po.UserPO
 import jakarta.annotation.PostConstruct
 import jakarta.transaction.Transactional
 import org.assertj.core.api.Assertions.assertThat
-import org.junit.jupiter.api.AfterEach
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc
 import org.springframework.boot.test.context.SpringBootTest
+import org.springframework.core.io.ResourceLoader
+import org.springframework.jdbc.core.JdbcTemplate
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken
 import org.springframework.security.core.context.SecurityContextHolder
 import org.springframework.security.crypto.password.PasswordEncoder
@@ -28,7 +27,7 @@ import java.time.ZonedDateTime
 
 @AutoConfigureMockMvc
 @SpringBootTest
-open class SundownerServiceTestBase {
+class SundownerServiceTestBase {
 
 	@Autowired
 	protected lateinit var spotDAO: SpotDAO
@@ -38,6 +37,9 @@ open class SundownerServiceTestBase {
 
 	@Autowired
 	protected lateinit var spotReviewDAO: SpotReviewDAO
+
+	@Autowired
+	protected lateinit var refreshTokenDAO: RefreshTokenDAO
 
 	@Autowired
 	protected lateinit var photoDAO: PhotoDAO
@@ -57,6 +59,15 @@ open class SundownerServiceTestBase {
 	@Autowired
 	private lateinit var geoCodingService: GeoCodingService
 
+	@Autowired
+	private lateinit var authService: AuthService
+
+	@Autowired
+	private lateinit var jdbcTemplate: JdbcTemplate
+
+	@Autowired
+	private lateinit var resourceLoader: ResourceLoader
+
 	protected val API_VERSION = "v1"
 	protected val API_PATH = "/api/" + API_VERSION
 
@@ -66,7 +77,13 @@ open class SundownerServiceTestBase {
 
 	@Transactional
 	@PostConstruct
-	fun createUsers() {
+	fun setupDatabase() {
+		this.refreshTokenDAO.deleteAll()
+		this.spotReviewDAO.deleteAll()
+		this.photoDAO.deleteAll()
+		this.spotDAO.deleteAll()
+		this.userDAO.deleteAll()
+
 		val admin = UserPO(
 			"admin",
 			this.passwordEncoder.encode("admin_password"),
@@ -86,14 +103,7 @@ open class SundownerServiceTestBase {
 			setOf("ROLE_USER")
 		)
 		this.user = this.userDAO.save(user)
-	}
 
-	@Transactional
-	@AfterEach
-	fun resetDatabase() {
-		this.spotDAO.deleteAll()
-		this.userDAO.deleteAll()
-		this.spotReviewDAO.deleteAll()
 	}
 
 	protected fun setUpUser(userToSet: UserPO): Unit {

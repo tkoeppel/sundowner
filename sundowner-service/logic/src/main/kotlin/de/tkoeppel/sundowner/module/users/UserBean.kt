@@ -11,15 +11,19 @@ class UserBean {
 	 *
 	 * @return The custom User object if a user is authenticated, otherwise null.
 	 */
-	fun getCurrentUser(): SundownerUser? {
+	fun getCurrentUser(): SundownerUser {
 		val authentication = SecurityContextHolder.getContext().authentication
 
 		// Check if there is an authentication object and if the user is not anonymous
 		if (authentication == null || !authentication.isAuthenticated || authentication.principal is String) {
-			return null
+			throw IllegalStateException("No authenticated user found")
 		}
 
-		// The principal should be your custom User object
-		return authentication.principal as? SundownerUser
+		val sundownerUser = authentication.principal as? SundownerUser
+		if (sundownerUser == null) {
+			throw IllegalStateException("No authenticated principal found")
+		}
+
+		return sundownerUser
 	}
 }

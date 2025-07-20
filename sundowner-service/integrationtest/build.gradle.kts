@@ -9,6 +9,7 @@ dependencies {
 	implementation(libs.jakarta.servlet.api)
 	implementation(libs.jackson.module.kotlin)
 	implementation(libs.spring.boot.starter.security)
+	implementation(libs.spring.boot.starter.ouath2)
 
 	implementation(libs.bundles.test)
 	testImplementation(libs.spring.boot.starter.web)

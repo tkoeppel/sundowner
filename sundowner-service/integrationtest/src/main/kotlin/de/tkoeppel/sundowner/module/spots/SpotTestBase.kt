@@ -15,7 +15,7 @@ open class SpotTestBase : SundownerServiceTestBase() {
 
 	protected val GET_SPOTS_PATH: String = "$GET_PATH/public/"
 
-	protected val CREATE_SPOT_PATH = "/api/spots"
+	protected val CREATE_SPOT_PATH = "$GET_PATH/"
 
 
 	protected fun createSpot(

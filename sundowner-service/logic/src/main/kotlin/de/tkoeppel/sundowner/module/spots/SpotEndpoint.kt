@@ -3,15 +3,11 @@ package de.tkoeppel.sundowner.module.spots
 import de.tkoeppel.sundowner.api.SpotsApi
 import de.tkoeppel.sundowner.to.spots.CreateSpotTO
 import de.tkoeppel.sundowner.to.spots.MapSpotTO
-import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.RestController
 
 @RestController
-class SpotEndpoint : SpotsApi {
-
-	@Autowired
-	private lateinit var spotService: SpotService
+class SpotEndpoint(val spotService: SpotService) : SpotsApi {
 
 	/** @see de.tkoeppel.sundowner.api.SpotsApi#getPointsInView */
 	override fun getPointsInView(

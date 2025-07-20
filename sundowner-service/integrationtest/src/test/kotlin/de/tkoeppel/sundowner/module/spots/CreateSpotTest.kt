@@ -5,6 +5,7 @@ import de.tkoeppel.sundowner.basetype.spots.SpotType
 import de.tkoeppel.sundowner.basetype.spots.TransportType
 import de.tkoeppel.sundowner.to.spots.CoordinateTO
 import de.tkoeppel.sundowner.to.spots.CreateSpotTO
+import jakarta.transaction.Transactional
 import org.junit.jupiter.api.Test
 import org.springframework.http.MediaType
 import org.springframework.security.test.context.support.WithUserDetails
@@ -20,6 +21,7 @@ class CreateSpotTest : SpotTestBase() {
 		private val TRANSPORT = listOf<TransportType>(TransportType.BIKE, TransportType.BY_FOOT)
 	}
 
+	@Transactional
 	@WithUserDetails("user")
 	@Test
 	fun `create spot`() {
