@@ -4,9 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a1856a26-3204-4700-b309-975dd197607f" name="Changes" comment="refactor  refresh tokenauthentication">
+    <list default="true" id="a1856a26-3204-4700-b309-975dd197607f" name="Changes" comment="make jwt signature valid">
+      <change afterPath="$PROJECT_DIR$/logic/src/test/kotlin/de/tkoeppel/sundowner/security/jwt/RefreshTokenSchedulerTest.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/logic/src/main/kotlin/de/tkoeppel/sundowner/security/jwt/JwtService.kt" beforeDir="false" afterPath="$PROJECT_DIR$/logic/src/main/kotlin/de/tkoeppel/sundowner/security/jwt/JwtService.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/src/main/kotlin/de/tkoeppel/sundowner/dao/RefreshTokenDAO.kt" beforeDir="false" afterPath="$PROJECT_DIR$/data/src/main/kotlin/de/tkoeppel/sundowner/dao/RefreshTokenDAO.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/logic/src/main/kotlin/de/tkoeppel/sundowner/module/auth/AuthService.kt" beforeDir="false" afterPath="$PROJECT_DIR$/logic/src/main/kotlin/de/tkoeppel/sundowner/module/auth/AuthService.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/logic/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/logic/src/main/resources/application.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -87,6 +89,7 @@
     "Gradle.GetPointsInViewTest.get multiple points.executor": "Run",
     "Gradle.GetPointsInViewTest.get points as admin.executor": "Debug",
     "Gradle.GetPointsInViewTest.get single point.executor": "Debug",
+    "Gradle.RefreshTokenSchedulerTest.executor": "Run",
     "Gradle.Tests in 'de.tkoeppel.sundowner.module.spots'.executor": "Run",
     "Gradle.Tests in 'sundowner-service.common.test'.executor": "Run",
     "Gradle.Tests in 'sundowner-service.integrationtest.main'.executor": "Run",
@@ -134,30 +137,6 @@
       <RunAsTest>true</RunAsTest>
       <method v="2" />
     </configuration>
-    <configuration name="GetPointsInViewTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
-      <ExternalSystemSettings>
-        <option name="executionName" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$" />
-        <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" value="" />
-        <option name="taskDescriptions">
-          <list />
-        </option>
-        <option name="taskNames">
-          <list>
-            <option value=":integrationtest:test" />
-            <option value="--tests" />
-            <option value="&quot;de.tkoeppel.sundowner.module.spots.GetPointsInViewTest&quot;" />
-          </list>
-        </option>
-        <option name="vmOptions" />
-      </ExternalSystemSettings>
-      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
-      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
-      <DebugAllEnabled>false</DebugAllEnabled>
-      <RunAsTest>true</RunAsTest>
-      <method v="2" />
-    </configuration>
     <configuration name="GetPointsInViewTest.get points as admin" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -172,6 +151,30 @@
             <option value=":integrationtest:test" />
             <option value="--tests" />
             <option value="&quot;de.tkoeppel.sundowner.module.spots.GetPointsInViewTest.get points as admin&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>true</RunAsTest>
+      <method v="2" />
+    </configuration>
+    <configuration name="RefreshTokenSchedulerTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":logic:test" />
+            <option value="--tests" />
+            <option value="&quot;de.tkoeppel.sundowner.security.jwt.RefreshTokenSchedulerTest&quot;" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -227,10 +230,10 @@
     <recent_temporary>
       <list>
         <item itemvalue="Kotlin.SundownerServiceApplicationKt" />
+        <item itemvalue="Gradle.RefreshTokenSchedulerTest" />
         <item itemvalue="Gradle.GetPointsInViewTest.get points as admin" />
         <item itemvalue="Gradle.Tests in 'de.tkoeppel.sundowner.module.spots'" />
         <item itemvalue="Gradle.CreateSpotTest" />
-        <item itemvalue="Gradle.GetPointsInViewTest" />
       </list>
     </recent_temporary>
   </component>
@@ -371,7 +374,15 @@
       <option name="project" value="LOCAL" />
       <updated>1752970401678</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="make jwt signature valid">
+      <option name="closed" value="true" />
+      <created>1752973316389</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1752973316389</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -388,6 +399,7 @@
     <MESSAGE value="auth stuff" />
     <MESSAGE value="refactor authentication" />
     <MESSAGE value="refactor  refresh tokenauthentication" />
-    <option name="LAST_COMMIT_MESSAGE" value="refactor  refresh tokenauthentication" />
+    <MESSAGE value="make jwt signature valid" />
+    <option name="LAST_COMMIT_MESSAGE" value="make jwt signature valid" />
   </component>
 </project>

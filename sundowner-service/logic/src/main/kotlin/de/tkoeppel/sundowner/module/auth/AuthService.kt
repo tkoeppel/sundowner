@@ -46,7 +46,7 @@ class AuthService(
 
 	@Transactional
 	fun logout(refreshToken: String) {
-		this.refreshTokenDAO.deleteByToken(refreshToken)
+		this.refreshTokenDAO.removeTokenByUsername(jwtService.extractUsername(refreshToken))
 	}
 
 	fun refreshAccessToken(refreshToken: String): String {
@@ -77,6 +77,8 @@ class AuthService(
 	private fun createRefreshToken(
 		user: SundownerUser, additionalClaims: Map<String, Any> = emptyMap()
 	): String {
+		this.refreshTokenDAO.removeTokenByUsername(user.username)
+
 		val expiresAt = Date(System.currentTimeMillis() + jwtConfig.refreshTokenExpiration)
 		val token = jwtService.generateToken(
 			user.username, expiresAt, additionalClaims
