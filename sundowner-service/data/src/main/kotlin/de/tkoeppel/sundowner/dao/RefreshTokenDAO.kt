@@ -10,6 +10,9 @@ import org.springframework.stereotype.Repository
 interface RefreshTokenDAO : JpaRepository<RefreshTokenPO, Long> {
 	@Query("SELECT r.user FROM RefreshTokenPO r WHERE r.token = :token")
 	fun findUserByToken(token: String): UserPO?
-	
+
 	fun deleteByToken(token: String)
+
+	@Query("DELETE FROM RefreshTokenPO WHERE expiresAt < CURRENT_TIMESTAMP")
+	fun removeExpiredTokens(): Long
 }

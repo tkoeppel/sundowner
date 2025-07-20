@@ -9,6 +9,7 @@ import de.tkoeppel.sundowner.security.jwt.JwtConfig
 import de.tkoeppel.sundowner.security.jwt.JwtService
 import de.tkoeppel.sundowner.to.auth.AuthRequestTO
 import de.tkoeppel.sundowner.to.auth.AuthResponseTO
+import jakarta.transaction.Transactional
 import org.springframework.security.authentication.AuthenticationServiceException
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken
 import org.springframework.stereotype.Service
@@ -25,14 +26,15 @@ class AuthService(
 	private val userDAO: UserDAO,
 	private val jwtConfig: JwtConfig
 ) {
+	@Transactional
 	fun login(authenticationRequest: AuthRequestTO): AuthResponseTO {
 
 		val authRequest = UsernamePasswordAuthenticationToken(
 			authenticationRequest.username, authenticationRequest.password
 		)
-		sundownerAuthProvider.authenticate(authRequest)
+		val authentication = sundownerAuthProvider.authenticate(authRequest)
 
-		val user = userDetailsService.loadUserByUsername(authenticationRequest.username)
+		val user = authentication.principal as SundownerUser
 
 		val accessToken = createAccessToken(user)
 		val refreshToken = createRefreshToken(user)
@@ -42,6 +44,7 @@ class AuthService(
 		)
 	}
 
+	@Transactional
 	fun logout(refreshToken: String) {
 		this.refreshTokenDAO.deleteByToken(refreshToken)
 	}

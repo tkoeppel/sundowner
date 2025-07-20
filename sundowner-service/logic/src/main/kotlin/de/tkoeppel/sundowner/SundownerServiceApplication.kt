@@ -9,6 +9,7 @@ import org.springframework.boot.runApplication
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.ComponentScan
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories
+import org.springframework.scheduling.annotation.EnableScheduling
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity
 
 @ConfigurationPropertiesScan
@@ -16,6 +17,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 @EntityScan(basePackages = ["de.tkoeppel.sundowner.po"])
 @EnableJpaRepositories(basePackages = ["de.tkoeppel.sundowner.dao"])
 @EnableWebSecurity
+@EnableScheduling
 @SpringBootApplication
 class SundownerServiceApplication {
 

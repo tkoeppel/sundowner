@@ -8,6 +8,6 @@ import org.springframework.boot.context.properties.bind.DefaultValue
 data class JwtConfig @ConstructorBinding constructor(
 	@DefaultValue("") val secretKey: String,
 	@DefaultValue(3600000.toString()) val accessTokenExpiration: Long,
-	@DefaultValue(8640000.toString()) val refreshTokenExpiration: Long
+	@DefaultValue(8640000.toString()) val refreshTokenExpiration: Long,
 
-)
+	)

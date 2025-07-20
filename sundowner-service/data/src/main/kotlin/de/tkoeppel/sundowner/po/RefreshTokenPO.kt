@@ -6,10 +6,10 @@ import java.time.ZonedDateTime
 
 @Entity
 @Table(name = "refresh_tokens")
-class RefreshTokenPO(
+data class RefreshTokenPO(
 	@Column(name = "token", nullable = false, unique = true) val token: String,
 
-	@ManyToOne(fetch = FetchType.LAZY) @JoinColumn(name = "user_id") val user: UserPO,
+	@ManyToOne(fetch = FetchType.LAZY) @JoinColumn(name = "user_id", nullable = false) val user: UserPO,
 
 	@Column(name = "expires_at", nullable = false) val expiresAt: ZonedDateTime,
 

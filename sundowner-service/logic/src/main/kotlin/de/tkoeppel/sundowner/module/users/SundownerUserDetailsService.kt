@@ -15,7 +15,7 @@ class SundownerUserDetailsService(private var userDAO: UserDAO) : UserDetailsSer
 		}
 
 		return SundownerUser(
-			user.id, user.username, user.passwordHash, user.email, user.active, user.createdAt, user.authorities
+			user.id!!, user.username, user.passwordHash, user.email, user.active, user.createdAt, user.authorities
 		)
 	}
 }

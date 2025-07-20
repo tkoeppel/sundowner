@@ -7,5 +7,5 @@ abstract class BasePO {
 	@Id
 	@Column(name = "id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	val id: Long = 0
+	var id: Long? = null
 }

@@ -54,7 +54,7 @@ class SpotService(
 			SpotStatus.DRAFT
 		)
 		val saved = this.spotDAO.save(po)
-		return saved.id
+		return saved.id!!
 	}
 
 	private fun checkSpotsNearby(location: CoordinateTO, radiusInMeters: Int) {
