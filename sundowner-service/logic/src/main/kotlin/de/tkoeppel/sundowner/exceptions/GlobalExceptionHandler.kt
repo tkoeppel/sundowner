@@ -2,11 +2,12 @@ package de.tkoeppel.sundowner.exceptions
 
 import de.tkoeppel.sundowner.module.spots.InvalidSpotInputException
 import de.tkoeppel.sundowner.module.storage.StorageException
-import de.tkoeppel.sundowner.module.users.UsernameNotFoundException
 import de.tkoeppel.sundowner.security.certificate.InvalidCertificateException
 import de.tkoeppel.sundowner.security.tls.TlsException
+import io.jsonwebtoken.JwtException
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
+import org.springframework.security.authentication.AuthenticationServiceException
 import org.springframework.security.authentication.BadCredentialsException
 import org.springframework.web.bind.annotation.ExceptionHandler
 import org.springframework.web.bind.annotation.RestControllerAdvice
@@ -27,7 +28,7 @@ class GlobalExceptionHandler {
 		return ResponseEntity(errorDetails, HttpStatus.BAD_REQUEST)
 	}
 
-	@ExceptionHandler(BadCredentialsException::class)
+	@ExceptionHandler(BadCredentialsException::class, AuthenticationServiceException::class, JwtException::class)
 	fun handleUnauthorizedException(
 		exception: Exception, request: WebRequest
 	): ResponseEntity<ErrorDetails> {
@@ -37,7 +38,6 @@ class GlobalExceptionHandler {
 		return ResponseEntity(errorDetails, HttpStatus.UNAUTHORIZED)
 	}
 
-	@ExceptionHandler(UsernameNotFoundException::class)
 	fun handleNotFoundException(exception: Exception, requestException: WebRequest): ResponseEntity<ErrorDetails> {
 		val errorDetails = ErrorDetails(
 			timestamp = LocalDateTime.now(),
@@ -58,7 +58,7 @@ class GlobalExceptionHandler {
 		)
 		return ResponseEntity(errorDetails, HttpStatus.INTERNAL_SERVER_ERROR)
 	}
-	
+
 	fun handleBadGatewayException(
 		exception: Exception, request: WebRequest
 	): ResponseEntity<ErrorDetails> {

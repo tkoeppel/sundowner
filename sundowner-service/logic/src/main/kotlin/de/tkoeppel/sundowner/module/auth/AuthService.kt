@@ -47,17 +47,19 @@ class AuthService(
 		)
 	}
 
+	@OptIn(ExperimentalUuidApi::class)
 	@Transactional
-	fun logout(refreshToken: String) {
-		this.refreshTokenDAO.removeTokenByUsername(jwtService.extractUsername(refreshToken))
+	fun logout(refreshToken: Uuid) {
+		this.refreshTokenDAO.deleteByToken(refreshToken)
 	}
 
+	@OptIn(ExperimentalUuidApi::class)
 	@Transactional
-	fun refreshAccessToken(refreshToken: String): String {
-		val username = jwtService.extractUsername(refreshToken)
+	fun refreshAccessToken(refreshToken: Uuid): String {
+		val userPO = this.refreshTokenDAO.findUserByToken(refreshToken)
 
-		return username.let { user ->
-			val currentUserDetails = userDetailsService.loadUserByUsername(user)
+		return userPO.let { user ->
+			val currentUserDetails = userDetailsService.loadUserByUserPO(user)
 			val refreshTokenUserDetails = this.refreshTokenDAO.findUserByToken(refreshToken)
 
 			if (currentUserDetails.username == refreshTokenUserDetails?.username) {

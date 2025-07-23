@@ -4,6 +4,8 @@ import de.tkoeppel.sundowner.api.AuthApi
 import de.tkoeppel.sundowner.to.auth.AuthRequestTO
 import de.tkoeppel.sundowner.to.auth.AuthResponseTO
 import org.springframework.web.bind.annotation.RestController
+import kotlin.uuid.ExperimentalUuidApi
+import kotlin.uuid.Uuid
 
 @RestController
 class AuthEndpoint(private val authService: AuthService) : AuthApi {
@@ -14,12 +16,14 @@ class AuthEndpoint(private val authService: AuthService) : AuthApi {
 	}
 
 	/** @see AuthApi.logout */
-	override fun logout(refreshToken: String) {
+	@OptIn(ExperimentalUuidApi::class)
+	override fun logout(refreshToken: Uuid) {
 		this.authService.logout(refreshToken)
 	}
 
 	/** @see AuthApi.refresh */
-	override fun refresh(refreshToken: String): String {
+	@OptIn(ExperimentalUuidApi::class)
+	override fun refresh(refreshToken: Uuid): String {
 		val accessToken = this.authService.refreshAccessToken(refreshToken)
 		return accessToken
 	}

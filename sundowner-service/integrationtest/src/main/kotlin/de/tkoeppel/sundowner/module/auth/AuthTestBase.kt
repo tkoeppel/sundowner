@@ -7,4 +7,6 @@ class AuthTestBase : SundownerServiceTestBase() {
 
 	protected val LOGIN_PATH = "$AUTH_PATH/login"
 
+	protected val LOGOUT_PATH = "$AUTH_PATH/logout"
+
 }

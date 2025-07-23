@@ -18,7 +18,6 @@ class LoginTest : AuthTestBase() {
 	companion object {
 		private const val USERNAME = "user"
 		private const val PASSWORD = "user_password"
-		private const val LOGIN_PATH = "/api/auth/login"
 	}
 
 	@Autowired
@@ -43,7 +42,7 @@ class LoginTest : AuthTestBase() {
 		assertThat(usernameFromToken).isEqualTo(USERNAME)
 
 		// Verify the refresh token was stored in the database
-		val refreshTokenFromDB = refreshTokenDAO.findUserByToken(authResponse.refreshToken.toString())
+		val refreshTokenFromDB = refreshTokenDAO.findUserByToken(authResponse.refreshToken)
 		assertThat(refreshTokenFromDB).isNotNull
 		assertThat(refreshTokenFromDB?.username).isEqualTo(USERNAME)
 	}

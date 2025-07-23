@@ -7,6 +7,8 @@ import org.springframework.validation.annotation.Validated
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
+import kotlin.uuid.ExperimentalUuidApi
+import kotlin.uuid.Uuid
 
 @Tag(
 	name = "Auth", description = "API handling all authentication requests."
@@ -21,14 +23,16 @@ interface AuthApi {
 		@RequestBody authRequest: AuthRequestTO
 	): AuthResponseTO
 
+	@OptIn(ExperimentalUuidApi::class)
 	@PostMapping("/logout")
 	fun logout(
-		@RequestBody refreshToken: String
+		@RequestBody refreshToken: Uuid
 	)
 
+	@OptIn(ExperimentalUuidApi::class)
 	@PostMapping("/refresh")
 	fun refresh(
-		@RequestBody refreshToken: String
+		@RequestBody refreshToken: Uuid
 	): String
 
 	@PostMapping("/signup")

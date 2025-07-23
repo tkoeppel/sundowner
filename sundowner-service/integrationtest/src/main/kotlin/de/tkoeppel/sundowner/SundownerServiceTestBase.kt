@@ -25,7 +25,7 @@ import java.time.ZonedDateTime
 
 @AutoConfigureMockMvc
 @SpringBootTest
-class SundownerServiceTestBase {
+open class SundownerServiceTestBase {
 
 	@Autowired
 	protected lateinit var spotDAO: SpotDAO
@@ -104,7 +104,7 @@ class SundownerServiceTestBase {
 
 	}
 
-	protected fun <T> convertToTO(result: MvcResult, typeRef: Any): T {
+	protected fun <T> convertToTO(result: MvcResult, typeRef: TypeReference<T>): T {
 		val objStr = result.response.contentAsString
 		return this.mapper.readValue(objStr, typeRef)
 	}

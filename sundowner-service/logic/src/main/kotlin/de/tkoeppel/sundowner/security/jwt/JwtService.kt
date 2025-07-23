@@ -1,21 +1,22 @@
 package de.tkoeppel.sundowner.security.jwt
 
 import io.jsonwebtoken.Claims
+import io.jsonwebtoken.JwtException
 import io.jsonwebtoken.Jwts
+import jakarta.annotation.PostConstruct
 import org.springframework.stereotype.Service
 import java.util.*
-import javax.crypto.SecretKey
 import javax.crypto.spec.SecretKeySpec
 
 
 @Service
 class JwtService(private val jwtConfig: JwtConfig) {
-	private val signingKey: SecretKey by lazy {
-		val keyBytes = jwtConfig.secretKey.toByteArray()
-		require(keyBytes.size >= 32) {
-			"Secret key for HmacSHA256 must be at least 256 bits (32 bytes) long."
-		}
-		SecretKeySpec(keyBytes, "HmacSHA256")
+
+	private lateinit var signingKey: SecretKeySpec
+
+	@PostConstruct
+	fun initSigningKey() {
+		signingKey = SecretKeySpec(jwtConfig.secretKey.toByteArray(), "HmacSHA256")
 	}
 
 	fun generateToken(subject: String, expiresAt: Date, additionalClaims: Map<String, Any> = emptyMap()): String {
@@ -29,8 +30,13 @@ class JwtService(private val jwtConfig: JwtConfig) {
 	}
 
 	fun extractUsername(token: String): String {
-		return extractAllClaims(token).subject
+		val username = extractAllClaims(token).subject
+		if (username == null) {
+			throw JwtException("Invalid token. Could not extract username.")
+		}
+		return username
 	}
+
 
 	private fun extractAllClaims(token: String): Claims {
 		return Jwts.parser() //
