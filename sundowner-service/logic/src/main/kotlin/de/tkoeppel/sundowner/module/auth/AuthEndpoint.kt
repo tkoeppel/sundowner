@@ -16,9 +16,8 @@ class AuthEndpoint(private val authService: AuthService) : AuthApi {
 	}
 
 	/** @see AuthApi.logout */
-	@OptIn(ExperimentalUuidApi::class)
-	override fun logout(refreshToken: Uuid) {
-		this.authService.logout(refreshToken)
+	override fun logout() {
+		this.authService.logout()
 	}
 
 	/** @see AuthApi.refresh */

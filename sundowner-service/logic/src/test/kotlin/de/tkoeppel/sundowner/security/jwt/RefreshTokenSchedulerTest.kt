@@ -20,12 +20,12 @@ class RefreshTokenSchedulerTest {
 	fun `scheduledRemoveExpired should call dao to remove expired tokens`() {
 		// pre
 		val expectedDeletedCount = 5
-		`when`(refreshTokenDAO!!.removeExpiredTokens()).thenReturn(expectedDeletedCount)
+		`when`(refreshTokenDAO!!.deleteExpiredTokens()).thenReturn(expectedDeletedCount)
 
 		// act
 		this.refreshTokenScheduler!!.scheduledRemoveExpired()
 
 		//post
-		verify(refreshTokenDAO, times(1))!!.removeExpiredTokens()
+		verify(refreshTokenDAO, times(1))!!.deleteExpiredTokens()
 	}
 }

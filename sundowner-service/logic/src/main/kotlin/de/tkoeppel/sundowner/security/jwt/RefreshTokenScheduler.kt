@@ -15,7 +15,7 @@ class RefreshTokenScheduler(val refreshTokenDAO: RefreshTokenDAO) {
 
 	@Scheduled(cron = $$"${security.jwt.remove-expired-token-interval:0 0 * * * *}")
 	fun scheduledRemoveExpired() {
-		val tokensDeleted = this.refreshTokenDAO.removeExpiredTokens()
+		val tokensDeleted = this.refreshTokenDAO.deleteExpiredTokens()
 		LOGGER.info("Removed $tokensDeleted expired refresh tokens")
 	}
 }

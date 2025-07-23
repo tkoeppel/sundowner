@@ -4,6 +4,7 @@ import de.tkoeppel.sundowner.dao.RefreshTokenDAO
 import de.tkoeppel.sundowner.dao.UserDAO
 import de.tkoeppel.sundowner.module.users.SundownerUser
 import de.tkoeppel.sundowner.module.users.SundownerUserDetailsService
+import de.tkoeppel.sundowner.module.users.UserBean
 import de.tkoeppel.sundowner.po.RefreshTokenPO
 import de.tkoeppel.sundowner.security.jwt.JwtConfig
 import de.tkoeppel.sundowner.security.jwt.JwtService
@@ -26,7 +27,8 @@ class AuthService(
 	private val jwtService: JwtService,
 	private val refreshTokenDAO: RefreshTokenDAO,
 	private val userDAO: UserDAO,
-	private val jwtConfig: JwtConfig
+	private val jwtConfig: JwtConfig,
+	private val userBean: UserBean
 ) {
 	@OptIn(ExperimentalUuidApi::class)
 	@Transactional
@@ -47,10 +49,9 @@ class AuthService(
 		)
 	}
 
-	@OptIn(ExperimentalUuidApi::class)
 	@Transactional
-	fun logout(refreshToken: Uuid) {
-		this.refreshTokenDAO.deleteByToken(refreshToken)
+	fun logout() {
+		this.refreshTokenDAO.deleteTokenByUsername(this.userBean.getCurrentUser().username)
 	}
 
 	@OptIn(ExperimentalUuidApi::class)
@@ -85,7 +86,7 @@ class AuthService(
 	private fun createRefreshToken(
 		user: SundownerUser
 	): Uuid {
-		this.refreshTokenDAO.removeTokenByUsername(user.username)
+		this.refreshTokenDAO.deleteTokenByUsername(user.username)
 
 		val expiresAt = Date(System.currentTimeMillis() + jwtConfig.refreshTokenExpiration)
 		val token = Uuid.random()

@@ -4,7 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a1856a26-3204-4700-b309-975dd197607f" name="Changes" comment="refactoring tests">
+    <list default="true" id="a1856a26-3204-4700-b309-975dd197607f" name="Changes" comment="login tests and login refactoring">
+      <change afterPath="$PROJECT_DIR$/integrationtest/src/test/kotlin/de/tkoeppel/sundowner/module/auth/LogoutTest.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/data/src/main/kotlin/de/tkoeppel/sundowner/dao/RefreshTokenDAO.kt" beforeDir="false" afterPath="$PROJECT_DIR$/data/src/main/kotlin/de/tkoeppel/sundowner/dao/RefreshTokenDAO.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/integrationtest/src/main/kotlin/de/tkoeppel/sundowner/SundownerServiceTestBase.kt" beforeDir="false" afterPath="$PROJECT_DIR$/integrationtest/src/main/kotlin/de/tkoeppel/sundowner/SundownerServiceTestBase.kt" afterDir="false" />
@@ -15,10 +16,9 @@
       <change beforePath="$PROJECT_DIR$/logic/src/main/kotlin/de/tkoeppel/sundowner/exceptions/GlobalExceptionHandler.kt" beforeDir="false" afterPath="$PROJECT_DIR$/logic/src/main/kotlin/de/tkoeppel/sundowner/exceptions/GlobalExceptionHandler.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/logic/src/main/kotlin/de/tkoeppel/sundowner/module/auth/AuthEndpoint.kt" beforeDir="false" afterPath="$PROJECT_DIR$/logic/src/main/kotlin/de/tkoeppel/sundowner/module/auth/AuthEndpoint.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/logic/src/main/kotlin/de/tkoeppel/sundowner/module/auth/AuthService.kt" beforeDir="false" afterPath="$PROJECT_DIR$/logic/src/main/kotlin/de/tkoeppel/sundowner/module/auth/AuthService.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/logic/src/main/kotlin/de/tkoeppel/sundowner/module/users/SundownerUserDetailsService.kt" beforeDir="false" afterPath="$PROJECT_DIR$/logic/src/main/kotlin/de/tkoeppel/sundowner/module/users/SundownerUserDetailsService.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/logic/src/main/kotlin/de/tkoeppel/sundowner/module/users/UsernameNotFoundException.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/logic/src/main/kotlin/de/tkoeppel/sundowner/security/jwt/JwtAuthFilter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/logic/src/main/kotlin/de/tkoeppel/sundowner/security/jwt/JwtAuthFilter.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/logic/src/main/kotlin/de/tkoeppel/sundowner/security/jwt/JwtService.kt" beforeDir="false" afterPath="$PROJECT_DIR$/logic/src/main/kotlin/de/tkoeppel/sundowner/security/jwt/JwtService.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/logic/src/main/kotlin/de/tkoeppel/sundowner/security/jwt/RefreshTokenScheduler.kt" beforeDir="false" afterPath="$PROJECT_DIR$/logic/src/main/kotlin/de/tkoeppel/sundowner/security/jwt/RefreshTokenScheduler.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/logic/src/main/kotlin/de/tkoeppel/sundowner/security/web/WebSecurityConfig.kt" beforeDir="false" afterPath="$PROJECT_DIR$/logic/src/main/kotlin/de/tkoeppel/sundowner/security/web/WebSecurityConfig.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/logic/src/test/kotlin/de/tkoeppel/sundowner/security/jwt/RefreshTokenSchedulerTest.kt" beforeDir="false" afterPath="$PROJECT_DIR$/logic/src/test/kotlin/de/tkoeppel/sundowner/security/jwt/RefreshTokenSchedulerTest.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -105,11 +105,16 @@
     "Gradle.GetPointsInViewTest.get points with invalid limit.executor": "Run",
     "Gradle.GetPointsInViewTest.get single point.executor": "Debug",
     "Gradle.LoginTest.executor": "Run",
+    "Gradle.LoginTest.login with valid credentials invalidates previous refresh token.executor": "Run",
     "Gradle.LoginTest.login with valid credentials.executor": "Run",
+    "Gradle.LogoutTest.executor": "Run",
+    "Gradle.LogoutTest.logout logged in user.executor": "Debug",
+    "Gradle.LogoutTest.logout with valid token successfully deletes refresh token.executor": "Debug",
     "Gradle.RefreshTokenSchedulerTest.executor": "Run",
     "Gradle.Tests in 'de.tkoeppel.sundowner.module.spots'.executor": "Run",
     "Gradle.Tests in 'sundowner-service.common.test'.executor": "Run",
     "Gradle.Tests in 'sundowner-service.integrationtest.main'.executor": "Run",
+    "Gradle.Tests in 'sundowner-service.integrationtest.test'.executor": "Run",
     "Gradle.Tests in 'sundowner-service.logic.test'.executor": "Run",
     "JUnit.SundownerServiceTestBase.executor": "Run",
     "Kotlin.SundownerServiceApplicationKt.executor": "Run",
@@ -132,8 +137,8 @@
       <recent name="de.tkoeppel.sundowner.dao" />
     </key>
   </component>
-  <component name="RunManager" selected="Gradle.LoginTest">
-    <configuration name="CreateSpotTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+  <component name="RunManager" selected="Gradle.LogoutTest.logout with valid token successfully deletes refresh token">
+    <configuration name="LoginTest.login with valid credentials invalidates previous refresh token" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
@@ -146,7 +151,7 @@
           <list>
             <option value=":integrationtest:test" />
             <option value="--tests" />
-            <option value="&quot;de.tkoeppel.sundowner.module.spots.CreateSpotTest&quot;" />
+            <option value="&quot;de.tkoeppel.sundowner.module.auth.LoginTest.login with valid credentials invalidates previous refresh token&quot;" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -157,7 +162,7 @@
       <RunAsTest>true</RunAsTest>
       <method v="2" />
     </configuration>
-    <configuration name="CreateSpotTest.create spot in international waters" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="LogoutTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
@@ -170,7 +175,7 @@
           <list>
             <option value=":integrationtest:test" />
             <option value="--tests" />
-            <option value="&quot;de.tkoeppel.sundowner.module.spots.CreateSpotTest.create spot in international waters&quot;" />
+            <option value="&quot;de.tkoeppel.sundowner.module.auth.LogoutTest&quot;" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -181,7 +186,7 @@
       <RunAsTest>true</RunAsTest>
       <method v="2" />
     </configuration>
-    <configuration name="LoginTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="LogoutTest.logout logged in user" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
@@ -194,7 +199,7 @@
           <list>
             <option value=":integrationtest:test" />
             <option value="--tests" />
-            <option value="&quot;de.tkoeppel.sundowner.module.auth.LoginTest&quot;" />
+            <option value="&quot;de.tkoeppel.sundowner.module.auth.LogoutTest.logout logged in user&quot;" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -205,7 +210,7 @@
       <RunAsTest>true</RunAsTest>
       <method v="2" />
     </configuration>
-    <configuration name="LoginTest.login with valid credentials" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="LogoutTest.logout with valid token successfully deletes refresh token" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
@@ -218,7 +223,7 @@
           <list>
             <option value=":integrationtest:test" />
             <option value="--tests" />
-            <option value="&quot;de.tkoeppel.sundowner.module.auth.LoginTest.login with valid credentials&quot;" />
+            <option value="&quot;de.tkoeppel.sundowner.module.auth.LogoutTest.logout with valid token successfully deletes refresh token&quot;" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -229,7 +234,7 @@
       <RunAsTest>true</RunAsTest>
       <method v="2" />
     </configuration>
-    <configuration name="Tests in 'de.tkoeppel.sundowner.module.spots'" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="Tests in 'sundowner-service.integrationtest.test'" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
@@ -241,8 +246,6 @@
         <option name="taskNames">
           <list>
             <option value=":integrationtest:test" />
-            <option value="--tests" />
-            <option value="&quot;de.tkoeppel.sundowner.module.spots.*&quot;" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -266,11 +269,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Gradle.LoginTest" />
-        <item itemvalue="Gradle.LoginTest.login with valid credentials" />
-        <item itemvalue="Gradle.Tests in 'de.tkoeppel.sundowner.module.spots'" />
-        <item itemvalue="Gradle.CreateSpotTest" />
-        <item itemvalue="Gradle.CreateSpotTest.create spot in international waters" />
+        <item itemvalue="Gradle.LogoutTest.logout with valid token successfully deletes refresh token" />
+        <item itemvalue="Gradle.LogoutTest" />
+        <item itemvalue="Gradle.LogoutTest.logout logged in user" />
+        <item itemvalue="Gradle.Tests in 'sundowner-service.integrationtest.test'" />
+        <item itemvalue="Gradle.LoginTest.login with valid credentials invalidates previous refresh token" />
       </list>
     </recent_temporary>
   </component>
@@ -435,7 +438,15 @@
       <option name="project" value="LOCAL" />
       <updated>1753041585989</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="login tests and login refactoring">
+      <option name="closed" value="true" />
+      <created>1753301118423</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1753301118423</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -454,6 +465,18 @@
     <MESSAGE value="refactor  refresh tokenauthentication" />
     <MESSAGE value="make jwt signature valid" />
     <MESSAGE value="refactoring tests" />
-    <option name="LAST_COMMIT_MESSAGE" value="refactoring tests" />
+    <MESSAGE value="login tests and login refactoring" />
+    <option name="LAST_COMMIT_MESSAGE" value="login tests and login refactoring" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="kotlin-line">
+          <url>file://$PROJECT_DIR$/logic/src/main/kotlin/de/tkoeppel/sundowner/module/auth/AuthService.kt</url>
+          <line>53</line>
+          <option name="timeStamp" value="11" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

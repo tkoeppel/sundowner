@@ -15,10 +15,6 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers.status
 import kotlin.uuid.ExperimentalUuidApi
 
 class LoginTest : AuthTestBase() {
-	companion object {
-		private const val USERNAME = "user"
-		private const val PASSWORD = "user_password"
-	}
 
 	@Autowired
 	private lateinit var jwtService: JwtService
@@ -45,6 +41,28 @@ class LoginTest : AuthTestBase() {
 		val refreshTokenFromDB = refreshTokenDAO.findUserByToken(authResponse.refreshToken)
 		assertThat(refreshTokenFromDB).isNotNull
 		assertThat(refreshTokenFromDB?.username).isEqualTo(USERNAME)
+	}
+
+	@OptIn(ExperimentalUuidApi::class)
+	@Test
+	@Transactional
+	fun `login with valid credentials invalidates previous refresh token`() {
+		// pre
+		val authRequestTO = AuthRequestTO(USERNAME, PASSWORD)
+		val firstAuthResponse = loginRequest(authRequestTO)
+		val firstRefreshToken = firstAuthResponse.refreshToken
+
+		// act
+		val secondAuthResponse = loginRequest(authRequestTO)
+		val secondRefreshToken = secondAuthResponse.refreshToken
+
+		// post
+		assertThat(secondRefreshToken).isNotEqualTo(firstRefreshToken)
+		assertThat(refreshTokenDAO.findUserByToken(firstRefreshToken)).isNull()
+
+		val newRefreshTokenFromDB = refreshTokenDAO.findUserByToken(secondRefreshToken)
+		assertThat(newRefreshTokenFromDB).isNotNull
+		assertThat(newRefreshTokenFromDB?.username).isEqualTo(USERNAME)
 	}
 
 	@Test

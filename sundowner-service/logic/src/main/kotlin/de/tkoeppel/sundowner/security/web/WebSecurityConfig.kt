@@ -52,7 +52,7 @@ class WebSecurityConfig(
 			.authenticationProvider(this.sundownerAuthProvider) //
 			.authorizeHttpRequests {
 				it //
-					.requestMatchers("/api/v1/*/public/**", "/api/v1/api-docs", "/api/v1/auth/**") //
+					.requestMatchers("/api/v1/*/public/**", "/api/v1/api-docs", "/api/v1/auth/login") //
 					.permitAll() //
 					.anyRequest() //
 					.authenticated()

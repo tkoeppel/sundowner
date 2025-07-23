@@ -13,18 +13,13 @@ interface RefreshTokenDAO : GeneralDAO<RefreshTokenPO> {
 	@Query("SELECT r.user FROM RefreshTokenPO r WHERE r.token = :token")
 	fun findUserByToken(token: Uuid): UserPO?
 
-	@OptIn(ExperimentalUuidApi::class)
-	@Modifying
-	@Transactional
-	fun deleteByToken(token: Uuid)
-
 	@Modifying
 	@Transactional
 	@Query("DELETE FROM RefreshTokenPO WHERE expiresAt < CURRENT_TIMESTAMP")
-	fun removeExpiredTokens(): Int
+	fun deleteExpiredTokens(): Int
 
 	@Modifying
 	@Transactional
 	@Query("DELETE FROM RefreshTokenPO r WHERE r.user.username = :username")
-	fun removeTokenByUsername(username: String)
+	fun deleteTokenByUsername(username: String)
 }

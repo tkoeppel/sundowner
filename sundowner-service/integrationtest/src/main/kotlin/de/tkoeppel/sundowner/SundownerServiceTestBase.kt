@@ -109,6 +109,12 @@ open class SundownerServiceTestBase {
 		return this.mapper.readValue(objStr, typeRef)
 	}
 
+	protected fun <T> convertToTO(result: MvcResult, clazz: Class<T>): T {
+		val objStr = result.response.contentAsString
+		return this.mapper.readValue(objStr, clazz)
+	}
+
+
 	protected fun doTestBadRequest(reqBuilder: RequestBuilder, message: String) {
 		val result = this.mockMvc.perform(reqBuilder).andExpect(status().isBadRequest).andReturn()
 		val exception = this.convertToTO(result, object : TypeReference<Exception>() {})
