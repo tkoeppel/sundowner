@@ -125,4 +125,8 @@ open class SundownerServiceTestBase {
 		this.mockMvc.perform(reqBuilder).andExpect(status().isForbidden)
 	}
 
+	protected fun doTestUnauthorized(reqBuilder: RequestBuilder) {
+		this.mockMvc.perform(reqBuilder).andExpect(status().isUnauthorized)
+	}
+
 }

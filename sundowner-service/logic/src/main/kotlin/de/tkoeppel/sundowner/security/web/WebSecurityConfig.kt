@@ -1,6 +1,7 @@
 package de.tkoeppel.sundowner.security.web
 
 import de.tkoeppel.sundowner.module.auth.SundownerAuthProvider
+import de.tkoeppel.sundowner.security.jwt.JwtAuthEntryPoint
 import de.tkoeppel.sundowner.security.jwt.JwtAuthFilter
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
@@ -24,6 +25,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @EnableWebSecurity
 class WebSecurityConfig(
 	private val jwtAuthFilter: JwtAuthFilter, //
+	private val jwtAuthEntryPoint: JwtAuthEntryPoint, //
 	private val sundownerAuthProvider: SundownerAuthProvider
 ) {
 	companion object {
@@ -57,7 +59,9 @@ class WebSecurityConfig(
 					.anyRequest() //
 					.authenticated()
 			}.addFilterBefore(this.jwtAuthFilter, UsernamePasswordAuthenticationFilter::class.java) //
-			.sessionManagement {
+			.exceptionHandling {
+				it.authenticationEntryPoint(this.jwtAuthEntryPoint) // Set your custom entry point here
+			}.sessionManagement {
 				it.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
 			}
 		return http.build()

@@ -64,7 +64,7 @@ class CreateSpotTest : SpotTestBase() {
 
 		// act
 		val reqBuilder = buildCreateSpotRequest(createSpotTO)
-		doTestForbidden(reqBuilder)
+		doTestUnauthorized(reqBuilder)
 	}
 
 	@Transactional

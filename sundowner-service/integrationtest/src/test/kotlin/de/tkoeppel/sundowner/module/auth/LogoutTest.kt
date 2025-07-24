@@ -7,7 +7,6 @@ import jakarta.transaction.Transactional
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 import org.springframework.http.MediaType
-import org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.jwt
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers.status
 import kotlin.uuid.ExperimentalUuidApi
@@ -25,13 +24,13 @@ class LogoutTest : AuthTestBase() {
 		val accessToken = authResponse.accessToken
 
 		val refreshTokens = refreshTokenDAO.findAll()
-		assertThat(refreshTokens).isNotEmpty
+		assertThat(refreshTokens).hasSize(1)
 		assertThat(refreshTokens[0].token).isEqualTo(refreshToken)
 		assertThat(refreshTokenDAO.findUserByToken(refreshToken)).isNotNull
 
 		// act
 		this.mockMvc.perform(
-			post(LOGOUT_PATH).with(jwt().jwt { it.tokenValue(accessToken) })
+			post(LOGOUT_PATH).header("Authorization", "Bearer $accessToken")
 		).andExpect(status().isOk)
 
 		// post
@@ -39,7 +38,7 @@ class LogoutTest : AuthTestBase() {
 	}
 
 	@Test
-	fun `logout without authentication token fails with unauthorized`() {
+	fun `logout without authentication token`() {
 		this.mockMvc.perform(
 			post(LOGOUT_PATH)
 		).andExpect(status().isUnauthorized)
